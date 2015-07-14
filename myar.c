@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
 					exit(EXIT_FAILURE);
 				}
 				
-				char init_str[] = "!<arch>";
+				char init_str[] = "!<arch>\n";
 				
 				if (write(ar_fd, init_str, sizeof(char) * strlen(init_str)) == -1)
 				{
@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
 				}
 			}
 			
-			if ((ar_fd = open(ar_file, O_WRONLY | O_APPEND | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+			if ((ar_fd = open(ar_file, O_WRONLY | O_APPEND)) == -1)
 			{
 				perror("open archive file: ");
 				exit(EXIT_FAILURE);
@@ -153,10 +153,25 @@ int main(int argc, char** argv) {
 				
 				char out_buf[1 + strlen(out_desc) + 1 + strlen(buf)];
 				
-				strcpy(out_buf, "\n");
-				strcat(out_buf, out_desc);
-				strcat(out_buf, "\n");
-				strcat(out_buf, buf);
+				int file_pos;
+				if ((file_pos = lseek(ar_fd, 0, SEEK_CUR)) == -1)
+				{
+					perror("lseek archive file: ");
+					exit(EXIT_FAILURE);
+				}
+				
+				printf("file_pos = %d, file_pos mod 2 = %d\n", file_pos, file_pos % 2);
+				
+				if (file_pos % 2 != 0) {
+					strcpy(out_buf, "\n");
+					strcat(out_buf, out_desc);
+					strcat(out_buf, "\n");
+					strcat(out_buf, buf);
+				} else {
+					strcpy(out_buf, out_desc);
+					strcat(out_buf, "\n");
+					strcat(out_buf, buf);
+				}
 				
 				if (write(ar_fd, out_buf, sizeof(char) * strlen(out_buf)) == -1)
 				{
