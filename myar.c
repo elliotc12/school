@@ -91,7 +91,8 @@ int main(int argc, char** argv) {
 				perror("open archive file: ");
 				exit(EXIT_FAILURE);
 			}
-			for (int c = 3; c < argc; c++)
+			int c;
+			for (c = 3; c < argc; c++)
 			{
 				char* in_file = argv[c];
 				int in_fd;
@@ -129,7 +130,8 @@ int main(int argc, char** argv) {
 				}
 				
 				char out_desc[60];
-				for (int j = 0; j < 59; j++)
+				int j;
+				for (j = 0; j < 59; j++)
 				{
 					out_desc[j] = ' ';
 				}
@@ -142,7 +144,8 @@ int main(int argc, char** argv) {
 				snprintf(&out_desc[48], 10, "%lld", file_info.st_size);
 				out_desc[58] = '`';
 				
-				for (int k = 0; k < 59; k++)
+				int k;
+				for (k = 0; k < 59; k++)
 				{
 					if (out_desc[k] == '\0') {
 						out_desc[k] = ' ';
