@@ -2,6 +2,29 @@
 
 \begin{document}
 
-This is my first LaTeX document.
+\section{Design}
+My program is a state machine which uses getopt to parse through commands. When it reads the "q" option, it puts itself in APPEND mode. This causes it to iterate through
+the further arguments to the program and parse them as input files. When it reads the "x" option, it puts itself in EXTRACT mode. This causes it to read the arfile argument
+and create files from that archive. Etc etc etc.
+
+\section{Worklog}
+July 11th 10:00am - 11:00am: Read through assignment details, coded skeleton and getopt stuff. \\
+
+July 11th 8:00pm - 9:00pm: Got getopt stuff to work, began with code to read in files and create an archive file. \\
+
+July 12th 8:00am - 11:00am: Got program to succesfully read in files and save them to a custom archive file (NOT the ar-specified archive file format) \\
+
+July 13th 2:00pm - 4:00pm: Got program to succesfully read in files and save them to an archive file somewhat reminiscent of the ar-specified format. \\
+
+July 13th 7:30pm - 12:00am: Got program to succesfully read in files, save them to the ar-specified format, and print their contents kind of. Still lots to do. \\
+
+\section{Challenges}
+It was difficult for me to figure out how the ar-specified file format worked, until I thought to Google it. I was surprised that there was a good wikipedia page about it. \\
+
+\section{Questions}
+Point of assignment: To get us used to the level of difficulty of programming assignments, to give an introduction to system programming and file IO. \\
+Correctness testing: By running the ar command and checking for exact duplication of behavior. \\
+Learn: Start earlier! Also lots about IO and string manipulation.\\
+
 
 \end{document}
