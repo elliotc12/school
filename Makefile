@@ -10,3 +10,5 @@ writeup.pdf: writeup.tex
 
 clean:
 	rm myar
+	rm *.aux
+	rm *.log
