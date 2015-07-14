@@ -70,7 +70,7 @@ int main(int argc, char** argv) {
 					exit(EXIT_FAILURE);
 				}
 				
-				char init_str[] = "!<arch>\n";
+				char init_str[] = "!<arch>";
 				
 				if (write(ar_fd, init_str, sizeof(char) * strlen(init_str)) == -1)
 				{
@@ -128,43 +128,35 @@ int main(int argc, char** argv) {
 					exit(EXIT_FAILURE);
 				}
 				
-				char st_mtime_str[OUT_DESCRIPTION_MAX_SIZE];
-				snprintf(st_mtime_str, OUT_DESCRIPTION_MAX_SIZE, "%ld", file_info.st_mtime);
+				char out_desc[60];
+				for (int j = 0; j < 59; j++)
+				{
+					out_desc[j] = ' ';
+				}
 				
-				char st_uid_str[OUT_DESCRIPTION_MAX_SIZE];
-				snprintf(st_uid_str, OUT_DESCRIPTION_MAX_SIZE, "%d", file_info.st_uid);
+				snprintf(out_desc, 16, "%s", in_file);
+				snprintf(&out_desc[16], 12, "%ld", file_info.st_mtime);
+				snprintf(&out_desc[28], 6, "%d", file_info.st_uid);
+				snprintf(&out_desc[34], 6, "%d", file_info.st_gid);
+				snprintf(&out_desc[40], 8, "%o", file_info.st_mode);
+				snprintf(&out_desc[48], 10, "%lld", file_info.st_size);
+				out_desc[58] = '`';
 				
-				char st_gid_str[OUT_DESCRIPTION_MAX_SIZE];
-				snprintf(st_gid_str, OUT_DESCRIPTION_MAX_SIZE, "%d", file_info.st_gid);
+				for (int k = 0; k < 59; k++)
+				{
+					if (out_desc[k] == '\0') {
+						out_desc[k] = ' ';
+					}
+				}
 				
-				char st_mode_str[OUT_DESCRIPTION_MAX_SIZE];
-				snprintf(st_mode_str, OUT_DESCRIPTION_MAX_SIZE, "%o", file_info.st_mode);
+				out_desc[59] = '\0';
 				
-				char st_size_str[OUT_DESCRIPTION_MAX_SIZE];
-				snprintf(st_size_str, OUT_DESCRIPTION_MAX_SIZE, "%lld", file_info.st_size);
+				char out_buf[1 + strlen(out_desc) + 1 + strlen(buf)];
 				
-				char out_desc[strlen(st_mtime_str) + 2 + strlen(st_uid_str) + 3 + strlen(st_gid_str) + 4 +
-					strlen(st_mode_str) + 2 + strlen(st_size_str) + 10];
-				
-				strcpy(out_desc, st_mtime_str);
-				strcat(out_desc, "  ");
-				strcat(out_desc, st_uid_str);
-				strcat(out_desc, "   ");
-				strcat(out_desc, st_gid_str);
-				strcat(out_desc, "    ");
-				strcat(out_desc, st_mode_str);
-				strcat(out_desc, "  ");
-				strcat(out_desc, st_size_str);
-				strcat(out_desc, "         `");
-				
-				char out_buf[strlen(in_file) + 11 + strlen(out_desc) + 1 + strlen(buf) + 1];
-				
-				strcpy(out_buf, in_file);
-				strcat(out_buf, "           ");
+				strcpy(out_buf, "\n");
 				strcat(out_buf, out_desc);
 				strcat(out_buf, "\n");
 				strcat(out_buf, buf);
-				strcat(out_buf, "\n");
 				
 				if (write(ar_fd, out_buf, sizeof(char) * strlen(out_buf)) == -1)
 				{
@@ -204,12 +196,11 @@ int main(int argc, char** argv) {
 				exit(EXIT_FAILURE);
 			}
 			
-			char* ar_ptr = ar_buf;
+			char* ar_ptr = strchr(ar_buf, '\n') + 1;
 			
 			char* ar_end = ar_buf + ar_size;
 			while(ar_ptr < ar_end) 
 			{
-				
 				char* entry_start = strchr(ar_ptr, '\n') + 1;
 				char entry_size_str[MAX_ENTRY_NUMBER_SIZE];
 				
