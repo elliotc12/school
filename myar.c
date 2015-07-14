@@ -160,8 +160,6 @@ int main(int argc, char** argv) {
 					exit(EXIT_FAILURE);
 				}
 				
-				printf("file_pos = %d, file_pos mod 2 = %d\n", file_pos, file_pos % 2);
-				
 				if (file_pos % 2 != 0) {
 					strcpy(out_buf, "\n");
 					strcat(out_buf, out_desc);
@@ -213,13 +211,33 @@ int main(int argc, char** argv) {
 			
 			char* ar_ptr = strchr(ar_buf, '\n') + 1;
 			
+			char* entry_start = strchr(ar_ptr, '\n') + 1;
+			
+			// Find entry size and save it in entry_size
+			int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
+			
+			char entry_size_str[entry_size_str_len + 1];
+			strncpy(entry_size_str, &ar_ptr[48], entry_size_str_len);
+			entry_size_str[entry_size_str_len] = '\0';
+			int entry_size = atoi(entry_size_str);
+			
+			char entry_str[entry_size + 1];
+			strncpy(entry_str, entry_start, entry_size);
+			entry_str[entry_size] = '\0';
+			
+			printf("entry_str: %s\n", entry_str);
+			
+			/*
+			
 			char* ar_end = ar_buf + ar_size;
 			while(ar_ptr < ar_end) 
 			{
 				char* entry_start = strchr(ar_ptr, '\n') + 1;
-				char entry_size_str[MAX_ENTRY_NUMBER_SIZE];
-				
-				strncpy(entry_size_str, ar_ptr, entry_start - ar_ptr - 1);
+				// Find entry size and save it in entry_size
+				int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
+				char entry_size_str[entry_size_str_len + 1];
+				strncpy(entry_size_str, &ar_ptr[48], entry_size_str_len);
+				entry_size_str[entry_size_str_len] = '\0';
 				int entry_size = atoi(entry_size_str);
 				
 				char entry_str[entry_size + 1];
@@ -235,6 +253,8 @@ int main(int argc, char** argv) {
 				
 				ar_ptr = entry_start + entry_size;
 			}
+			
+			*/
 		}
 	}
 	
