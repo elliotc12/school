@@ -213,29 +213,13 @@ int main(int argc, char** argv) {
 			}
 			
 			char* ar_ptr = strchr(ar_buf, '\n') + 1;
-			
-			char* entry_start = strchr(ar_ptr, '\n') + 1;
-			
-			// Find entry size and save it in entry_size
-			int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
-			
-			char entry_size_str[entry_size_str_len + 1];
-			strncpy(entry_size_str, &ar_ptr[48], entry_size_str_len);
-			entry_size_str[entry_size_str_len] = '\0';
-			int entry_size = atoi(entry_size_str);
-			
-			char entry_str[entry_size + 1];
-			strncpy(entry_str, entry_start, entry_size);
-			entry_str[entry_size] = '\0';
-			
-			printf("entry_str: %s\n", entry_str);
-			
-			/*
-			
+					
 			char* ar_end = ar_buf + ar_size;
+			
 			while(ar_ptr < ar_end) 
 			{
 				char* entry_start = strchr(ar_ptr, '\n') + 1;
+				
 				// Find entry size and save it in entry_size
 				int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
 				char entry_size_str[entry_size_str_len + 1];
@@ -246,18 +230,12 @@ int main(int argc, char** argv) {
 				char entry_str[entry_size + 1];
 				strncpy(entry_str, entry_start, entry_size);
 				entry_str[entry_size] = '\0';
-				
-				char* content_start = strchr(entry_start, '\n') + 1;
-				int content_size = entry_size - (content_start - entry_start) - 2;	// Do not include trailing \n\n
-				char content[content_size + 1];
-				strncpy(content, content_start, content_size);
-				content[content_size] = '\0';
-				printf("content: %s\n", content);
+		
+				printf("entry : %s\n", entry_str);
 				
 				ar_ptr = entry_start + entry_size;
 			}
 			
-			*/
 		}
 	}
 	
