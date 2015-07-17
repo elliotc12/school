@@ -5,8 +5,10 @@
 #include <fcntl.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <sys/time.h>
 #include <sys/types.h>
 #include <time.h>
+#include <utime.h>
 
 #define MAX_ENTRY_NUMBER_SIZE 100
 #define OUT_DESCRIPTION_MAX_SIZE 200
@@ -218,21 +220,111 @@ int main(int argc, char** argv) {
 			
 			while(ar_ptr < ar_end) 
 			{
+				if (*ar_ptr == '\n')
+				{
+					ar_ptr++;
+				}
+				
 				char* entry_start = strchr(ar_ptr, '\n') + 1;
 				
-				// Find entry size and save it in entry_size
+				int entry_name_str_len = strchr(&ar_ptr[0], ' ') - &ar_ptr[0];
+				if (entry_name_str_len > 16)	entry_name_str_len = 16;
+				char entry_name[entry_name_str_len + 1];
+				strncpy(entry_name, &ar_ptr[0], entry_name_str_len);
+				entry_name[entry_name_str_len] = '\0';
+				//printf("name: %s\t", entry_name);
+				
+				int entry_ts_str_len = strchr(&ar_ptr[16], ' ') - &ar_ptr[16];
+				if (entry_ts_str_len > 12)	entry_ts_str_len = 12;
+				char entry_ts_str[entry_ts_str_len + 1];
+				strncpy(entry_ts_str, &ar_ptr[16], entry_ts_str_len);
+				entry_ts_str[entry_ts_str_len] = '\0';
+				time_t entry_ts = atol(entry_ts_str);
+				//printf("ts: %s\t", ctime( &entry_ts));
+				
+				int entry_uid_str_len = strchr(&ar_ptr[28], ' ') - &ar_ptr[28];
+				if (entry_uid_str_len > 6)	entry_uid_str_len = 6;
+				char entry_uid_str[entry_uid_str_len + 1];
+				strncpy(entry_uid_str, &ar_ptr[28], entry_uid_str_len);
+				entry_uid_str[entry_uid_str_len] = '\0';
+				long entry_uid = atol(entry_uid_str);
+				//printf("uid: %ld\t", entry_uid);
+				
+				int entry_gid_str_len = strchr(&ar_ptr[34], ' ') - &ar_ptr[34];
+				if (entry_gid_str_len > 6)	entry_gid_str_len = 6;
+				char entry_gid_str[entry_gid_str_len + 1];
+				strncpy(entry_gid_str, &ar_ptr[34], entry_gid_str_len);
+				entry_gid_str[entry_gid_str_len] = '\0';
+				long entry_gid = atol(entry_gid_str);
+				//printf("gid: %ld\t", entry_gid);
+				
+				int entry_mode_str_len = strchr(&ar_ptr[40], ' ') - &ar_ptr[40];
+				if (entry_mode_str_len > 6)	entry_mode_str_len = 6;
+				char entry_mode_str[entry_mode_str_len + 1];
+				strncpy(entry_mode_str, &ar_ptr[40], entry_mode_str_len);
+				entry_mode_str[entry_mode_str_len] = '\0';
+				long entry_mode = strtol(entry_mode_str, NULL, 8);
+				//printf("mode: %o\n", (int) entry_mode);
+				
 				int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
+				if (entry_size_str_len > 10)	entry_size_str_len = 10;
 				char entry_size_str[entry_size_str_len + 1];
 				strncpy(entry_size_str, &ar_ptr[48], entry_size_str_len);
 				entry_size_str[entry_size_str_len] = '\0';
 				int entry_size = atoi(entry_size_str);
+				//printf("size: %d\n", entry_size);
 				
 				char entry_str[entry_size + 1];
 				strncpy(entry_str, entry_start, entry_size);
 				entry_str[entry_size] = '\0';
-		
-				printf("entry : %s\n", entry_str);
 				
+				int out_fd;
+				if ((out_fd = open(entry_name, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+				{
+					perror("open out file: ");
+					exit(EXIT_FAILURE);
+				}
+				
+				struct timeval out_time_arr[2];
+				out_time_arr[0].tv_sec = entry_ts;
+				out_time_arr[0].tv_usec = 0;
+				out_time_arr[1].tv_sec = entry_ts;
+				out_time_arr[1].tv_usec = 0;	
+							
+				if (write(out_fd, entry_str, entry_size) == -1)
+				{
+					perror("write to out file: ");
+					exit(EXIT_FAILURE);
+				}
+				
+				if (futimes(out_fd, out_time_arr) == -1) {
+					perror("futimes on out file: ");
+					exit(EXIT_FAILURE);
+				}
+				
+				if (fchown(out_fd, entry_uid, entry_gid) == -1) {
+					perror("fchown on out file: ");
+					exit(EXIT_FAILURE);
+				}
+				
+				if (fchmod(out_fd, entry_mode) == -1) {
+					perror("fchmod on out file: ");
+					exit(EXIT_FAILURE);
+				}
+				
+				
+				printf("atime: %ld\n", file_info.st_atime);
+				printf("mtime: %ld\n", file_info.st_mtime);
+				printf("mode:  %d\n", file_info.st_mode);
+				printf("uid:   %d\n", file_info.st_uid);
+				printf("gid:   %d\n", file_info.st_gid);
+				printf("size:  %lld\n\n", file_info.st_size);
+				
+				if (close(out_fd) == -1) {
+					perror("close out file: ");
+					exit(EXIT_FAILURE);
+				}
+		
 				ar_ptr = entry_start + entry_size;
 			}
 			
