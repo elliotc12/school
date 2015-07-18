@@ -41,6 +41,7 @@ int main(int argc, char** argv) {
 				}
 				if (argc < 4) {
 					printf("Error. Option -q requires two or more arguments: myar -q arfile file [file2 ...]\n");
+					exit(EXIT_FAILURE);
 				}
 				mode = APPEND;
 				break;
@@ -52,6 +53,7 @@ int main(int argc, char** argv) {
 				}
 				if (argc != 3) {
 					printf("Error. -x option takes only one argument: myar -x arfile\n");
+					exit(EXIT_FAILURE);
 				}
 				mode = EXTRACT;
 				break;
@@ -63,6 +65,7 @@ int main(int argc, char** argv) {
 				}
 				if (argc != 3) {
 					printf("Error. -t option takes only one argument: myar -t arfile\n");
+					exit(EXIT_FAILURE);
 				}
 				mode = SUMMARIZE;
 				break;
@@ -78,6 +81,7 @@ int main(int argc, char** argv) {
 				}
 				if (argc < 4) {
 					printf("Error. -d option takes at least two arguments: myar -d arfile file [file2 ...]\n");
+					exit(EXIT_FAILURE);
 				}
 				mode = DELETE;
 				break;
@@ -89,6 +93,7 @@ int main(int argc, char** argv) {
 				}
 				if (argc != 3) {
 					printf("Error. -A option takes only one argument: myar -A arfile\n");
+					exit(EXIT_FAILURE);
 				}
 				mode = ADD;
 				break;
@@ -506,8 +511,6 @@ int main(int argc, char** argv) {
 		
 		case DELETE:
 		{
-			printf("Deleting files...\n");
-			
 			int ar_fd;
 			if ((ar_fd = open(ar_file, O_RDONLY)) == -1)
 			{
@@ -533,7 +536,75 @@ int main(int argc, char** argv) {
 					
 			char* ar_end = ar_buf + ar_size;
 			
-			
+				while(ar_ptr < ar_end) 
+				{	
+					//printf("ar_ptr offset: %ld\t", ar_ptr - ar_buf);
+					//printf("ar_ptr pointing to char: %d, %c\t", (int) *ar_ptr, *ar_ptr);
+					
+					/*if (*ar_ptr == '\n')
+					{
+						ar_ptr++;
+					}*/
+					
+					int to_delete = 0;
+					int to_continue = 0;
+				
+					char* entry_start = strchr(ar_ptr, '\n') + 1;
+
+					int entry_name_str_len = strchr(&ar_ptr[0], ' ') - &ar_ptr[0];
+					if (entry_name_str_len > 16)	entry_name_str_len = 16;
+					char entry_name[entry_name_str_len + 1];
+					strncpy(entry_name, &ar_ptr[0], entry_name_str_len);
+					entry_name[entry_name_str_len] = '\0';
+
+					int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
+					if (entry_size_str_len > 10)	entry_size_str_len = 10;
+					char entry_size_str[entry_size_str_len + 1];
+					strncpy(entry_size_str, &ar_ptr[48], entry_size_str_len);
+					entry_size_str[entry_size_str_len] = '\0';
+					int entry_size = atoi(entry_size_str);
+					
+					//printf("entry size: %d\n", entry_size);
+					//printf("content:\n%.*s\n\n", (int) (ar_end - ar_ptr), ar_ptr);
+
+					char entry_str[entry_size + 1];
+					strncpy(entry_str, entry_start, entry_size);
+					entry_str[entry_size] = '\0';
+					
+					//printf("entry_name: %s\n", entry_name);
+					int c;
+					for (c = 3; c < argc; c++)
+					{
+						if (strcmp(entry_name, argv[c]) == 0)
+							to_delete = 1;
+					}
+					
+					char temp_arfile[strlen(ar_buf)];
+					
+					if (to_delete == 1) {
+						//printf("deleting: %s\n", entry_name);
+						strncpy(temp_arfile, ar_buf, ar_ptr - ar_buf);
+						if (strlen(temp_arfile) % 2 != 0) {
+							strcat(temp_arfile, "\n");
+						}
+						strncat(temp_arfile, entry_start + entry_size, ar_end - entry_start - entry_size);
+						strcpy(ar_buf, temp_arfile);
+						ar_end = ar_buf + strlen(ar_buf);
+						ar_ptr = ar_start;
+						to_continue = 1;
+					}
+					
+					if (to_continue == 1) continue;
+					
+					ar_ptr = entry_start + entry_size;
+					if ((ar_ptr - ar_start) % 2 != 0)
+					{
+						ar_ptr++;
+					}
+
+				}
+				printf("%s", ar_buf);
+				
 			break;
 		}
 		
