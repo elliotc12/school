@@ -14,47 +14,95 @@
 #define OUT_DESCRIPTION_MAX_SIZE 200
 
 enum MODES {
-	APPEND,
-	EXTRACT
+	APPEND = 1,
+	EXTRACT,
+	SUMMARIZE,
+	DELETE,
+	ADD
 };
 
 int main(int argc, char** argv) {
 	
 	char opt;
-	int mode;
+	int mode = 0;
+	int verbose = 0;
 	char* ar_file;
 	
 	ar_file = argv[2];
 	
-	while ((opt = getopt(argc, argv, "qxtvdA")) != -1)
+	while ((opt = getopt(argc, argv, "q:x:t:vd:A")) != -1)
 	{
 		switch(opt)
 		{
 			case 'q':
+				if (mode != 0) {
+					printf("Error. Options q, x, t, d and A are exclusive.\n");
+					exit(EXIT_FAILURE);
+				}
+				if (argc < 4) {
+					printf("Error. Option -q requires two or more arguments: myar -q arfile file [file2 ...]\n");
+				}
 				mode = APPEND;
 				break;
 				
 			case 'x':
+				if (mode != 0) {
+					printf("Error. Options q, x, t, d and A are exclusive.\n");
+					exit(EXIT_FAILURE);
+				}
+				if (argc != 3) {
+					printf("Error. -x option takes only one argument: myar -x arfile\n");
+				}
 				mode = EXTRACT;
 				break;
 				
 			case 't':
+				if (mode != 0) {
+					printf("Error. Options q, x, t, d and A are exclusive.\n");
+					exit(EXIT_FAILURE);
+				}
+				if (argc != 3) {
+					printf("Error. -t option takes only one argument: myar -t arfile\n");
+				}
+				mode = SUMMARIZE;
 				break;
 				
 			case 'v':
+				verbose = 1;
 				break;
 				
 			case 'd':
+				if (mode != 0) {
+					printf("Error. Options q, x, t, d and A are exclusive.\n");
+					exit(EXIT_FAILURE);
+				}
+				if (argc < 4) {
+					printf("Error. -d option takes at least two arguments: myar -d arfile file [file2 ...]\n");
+				}
+				mode = DELETE;
 				break;
 				
 			case 'A':
+				if (mode != 0) {
+					printf("Error. Options q, x, t, d and A are exclusive.\n");
+					exit(EXIT_FAILURE);
+				}
+				if (argc != 3) {
+					printf("Error. -A option takes only one argument: myar -A arfile\n");
+				}
+				mode = ADD;
 				break;
 				
 			default:
-				printf("You must supply an option: myar [qxtvdA].\n");
+				printf("Correct usage: myar [qxtvdA] archive [file ...].\n");
 				exit(EXIT_FAILURE);
 		}
 		
+	}
+	
+	if ((verbose == 1) && (mode != SUMMARIZE)) {
+		printf("Error. -v flag must be accompanied by -t flag.\n");
+		exit(EXIT_FAILURE);
 	}
 	
 	switch(mode)
@@ -165,15 +213,12 @@ int main(int argc, char** argv) {
 					exit(EXIT_FAILURE);
 				}
 				
-				if (file_pos % 2 != 0) {
-					strcpy(out_buf, "\n");
-					strcat(out_buf, out_desc);
+				strcpy(out_buf, out_desc);
+				strcat(out_buf, "\n");
+				strcat(out_buf, buf);
+				
+				if ((file_pos + strlen(out_buf)) % 2 != 0) {
 					strcat(out_buf, "\n");
-					strcat(out_buf, buf);
-				} else {
-					strcpy(out_buf, out_desc);
-					strcat(out_buf, "\n");
-					strcat(out_buf, buf);
 				}
 				
 				if (write(ar_fd, out_buf, sizeof(char) * strlen(out_buf)) == -1)
@@ -215,11 +260,12 @@ int main(int argc, char** argv) {
 			}
 			
 			char* ar_ptr = strchr(ar_buf, '\n') + 1;
+			char* ar_start = ar_ptr;
 					
 			char* ar_end = ar_buf + ar_size;
 			
 			while(ar_ptr < ar_end) 
-			{
+			{	
 				if (*ar_ptr == '\n')
 				{
 					ar_ptr++;
@@ -312,23 +358,191 @@ int main(int argc, char** argv) {
 					exit(EXIT_FAILURE);
 				}
 				
-				
-				printf("atime: %ld\n", file_info.st_atime);
-				printf("mtime: %ld\n", file_info.st_mtime);
-				printf("mode:  %d\n", file_info.st_mode);
-				printf("uid:   %d\n", file_info.st_uid);
-				printf("gid:   %d\n", file_info.st_gid);
-				printf("size:  %lld\n\n", file_info.st_size);
-				
 				if (close(out_fd) == -1) {
 					perror("close out file: ");
 					exit(EXIT_FAILURE);
 				}
 		
 				ar_ptr = entry_start + entry_size;
+				if ((ar_ptr - ar_start) % 2 != 0) {
+					ar_ptr++;
+				}
+				
+			}
+			break;
+		}
+		
+		case SUMMARIZE: 
+		{
+			int ar_fd;
+			if ((ar_fd = open(ar_file, O_RDONLY)) == -1)
+			{
+				perror("open archive file: ");
+				exit(EXIT_FAILURE);
+			}
+            
+			int ar_size;
+			if ((ar_size = lseek(ar_fd, 0, SEEK_END)) == -1 || lseek(ar_fd, 0, SEEK_SET) == -1)
+			{
+				perror("lseek archive file: ");
+				exit(EXIT_FAILURE);
+			}
+            
+			char ar_buf[ar_size];
+			if (read(ar_fd, ar_buf, ar_size) == -1) {
+				perror("read archive file: ");
+				exit(EXIT_FAILURE);
+			}
+            
+			char* ar_ptr = strchr(ar_buf, '\n') + 1;
+            
+			char* ar_end = ar_buf + ar_size;
+			
+			while(ar_ptr < ar_end) 
+			{
+				if (*ar_ptr == '\n')
+				{
+					ar_ptr++;
+				}
+				
+				char* entry_start = strchr(ar_ptr, '\n') + 1;
+				
+				if (verbose) {
+					int entry_name_str_len = strchr(ar_ptr, ' ') - ar_ptr;
+					if (entry_name_str_len > 16)	entry_name_str_len = 16;
+					char entry_name[entry_name_str_len + 1];
+					strncpy(entry_name, ar_ptr, entry_name_str_len);
+					entry_name[entry_name_str_len] = '\0';
+
+					int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
+					if (entry_size_str_len > 10)	entry_size_str_len = 10;
+					char entry_size_str[entry_size_str_len + 1];
+					strncpy(entry_size_str, &ar_ptr[48], entry_size_str_len);
+					entry_size_str[entry_size_str_len] = '\0';
+					int entry_size = atoi(entry_size_str);
+					
+					int entry_ts_str_len = strchr(&ar_ptr[16], ' ') - &ar_ptr[16];
+					if (entry_ts_str_len > 12)	entry_ts_str_len = 12;
+					char entry_ts_str[entry_ts_str_len + 1];
+					strncpy(entry_ts_str, &ar_ptr[16], entry_ts_str_len);
+					entry_ts_str[entry_ts_str_len] = '\0';
+					time_t entry_ts = atol(entry_ts_str);
+					
+					int entry_uid_str_len = strchr(&ar_ptr[28], ' ') - &ar_ptr[28];
+					if (entry_uid_str_len > 6)	entry_uid_str_len = 6;
+					char entry_uid_str[entry_uid_str_len + 1];
+					strncpy(entry_uid_str, &ar_ptr[28], entry_uid_str_len);
+					entry_uid_str[entry_uid_str_len] = '\0';
+					
+					int entry_gid_str_len = strchr(&ar_ptr[34], ' ') - &ar_ptr[34];
+					if (entry_gid_str_len > 6)	entry_gid_str_len = 6;
+					char entry_gid_str[entry_gid_str_len + 1];
+					strncpy(entry_gid_str, &ar_ptr[34], entry_gid_str_len);
+					entry_gid_str[entry_gid_str_len] = '\0';
+					
+					int entry_mode_str_len = strchr(&ar_ptr[40], ' ') - &ar_ptr[40];
+					if (entry_mode_str_len > 6)	entry_mode_str_len = 6;
+					char entry_mode_str[entry_mode_str_len + 1];
+					strncpy(entry_mode_str, &ar_ptr[40], entry_mode_str_len);
+					entry_mode_str[entry_mode_str_len] = '\0';
+					//int entry_mode = (int) strtol(entry_mode_str, NULL, 8);
+					
+					char* ls_perms = "rwxrwxrwx";
+					char own_buf[30];
+					
+					strcpy(own_buf, entry_uid_str);
+					strcat(own_buf, "/");
+					strcat(own_buf, entry_gid_str);
+					
+					
+					char out_desc[100];
+					int k;
+					for (k = 0; k < 100; k++)
+					{
+						out_desc[k] = ' ';
+					}
+					
+					snprintf(out_desc, 10, "%s", ls_perms);
+					snprintf(&out_desc[14], 8, "%s", own_buf);
+					snprintf(&out_desc[32 - strlen(entry_size_str)], 12, "%s", entry_size_str);
+					snprintf(&out_desc[34], 17, "%s", ctime(&entry_ts));
+					snprintf(&out_desc[52], strlen(entry_name)+1, "%s", entry_name);
+					
+					for (k = 0; k < 100; k++)
+					{
+						if (out_desc[k] == '\0') {
+							out_desc[k] = ' ';
+						}
+					}
+					out_desc[52 + strlen(entry_name)] = '\n';
+					out_desc[52 + strlen(entry_name) + 1] = '\0';
+					
+					printf("%s", out_desc);
+					
+					ar_ptr = entry_start + entry_size;
+					
+				} else {
+				
+				int entry_name_str_len = strchr(&ar_ptr[0], ' ') - &ar_ptr[0];
+				if (entry_name_str_len > 16)	entry_name_str_len = 16;
+				char entry_name[entry_name_str_len + 1];
+				strncpy(entry_name, &ar_ptr[0], entry_name_str_len);
+				entry_name[entry_name_str_len] = '\0';
+				
+				int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
+				if (entry_size_str_len > 10)	entry_size_str_len = 10;
+				char entry_size_str[entry_size_str_len + 1];
+				strncpy(entry_size_str, &ar_ptr[48], entry_size_str_len);
+				entry_size_str[entry_size_str_len] = '\0';
+				int entry_size = atoi(entry_size_str);
+				
+				printf("%s\n", entry_name);
+				
+				ar_ptr = entry_start + entry_size;
+				}
+			}
+			break;
+		}
+		
+		case DELETE:
+		{
+			printf("Deleting files...\n");
+			
+			int ar_fd;
+			if ((ar_fd = open(ar_file, O_RDONLY)) == -1)
+			{
+				perror("open archive file: ");
+				exit(EXIT_FAILURE);
 			}
 			
+			int ar_size;
+			if ((ar_size = lseek(ar_fd, 0, SEEK_END)) == -1 || lseek(ar_fd, 0, SEEK_SET) == -1)
+			{
+				perror("lseek archive file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+			char ar_buf[ar_size];
+			if (read(ar_fd, ar_buf, ar_size) == -1) {
+				perror("read archive file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+			char* ar_ptr = strchr(ar_buf, '\n') + 1;
+			char* ar_start = ar_ptr;
+					
+			char* ar_end = ar_buf + ar_size;
+			
+			
+			break;
 		}
+		
+		case ADD:
+		{
+			printf("adding all fiels in directory...\n");
+			break;
+		}
+		
 	}
 	
 	return 0;
