@@ -531,80 +531,73 @@ int main(int argc, char** argv) {
 				exit(EXIT_FAILURE);
 			}
 			
-			char* ar_ptr = strchr(ar_buf, '\n') + 1;
-			char* ar_start = ar_ptr;
-					
-			char* ar_end = ar_buf + ar_size;
+			char temp_arfile[strlen(ar_buf)];
+			strcpy(temp_arfile, "!<arch>\n");
 			
-				while(ar_ptr < ar_end) 
-				{	
-					//printf("ar_ptr offset: %ld\t", ar_ptr - ar_buf);
-					//printf("ar_ptr pointing to char: %d, %c\t", (int) *ar_ptr, *ar_ptr);
-					
-					/*if (*ar_ptr == '\n')
-					{
-						ar_ptr++;
-					}*/
-					
-					int to_delete = 0;
-					int to_continue = 0;
+			char* ar_ptr = ar_buf + 8; // Start at first entry description
+			char* ar_end = ar_buf + ar_size;
+			int to_add;
+			
+			while(ar_ptr < ar_end) 
+			{	
+				to_add = 1;
+            
+				int entry_name_str_len = strchr(&ar_ptr[0], ' ') - &ar_ptr[0];
+				if (entry_name_str_len > 16)	entry_name_str_len = 16;
+				char entry_name[entry_name_str_len + 1];
+				strncpy(entry_name, ar_ptr, entry_name_str_len);
+				entry_name[entry_name_str_len] = '\0';
+            
+				int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
+				if (entry_size_str_len > 10)	entry_size_str_len = 10;
+				char entry_size_str[entry_size_str_len + 1];
+				strncpy(entry_size_str, &ar_ptr[48], entry_size_str_len);
+				entry_size_str[entry_size_str_len] = '\0';
+				int entry_size = atoi(entry_size_str);
 				
-					char* entry_start = strchr(ar_ptr, '\n') + 1;
-
-					int entry_name_str_len = strchr(&ar_ptr[0], ' ') - &ar_ptr[0];
-					if (entry_name_str_len > 16)	entry_name_str_len = 16;
-					char entry_name[entry_name_str_len + 1];
-					strncpy(entry_name, &ar_ptr[0], entry_name_str_len);
-					entry_name[entry_name_str_len] = '\0';
-
-					int entry_size_str_len = strchr(&ar_ptr[48], ' ') - &ar_ptr[48];
-					if (entry_size_str_len > 10)	entry_size_str_len = 10;
-					char entry_size_str[entry_size_str_len + 1];
-					strncpy(entry_size_str, &ar_ptr[48], entry_size_str_len);
-					entry_size_str[entry_size_str_len] = '\0';
-					int entry_size = atoi(entry_size_str);
-					
-					//printf("entry size: %d\n", entry_size);
-					//printf("content:\n%.*s\n\n", (int) (ar_end - ar_ptr), ar_ptr);
-
-					char entry_str[entry_size + 1];
-					strncpy(entry_str, entry_start, entry_size);
-					entry_str[entry_size] = '\0';
-					
-					//printf("entry_name: %s\n", entry_name);
-					int c;
-					for (c = 3; c < argc; c++)
-					{
-						if (strcmp(entry_name, argv[c]) == 0)
-							to_delete = 1;
-					}
-					
-					char temp_arfile[strlen(ar_buf)];
-					
-					if (to_delete == 1) {
-						//printf("deleting: %s\n", entry_name);
-						strncpy(temp_arfile, ar_buf, ar_ptr - ar_buf);
-						if (strlen(temp_arfile) % 2 != 0) {
-							strcat(temp_arfile, "\n");
-						}
-						strncat(temp_arfile, entry_start + entry_size, ar_end - entry_start - entry_size);
-						strcpy(ar_buf, temp_arfile);
-						ar_end = ar_buf + strlen(ar_buf);
-						ar_ptr = ar_start;
-						to_continue = 1;
-					}
-					
-					if (to_continue == 1) continue;
-					
-					ar_ptr = entry_start + entry_size;
-					if ((ar_ptr - ar_start) % 2 != 0)
-					{
-						ar_ptr++;
-					}
-
+				int c;
+				for (c = 3; c < argc; c++)
+				{
+					if (strcmp(entry_name, argv[c]) == 0)
+						to_add = 0;
 				}
-				printf("%s", ar_buf);
+			
+				if (to_add == 1) {
+					long next_entry = (long) ar_ptr + 60 + entry_size;
+					if (entry_size % 2 != 0) {
+						next_entry++;
+					}
+					strncat(temp_arfile, ar_ptr, (int) (next_entry - (long) ar_ptr));
+				}
 				
+				ar_ptr += 60 + entry_size;
+				if (entry_size % 2 != 0)
+				{
+					ar_ptr++;
+				}
+			}
+			
+			if (strlen(temp_arfile) == 8) {
+				if (remove(argv[2]) != 0) {
+					perror("Delete archive file: ");
+					exit(EXIT_FAILURE);
+				}
+			} else {
+				if (close(ar_fd) == -1) {
+					perror("close arfile: ");
+				}
+				if ((ar_fd = open(argv[2], O_WRONLY | O_TRUNC)) == -1) {
+					perror("open truncated arfile: ");
+					exit(EXIT_FAILURE);
+				}
+				if (write(ar_fd, temp_arfile, strlen(temp_arfile)) == -1) {
+					perror("write to truncated arfile: ");
+					exit(EXIT_FAILURE);
+				}
+				if (close(ar_fd) == -1) {
+					perror("close arfile: ");
+				}
+			}
 			break;
 		}
 		
