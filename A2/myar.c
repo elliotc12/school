@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <time.h>
 #include <utime.h>
+#include <dirent.h>
 
 #define MAX_ENTRY_NUMBER_SIZE 100
 #define OUT_DESCRIPTION_MAX_SIZE 200
@@ -602,8 +603,145 @@ int main(int argc, char** argv) {
 		}
 		
 		case ADD:
-		{
-			printf("adding all fiels in directory...\n");
+		{	
+			DIR *dir;
+			struct dirent *dir_struct;
+			
+			dir = opendir(".");
+			int ar_fd;
+			struct stat test;
+			
+			if (stat(ar_file, &test) != 0) 
+			{
+				if ((ar_fd = open(ar_file, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+				{
+					perror("exclusive open archive file: ");
+					exit(EXIT_FAILURE);
+				}
+				
+				char init_str[] = "!<arch>\n";
+				
+				if (write(ar_fd, init_str, sizeof(char) * strlen(init_str)) == -1)
+				{
+					perror("write to arfile: ");
+					exit(EXIT_FAILURE);
+				}
+				
+				printf("myar: creating archive %s\n", ar_file);
+				if (close(ar_fd) == -1)
+				{
+					perror("close arfile: ");
+					exit(EXIT_FAILURE);
+				}
+			}
+			
+			if ((ar_fd = open(ar_file, O_WRONLY | O_APPEND)) == -1)
+			{
+				perror("open archive file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+			while ((dir_struct = readdir(dir)) != NULL) {
+				if (dir_struct->d_type == DT_REG && strcmp(dir_struct->d_name, ar_file) != 0 && strcmp(dir_struct->d_name, "myar") != 0) {
+					printf("file: %s\n", dir_struct->d_name);
+					
+					char* in_file = dir_struct->d_name;
+					int in_fd;
+
+					if ((in_fd = open(in_file, O_RDONLY)) == -1)
+					{
+						perror("open input file: ");
+						exit(EXIT_FAILURE);
+					}
+
+					int in_size;
+					if ((in_size = lseek(in_fd, 0, SEEK_END)) == -1 || lseek(in_fd, 0, SEEK_SET) == -1)
+					{
+						perror("lseek input file: ");
+						exit(EXIT_FAILURE);
+					}
+
+					char buf[in_size + 1];
+
+					if (read(in_fd, buf, in_size) == -1) {
+						perror("read input file: ");
+						exit(EXIT_FAILURE);
+					}
+					buf[in_size] = '\0';
+
+					int out_size = sizeof(char) * (strlen(in_file) + 1 + strlen(buf) + 2);
+					char size_str[MAX_ENTRY_NUMBER_SIZE];
+					snprintf(size_str, MAX_ENTRY_NUMBER_SIZE, "%d", out_size);
+
+					struct stat file_info;
+					if (fstat(in_fd, &file_info))
+					{
+						perror("lstat input file: ");
+						exit(EXIT_FAILURE);
+					}
+
+					char out_desc[60];
+					int j;
+					for (j = 0; j < 59; j++)
+					{
+						out_desc[j] = ' ';
+					}
+
+					snprintf(out_desc, 16, "%s", in_file);
+					snprintf(&out_desc[16], 12, "%ld", file_info.st_mtime);
+					snprintf(&out_desc[28], 6, "%d", file_info.st_uid);
+					snprintf(&out_desc[34], 6, "%d", file_info.st_gid);
+					snprintf(&out_desc[40], 8, "%o", file_info.st_mode);
+					snprintf(&out_desc[48], 10, "%lld", file_info.st_size);
+					out_desc[58] = '`';
+
+					int k;
+					for (k = 0; k < 59; k++)
+					{
+						if (out_desc[k] == '\0') {
+							out_desc[k] = ' ';
+						}
+					}
+
+					out_desc[59] = '\0';
+
+					char out_buf[1 + strlen(out_desc) + 1 + strlen(buf)];
+
+					int file_pos;
+					if ((file_pos = lseek(ar_fd, 0, SEEK_CUR)) == -1)
+					{
+						perror("lseek archive file: ");
+						exit(EXIT_FAILURE);
+					}
+
+					strcpy(out_buf, out_desc);
+					strcat(out_buf, "\n");
+					strcat(out_buf, buf);
+
+					if ((file_pos + strlen(out_buf)) % 2 != 0) {
+						strcat(out_buf, "\n");
+					}
+
+					if (write(ar_fd, out_buf, sizeof(char) * strlen(out_buf)) == -1)
+					{
+						perror("write to arfile: ");
+						exit(EXIT_FAILURE);
+					}	
+					
+				}
+			}
+			
+			if (close(ar_fd) == -1)
+			{
+				perror("close archive file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+			if (closedir(dir) == -1) {
+				perror("close dir: ");
+				exit(EXIT_FAILURE);
+			}
+			
 			break;
 		}
 		
