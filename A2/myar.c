@@ -120,7 +120,7 @@ int main(int argc, char** argv) {
 			
 			if (stat(ar_file, &test) != 0) 
 			{
-				if ((ar_fd = open(ar_file, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+				if ((ar_fd = open(ar_file, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWOTH | S_IROTH)) == -1)
 				{
 					perror("exclusive open archive file: ");
 					exit(EXIT_FAILURE);
@@ -613,7 +613,7 @@ int main(int argc, char** argv) {
 			
 			if (stat(ar_file, &test) != 0) 
 			{
-				if ((ar_fd = open(ar_file, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
+				if ((ar_fd = open(ar_file, O_WRONLY | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWOTH| S_IROTH)) == -1)
 				{
 					perror("exclusive open archive file: ");
 					exit(EXIT_FAILURE);
