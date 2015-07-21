@@ -6,6 +6,7 @@
 #include <signal.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
 enum MODES {
 	REDIR_OUT_APP,
@@ -33,9 +34,12 @@ int main(int argc, char** argv) {
 	signal(SIGINT, signore);
 	signal(SIGQUIT, signore);
 	
+	char pwdbuf[2048];
+	
 	while(1)
 	{
-		printf("prompt: ");
+		getcwd(pwdbuf, 2048);
+		printf("%s: ", pwdbuf);
 		fflush(stdout);
 		if ((read_bytes = read(STDOUT_FILENO, buf, BUF_SIZE)) == -1)
 		{
@@ -43,7 +47,10 @@ int main(int argc, char** argv) {
 			exit(EXIT_FAILURE);
 		}
 		buf[read_bytes-1] = '\0';
-		if (read_bytes > 1) {
+		if (strcmp(buf, "exit") == 0){
+			printf("Exiting shell.\n");
+			exit(EXIT_SUCCESS);
+		} else if (read_bytes > 1) {
 			mysystem(buf);
 		}
 	}
@@ -54,6 +61,8 @@ int main(int argc, char** argv) {
 int mysystem(char* command_string) {
 	int cmd_start = 0;
 	int cmd_current = 0;
+	
+	int saved_stderr = dup(STDERR_FILENO);
 	
 	int piping = 0;
 	int pipe_fds[2];
@@ -81,6 +90,11 @@ int mysystem(char* command_string) {
 					perror("close write pipe: ");
 					//exit(EXIT_FAILURE);
 				}
+				if (dup2(saved_stderr, STDERR_FILENO) == -1) 
+				{
+					perror("restoring file pointer of stderr: ");
+				}
+				saved_stderr = dup(STDERR_FILENO);
 				cmd_current++;
 			}
 			
@@ -158,6 +172,11 @@ int mysystem(char* command_string) {
 					//exit(EXIT_FAILURE);
 				}
 				cmd_current += 2;
+				if (dup2(saved_stderr, STDERR_FILENO) == -1) 
+				{
+					perror("restoring file pointer of stderr: ");
+				}
+				saved_stderr = dup(STDERR_FILENO);
 			}
 			
 			else {
@@ -304,7 +323,7 @@ void run_command_str(char** arr_words, int num_words, int out_fd, int in_fd) {
 		case 0:
 		{
 			
-			if (execvp(command_file, params) == -1) {
+			if (execve(command_file, params, NULL) == -1) {
 				perror("execvp: ");
 				//exit(EXIT_FAILURE);
 			}
