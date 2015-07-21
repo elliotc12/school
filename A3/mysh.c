@@ -79,7 +79,7 @@ int mysystem(char* command_string) {
 			
 			if (piping)
 			{
-				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, out_fd, pipe_fds[0]);
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, out_fd, pipe_fds[0]);
 				piping = 0;
 				if (close(pipe_fds[0]) == -1)
 				{
@@ -120,7 +120,7 @@ int mysystem(char* command_string) {
 			
 			if (piping)
 			{
-				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, out_fd, pipe_fds[0]);
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, out_fd, pipe_fds[0]);
 				piping = 0;
 				if (close(pipe_fds[0]) == -1)
 				{
@@ -151,40 +151,28 @@ int mysystem(char* command_string) {
 		else if (strcmp(argument_string[cmd_current], "<") == 0) {
 			
 			// Lookahead, Open (TRUNC) new file, run command with file as stdout
-			printf("this needs to be worked on. Also, get * to work.\n");
-			char* outfile = argument_string[cmd_current + 1];
-			int out_fd;
-			if ((out_fd = open(outfile, O_WRONLY | O_APPEND)) == -1)
+			char* infile = argument_string[cmd_current + 1];
+			int in_fd;
+			if ((in_fd = open(infile, O_RDONLY)) == -1)
 			{
-				perror("open out file: ");
+				perror("open in file: ");
 				exit(EXIT_FAILURE);
 			}
 			
 			if (piping)
 			{
-				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, out_fd, pipe_fds[0]);
-				piping = 0;
-				if (close(pipe_fds[0]) == -1)
-				{
-					perror("close read pipe: ");
-					exit(EXIT_FAILURE);
-				}
-				if (close(pipe_fds[1]) == -1)
-				{
-					perror("close write pipe: ");
-					exit(EXIT_FAILURE);
-				}
-				cmd_current += 2;
+				printf("Error. Attempting to pipe and redirect. Exiting.\n");
+				exit(EXIT_FAILURE);
 			}
 			
 			else {
-				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, out_fd, -1);
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, STDOUT_FILENO, in_fd);
 				cmd_current += 2;
 			}
 			
-			if (close(out_fd) == -1)
+			if (close(in_fd) == -1)
 			{
-				perror("close out file: ");
+				perror("close in file: ");
 				exit(EXIT_FAILURE);
 			}
 			
@@ -201,19 +189,8 @@ int mysystem(char* command_string) {
 			
 			if (piping)
 			{
-				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, pipe_fds[1], pipe_fds[0]);
-				piping = 0;
-				if (close(pipe_fds[0]) == -1)
-				{
-					perror("close read pipe: ");
-					exit(EXIT_FAILURE);
-				}
-				if (close(pipe_fds[1]) == -1)
-				{
-					perror("close write pipe: ");
-					exit(EXIT_FAILURE);
-				}
-				cmd_current += 1;
+				printf("Error, cannot chain pipes. Exiting.\n");
+				exit(EXIT_FAILURE);
 			}
 			
 			else {
