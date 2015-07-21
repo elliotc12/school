@@ -16,7 +16,7 @@ enum MODES {
 
 int mysystem(char* command_string);
 char* get_command_path(char* command);
-void run_command_str(char** arr_words, int num_words, int out_fd);
+void run_command_str(char** arr_words, int num_words, int out_fd, int in_fd);
 void command_string_slice(char* command_string, char*** argument_string_ptr, int* num_args);
 
 int main(int argc, char** argv) {
@@ -30,29 +30,43 @@ int mysystem(char* command_string) {
 	int cmd_start = 0;
 	int cmd_current = 0;
 	
+	int piping = 0;
+	int pipe_fds[2];
+	
 	char** argument_string;
 	int num_args;
-	printf("command_string: |%s|\n", command_string);
+
 	command_string_slice(command_string, &argument_string, &num_args);
-	
-	int i;
-	for(i=0; i<num_args; i++)
-	{
-		printf("arg: |%s|\n", argument_string[i]);
-	}
 	
 	while (cmd_current < num_args)
 	{
-		printf("cmd_current: |%s|\n", argument_string[cmd_current]);
 		if (cmd_current == num_args-1)
 		{
+			if (piping)
+			{
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, STDOUT_FILENO, pipe_fds[0]);
+				piping = 0;
+				if (close(pipe_fds[0]) == -1)
+				{
+					perror("close read pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				if (close(pipe_fds[1]) == -1)
+				{
+					perror("close write pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				cmd_current++;
+			}
 			
-			run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, STDOUT_FILENO);
-			cmd_current++;
-			
+			else 
+			{
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, STDOUT_FILENO, -1);
+				cmd_current++;
+			}
 		} 
 		
-		else if (argument_string[cmd_current][0] == '>') {
+		else if (strcmp(argument_string[cmd_current], ">") == 0) {
 			
 			// Lookahead, Open (TRUNC) new file, run command with file as stdout
 			char* outfile = argument_string[cmd_current + 1];
@@ -63,8 +77,27 @@ int mysystem(char* command_string) {
 				exit(EXIT_FAILURE);
 			}
 			
-			run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, out_fd);
-			cmd_current += 2;
+			if (piping)
+			{
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, out_fd, pipe_fds[0]);
+				piping = 0;
+				if (close(pipe_fds[0]) == -1)
+				{
+					perror("close read pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				if (close(pipe_fds[1]) == -1)
+				{
+					perror("close write pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				cmd_current += 2;
+			}
+			
+			else {
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, out_fd, -1);
+				cmd_current += 2;
+			}
 			
 			if (close(out_fd) == -1)
 			{
@@ -72,7 +105,127 @@ int mysystem(char* command_string) {
 				exit(EXIT_FAILURE);
 			}
 			
-		} 
+		}
+		
+		else if (strcmp(argument_string[cmd_current], ">>") == 0) {
+			
+			// Lookahead, Open (APPEND) new file, run command with file as stdout
+			char* outfile = argument_string[cmd_current + 1];
+			int out_fd;
+			if ((out_fd = open(outfile, O_WRONLY | O_APPEND)) == -1)
+			{
+				perror("open out file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+			if (piping)
+			{
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, out_fd, pipe_fds[0]);
+				piping = 0;
+				if (close(pipe_fds[0]) == -1)
+				{
+					perror("close read pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				if (close(pipe_fds[1]) == -1)
+				{
+					perror("close write pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				cmd_current += 2;
+			}
+			
+			else {
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, out_fd, -1);
+				cmd_current += 2;
+			}
+			
+			if (close(out_fd) == -1)
+			{
+				perror("close out file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+		}
+		
+		else if (strcmp(argument_string[cmd_current], "<") == 0) {
+			
+			// Lookahead, Open (TRUNC) new file, run command with file as stdout
+			printf("this needs to be worked on. Also, get * to work.\n");
+			char* outfile = argument_string[cmd_current + 1];
+			int out_fd;
+			if ((out_fd = open(outfile, O_WRONLY | O_APPEND)) == -1)
+			{
+				perror("open out file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+			if (piping)
+			{
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, out_fd, pipe_fds[0]);
+				piping = 0;
+				if (close(pipe_fds[0]) == -1)
+				{
+					perror("close read pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				if (close(pipe_fds[1]) == -1)
+				{
+					perror("close write pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				cmd_current += 2;
+			}
+			
+			else {
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, out_fd, -1);
+				cmd_current += 2;
+			}
+			
+			if (close(out_fd) == -1)
+			{
+				perror("close out file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+		}
+		
+		else if (strcmp(argument_string[cmd_current], "|") == 0) {
+			// Open a pipe, pass its write end to program, set piping flag
+
+			if (pipe(pipe_fds) == -1)
+			{
+				perror("open pipe: ");
+				exit(EXIT_FAILURE);
+			}
+			
+			if (piping)
+			{
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, pipe_fds[1], pipe_fds[0]);
+				piping = 0;
+				if (close(pipe_fds[0]) == -1)
+				{
+					perror("close read pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				if (close(pipe_fds[1]) == -1)
+				{
+					perror("close write pipe: ");
+					exit(EXIT_FAILURE);
+				}
+				cmd_current += 1;
+			}
+			
+			else {
+				run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, pipe_fds[1], -1);
+			}
+			
+			cmd_current += 1;
+			cmd_start = cmd_current;
+			
+			piping = 1;
+			
+		}
 		
 		else {
 			cmd_current++;
@@ -108,7 +261,19 @@ char* get_command_path(char* command) {
 }
 
 
-void run_command_str(char** arr_words, int num_words, int out_fd) {
+void run_command_str(char** arr_words, int num_words, int out_fd, int in_fd) {
+	
+	int saved_stdout = dup(STDOUT_FILENO);
+	int saved_stdin  = dup(STDIN_FILENO);
+	
+	if (in_fd != -1)
+	{
+		if (dup2(in_fd, STDIN_FILENO) == -1) 
+		{
+			perror("dup2 on pipe/redirection into stdin: ");	 // now close pipe
+			exit(EXIT_FAILURE);
+		}
+	}
 	
 	if (dup2(out_fd, STDOUT_FILENO) == -1) 
 	{
@@ -149,10 +314,19 @@ void run_command_str(char** arr_words, int num_words, int out_fd) {
 		{
 			wait(NULL);
 			
-			if (dup2(STDOUT_FILENO, out_fd) == -1) 
+			if (dup2(saved_stdout, STDOUT_FILENO) == -1) 
 			{
 				perror("dup2 on pipe/redirection into stdout: ");
 				exit(EXIT_FAILURE);
+			}
+			
+			if (in_fd != -1)
+			{
+				if (dup2(saved_stdin, STDIN_FILENO)  == -1) 
+				{
+					perror("dup2 on pipe/redirection into stdin: ");	 // now close pipe
+					exit(EXIT_FAILURE);
+				}
 			}
 			
 			break;
@@ -186,6 +360,7 @@ void command_string_slice(char* command_string, char*** argument_string_ptr, int
 	char* command_end = command_string + strlen(command_string);
 	str_ptr[count-1] = malloc(command_end - pos + 1);
 	strncpy(str_ptr[count-1], pos, command_end - pos);
+	str_ptr[count-1][command_end - pos] = '\0';
 	
 	*num_args = count;
 	*argument_string_ptr = str_ptr;
