@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 
@@ -19,11 +20,18 @@ char* get_command_path(char* command);
 void run_command_str(char** arr_words, int num_words, int out_fd, int in_fd);
 void command_string_slice(char* command_string, char*** argument_string_ptr, int* num_args);
 
+void signore(int sig) {
+	;
+}
+
 int main(int argc, char** argv) {
 	// First, implement the system() library call
 	int BUF_SIZE = 100000;
 	char buf[BUF_SIZE];
 	int read_bytes;
+	
+	signal(SIGINT, signore);
+	signal(SIGQUIT, signore);
 	
 	while(1)
 	{
