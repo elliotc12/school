@@ -5,7 +5,7 @@ Elliott Capek \\
 
 \section{Design}
 My shell implementation is named mysh. It is implemented as a shell loop which listens for lines delimited by the enter key. It parses lines from the user, 
-separates them into space-delimited symbols, groups the symbol list into commands separated by redirection operators (\|, \>, \>\>, \<), and uses the fork and execve
+separates them into space-delimited symbols, groups the symbol list into commands separated by redirection operators and uses the fork and execve
 system calls to perform each command. The program sets STDIN and STDOUT of each child process to accomplish Linux redirection and piping.\\ \\
 The shell portion of the program sets signal handlers to ignore SIGINT and SIGQUIT system calls. It also listens for the exit keyword, which prompts the 
 program to exit. Every step of the main loop (iterating by while(1)) the program reads the current working directory, prints it, flushes STDOUT, then listens for
@@ -17,7 +17,7 @@ If this subcommand is piping to another subcommand, being piped to by another su
 STDOUT and STDIN values temporarily to the necessary file to accomplish the pipe or redirection. It then returns the streams to their original file descriptors.
 Both of these operations are done via dup2(). \\ \\
 Once execve has run all the subcommands in the command, control returns to the shell loop, which restarts. \\ \\
-This program does NOT implement the stream redirection operator x\>\&y. 
+This program does NOT implement the stream redirection operator $2>\&1$. 
 
 \section{Worklog}
 \textbf{Sunday July 19th 12:00pm - 4:00pm}: Explore exec wrapper functions, build temporary program which executes argv input via execv and fork. \\
