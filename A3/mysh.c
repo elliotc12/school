@@ -1,3 +1,4 @@
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,21 +6,78 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-int mysystem(char** command_string, int num_words);
+enum MODES {
+	REDIR_OUT_APP,
+	REDIR_OUT_OVW,
+	REDIR_IN,
+	REDIR_IN_HERE,
+	PIPE
+};
+
+int mysystem(char* command_string);
 char* get_command_path(char* command);
-void run_command_str(char** arr_words, int num_words, FILE* out_file);
+void run_command_str(char** arr_words, int num_words, int out_fd);
+void command_string_slice(char* command_string, char*** argument_string_ptr, int* num_args);
 
 int main(int argc, char** argv) {
 	// First, implement the system() library call
 	
-	mysystem(&argv[1], argc-1);
+	mysystem(argv[1]);
 	return 0;
 }
 
-int mysystem(char** command_string, int num_args) {
+int mysystem(char* command_string) {
+	int cmd_start = 0;
+	int cmd_current = 0;
 	
-	run_command_str(command_string, num_args, stdout);
+	char** argument_string;
+	int num_args;
+	printf("command_string: |%s|\n", command_string);
+	command_string_slice(command_string, &argument_string, &num_args);
 	
+	int i;
+	for(i=0; i<num_args; i++)
+	{
+		printf("arg: |%s|\n", argument_string[i]);
+	}
+	
+	while (cmd_current < num_args)
+	{
+		printf("cmd_current: |%s|\n", argument_string[cmd_current]);
+		if (cmd_current == num_args-1)
+		{
+			
+			run_command_str(&argument_string[cmd_start], cmd_current - cmd_start + 1, STDOUT_FILENO);
+			cmd_current++;
+			
+		} 
+		
+		else if (argument_string[cmd_current][0] == '>') {
+			
+			// Lookahead, Open (TRUNC) new file, run command with file as stdout
+			char* outfile = argument_string[cmd_current + 1];
+			int out_fd;
+			if ((out_fd = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0666)) == -1)
+			{
+				perror("open out file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+			run_command_str(&argument_string[cmd_start], cmd_current - cmd_start, out_fd);
+			cmd_current += 2;
+			
+			if (close(out_fd) == -1)
+			{
+				perror("close out file: ");
+				exit(EXIT_FAILURE);
+			}
+			
+		} 
+		
+		else {
+			cmd_current++;
+		}
+	}
 	return 0;
 }
 
@@ -50,7 +108,13 @@ char* get_command_path(char* command) {
 }
 
 
-void run_command_str(char** arr_words, int num_words, FILE* out_file) {
+void run_command_str(char** arr_words, int num_words, int out_fd) {
+	
+	if (dup2(out_fd, STDOUT_FILENO) == -1) 
+	{
+		perror("dup2 on pipe/redirection into stdout: ");
+		exit(EXIT_FAILURE);
+	}
 	
 	char* command_file = get_command_path(arr_words[0]);
 	
@@ -84,12 +148,48 @@ void run_command_str(char** arr_words, int num_words, FILE* out_file) {
 		default:
 		{
 			wait(NULL);
+			
+			if (dup2(STDOUT_FILENO, out_fd) == -1) 
+			{
+				perror("dup2 on pipe/redirection into stdout: ");
+				exit(EXIT_FAILURE);
+			}
+			
 			break;
 		}
 	}
 }
 
-
+void command_string_slice(char* command_string, char*** argument_string_ptr, int* num_args) {
+	int count = 1;
+	char* pos = command_string;
+	char* c;
+	while ((c = strchr(pos, ' ')) != NULL)
+	{	
+		count++;
+		pos = c + 1;
+	}
+	
+	char** str_ptr = malloc(sizeof(char*) * count);
+	str_ptr[0] = "hello";
+	
+	pos = command_string;
+	int i;
+	for (i = 0; i < count-1; i++)
+	{	
+		c = strchr(pos, ' ');
+		str_ptr[i] = malloc((int) (c - pos + 1));
+		strncpy(str_ptr[i], pos, c - pos);
+		pos = c + 1;
+	}
+	
+	char* command_end = command_string + strlen(command_string);
+	str_ptr[count-1] = malloc(command_end - pos + 1);
+	strncpy(str_ptr[count-1], pos, command_end - pos);
+	
+	*num_args = count;
+	*argument_string_ptr = str_ptr;
+}
 
 
 
