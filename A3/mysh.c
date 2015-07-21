@@ -21,8 +21,25 @@ void command_string_slice(char* command_string, char*** argument_string_ptr, int
 
 int main(int argc, char** argv) {
 	// First, implement the system() library call
+	int BUF_SIZE = 100000;
+	char buf[BUF_SIZE];
+	int read_bytes;
 	
-	mysystem(argv[1]);
+	while(1)
+	{
+		printf("prompt: ");
+		fflush(stdout);
+		if ((read_bytes = read(STDOUT_FILENO, buf, BUF_SIZE)) == -1)
+		{
+			perror("Couldn't read from stdout: ");
+			exit(EXIT_FAILURE);
+		}
+		buf[read_bytes-1] = '\0';
+		if (read_bytes > 1) {
+			mysystem(buf);
+		}
+	}
+	
 	return 0;
 }
 
@@ -49,12 +66,12 @@ int mysystem(char* command_string) {
 				if (close(pipe_fds[0]) == -1)
 				{
 					perror("close read pipe: ");
-					exit(EXIT_FAILURE);
+					//exit(EXIT_FAILURE);
 				}
 				if (close(pipe_fds[1]) == -1)
 				{
 					perror("close write pipe: ");
-					exit(EXIT_FAILURE);
+					//exit(EXIT_FAILURE);
 				}
 				cmd_current++;
 			}
@@ -74,7 +91,7 @@ int mysystem(char* command_string) {
 			if ((out_fd = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0666)) == -1)
 			{
 				perror("open out file: ");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 			if (piping)
@@ -84,12 +101,12 @@ int mysystem(char* command_string) {
 				if (close(pipe_fds[0]) == -1)
 				{
 					perror("close read pipe: ");
-					exit(EXIT_FAILURE);
+					//exit(EXIT_FAILURE);
 				}
 				if (close(pipe_fds[1]) == -1)
 				{
 					perror("close write pipe: ");
-					exit(EXIT_FAILURE);
+					//exit(EXIT_FAILURE);
 				}
 				cmd_current += 2;
 			}
@@ -102,7 +119,7 @@ int mysystem(char* command_string) {
 			if (close(out_fd) == -1)
 			{
 				perror("close out file: ");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 		}
@@ -115,7 +132,7 @@ int mysystem(char* command_string) {
 			if ((out_fd = open(outfile, O_WRONLY | O_APPEND)) == -1)
 			{
 				perror("open out file: ");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 			if (piping)
@@ -125,12 +142,12 @@ int mysystem(char* command_string) {
 				if (close(pipe_fds[0]) == -1)
 				{
 					perror("close read pipe: ");
-					exit(EXIT_FAILURE);
+					//exit(EXIT_FAILURE);
 				}
 				if (close(pipe_fds[1]) == -1)
 				{
 					perror("close write pipe: ");
-					exit(EXIT_FAILURE);
+					//exit(EXIT_FAILURE);
 				}
 				cmd_current += 2;
 			}
@@ -143,7 +160,7 @@ int mysystem(char* command_string) {
 			if (close(out_fd) == -1)
 			{
 				perror("close out file: ");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 		}
@@ -156,13 +173,13 @@ int mysystem(char* command_string) {
 			if ((in_fd = open(infile, O_RDONLY)) == -1)
 			{
 				perror("open in file: ");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 			if (piping)
 			{
 				printf("Error. Attempting to pipe and redirect. Exiting.\n");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 			else {
@@ -173,7 +190,7 @@ int mysystem(char* command_string) {
 			if (close(in_fd) == -1)
 			{
 				perror("close in file: ");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 		}
@@ -184,13 +201,13 @@ int mysystem(char* command_string) {
 			if (pipe(pipe_fds) == -1)
 			{
 				perror("open pipe: ");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 			if (piping)
 			{
 				printf("Error, cannot chain pipes. Exiting.\n");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 			else {
@@ -234,7 +251,8 @@ char* get_command_path(char* command) {
 	}
 	
 	fprintf(stderr, "Error. Could not find command %s in path.\n", command);
-	exit(EXIT_FAILURE); 
+	//exit(EXIT_FAILURE); 
+	return NULL;
 }
 
 
@@ -248,17 +266,21 @@ void run_command_str(char** arr_words, int num_words, int out_fd, int in_fd) {
 		if (dup2(in_fd, STDIN_FILENO) == -1) 
 		{
 			perror("dup2 on pipe/redirection into stdin: ");	 // now close pipe
-			exit(EXIT_FAILURE);
+			//exit(EXIT_FAILURE);
 		}
 	}
 	
 	if (dup2(out_fd, STDOUT_FILENO) == -1) 
 	{
 		perror("dup2 on pipe/redirection into stdout: ");
-		exit(EXIT_FAILURE);
+		//exit(EXIT_FAILURE);
 	}
 	
 	char* command_file = get_command_path(arr_words[0]);
+	
+	if (command_file == NULL) {
+		return;
+	}
 	
 	char* params[num_words - 1 + 2];		// num_words minus command name plus command file and \0
 	params[0] = command_file;
@@ -276,7 +298,7 @@ void run_command_str(char** arr_words, int num_words, int out_fd, int in_fd) {
 			
 			if (execvp(command_file, params) == -1) {
 				perror("execvp: ");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			exit(EXIT_SUCCESS);
 			break;
@@ -294,7 +316,7 @@ void run_command_str(char** arr_words, int num_words, int out_fd, int in_fd) {
 			if (dup2(saved_stdout, STDOUT_FILENO) == -1) 
 			{
 				perror("dup2 on pipe/redirection into stdout: ");
-				exit(EXIT_FAILURE);
+				//exit(EXIT_FAILURE);
 			}
 			
 			if (in_fd != -1)
@@ -302,7 +324,7 @@ void run_command_str(char** arr_words, int num_words, int out_fd, int in_fd) {
 				if (dup2(saved_stdin, STDIN_FILENO)  == -1) 
 				{
 					perror("dup2 on pipe/redirection into stdin: ");	 // now close pipe
-					exit(EXIT_FAILURE);
+					//exit(EXIT_FAILURE);
 				}
 			}
 			
