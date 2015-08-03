@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <fcntl.h>
 #include <math.h>
 #include <stdio.h>
@@ -9,7 +10,7 @@
 
 #include "dynarr.h"
 
-#define MAX_PRIME 10000
+#define MAX_PRIME UINT_MAX
 #define PROCESSES 16
 
 int* primes;
@@ -56,9 +57,9 @@ int get_next_sieve_prime(int start) {
 }
 
 static void* find_happiness(int section) {
-	int MSIZE = MAX_PRIME * sizeof(int);
+	long MSIZE = MAX_PRIME * sizeof(int);
 	
-	int i;
+	long i;
 	for (i = section*MAX_PRIME/PROCESSES + 1; i<=(section*MAX_PRIME/PROCESSES + MAX_PRIME/PROCESSES); i++) {
 		if (primes[i] && is_happy(i+1)) { happiness[i] = 1; }
 	}
@@ -73,17 +74,8 @@ static void* find_happiness(int section) {
 }
 
 void mark_multiples(int m) {
-	int MSIZE = MAX_PRIME * sizeof(int);
-	int j = 2;
-	
-	/*sem_t* num_term_children;
-	
-	num_term_children = sem_open("num_term_children", 0);
-	if (num_term_children == SEM_FAILED)
-	{
-		perror("sem_open: ");
-		exit(EXIT_FAILURE);
-	}*/
+	long MSIZE = MAX_PRIME * sizeof(int);
+	long j = 2;
 	
 	while (m*j <= MAX_PRIME)
 	{
@@ -102,18 +94,9 @@ void mark_multiples(int m) {
 }
 
 int main() {
-	int m = 1;									// Current sieve prime, initialized to 1
-	int MSIZE = MAX_PRIME * sizeof(int);
+	long m = 1;									// Current sieve prime, initialized to 1
+	long MSIZE = MAX_PRIME * sizeof(int);
 	int child_pids[PROCESSES];
-	
-	sem_t* num_term_children;
-	
-	num_term_children = sem_open("num_term_children", O_CREAT, S_IRUSR | S_IWUSR, 0);
-	if (num_term_children == SEM_FAILED)
-	{
-		perror("sem_open: ");
-		exit(EXIT_FAILURE);
-	}
 	
 	int fd = open("prime_procs_temp_shm", O_RDWR | O_CREAT | O_TRUNC, 0755);
 	if (fd == -1)
@@ -167,7 +150,7 @@ int main() {
 		exit(EXIT_FAILURE);
 	}
 	
-	int a;
+	long a;
 	for (a=0; a<MAX_PRIME; a++)
 	{
 		primes[a] = 1;
@@ -210,10 +193,8 @@ int main() {
 	}
 
 	while ((m = get_next_sieve_prime(m)) != -1)
-	{
-		//sem_wait(num_term_children);							// Block until a process terminates
-		
-		wait(NULL);
+	{							
+		wait(NULL);									// Block until a process terminates
 		
 		int b = 0;
 		while (waitpid(child_pids[b], NULL, WNOHANG) == 0) { b++; }
@@ -237,7 +218,6 @@ int main() {
 			child_pids[b] = p;
 			continue;
 		}
-		
 	}
 	
 	int g;											// Wait for all processes to terminate
@@ -245,7 +225,6 @@ int main() {
 	{
 		waitpid(child_pids[g], NULL, 0);
 	}
-
 
 	int f;
 	for (f=0; f<PROCESSES; f++)
@@ -273,40 +252,62 @@ int main() {
 		waitpid(child_pids[e], NULL, 0);
 	}
 	
-	int d;
-	for (d=0; d<MAX_PRIME; d++)
+	int num_happy = 0;
+	int y;
+	for (y=0; y<MAX_PRIME; y++)
 	{
-		if (happiness[d] == 1) { printf("%d\n", d+1); }
+		if (happiness[y])
+		{
+			num_happy++;
+		}
 	}
-
 	
-	/*int fd;
-	if ((fd = open("happy_primes", O_WRONLY | O_CREAT | O_TRUNC, 0755)) == -1)
+	long HSIZE = num_happy*sizeof(unsigned int);
+	unsigned int* out_arr = malloc(HSIZE);
+	
+	int out_fd;
+	if ((out_fd = open("happy_primes_procs", O_RDWR | O_CREAT | O_TRUNC, 0755)) == -1)
 	{
 		perror("error open: ");
 		exit(EXIT_FAILURE);
 	}
 	
-	int e;
-	int p = 1;
+	if (ftruncate(out_fd, HSIZE) == -1)
+	{
+		perror("ftruncate: ");
+		exit(EXIT_FAILURE);
+	}
+	
+	if (lseek(out_fd, 0, SEEK_SET) == -1)
+	{
+		perror("lseek");
+		exit(EXIT_FAILURE);
+	}
+	
+	long p = 0;
 	for (e=0; e<MAX_PRIME; e++)
 	{
 		if (happiness[e])
 		{
-			char buf[100];
-			sprintf(buf, "%d", (unsigned int) e+1);			// Make this print what it's actually supposed to print
-			write(fd, buf, strlen(buf));
+			printf("p: %ld\t%d\n", p, (unsigned int) e+1);
+			out_arr[p] = (unsigned int) e+1;
 			p++;
 		}
 	}
 	
-	if (close(fd) == -1)
+	if (write(out_fd, (void*) out_arr, HSIZE) == -1)
+	{
+		perror("write");
+		exit(EXIT_FAILURE);
+	}
+	
+	if (close(out_fd) == -1)
 	{
 		perror("close: ");
 		exit(EXIT_FAILURE);
 	}
 	
-	*/
+	munmap(primes, MSIZE);
+	munmap(happiness, MSIZE);
 	
-	sem_unlink("num_term_children");
 }
