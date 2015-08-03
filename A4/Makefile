@@ -3,7 +3,7 @@ CFLAGS = -Wall -Werror -O2 -g
 LDFLAGS = -lpthread
 
 default: all
-all: mprimes writeup.pdf
+all: mthreads mprocs writeup.pdf
 
 mthreads: prime_threads.c dynarr.c
 	${CC} ${CFLAGS} prime_threads.c dynarr.c -o mthreads ${LDFLAGS}
@@ -16,6 +16,8 @@ writeup.pdf: latex/writeup.tex
 
 clean:
 	rm -f mprimes
+	rm -f mprocs
 	rm -f latex/*.aux
 	rm -f latex/*.log
 	rm -f latex/*.pdf
+	rm -f *.dSYM

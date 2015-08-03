@@ -8,7 +8,7 @@
 
 #include "dynarr.h"
 
-#define MAX_PRIME 1000000
+#define MAX_PRIME 881269
 #define THREADS 16
 
 int primes[MAX_PRIME];
@@ -233,7 +233,7 @@ int main() {
 	{
 		if (happiness[e])
 		{
-			//printf("p: %ld\t%d\n", p, (unsigned int) e+1);
+			printf("%ld %d\n", p+1, (unsigned int) e+1);
 			out_arr[p] = (unsigned int) e+1;
 			p++;
 		}
