@@ -5,8 +5,8 @@ LDFLAGS = -lpthread
 default: all
 all: mprimes writeup.pdf
 
-mprimes: prime_threads.c dynarr.c
-	${CC} ${CFLAGS} prime_threads.c dynarr.c -o mprimes ${LDFLAGS}
+mthreads: prime_threads.c dynarr.c
+	${CC} ${CFLAGS} prime_threads.c dynarr.c -o mthreads ${LDFLAGS}
 
 mprocs: prime_procs.c dynarr.c
 	${CC} ${CFLAGS} prime_procs.c dynarr.c -o mprocs ${LDFLAGS}

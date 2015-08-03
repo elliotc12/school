@@ -10,7 +10,7 @@
 
 #include "dynarr.h"
 
-#define MAX_PRIME UINT_MAX
+#define MAX_PRIME 1000000
 #define PROCESSES 16
 
 int* primes;
@@ -289,7 +289,7 @@ int main() {
 	{
 		if (happiness[e])
 		{
-			printf("p: %ld\t%d\n", p, (unsigned int) e+1);
+			//printf("p: %ld\t%d\n", p, (unsigned int) e+1);
 			out_arr[p] = (unsigned int) e+1;
 			p++;
 		}

@@ -195,35 +195,60 @@ int main() {
 		}
 	}
 	
-	int fd;
-	if ((fd = open("happy_primes", O_WRONLY | O_CREAT | O_TRUNC, 0755)) == -1)
+	int num_happy = 0;
+	int y;
+	for (y=0; y<MAX_PRIME; y++)
+	{
+		if (happiness[y])
+		{
+			num_happy++;
+		}
+	}
+	
+	long HSIZE = num_happy*sizeof(unsigned int);
+	unsigned int* out_arr = malloc(HSIZE);
+	
+	int out_fd;
+	if ((out_fd = open("happy_primes_threads", O_RDWR | O_CREAT | O_TRUNC, 0755)) == -1)
 	{
 		perror("error open: ");
 		exit(EXIT_FAILURE);
 	}
 	
+	if (ftruncate(out_fd, HSIZE) == -1)
+	{
+		perror("ftruncate: ");
+		exit(EXIT_FAILURE);
+	}
+	
+	if (lseek(out_fd, 0, SEEK_SET) == -1)
+	{
+		perror("lseek");
+		exit(EXIT_FAILURE);
+	}
+	
+	long p = 0;
 	int e;
-	int p = 1;
 	for (e=0; e<MAX_PRIME; e++)
 	{
 		if (happiness[e])
 		{
-			char buf[100];
-			sprintf(buf, "%d", (unsigned int) e+1);			// Make this print what it's actually supposed to print
-			write(fd, buf, strlen(buf));
+			//printf("p: %ld\t%d\n", p, (unsigned int) e+1);
+			out_arr[p] = (unsigned int) e+1;
 			p++;
 		}
 	}
 	
-	if (close(fd) == -1)
+	if (write(out_fd, (void*) out_arr, HSIZE) == -1)
+	{
+		perror("write");
+		exit(EXIT_FAILURE);
+	}
+	
+	if (close(out_fd) == -1)
 	{
 		perror("close: ");
 		exit(EXIT_FAILURE);
 	}
 	
-	pthread_mutex_unlock(&mutex);
-	pthread_cond_destroy(&thread_termination);
 }
-
-//SORT FROM LEAST TO GREATEST!!
-// Does ALL the program need ot be threaded? or just most? Does my writing need to happen in threads?
