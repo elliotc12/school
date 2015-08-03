@@ -1,13 +1,15 @@
 CC = gcc
 CFLAGS = -Wall -Werror -O2 -g
 LDFLAGS = -lpthread
-SOURCES = primes.c dynarr.c
 
 default: all
 all: mprimes writeup.pdf
 
-mprimes: prime_threads.c
-	${CC} ${CFLAGS} prime_threads.c -o mprimes ${LDFLAGS}
+mprimes: prime_threads.c dynarr.c
+	${CC} ${CFLAGS} prime_threads.c dynarr.c -o mprimes ${LDFLAGS}
+
+mprocs: prime_procs.c
+	${CC} ${CFLAGS} prime_procs.c -o mprocs ${LDFLAGS}
 
 writeup.pdf: latex/writeup.tex
 	cd latex && pdflatex writeup.tex

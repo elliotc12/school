@@ -1,9 +1,14 @@
+#include <fcntl.h>
 #include <math.h>
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
-#define MAX_PRIME 100000
+#include "dynarr.h"
+
+#define MAX_PRIME 1000000
 #define THREADS 16
 
 int primes[MAX_PRIME];
@@ -14,7 +19,8 @@ static pthread_cond_t thread_termination = PTHREAD_COND_INITIALIZER;
 
 enum t_state {
 	THREAD_LIVE,
-	THREAD_DEAD
+	THREAD_DEAD,
+	THREAD_JOINED
 };
 
 typedef struct {
@@ -24,6 +30,35 @@ typedef struct {
 	enum t_state state;
 } thread_struct;
 
+int is_happy(int num) {
+	DynIntArr* arr = malloc(sizeof(DynIntArr));
+	arr_init(arr, 10);
+	
+	while(num != 1) {						// Loop until found happy or sad
+		int new_num = 0;
+		while (num / 10 != 0) {				// While >1 digit
+			new_num += pow(num % 10, 2);	// num % 10 = least sig. digit
+			num = num / 10;					// Chop off last digit
+		}
+		new_num += pow(num, 2);
+		num = new_num;
+		
+		int i;								// Check if already hit this #
+		for (i=0; i<arr->size; i++)
+		{
+			if (num == arr->data[i])
+			{
+				return 0; // is sad
+			}
+		}
+		append(arr, num);
+	}
+	return 1; // is happy
+	arr_free(arr);
+	free(arr);
+	
+	return 1;
+}
 
 int get_next_sieve_prime(int start) {
 	int m = start + 1;
@@ -40,7 +75,7 @@ static void* mark_multiples(void* arg) {
 	thread_struct* thread_info = (thread_struct*) arg;
 	int m = thread_info->sieve_prime;
 	
-	while (m*j < MAX_PRIME)
+	while (m*j <= MAX_PRIME)
 	{
 		primes[m*j-1] = 0;
 		j++;
@@ -56,19 +91,16 @@ static void* mark_multiples(void* arg) {
 
 static void* find_happiness(void* arg) {
 	thread_struct* thread_info = (thread_struct*) arg;
-	printf("I'm a new thread. I'm finding happiness between %d and %d\n", 
-		thread_info->num*MAX_PRIME/THREADS + 1, thread_info->num*MAX_PRIME/THREADS + MAX_PRIME/THREADS);
-		
+	
 	int i;
 	for (i=thread_info->num*MAX_PRIME/THREADS + 1; i<=(thread_info->num*MAX_PRIME/THREADS + MAX_PRIME/THREADS); i++) {
-		if (is_happy(i)) { happiness[i] = 1; printf("%d is happy\n", i); }
+		if (primes[i] && is_happy(i+1)) { happiness[i] = 1; }
 	}
-		
+	
 	pthread_mutex_lock(&mutex);
 	thread_info->state = THREAD_DEAD;
 	pthread_cond_signal(&thread_termination);
 	pthread_mutex_unlock(&mutex);
-		
 	return NULL;
 }
 
@@ -97,7 +129,6 @@ int main() {
 	for (c=0; c<THREADS; c++)
 	{
 		m = get_next_sieve_prime(m);
-		
 		t_info[c].state = THREAD_LIVE;
 		t_info[c].num = c;
 		t_info[c].sieve_prime = m;
@@ -111,13 +142,12 @@ int main() {
 	
 	while ((m = get_next_sieve_prime(m)) != -1)
 	{
-		pthread_cond_wait(&thread_termination, &mutex);	// Block here until thread_termination signals (ie a thread dies)
-		
+		pthread_cond_wait(&thread_termination, &mutex);	// Block here until thread_termination signals (ie thread(s) die(s))
 		int a = 0;
 		while (t_info[a].state == THREAD_LIVE) { a++; }
 		if (a >= THREADS)
 		{
-			fprintf(stderr, "Error. All threads alive but thread_termination signalled.\n");
+			fprintf(stderr, "Error. All threads alive but thread_termination signaled.\n");
 			exit(EXIT_FAILURE);
 		}
 		
@@ -133,8 +163,11 @@ int main() {
 	}
 	
 	int d;
-	for (d=0; d<THREADS; d++)
-	{	
+	for (d=0; d<THREADS; d++)						// Join all threads to main(), then relaunch them with new task
+	{
+		while (t_info[d].state != THREAD_DEAD) { pthread_cond_wait(&thread_termination, &mutex); }
+		pthread_join(t_info[d].tid, NULL);
+		
 		t_info[d].num = d;
 		t_info[d].state = THREAD_LIVE;
 		
@@ -148,26 +181,49 @@ int main() {
 	int numAlive = THREADS;
 	while (numAlive > 0) 
 	{
-		pthread_cond_wait(&thread_termination, &mutex);			// threads terminate when main() blocks here
+		pthread_cond_wait(&thread_termination, &mutex);			// threads may terminate when main() blocks here
+		
 		int e;
 		for (e=0; e<THREADS; e++)
 		{
 			if (t_info[e].state == THREAD_DEAD)
 			{
 				pthread_join(t_info[e].tid, NULL);
+				t_info[e].state = THREAD_JOINED;
 				numAlive--;
 			}
 		}
 	}
 	
-	//join all threads
+	int fd;
+	if ((fd = open("happy_primes", O_WRONLY | O_CREAT | O_TRUNC, 0755)) == -1)
+	{
+		perror("error open: ");
+		exit(EXIT_FAILURE);
+	}
 	
+	int e;
+	int p = 1;
+	for (e=0; e<MAX_PRIME; e++)
+	{
+		if (happiness[e])
+		{
+			char buf[100];
+			sprintf(buf, "%d", (unsigned int) e+1);			// Make this print what it's actually supposed to print
+			write(fd, buf, strlen(buf));
+			p++;
+		}
+	}
+	
+	if (close(fd) == -1)
+	{
+		perror("close: ");
+		exit(EXIT_FAILURE);
+	}
 	
 	pthread_mutex_unlock(&mutex);
 	pthread_cond_destroy(&thread_termination);
 }
 
-
-//-Make THREADS threads, each with MAX_PRIME/THREADS range. Have them go through and run is_happy() on every element that is prime.
-//-Have them store this info in an array.
-//-Then write all this stuff to the scratch file.
+//SORT FROM LEAST TO GREATEST!!
+// Does ALL the program need ot be threaded? or just most? Does my writing need to happen in threads?
