@@ -8,8 +8,8 @@ all: mprimes writeup.pdf
 mprimes: prime_threads.c dynarr.c
 	${CC} ${CFLAGS} prime_threads.c dynarr.c -o mprimes ${LDFLAGS}
 
-mprocs: prime_procs.c
-	${CC} ${CFLAGS} prime_procs.c -o mprocs ${LDFLAGS}
+mprocs: prime_procs.c dynarr.c
+	${CC} ${CFLAGS} prime_procs.c dynarr.c -o mprocs ${LDFLAGS}
 
 writeup.pdf: latex/writeup.tex
 	cd latex && pdflatex writeup.tex
