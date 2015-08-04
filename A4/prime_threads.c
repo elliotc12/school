@@ -9,11 +9,11 @@
 
 #include "dynarr.h"
 
-#define MAX_PRIME 100000000
-#define THREADS 1
+long MAX_PRIME;
+int  THREADS;
 
-int primes[MAX_PRIME];
-int happiness[MAX_PRIME];
+int* primes;
+int* happiness;
 
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;				// mutex protects thread_termination conditional variable
 static pthread_cond_t thread_termination = PTHREAD_COND_INITIALIZER;
@@ -105,7 +105,14 @@ static void* find_happiness(void* arg) {
 	return NULL;
 }
 
-int main() {
+int main(int argc, char** argv) {
+	
+	MAX_PRIME = strtol(argv[2], NULL, 10);
+	THREADS = atoi(argv[1]);
+	
+	primes = malloc(MAX_PRIME * sizeof(int));
+	happiness = malloc(MAX_PRIME * sizeof(int));
+	
 	long m = 1;									// Current sieve prime, initialized to 1
 	
 	pthread_mutex_lock(&mutex);					// Lock thread_termination, only unlock when blocking on pthread_cond_wait

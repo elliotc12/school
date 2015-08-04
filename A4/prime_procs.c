@@ -10,8 +10,8 @@
 
 #include "dynarr.h"
 
-#define MAX_PRIME 1000000
-#define PROCESSES 1
+long MAX_PRIME;
+int PROCESSES;
 
 int* primes;
 int* happiness;
@@ -91,7 +91,11 @@ void mark_multiples(int m) {
 	exit(EXIT_SUCCESS);
 }
 
-int main() {
+int main(int argc, char** argv) {
+	
+	MAX_PRIME = strtol(argv[2], NULL, 10);
+	PROCESSES = atoi(argv[1]);
+	
 	long m = 1;											// Current sieve prime, initialized to 1
 	long MSIZE = MAX_PRIME * sizeof(int);
 	int child_pids[PROCESSES];
