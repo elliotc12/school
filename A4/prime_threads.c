@@ -1,4 +1,5 @@
 #include <fcntl.h>
+#include <limits.h>
 #include <math.h>
 #include <pthread.h>
 #include <stdio.h>
@@ -8,7 +9,7 @@
 
 #include "dynarr.h"
 
-#define MAX_PRIME 881269
+#define MAX_PRIME UINT_MAX
 #define THREADS 16
 
 int primes[MAX_PRIME];
@@ -25,17 +26,17 @@ enum t_state {
 
 typedef struct {
 	pthread_t tid;
-	int num;
-	int sieve_prime;
+	long num;
+	long sieve_prime;
 	enum t_state state;
 } thread_struct;
 
-int is_happy(int num) {
+int is_happy(long num) {
 	DynIntArr* arr = malloc(sizeof(DynIntArr));
 	arr_init(arr, 10);
 	
 	while(num != 1) {						// Loop until found happy or sad
-		int new_num = 0;
+		long new_num = 0;
 		while (num / 10 != 0) {				// While >1 digit
 			new_num += pow(num % 10, 2);	// num % 10 = least sig. digit
 			num = num / 10;					// Chop off last digit
@@ -43,7 +44,7 @@ int is_happy(int num) {
 		new_num += pow(num, 2);
 		num = new_num;
 		
-		int i;								// Check if already hit this #
+		long i;								// Check if already hit this #
 		for (i=0; i<arr->size; i++)
 		{
 			if (num == arr->data[i])
@@ -60,8 +61,8 @@ int is_happy(int num) {
 	return 1;
 }
 
-int get_next_sieve_prime(int start) {
-	int m = start + 1;
+int get_next_sieve_prime(long start) {
+	long m = start + 1;
 	while (m <= floor(sqrt(MAX_PRIME)))
 	{
 	  	if (primes[m-1] == 1) { return m; }		// m is prime, return as next sieve prime
@@ -71,9 +72,9 @@ int get_next_sieve_prime(int start) {
 }
 
 static void* mark_multiples(void* arg) {
-	int j = 2;
+	long j = 2;
 	thread_struct* thread_info = (thread_struct*) arg;
-	int m = thread_info->sieve_prime;
+	long m = thread_info->sieve_prime;
 	
 	while (m*j <= MAX_PRIME)
 	{
@@ -92,7 +93,7 @@ static void* mark_multiples(void* arg) {
 static void* find_happiness(void* arg) {
 	thread_struct* thread_info = (thread_struct*) arg;
 	
-	int i;
+	long i;
 	for (i=thread_info->num*MAX_PRIME/THREADS + 1; i<=(thread_info->num*MAX_PRIME/THREADS + MAX_PRIME/THREADS); i++) {
 		if (primes[i] && is_happy(i+1)) { happiness[i] = 1; }
 	}
@@ -105,11 +106,11 @@ static void* find_happiness(void* arg) {
 }
 
 int main() {
-	int m = 1;									// Current sieve prime, initialized to 1
+	long m = 1;									// Current sieve prime, initialized to 1
 	
 	pthread_mutex_lock(&mutex);					// Lock thread_termination, only unlock when blocking on pthread_cond_wait
 	
-	int i;										// Mark all numbers as prime and unhappy
+	long i;										// Mark all numbers as prime and unhappy
 	for (i=0; i<MAX_PRIME; i++) 
 	{
 		primes[i] = 1;
@@ -125,7 +126,7 @@ int main() {
 		exit(EXIT_FAILURE);
 	}
 	
-	int c;										// Initialize threads and thread structures
+	long c;										// Initialize threads and thread structures
 	for (c=0; c<THREADS; c++)
 	{
 		m = get_next_sieve_prime(m);
@@ -143,7 +144,7 @@ int main() {
 	while ((m = get_next_sieve_prime(m)) != -1)
 	{
 		pthread_cond_wait(&thread_termination, &mutex);	// Block here until thread_termination signals (ie thread(s) die(s))
-		int a = 0;
+		long a = 0;
 		while (t_info[a].state == THREAD_LIVE) { a++; }
 		if (a >= THREADS)
 		{
@@ -162,7 +163,7 @@ int main() {
 		}
 	}
 	
-	int d;
+	long d;
 	for (d=0; d<THREADS; d++)						// Join all threads to main(), then relaunch them with new task
 	{
 		while (t_info[d].state != THREAD_DEAD) { pthread_cond_wait(&thread_termination, &mutex); }
@@ -195,8 +196,8 @@ int main() {
 		}
 	}
 	
-	int num_happy = 0;
-	int y;
+	long num_happy = 0;
+	long y;
 	for (y=0; y<MAX_PRIME; y++)
 	{
 		if (happiness[y])
@@ -228,12 +229,12 @@ int main() {
 	}
 	
 	long p = 0;
-	int e;
+	long e;
 	for (e=0; e<MAX_PRIME; e++)
 	{
 		if (happiness[e])
 		{
-			printf("%ld %d\n", p+1, (unsigned int) e+1);
+			//printf("%ld %d\n", p+1, (unsigned int) e+1);
 			out_arr[p] = (unsigned int) e+1;
 			p++;
 		}

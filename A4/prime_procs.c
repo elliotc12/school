@@ -10,18 +10,18 @@
 
 #include "dynarr.h"
 
-#define MAX_PRIME 881269
+#define MAX_PRIME UINT_MAX
 #define PROCESSES 16
 
 int* primes;
 int* happiness;
 
-int is_happy(int num) {
+int is_happy(long num) {
 	DynIntArr* arr = malloc(sizeof(DynIntArr));
 	arr_init(arr, 10);
 	
 	while(num != 1) {						// Loop until found happy or sad
-		int new_num = 0;
+		long new_num = 0;
 		while (num / 10 != 0) {				// While >1 digit
 			new_num += pow(num % 10, 2);	// num % 10 = least sig. digit
 			num = num / 10;					// Chop off last digit
@@ -29,7 +29,7 @@ int is_happy(int num) {
 		new_num += pow(num, 2);
 		num = new_num;
 		
-		int i;								// Check if already hit this #
+		long i;								// Check if already hit this #
 		for (i=0; i<arr->size; i++)
 		{
 			if (num == arr->data[i])
@@ -47,7 +47,7 @@ int is_happy(int num) {
 }
 
 int get_next_sieve_prime(int start) {
-	int m = start + 1;
+	long m = start + 1;
 	while (m <= floor(sqrt(MAX_PRIME)))
 	{
 	  	if (primes[m-1] == 1) { return m; }		// m is prime, return as next sieve prime
@@ -252,8 +252,8 @@ int main() {
 		waitpid(child_pids[e], NULL, 0);
 	}
 	
-	int num_happy = 0;
-	int y;
+	long num_happy = 0;
+	long y;
 	for (y=0; y<MAX_PRIME; y++)
 	{
 		if (happiness[y])
@@ -289,7 +289,7 @@ int main() {
 	{
 		if (happiness[e])
 		{
-			printf("%ld %d\n", p+1, (unsigned int) e+1);
+			//printf("%ld %d\n", p+1, (unsigned int) e+1);
 			out_arr[p] = (unsigned int) e+1;
 			p++;
 		}
