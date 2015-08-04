@@ -11,13 +11,15 @@ mthreads: prime_threads.c dynarr.c
 mprocs: prime_procs.c dynarr.c
 	${CC} ${CFLAGS} prime_procs.c dynarr.c -o mprocs ${LDFLAGS}
 
-writeup.pdf: latex/writeup.tex
-	cd latex && pdflatex writeup.tex
+writeup.pdf: writeup.tex
+	pdflatex writeup.tex
 
 clean:
 	rm -f mprimes
 	rm -f mprocs
-	rm -f latex/*.aux
-	rm -f latex/*.log
-	rm -f latex/*.pdf
+	rm -f *.aux
+	rm -f *.log
+	rm -f *.pdf
 	rm -f *.dSYM
+	rm -f prime_procs_temp_shm_happiness
+	rm -f prime_procs_temp_shm
