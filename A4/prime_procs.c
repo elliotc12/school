@@ -88,7 +88,6 @@ void mark_multiples(int m) {
 		perror("mysnc: ");
 		exit(EXIT_FAILURE);
 	}
-	
 	exit(EXIT_SUCCESS);
 }
 
@@ -169,6 +168,9 @@ int main() {
 		exit(EXIT_FAILURE);
 	}
 		
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);	
+
 	int c;
 	for (c=0; c<PROCESSES; c++)
 	{
@@ -250,6 +252,9 @@ int main() {
 	{
 		waitpid(child_pids[e], NULL, 0);
 	}
+	
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	
 	long num_happy = 0;
 	long y;
