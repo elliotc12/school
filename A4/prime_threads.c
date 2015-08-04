@@ -9,8 +9,8 @@
 
 #include "dynarr.h"
 
-#define MAX_PRIME UINT_MAX
-#define THREADS 16
+#define MAX_PRIME 100000000
+#define THREADS 1
 
 int primes[MAX_PRIME];
 int happiness[MAX_PRIME];
@@ -210,7 +210,7 @@ int main() {
 	unsigned int* out_arr = malloc(HSIZE);
 	
 	int out_fd;
-	if ((out_fd = open("/scratch/cs344-su15/capeke/happy_primes_threads", O_RDWR | O_CREAT | O_TRUNC, 0755)) == -1)
+	if ((out_fd = open("happy_primes_threads", O_RDWR | O_CREAT | O_TRUNC, 0755)) == -1)
 	{
 		perror("error open: ");
 		exit(EXIT_FAILURE);

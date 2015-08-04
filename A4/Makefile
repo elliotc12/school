@@ -1,5 +1,5 @@
-CC = icc
-CFLAGS = -Wall -Werror -O2 -g -mcmodel=large
+CC = gcc
+CFLAGS = -Wall -Werror -O2 -g 
 LDFLAGS = -lpthread
 
 default: all

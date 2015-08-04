@@ -10,8 +10,8 @@
 
 #include "dynarr.h"
 
-#define MAX_PRIME UINT_MAX
-#define PROCESSES 16
+#define MAX_PRIME 1000000
+#define PROCESSES 1
 
 int* primes;
 int* happiness;
@@ -97,14 +97,14 @@ int main() {
 	long MSIZE = MAX_PRIME * sizeof(int);
 	int child_pids[PROCESSES];
 	
-	int fd = open("/scratch/cs344-su15/capeke/prime_procs_temp_shm", O_RDWR | O_CREAT | O_TRUNC, 0755);
+	int fd = open("prime_procs_temp_shm", O_RDWR | O_CREAT | O_TRUNC, 0755);
 	if (fd == -1)
 	{
 		perror("open: ");
 		exit(EXIT_FAILURE);
 	}
 	
-	int fd_h = open("/scratch/cs344-su15/capeke/prime_procs_temp_shm_happiness", O_RDWR | O_CREAT | O_TRUNC, 0755);
+	int fd_h = open("prime_procs_temp_shm_happiness", O_RDWR | O_CREAT | O_TRUNC, 0755);
 	if (fd == -1)
 	{
 		perror("open: ");
@@ -265,7 +265,7 @@ int main() {
 	unsigned int* out_arr = malloc(HSIZE);
 	
 	int out_fd;
-	if ((out_fd = open("/scratch/cs344-su15/capeke/happy_primes_procs", O_RDWR | O_CREAT | O_TRUNC, 0755)) == -1)
+	if ((out_fd = open("happy_primes_procs", O_RDWR | O_CREAT | O_TRUNC, 0755)) == -1)
 	{
 		perror("error open: ");
 		exit(EXIT_FAILURE);
