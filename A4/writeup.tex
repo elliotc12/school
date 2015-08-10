@@ -1,7 +1,15 @@
 \documentclass[11pt]{article}
 
+\usepackage{graphicx}
+
 \begin{document}
 Elliott Capek \\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.75\textwidth]{image.png}
+\caption{Data from timing threaded versus process programs. This is strange behavior. For this range of numbers, 100 million, adding more processes makes the situation worse once you have more than eight processes or one thread. This probably shows a problem in my implementation, although for reasons described below, this level of work might not actually benefit from more parallelization. The main thread calls new threads every time it gets a timeslice. However if the threads are completing in between main() timeslices, then more threads doesn't mean more speed..}
+\end{figure}
 
 \section{Design}
 This project is broken up into two separate pieces: a threaded portion and a multi-process portion. Both processes share certain functions, which are implemented almost identically: a sieve function which takes an integer input and marks as composite all multiples of that integer and a function which calculates whether an input integer is happy.\\
