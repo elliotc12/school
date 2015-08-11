@@ -23,3 +23,4 @@ clean:
 	rm -f *.log
 	rm -f *.pdf
 	rm -f *.dSYM
+	rm -f *.bz2
