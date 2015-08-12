@@ -18,9 +18,9 @@ def listen_for_compute_connections():
     s.bind(SOCKNAME)
     s.listen(1)
     conn, addr = s.accept()
-
-
-
+    conn.send("this is a python string.")
+    
+    conn.close()
 
 if __name__ == "__main__":
     # main function. create thread to run listen_for_report_connections
