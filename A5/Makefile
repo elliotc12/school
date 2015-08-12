@@ -1,10 +1,10 @@
 CC = gcc
 CFLAGS = -Wall -Werror -O2 -g 
-LDFLAGS =
+LDFLAGS = -pthread
 
 default: all
 
-all: mthreads mprocs writeup.pdf
+all: compute writeup.pdf
 
 compute: compute.c
 	${CC} compute.c -o compute ${CFLAGS} ${LDFLAGS}
