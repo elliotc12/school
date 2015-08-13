@@ -36,6 +36,7 @@ def handle_report_connection(conn, json_dict):
         terminate_computation()
     
 def handle_compute_connection(conn, json_dict):
+    print json_dict
     print "handling compute connection: " 
 
 def handle_exit(sock):

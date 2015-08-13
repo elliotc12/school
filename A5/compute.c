@@ -2,15 +2,54 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/types.h>
 #include <sys/un.h>
 #include <sys/socket.h>
+#include <time.h>
 #include <unistd.h>
 
 const char* MANAGE_SOCKNAME = "/tmp/CS344_manage_sock";
 
 pthread_mutex_t mut;
 pthread_cond_t cond;
+
+long compute_flops() {
+  printf("starting compute flops\n");
+  int* buf = malloc(40000);
+  int i = 0;
+  int j, sum;
+  int curtime = time(NULL);
+  while (time(NULL) < curtime + 10) {
+    sum = 0;
+    for (j=2; j<i; j++) {
+      if (i % j == 0)
+	{ sum += j; }
+    }
+    if (sum == i)
+      { buf[i%40000] = 1; }
+    i++;
+  }
+  free(buf);
+  printf("ending compute flops\n");
+  return (i*i/2 - 2*i) / 10;       // Return # of operations done per second
   
+}
+
+void find_perfect_nums(int start, int end, int* nums) {
+  int i,j, sum;
+  for (i=start; i<=end; i++)
+  {
+    sum = 0;
+    for (j=2; j<i; j++)
+    {
+      if (i % j == 0)
+	{ sum += j; }
+    }
+    if (sum == i)
+      { nums[i-start] = 1; }
+  }
+}
+
 void* manage_communicate(void* arg) {
   // Open active socket, connect to manage.py's bound socket, then read from the pipe until a message is received. Signal to the main thread that something happened.
   // Things to communicate:
@@ -35,7 +74,15 @@ void* manage_communicate(void* arg) {
     exit(EXIT_FAILURE);
   }
 
-  s = write(sfd, "sup", sizeof("sup"));
+  long r = compute_flops();
+  int pid = (int) getpid();
+
+  char outbuf[1000];
+  sprintf(outbuf, "{\"sender\":\"compute\",\"pid\":\"%d\",\"flops\":\"%ld\"}", pid, r);
+
+  printf("string: %s\n", outbuf);
+  
+  s = write(sfd, outbuf, sizeof(outbuf));
   if (s == -1)
   {
     perror("reading from socket");
