@@ -21,7 +21,7 @@ void* manage_communicate(void* arg) {
 
   struct sockaddr_un manage_sock_struct;
   int s;
-  char read_buf[100];
+  //char read_buf[100];
   int sfd = socket(AF_UNIX, SOCK_STREAM, 0);
   
   manage_sock_struct.sun_family = AF_UNIX;
@@ -35,14 +35,12 @@ void* manage_communicate(void* arg) {
     exit(EXIT_FAILURE);
   }
 
-  s = read(sfd, read_buf, 100);
+  s = write(sfd, "sup", sizeof("sup"));
   if (s == -1)
   {
     perror("reading from socket");
     exit(EXIT_FAILURE);
   }
-
-  printf("compute read from socket: %s\n", read_buf);
   
   s = pthread_mutex_lock(&mut);
   printf("Function manage_communicate() run.\n");
