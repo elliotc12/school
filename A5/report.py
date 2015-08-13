@@ -4,7 +4,7 @@ import getopt
 import sys
 
 SERVER_SOCKNAME = "/tmp/CS344_manage_sock"
-
+MAX_READ_SIZE = 8192
 
 if __name__ == "__main__":
 
@@ -21,8 +21,9 @@ if __name__ == "__main__":
         msg = msg + '"kill":"yes"}'
     else:
         msg = msg + '"kill":"no"}'
-
-    print msg
         
     sock.send(msg)
+    report = sock.recv(MAX_READ_SIZE)
     sock.close()
+
+    print report

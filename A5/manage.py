@@ -1,30 +1,42 @@
 #! /usr/bin/env python2
 
 import atexit
+import re
 import socket
-import threading
 import sys
-import time
 import subprocess
+import threading
+import time
 
 SERVER_SOCKNAME = "/tmp/CS344_manage_sock"
 MAX_READ_SIZE = 8192
 
+def terminate_computation():
+    print "sending termination signals to all compute instances i have knowledge of and then exiting."
+
 def json_decode(msg):
-    print "I'm going to decode: " + msg
+    mydict = {}
+    rx = re.compile(r'"([a-zA-Z]+)":"([a-zA-Z0-9]+)"')
+    match = rx.findall(msg)
 
-    
-    
-    return "compute"
+    for l in match:
+        mydict[l[0]] = l[1]
 
-def handle_report_connection(conn, msg):
-    print "handling report connection" + msg
-    time.sleep(1000)
+    rx2 = re.compile(r'"([a-zA-Z]+)":({.+})')
+    match = rx2.findall(msg)
+
+    for l in match:
+        mydict[l[0]] = json_decode(l[1])
+        
+    return mydict
+
+def handle_report_connection(conn, json_dict):
+    conn.send("[packet containing info about processes, their performance, numbers we've tried and the perfect numbers.]")
+    if (json_dict["kill"] == "yes"):
+        terminate_computation()
     
-def handle_compute_connection(conn, msg):
-    print "handling compute connection: " + msg
-    
-    time.sleep(1000)
+def handle_compute_connection(conn, json_dict):
+    print "handling compute connection: " 
 
 def handle_exit(sock):
     print "I'm exiting and handling it."
@@ -49,14 +61,14 @@ if __name__ == "__main__":
     while (1):
         conn, addr = sock.accept()
         msg = conn.recv(MAX_READ_SIZE)
-        sender = json_decode(msg)
-        if (sender == "report"):
-            t = threading.Thread(target=handle_report_connection, args=(conn, msg,))
+        json_dict = json_decode(msg)
+        if (json_dict["sender"] == "report"):
+            t = threading.Thread(target=handle_report_connection, args=(conn, json_dict,))
             thread_list.append(t)
             t.start()
             
-        elif (sender == "compute"):
-            t = threading.Thread(target=handle_compute_connection, args=(conn, msg,))
+        elif (json_dict["sender"] == "compute"):
+            t = threading.Thread(target=handle_compute_connection, args=(conn, json_dict,))
             thread_list.append(t)
             t.start()
             
