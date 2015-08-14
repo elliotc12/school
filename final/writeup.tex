@@ -1,0 +1,31 @@
+\documentclass[11pt]{article}
+
+\begin{document}
+\title{CS344 Final: POSIX APIs and their Windows counterparts}
+\author{Elliott Capek}
+\maketitle
+
+POSIX is a body of rules which specify an interface an operating system can provide to allow programmers to write portable programs. The actual implementation of the interface differs from OS to OS, but any POSIX-adopting OS's interface must have the same behavior. POSIX describes how programs interact with the file system and devices, how processes can access memory, OS information and communicate with each other, how processes can create new processes or threads, and many other things. \\ \\
+This document will summarize the following POSIX APIs: memory mapping with \textbf{mmap}, thread creation with \textbf{pthreads}, interprocess communication with \textbf{sockets} and process creating with \textbf{fork}. It will also explain analogous Windows versions of these APIs and how they are different.\\
+
+\section{Sockets}
+Sockets are a tool in POSIX that can be used to communicate between processes. A socket is similar to a pipe in that, once two processes have succesfully opened their respective sockets and connected them, reads and writes can be done to the socket and the communication ``just works''. However, this is just one type of socket, known as a Stream Socket. The other major type is called a Datagram Socket, which is different in that individual buffered messages are packaged and sent, and the socket behaves less like a file. A more important difference between sockets and pipes is that sockets are not bound to the same operating system. When a socket is created it is given a protocol to use. The two major ones are the Unix domain and the Inet/Inet6 domain. The former is for communication within the same file system, while the latter is used for communication between networked machines over the internet. Sockets are the major way traffic is sent over the internet. HTTP, SSH, and other important programs/tools use sockets to achieve their inter-machine communication.
+
+\subsection{Sockets in POSIX}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
