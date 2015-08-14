@@ -1,4 +1,4 @@
-#! /usr/bin/env python2
+#! /usr/bin/env python3
 
 import atexit
 import math
@@ -8,23 +8,27 @@ import sys
 import subprocess
 import threading
 import time
+import os
 
 SERVER_SOCKNAME = "/tmp/CS344_manage_sock"
 MAX_READ_SIZE = 8192
 
-def terminate_computation():
-    print "sending termination signals to all compute instances i have knowledge of and then exiting."
+e = threading.Event()
+
+processes = []
+current_num = 1
+perf_nums = []
 
 def json_decode(msg):
     mydict = {}
     rx = re.compile(r'"([a-zA-Z]+)":"([a-zA-Z0-9]+)"')
-    match = rx.findall(msg)
+    match = rx.findall(str(msg))
 
     for l in match:
         mydict[l[0]] = l[1]
 
     rx2 = re.compile(r'"([a-zA-Z]+)":({.+})')
-    match = rx2.findall(msg)
+    match = rx2.findall(str(msg))
 
     for l in match:
         mydict[l[0]] = json_decode(l[1])
@@ -32,62 +36,105 @@ def json_decode(msg):
     return mydict
 
 def handle_report_connection(conn, json_dict):
-    conn.send("[packet containing info about processes, their performance, numbers we've tried and the perfect numbers.]")
+    global perf_nums
+    
+    outstr = "{\"perfects\":\""
+    for p in perf_nums:
+        outstr = outstr + str(p) + ","
+
+    outstr = outstr + "\",\"search-range\":\"1-" + str(current_num-1) + "\",\"processes\":\""
+    for proc in processes:
+        outstr = outstr + str(proc["pid"]) + ","
+
+    outstr = outstr + "\"}"
+        
+    conn.send(str.encode(outstr))
+
     if (json_dict["kill"] == "yes"):
-        terminate_computation()
+        handle_exit()
     
 def handle_compute_connection(conn, json_dict):
 
+    global current_num
+    global processes
+    global perf_nums
+    
+    proc_dict = {}
+    proc_dict["pid"] = json_dict["pid"]
+    proc_dict["flops"] = json_dict["flops"]
+    
     r = int(json_dict['flops'])  # rate
-    start = 1   # perfect number lower bound
-    end = int(math.floor(1 + math.sqrt(1 - 2*(-r*15 + (1/2)*start^2 - start))))
-    response_json = "{\"job_range\":\"" + str(start) + "-" + str(end) + "\"}"
+    start = current_num   # perfect number lower bound
+    end = int(math.sqrt(2*r*15+start*start))
+    current_num = end + 1
+    
+    proc_dict["start"] = start
+    proc_dict["end"] = end
+    processes.append(proc_dict)
+    
+    response_json = str.encode("{\"job_range\":\"" + str(start) + "-" + str(end) + "\"}")
     
     conn.send(response_json)
     json_data = conn.recv( (end - start) + 13)
     parsed_data = json_decode(json_data)
-    
+
     for i in range(0, len(parsed_data["data"])):
         if (parsed_data["data"][i] == '1'):
-            print "perfect: " + str(i+start)
+           perf_nums.append(i+start)
 
-def handle_exit(sock):
-    print "I'm exiting and handling it."
-    sock.close()
+    processes.remove(proc_dict)
+
+def handle_term_connection(conn, json_dict):
+    global e
+    e.wait()
+    conn.send(b'{"kill":""}')
+           
+def handle_exit():
+    global e
+    e.set()
+    e.clear()
+    time.sleep(1)
     subprocess.call(["rm", SERVER_SOCKNAME])
+    print("manage.py exiting due to -k flag.")
+    os._exit(0)
+
+def handle_new_connection(conn):
+    msg = conn.recv(MAX_READ_SIZE)
+    json_dict = json_decode(msg)
+    if ("sender" not in json_dict.keys()):
+        sys.exit()
+        
+    if (json_dict["sender"] == "report"):
+        t = threading.Thread(target=handle_report_connection, args=(conn, json_dict,))
+        t.start()
+            
+    elif (json_dict["sender"] == "compute"):
+        t = threading.Thread(target=handle_compute_connection, args=(conn, json_dict,))
+        t.start()
+
+    elif (json_dict["sender"] == "term"):
+        t = threading.Thread(target=handle_term_connection, args=(conn, json_dict,))
+        t.start()
+            
+    else:
+        print( "Error, unknown message sent to socket. Exiting.")
+        sys.exit()
+    sys.exit()
+
     
 if __name__ == "__main__":
     # thread to listen for new connections, then update internal data structure that maintains compute processes and their performance
     # once a new communication has started, create a thread that sends that process commands, waits for it to finish, then sends more commands
-    print "I'm listening for report connections."
-
-    thread_list = []
 
     subprocess.call(["rm", "-f", SERVER_SOCKNAME])
-    
     sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     sock.bind(SERVER_SOCKNAME)
     sock.listen(1)
 
-    atexit.register(handle_exit, sock)
+    atexit.register(handle_exit)
     
     while (1):
         conn, addr = sock.accept()
-        msg = conn.recv(MAX_READ_SIZE)
-        json_dict = json_decode(msg)
-        if (json_dict["sender"] == "report"):
-            t = threading.Thread(target=handle_report_connection, args=(conn, json_dict,))
-            thread_list.append(t)
-            t.start()
-            
-        elif (json_dict["sender"] == "compute"):
-            t = threading.Thread(target=handle_compute_connection, args=(conn, json_dict,))
-            thread_list.append(t)
-            t.start()
-            
-        else:
-            print "Error, unknown message sent to socket. Exiting."
-            sys.exit()
-
-
+        t = threading.Thread(target=handle_new_connection, args=(conn,))
+        t.start()
 

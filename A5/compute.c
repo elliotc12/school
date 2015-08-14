@@ -1,4 +1,5 @@
 #include <pthread.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,7 +34,7 @@ long long compute_rate() {
     }
   }
   free(buf);
-  return (i*i/2 - 2*i) / 10;       // Return # of operations done per second
+  return (i*i/2) / 10;       // Return # of operations done per second
   
 }
 
@@ -53,10 +54,31 @@ void find_perfect_nums(long long start, long long end, char* is_perfect) {
 }
 
 void* listen_for_termination(void* args) {
-  while(1) {
-    ;
-  }
-  return NULL;
+  int sfd = socket(AF_UNIX, SOCK_STREAM, 0);
+  int READ_BUF_MAX = 1000;
+  char read_buf[READ_BUF_MAX];
+  struct sockaddr_un manage_sock_struct;
+
+  manage_sock_struct.sun_family = AF_UNIX;
+  strcpy(manage_sock_struct.sun_path, MANAGE_SOCKNAME);
+  
+  int s = connect(sfd, (const struct sockaddr*) &manage_sock_struct, sizeof(struct sockaddr_un));
+  if (s == -1)
+    { perror("creating term manage socket"); exit(EXIT_FAILURE); }
+
+  char* str = "{\"sender\":\"term\"}";
+  
+  s = write(sfd, str, strlen(str));
+  if (s == -1)
+    { perror("writing to socket");  exit(EXIT_FAILURE);  }
+
+  s = read(sfd, read_buf, READ_BUF_MAX);
+  if (s == -1)
+    { perror("reading from socket");  exit(EXIT_FAILURE);  }
+
+  printf("compute.c exiting due to -k flag.\n");
+  
+  exit(EXIT_SUCCESS);
 }
 
 int main() {
@@ -112,7 +134,7 @@ int main() {
   long long perfect_length = end - start;
   char* is_perfect = malloc( (end - start) * sizeof(char) );
   memset(is_perfect, '0', (size_t) (end - start) * sizeof(char));
-  
+
   find_perfect_nums(start, end, is_perfect);
   
   char data_packet[perfect_length + 13];
