@@ -28,15 +28,16 @@ POSIX sockets all have a file descriptor they correspond to. In order to create 
 Once a socket has been created, there is a default timeline of events for communication. Typically one process acts as the server, which opens a named socket and waits for a client process to connect. This chronology is shown in Figure (\ref{fig:socket-chronology}). First, \textbf{bind()} is used to give the socket a name. In local communication, this is typically a filename. For internet communication, this is a port. Other processes use this port, along with your computer's host name, to connect. Once the socket is bound, \textbf{listen()} is called to tell the kernel this socket is ready for a connection. After this, two things must happen, and they can happen in any order. The server must \textbf{accept()} a connection request, and a client must initiate a \textbf{connect()} request. The first call blocks until the second call occurs (sort of like a telephone call: one caller blocks until the other answers, or a timeout occurs). The \textbf{accept()} call returns the file descriptor of a new socket which is connected to the client application. Reading and writing (or sending and receiving) can now occur on the two sockets.\\ \\
 An interesting thing to note is that in POSIX, a socket is actually two different byte streams: one for reading and one for writing, just like a bidirectional pipe. One process implicitly writes to its write fd and reads from its read fd, even though only one socket file descriptor is used. This behavior is handled by the kernel. \\
 
-\subsection{Sockets in Windows}
+\subsection{Sockets in Windows: WinSock}
+WinSock, the Windows implementation of sockets, is very similar to the POSIX implementation. There are \textbf{socket()}, \textbf{bind()}, \textbf{listen()}, \textbf{accept()}, \textbf{connect()}, \textbf{recv()} and \textbf{send()} calls which work in a very similar way to the POSIX calls. There are some calls with different names, such as \textbf{closesocket()}. The fact that the \textbf{close()} system call cannot be used on WinSock sockets is a result of WinSock sockets not actually being files, but different sorts of data structures. Windows does not have the ``everything is a file'' paradigm that Unix adopts. This is an advantage in that it puts sockets in a totally different namespace than files, so collisions are less likely. However, it limits users to only using the WinSock API to use sockets, instead of using other APIs to interact with the actual file, like in POSIX. Using non-socket APIs to interact with sockets probably is not very useful, but there may be some cases when it is nice. Another necessary function when using sockets in Windows is the \textbf{WSAStartup()} call, which must be used before any other socket calls are run. This function loads the Windows Sockets DLL (shared library). This is very different than the way POSIX does things, where shared libraries are automatically loaded. This gives more power to the programmer, since it allows them to specify versions and things explicitly. However, it also may cause a performance drop, since DLLs probably take time to load. As expected, the \textbf{WSACleanup()} function must be called after sockets are done being used to unload the DLL.\\
 
+\subsection{POSIX vs Windows}
+As described above, there are many shared system calls between POSIX and Windows. One of the most notable differences is that, because Windows sockets are not files, \textbf{write()} and \textbf{read()} do not work on Windows sockets. Everything is done through calls to \textbf{recv()} and \textbf{send()}. This allows for less versatility (treating sockets like files makes many things easy in POSIX, like piping a command to a socket) but potentially more confusion, since many of the read() and write() flags used on files do not work on sockets. One thing that is immediately obvious when looking at the MSDS documentation for Windows Sockets is that Windows provides a huge number of socket-specific functions: functions to resolve host names via DNS, simultaneously open and read socket connections, send files over sockets, etc. These are some very powerful API calls that make programming in Windows nice.\\
 
+\section{Memory Mapping}
+Memory mapping is the act of creating linkages between regions in a program's memory and external data structures, either files or anonymous spaces in memory. This is incredibly convenient, since it allows programs to write to files as if they were memory (random access via pointers, memset, etc..). It also allows two processes to conveniently share large portions of data, since multiple processes can map their private memory to shared files or anonymous structures. There are two types of mappings: private and shared. The difference is intuitive: only one process can access a private mapping, whereas many processes can access a shared mapping. A private file mapping is a single process taking ownership of a file and using it. If another process maps this file, the kernel assures that changes made by other processes are invisible to to each process. This is used to initialize memory from a file. Private anonymous mappings allocate memory that only the calling process can use. Private anonymous mappings are very similar to malloc() calls. Shared file mappings allow multiple processes to easily and quickly use and modify the same set of data. Shared anonymous mappings use memory that is within the parent process's memory space, and so only children can access it, not other processes.\\
 
-
-
-
-
-
+\subsection{POSIX Memory Mapping}
 
 
 
@@ -47,3 +48,9 @@ An interesting thing to note is that in POSIX, a socket is actually two differen
 
 
 \end{document}
+
+
+
+References:
+http://johnnie.jerrata.com/winsocktutorial/
+https://msdn.microsoft.com/en-us/library/windows/desktop/ms740632(v=vs.85).aspx
