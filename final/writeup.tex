@@ -1,5 +1,7 @@
 \documentclass[11pt]{article}
 
+\usepackage{graphicx}
+
 \begin{document}
 \title{CS344 Final: POSIX APIs and their Windows counterparts}
 \author{Elliott Capek}
@@ -12,6 +14,22 @@ This document will summarize the following POSIX APIs: memory mapping with \text
 Sockets are a tool in POSIX that can be used to communicate between processes. A socket is similar to a pipe in that, once two processes have succesfully opened their respective sockets and connected them, reads and writes can be done to the socket and the communication ``just works''. However, this is just one type of socket, known as a Stream Socket. The other major type is called a Datagram Socket, which is different in that individual buffered messages are packaged and sent, and the socket behaves less like a file. A more important difference between sockets and pipes is that sockets are not bound to the same operating system. When a socket is created it is given a protocol to use. The two major ones are the Unix domain and the Inet/Inet6 domain. The former is for communication within the same file system, while the latter is used for communication between networked machines over the internet. Sockets are the major way traffic is sent over the internet. HTTP, SSH, and other important programs/tools use sockets to achieve their inter-machine communication.
 
 \subsection{Sockets in POSIX}
+POSIX sockets all have a file descriptor they correspond to. In order to create a new socket for communication, the \textbf{socket(domain, type, protocol} system call must be used.\\ \\
+\textbf{domain} refers to the protocol to be used (local or internet communication).\\ \\
+\textbf{type} refers to the type of socket to be used: stream or datagram. Stream sockets are byte-streams. This means that read() and write() calls are used to send messages. Write() blocks until there is enough room in the socket buffer to hold the message. Read blocks until data has been written by the other socket holder. Closing the socket sends an EOF. Reading an EOF also closes the socket. Byte-streams are not conventional files. The lseek() command cannot be used on them, since data is destroyed once it is read. In a byte-stream, there is no concept of ``messages'' - data is written serially. This contrasts with the datagram socket, where messages are passed individually via send and receive calls. Datagram sockets do not guarantee messages are actually sent, or arrive in order. \textbf{protocol} is for future use, and currently has no influence on behavior. It should be 0.\\ \\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{socket-chronology.png}
+\caption{Diagram of chronology of a typical streaming socket connection between a client and server. Image courtesy http://www.cs.uregina.ca/Links/class-info/330/Sockets/sockets.html and ``Unix Network Programming'' by W. Richard Stevens.}
+\label{fig:socket-chronology}
+\end{figure}
+
+Once a socket has been created, there is a default timeline of events for communication. Typically one process acts as the server, which opens a named socket and waits for a client process to connect. This chronology is shown in Figure (\ref{fig:socket-chronology}). First, \textbf{bind()} is used to give the socket a name. In local communication, this is typically a filename. For internet communication, this is a port. Other processes use this port, along with your computer's host name, to connect. Once the socket is bound, \textbf{listen()} is called to tell the kernel this socket is ready for a connection. After this, two things must happen, and they can happen in any order. The server must \textbf{accept()} a connection request, and a client must initiate a \textbf{connect()} request. The first call blocks until the second call occurs (sort of like a telephone call: one caller blocks until the other answers, or a timeout occurs). The \textbf{accept()} call returns the file descriptor of a new socket which is connected to the client application. Reading and writing (or sending and receiving) can now occur on the two sockets.\\ \\
+An interesting thing to note is that in POSIX, a socket is actually two different byte streams: one for reading and one for writing, just like a bidirectional pipe. One process implicitly writes to its write fd and reads from its read fd, even though only one socket file descriptor is used. This behavior is handled by the kernel. \\
+
+\subsection{Sockets in Windows}
+
 
 
 

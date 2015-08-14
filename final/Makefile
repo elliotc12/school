@@ -2,10 +2,13 @@ CC = gcc
 CFLAGS = -Wall -Werror -O2 -g 
 LDFLAGS = -lpthread
 
-default: writeup.pdf
+default: writeup.pdf submission
 
 writeup.pdf: writeup.tex
 	pdflatex writeup.tex
+
+submission: 
+	tar -cj -f cs344_final_capeke.tar.bz2 writeup.tex
 
 clean:
 	rm -f *.aux
