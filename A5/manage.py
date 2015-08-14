@@ -39,13 +39,17 @@ def handle_report_connection(conn, json_dict):
 def handle_compute_connection(conn, json_dict):
 
     r = int(json_dict['flops'])  # rate
-    start = 0   # perfect number lower bound
-    end = int(math.floor(2 + math.sqrt(4 - 2*(-r*15 + (1/2)*start^2 - 2*start))))
+    start = 1   # perfect number lower bound
+    end = int(math.floor(1 + math.sqrt(1 - 2*(-r*15 + (1/2)*start^2 - start))))
     response_json = "{\"job_range\":\"" + str(start) + "-" + str(end) + "\"}"
-    print response_json
+    
     conn.send(response_json)
-    data = conn.recv( (end - start) + 100)
-    print "received data from compute."
+    json_data = conn.recv( (end - start) + 13)
+    parsed_data = json_decode(json_data)
+    
+    for i in range(0, len(parsed_data["data"])):
+        if (parsed_data["data"][i] == '1'):
+            print "perfect: " + str(i+start)
 
 def handle_exit(sock):
     print "I'm exiting and handling it."

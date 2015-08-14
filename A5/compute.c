@@ -13,7 +13,6 @@
 static const char* MANAGE_SOCKNAME = "/tmp/CS344_manage_sock";
 
 long long compute_rate() {
-  printf("starting compute flops\n");
   int* buf = malloc(40000);
   long long i = 0;
   int j, c, sum;  // i is the candidate perfect int. j is the possible
@@ -24,7 +23,7 @@ long long compute_rate() {
   while (time(NULL) < curtime + 10) {
     for (c=0; c<1000; c++) {
       sum = 0;
-      for (j=2; j<i; j++) {
+      for (j=1; j<i; j++) {
 	if (i % j == 0)
 	  { sum += j; }
       }
@@ -38,18 +37,18 @@ long long compute_rate() {
   
 }
 
-void find_perfect_nums(int start, int end, char* is_perfect) {
-  int i,j, sum;
+void find_perfect_nums(long long start, long long end, char* is_perfect) {
+  long long i,j, sum;
   for (i=start; i<=end; i++)
   {
     sum = 0;
-    for (j=2; j<i; j++)
+    for (j=1; j<i; j++)
     {
       if (i % j == 0)
 	{ sum += j; }
     }
     if (sum == i)
-      { is_perfect[i-start] = 1; }
+      { is_perfect[i-start] = '1'; }
   }
 }
 
@@ -62,6 +61,7 @@ void* listen_for_termination(void* args) {
 
 int main() {
   // create new thread to block in manage_communicate, then block until
+
   int s;
   pthread_t kill_signal_listener;
 
@@ -94,33 +94,36 @@ int main() {
   if (s == -1)
     { perror("reading from socket");  exit(EXIT_FAILURE);  }
 
-  printf("manage.py response: %s\n", read_buf);
-
   char* start_range = strchr(read_buf, ':') + 2;
   char* mid_range = strchr(start_range, '-') + 1;
   char* end_range = strchr(mid_range, '"');
 
   char start_buf[100];
   char end_buf[100];
-  snprintf(start_buf, (size_t) (mid_range - start_range - 1), "%s", start_range);
-  snprintf(end_buf, end_range - mid_range, "%s", mid_range);
+
+  strncpy(start_buf, start_range, mid_range - start_range - 1);
+  start_buf[mid_range - start_range - 1] = '\0';
+  strncpy(end_buf, mid_range, end_range - mid_range);
+  end_buf[end_range - mid_range] = '\0';
+ 
   
-  long start = strtol(start_buf, NULL, 10);
-  long end = strtol(end_buf, NULL, 10);
-  
-  printf("Allocating a %g-byte array.\n", (float) (end - start) * sizeof(char));
+  long long start = strtoll(start_buf, NULL, 10);
+  long long end = strtoll(end_buf, NULL, 10);  
+  long long perfect_length = end - start;
   char* is_perfect = malloc( (end - start) * sizeof(char) );
-  memset(is_perfect, 0, (size_t) (end - start) * sizeof(char));
+  memset(is_perfect, '0', (size_t) (end - start) * sizeof(char));
   
   find_perfect_nums(start, end, is_perfect);
+  
+  char data_packet[perfect_length + 13];
 
-  char data_packet[sizeof(is_perfect) + 100];
   sprintf(data_packet, "{\"data\":\"%s\"}", is_perfect);
   
-  s = write(sfd, data_packet, sizeof(data_packet));
+  s = write(sfd, data_packet, perfect_length + 13);
   if (s == -1)
     { perror("writing to socket");  exit(EXIT_FAILURE);  }
   
 
   exit(EXIT_SUCCESS);
+
 }
