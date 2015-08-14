@@ -1,6 +1,7 @@
 #! /usr/bin/env python2
 
 import atexit
+import math
 import re
 import socket
 import sys
@@ -36,7 +37,14 @@ def handle_report_connection(conn, json_dict):
         terminate_computation()
     
 def handle_compute_connection(conn, json_dict):
-    print json_dict
+
+    r = int(json_dict['flops'])  # rate
+    start = 0   # perfect number lower bound
+    end = math.floor(2 + math.sqrt(4 - 2*(-r*15 + (1/2)*start^2 - 2*start)))
+    response_json = "{\"job_range\":\"" + str(start) + "-" + str(end) + "\"}"
+    print response_json
+    conn.send(response_json)
+    
     print "handling compute connection: " 
 
 def handle_exit(sock):
