@@ -87,7 +87,10 @@ def handle_compute_connection(conn, json_dict):
 def handle_term_connection(conn, json_dict):
     global e
     e.wait()
-    conn.send(b'{"kill":""}')
+    try:
+        conn.send(b'{"kill":""}')
+    except:
+        pass
            
 def handle_exit():
     global e
@@ -95,7 +98,7 @@ def handle_exit():
     e.clear()
     time.sleep(1)
     subprocess.call(["rm", SERVER_SOCKNAME])
-    print("manage.py exiting due to -k flag.")
+    print("manage.py exiting.")
     os._exit(0)
 
 def handle_new_connection(conn):

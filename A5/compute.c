@@ -78,6 +78,7 @@ void* listen_for_termination(void* args) {
 
   printf("compute.c exiting due to -k flag.\n");
   
+  raise(SIGINT);
   exit(EXIT_SUCCESS);
 }
 
