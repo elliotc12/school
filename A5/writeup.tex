@@ -1,24 +1,50 @@
 \documentclass[11pt]{article}
 
-\sepackage{graphicx}
+\usepackage{graphicx}
 
 \begin{document}
-Elliott Capek \\
+\title{CS344 Assignment 5: Client-Server Architecture}
+\author{Elliott Capek}
+\maketitle
 
 \section{Design}
-
-
+As suggested in the assignment description, my code will be broken up into three segments.\\ \\
+manage.py will be the server. Its main loop will only listen for new connections. The second it gets a new connection in its main socket, it will accept() the connection and wait for the connecting process to identify itself via a JSON package containing its identity. Once this is determined, the main thread will create a new thread to handle this connection. A connection to compute.c will start a new computation. First, this connecting peer process will be added to the list of currently executing compute.c instances, along with its pid. compute.c will, in its first communication, also send its performance. This performance will be taken into account in determining how much work to give it. manage.py will determine how much work to do, then send a JSON packet to its compute.c peer with instructions. compute.c will find the perfect numbers in the specified range, send the results back, and quit. Its info will then be removed from the manage.py list of running processes and the perfect numbers it found will be added to the manage.py list.\\ \\
+compute.c will begin its life by computing how performant it is. It will do this by running the perfect number algorithm on an empty data set for a large number of seconds, then averaging how much work it can do per second. It will only then open communication with manage.py. It will send its PID and its performance. manage.py will then calculate a good range for it to compute, and will respond with a JSOn packet containing this information. compute.c will then run this computation, which will hopefully take roughly 15 seconds. Once this is over, it will send a response packet to manage.py and terminate. compute.c will also spawn a listener thread that will have a separate socket to manage.py. It will listen for a kill signal and interrupt itself when it received it.\\ \\
+report.py will be only in communication with manage.py. report.py will first open up communication and send an update request. manage.py will then gather the required information: currently executing processes, found perfect numbers and currently searched range. manage.py will then send this information back to report.py, which will then quit. report.py will also have a kill section in its JSON connection packet which will have a value of yes or no. If yes, manage.py will first report its info to report, but will then send a kill signal to all its compute.c instances.\\ \\
+I will have a regular expression JSON parser that will identify sections of JSON and parse them. This code will be used in manage.py and report.py.\\ \\
+When I actually implemented my program, I diverged in a couple places. I was thinking of having three threads in compute.c: one to do the calculation, one to handle manage.py communication and one to handle listening for termination signals. However, it turned out that the first two threads basically never have a chance to do simultaneous work, so no performance boosts are gained by having them run separately. So I combined them into a single thread, which made life much easier. Also, instead of having manage.py first wait for an introduction write once a connection has been accepted, I ended up just creating a new thread to read the introduction and decide what to do. The reason for this is that compute.c first connects, then does its performance calculation, then sends an introduction signal. This ten second lag ended up blocking other processes from communicating.\\
 
 \section{Worklog}
-
+\textbf{Monday August 10th, 5:00pm} - Write framework of three programs. Main threads, communication threads and helper functions.\\
+\textbf{Tuesday August 11th, 5:00pm} - Tie together framework by adding threading functions and conditional variables.\\
+\textbf{Tuesday August 11th, 6:00pm} - Add socket code in compute.c to send and receive signals from manage.py.\\
+\textbf{Tuesday August 11th, 8:00pm} - Add socket code to replace.py as well. All programs can now communicate with dummy messages.\\
+\textbf{Wednesday August 12th, 11:00am} - Begin working on constructing JSON messages in compute.\\
+\textbf{Wednesday August 12th, 12:30pm} - Add more JSON message construction to other programs.\\
+\textbf{Wednesday August 12th, 2:00pm} - Begin working on JSON parser function in manage.py. Parser creates dictionary and populates it with string keys and string/dictionary values.\\
+\textbf{Wednesday August 12th, 3:00pm} - Debug JSON parser. Fix and implement recursive JSON parsing.\\
+\textbf{Wednesday August 12th, 5:00pm} - Implement find\_perfect\_numbers function in compute.c\\
+\textbf{Wednesday August 12th, 7:00pm} - Implement performance tester, which is very similar to find\_perfect\_numbers(). Basically outputs the number of modulus operations (which I assume to be the most important operations in the perfect finding algorithm) done in a second by the function.\\
+\textbf{Wednesday August 12th, 8:30pm} - Add performance reporting to compute.c JSON communication. manage.py can now find the endpoint given a certain starting point of a range that will take 15 seconds to compute.\\
+\textbf{Wednesday August 12th, 9:30pm} - Debug the JSON parser.\\
+\textbf{Thursday August 13th, 11:00am} - Start testing find\_perfect\_numbers() function. Spend some time debugging it.\\
+\textbf{Thursday August 13th, 1:00pm} - Run into trouble with saving results of the perfect finding to a char array. I was setting values in a char array to integer 0s and 1s, then having trouble printing and transmitting the string due to length problems. It occured to me that '0' and 0 take up the same amount of room in a char array, so I just started using characters and it got much easier.\\
+\textbf{Thursday August 13th, 2:00pm} - Implement compute.c JSON interpretation. compute.c can now successfully interpret messages from manage.py. Debug problem where, for very high ranges, I only get 20-30 numbers in the range. Realize this is actually correct, it takes 15 seconds to calculate the perfectness of huge numbers.\\
+\textbf{Thursday August 13th, 4:00pm} - Fix bug where compute blocks replace.py from communicating with manage.py - latency between compute connecting and sending signal is 15 seconds. Add new thread to handle new connections so blocking on waiting for read to work in manage.py doesn't happen.\\
+\textbf{Thursday August 13th, 5:00pm} - Add termination system to manage.py - keep threads open with sockets pointing to all compute instances. Signal them when manage.py gets a -k packet from response.py.\\
+\textbf{Thursday August 13th, 7:00pm} - Debugging a problem with termination system.\\
+\textbf{Thursday August 12th, 10:00pm} - Writeup.\\
 
 \section{Challenges}
+This project's biggest challenge was probably layout. It required more advanced planning than the other projects. I think writing foundation code and prototypes before actually implementing helped me out a lot, since I knew where everything would fit already. Planning out the chronology of how communication would happen was another must. Planning how compute.c would first calculate its own performance, then send this and receive further instructions before hand allowed me to write out the skeleton of the communication pretty quickly. I knew exactly how many socket writes and reads would happen, so implementation was easy.\\ \\
+There were a couple difficult bugs, such as getting the processes to have the right number of threads with open sockets pointing at other programs. It was surprisingly easy to do actual socket communication. Blocking on reads and writes makes communication incredibly easy.\\ \\
+Another big challenge I ran into was termination. It was hard to figure out what was the best way to do it, but I ended up having an open socket connection throughout the life of the compute.c process. The second the -k flag was received from report.py, the socket thread in manage.py is prompted by an event (which I take to be something like a conditional variable) to send the kill signal to its compute.c peer process. This took some thinking, but I like my implementation.\\ \\
 
 \section{Questions}
-\textbf{Point of assignment}:
-
-\textbf{Correctness testing}:
-
-\textbf{What was learned}:
+\textbf{Point of assignment}: To get students familiar with coordinating programs with socket communication. To teach about how the server-client architecture works, and how easy it is to implement. To get students used to programming in python. To get students to learn about the JSON format. To get students used to using regular expressions to parse comlicated text. To further teach about signal handling and how signals can be used to terminate programs.\\ \\
+\textbf{Correctness testing}: To test for correctness I was going to do another diff on the output of report.py's perfect number list, but it turned out that the perfect numbers are sparse enough that they can just be eyeballed. To test my regular expressions I used online regex testers. To verify signals worked properly I used the kill linux command. I couldn't think of any good ways to test that the client-server architecture worked properly other than just trying different permutations of launching compute.c instances and report.py instances.\\
+\textbf{What was learned}:I learned that python's implementation of system programming features like threads, sockets and semaphores is similar to C's, although often simpler. I learned that I don't really like this. It was very easy to implement the python side of opening sockets and launching threads, but I found myself rushing a lot. I feel like python has so many features  that I am never using the exact right tool for the job. I felt like when I was implementing threads that I wasn't using conditional variables properly, since their API was a lot different. I don't really understand the lower levels of python's Threading.Event tool, even though I use it. Python seems to lend itself towards quickly using tools, since documentation is so in-depth and the tools themselves are easy to just implement by example. I kind of prefer C's approach, where everything is explicit and slow and thorough.\\ \\
+In terms of actual programming skills I gained, I learned that threads should only be used for truly asynchronous tasks. I was trying to have two threads coordinate using conditional variables, but this turned ugly very quickly. I learned that python's regular expression library is different than C's (I ended up having to use the finall() function, instead of the normal match() function, to find all matches to an expression). And I learned that the server-client architecture is very powerful and simple to use.\\
 
 \end{document}
