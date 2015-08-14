@@ -40,12 +40,12 @@ def handle_compute_connection(conn, json_dict):
 
     r = int(json_dict['flops'])  # rate
     start = 0   # perfect number lower bound
-    end = math.floor(2 + math.sqrt(4 - 2*(-r*15 + (1/2)*start^2 - 2*start)))
+    end = int(math.floor(2 + math.sqrt(4 - 2*(-r*15 + (1/2)*start^2 - 2*start))))
     response_json = "{\"job_range\":\"" + str(start) + "-" + str(end) + "\"}"
     print response_json
     conn.send(response_json)
-    
-    print "handling compute connection: " 
+    data = conn.recv( (end - start) + 100)
+    print "received data from compute."
 
 def handle_exit(sock):
     print "I'm exiting and handling it."

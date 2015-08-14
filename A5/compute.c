@@ -12,16 +12,7 @@
 // make global variables static so they can't interfere with other files
 static const char* MANAGE_SOCKNAME = "/tmp/CS344_manage_sock";
 
-static void* g_data;
-static int g_data_len;
-
-static pthread_mutex_t death_mut;
-static pthread_cond_t death_cond;
-
-static pthread_mutex_t data_mut;
-static pthread_cond_t data_cond;
-
-long long compute_flops() {
+long long compute_rate() {
   printf("starting compute flops\n");
   int* buf = malloc(40000);
   long long i = 0;
@@ -47,7 +38,7 @@ long long compute_flops() {
   
 }
 
-void find_perfect_nums(int start, int end, int* nums) {
+void find_perfect_nums(int start, int end, char* is_perfect) {
   int i,j, sum;
   for (i=start; i<=end; i++)
   {
@@ -58,20 +49,25 @@ void find_perfect_nums(int start, int end, int* nums) {
 	{ sum += j; }
     }
     if (sum == i)
-      { nums[i-start] = 1; }
+      { is_perfect[i-start] = 1; }
   }
 }
 
-void* manage_communicate(void* arg) {
-  // Open active socket, connect to manage.py's bound socket, then read from the pipe until a message is received. Signal to the main thread that something happened.
-  // Things to communicate:
-  // First wait for main to cond_signal its done with performance testing. Open a socket with manage, send this information
-  // Get work, use a conditional variable to tell main to start working?
-  // send data when done, then go back to previous line
-  // Listen for kill signal, then raise the terminate signal
+void* listen_for_termination(void* args) {
+  while(1) {
+    ;
+  }
+  return NULL;
+}
+
+int main() {
+  // create new thread to block in manage_communicate, then block until
+  int s;
+  pthread_t kill_signal_listener;
+
+  pthread_create(&kill_signal_listener, NULL, listen_for_termination, NULL);  // Begin communication thread
 
   struct sockaddr_un manage_sock_struct;
-  int s;
   int READ_BUF_MAX = 1000;
   char read_buf[READ_BUF_MAX];
   int sfd = socket(AF_UNIX, SOCK_STREAM, 0);
@@ -84,94 +80,47 @@ void* manage_communicate(void* arg) {
   if (s == -1)
     { perror("creating manage socket"); exit(EXIT_FAILURE); }
   
-  pthread_mutex_lock(&data_mut);
-    
-  s = write(sfd, (char*) g_data, sizeof(char) * g_data_len);
-  if (s == -1)
-    { perror("writing to socket");  exit(EXIT_FAILURE);  }
-
-  pthread_mutex_unlock(&data_mut);
-
-  s = read(sfd, read_buf, READ_BUF_MAX);
-  if (s == -1)
-    { perror("reading from socket");  exit(EXIT_FAILURE);  }
-
-  printf("compute response: %s\n", read_buf);
-
-  char* start_range = strchr(read_buf, ':') + 2;
-  char* mid_range = strchr(start_range, '-') + 1;
-  char* end_range = strchr(mid_range, '"');
-
-  char start[100];
-  char end[100];
-  snprintf(start, (size_t) (mid_range - start_range - 1), "%s", start_range);
-  snprintf(end, end_range - mid_range, "%s", mid_range);
-  int s = strtol(start, NULL, 10);
-  int e = strtol(end, NULL, 10);
-    
-  s = pthread_mutex_lock(&death_mut);
-  printf("Function manage_communicate() run.\n");
-  pthread_cond_signal(&death_cond);
-  s = pthread_mutex_unlock(&death_mut);
-  
-  exit(EXIT_SUCCESS);
-}
-
-
-int main() {
-  // create new thread to block in manage_communicate, then block until
-  int s;
-  pthread_t manage_thread;
-
-  s = pthread_mutex_init(&death_mut, NULL);
-  if (s == -1)
-    { perror("initializing death mutex");  exit(EXIT_FAILURE);  }
-
-  s = pthread_mutex_init(&data_mut, NULL);
-  if (s == -1)
-    { perror("initializing data mutex");  exit(EXIT_FAILURE);  }
-  
-  s = pthread_cond_init(&death_cond, NULL);
-  if (s == -1)
-    { perror("initializing death conditional variable"); exit(EXIT_FAILURE);  }
-
-  s = pthread_cond_init(&data_cond, NULL);
-  if (s == -1)
-    { perror("initializing data conditional variable"); exit(EXIT_FAILURE);  }
-
-  pthread_mutex_lock(&death_mut);
-  pthread_mutex_lock(&data_mut);
-  pthread_create(&manage_thread, NULL, manage_communicate, NULL);  // Begin communication thread
-
-  long long r = compute_flops();
+  long long r = compute_rate();
   int pid = (int) getpid();
 
   char outbuf[1000];
   sprintf(outbuf, "{\"sender\":\"compute\",\"pid\":\"%d\",\"flops\":\"%lld\"}", pid, r);
 
-  g_data = (void*) outbuf;
-  g_data_len = strlen(outbuf);
+  s = write(sfd, outbuf, sizeof(outbuf));
+  if (s == -1)
+    { perror("writing to socket");  exit(EXIT_FAILURE);  }
 
-  pthread_mutex_unlock(&data_mut);
+  s = read(sfd, read_buf, READ_BUF_MAX);
+  if (s == -1)
+    { perror("reading from socket");  exit(EXIT_FAILURE);  }
+
+  printf("manage.py response: %s\n", read_buf);
+
+  char* start_range = strchr(read_buf, ':') + 2;
+  char* mid_range = strchr(start_range, '-') + 1;
+  char* end_range = strchr(mid_range, '"');
+
+  char start_buf[100];
+  char end_buf[100];
+  snprintf(start_buf, (size_t) (mid_range - start_range - 1), "%s", start_range);
+  snprintf(end_buf, end_range - mid_range, "%s", mid_range);
   
-  pthread_cond_wait(&death_cond, &death_mut);     // Wait for thread to terminate
-  pthread_mutex_unlock(&death_mut);
+  long start = strtol(start_buf, NULL, 10);
+  long end = strtol(end_buf, NULL, 10);
   
-  s = pthread_cond_destroy(&death_cond);
-  if (s == -1)
-    { perror("destroy death conditional variable"); exit(EXIT_FAILURE);  }
+  printf("Allocating a %g-byte array.\n", (float) (end - start) * sizeof(char));
+  char* is_perfect = malloc( (end - start) * sizeof(char) );
+  memset(is_perfect, 0, (size_t) (end - start) * sizeof(char));
+  
+  find_perfect_nums(start, end, is_perfect);
 
-  s = pthread_cond_destroy(&data_cond);
+  char data_packet[sizeof(is_perfect) + 100];
+  sprintf(data_packet, "{\"data\":\"%s\"}", is_perfect);
+  
+  s = write(sfd, data_packet, sizeof(data_packet));
   if (s == -1)
-    { perror("destroy data conditional variable"); exit(EXIT_FAILURE);  }
-
-  s = pthread_mutex_destroy(&death_mut);
-  if (s == -1)
-    {  perror("destroy death mutex"); exit(EXIT_FAILURE);  }
-
-  s = pthread_mutex_destroy(&data_mut);
-  if (s == -1)
-    {  perror("destroy data mutex"); exit(EXIT_FAILURE);  }
+    { perror("writing to socket");  exit(EXIT_FAILURE);  }
+  
 
   exit(EXIT_SUCCESS);
 }
