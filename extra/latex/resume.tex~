@@ -1,0 +1,220 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Two Column One Page Curriculum Vitae
+% LaTeX Template
+% Version 1.1 (24/1/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Alessandro (The CV Inn)
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% This template uses several fonts not included with Windows/Linux by
+% default. If you get compilation errors saying a font is missing, find the line
+% on which the font is used and either change it to a font included with your
+% operating system or comment the line out to use the default font.
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+\usepackage{ifsym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+\setromanfont[Mapping=tex-text]{Hoefler Text} % Main document font
+\setsansfont[Scale=MatchLowercase,Mapping=tex-text]{Gill Sans} % Font for your name at the top
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\color{text1} % Sets the default text color for the whole document to the color defined as 'text1'
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\par{\centering{\sffamily\Huge Elliott Capek}\\ % Your name
+{\color{headings}\fontspec[Variant = 2]{Zapfino} Resume\\[15pt]\par} % Curriculum vitae text in the Zapfino font
+	
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}[t]{0.5\textwidth} % Start the left-hand side of the page
+\vspace{0pt} % Trick for alignment
+	
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE
+%----------------------------------------------------------------------------------------
+
+\section{Work Experience} 
+
+%------------------------------------------------
+% WORK EXPERIENCE 1
+%------------------------------------------------
+
+{\raggedleft\textsc{2013 - Present}\par}
+
+{\raggedright\large \textbf{Computational Physics Project}\\
+{Roundy Computational Physics Lab}\\[5pt]}
+\normalsize{I am working on a biological simulation of a motor protein using principles of physics and chemistry. Skills gained:}\\
+\hspace*{0.2in}-Applying dynamics equations to simulating proteins\\
+\hspace*{0.2in}-Creating computational simulations using physics principles\\
+\hspace*{0.2in}-Programming experience in C/++, Python, LaTeX\\
+
+%------------------------------------------------
+% WORK EXPERIENCE 2
+%------------------------------------------------
+
+{\raggedleft\textsc{2013 - 2014}\par}
+
+{\raggedright\large \textbf{Biophysics Lab Assistantship}\\
+{Qiu Biophysics Lab}\\[5pt]}
+\normalsize{I worked in a biochemistry lab purifying proteins and preparing them for microscopy experiments. I gained the following skills:}\\
+\hspace*{0.2in}-Safely and accurately preparing lab buffers\\
+\hspace*{0.2in}-Growing proteins using an \textit{E. coli} medium\\
+\hspace*{0.2in}-Purifying proteins using antibody beads \\
+\hspace*{0.2in}-Verifying protein purity using gel electrophoresis\\
+\hspace*{0.2in}-Conducting microscopy experiments using a Total Internal\\
+\hspace*{0.4in}Reflection Fluorescence microscope\\
+
+%------------------------------------------------
+% WORK EXPERIENCE 3
+%------------------------------------------------
+
+{\raggedleft\textsc{2012 - 2013}\par}
+
+{\raggedright\large \textbf{MATE Robotics Competition, Technical Lead}\\
+{Willamette University}\\[5pt]}
+\normalsize{I was the technical lead for a robotics team. I lead the design of a robot whose goal was to perform tasks underwater. Tasks I accomplished:}\\
+\hspace*{0.2in}-Designed the electrical system using several different microcontrollers and control boards, which allowed our robot to receive control signals from an above-water computer\\
+\hspace*{0.2in}-Built the system which interfaced our control boards and propellers, allowing the robot to navigate underwater\\
+\hspace*{0.2in}-Programmed communications between all these devices\\
+\hspace*{0.2in}-Organized a 1400\$ team budget\\
+%------------------------------------------------
+% WORK EXPERIENCE X
+%------------------------------------------------
+
+{\raggedleft\textsc{Timeframe}\par}
+
+{\raggedright\large Title\\
+\textit{Institution}\\[5pt]}
+
+\normalsize{Description}\\
+blah blah blah
+
+%----------------------------------------------------------------------------------------	
+
+\end{minipage} % End the left-hand side of the page
+\hfill
+\begin{minipage}[t]{0.44\textwidth} % Start the right-hand side of the page
+\vspace{0pt} % Trick for alignment
+
+%----------------------------------------------------------------------------------------
+%	COLORED BOX
+%----------------------------------------------------------------------------------------
+
+\colorbox{shade}{\textcolor{text1}{
+\begin{tabular}{c|p{7cm}}
+\raisebox{-4pt}{\textifsymbol{18}} & 703 NW 4th Street, Corvallis, OR 97330\\ % Address
+\raisebox{-3pt}{\Mobilefone} & +1 971 207 8193\\ % Phone number
+\raisebox{-1pt}{\Letter} & elliotc12@gmail.com \\ % Email address
+\end{tabular}
+}
+}\\[10pt]
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION
+%----------------------------------------------------------------------------------------
+
+\section{Education} 
+
+\begin{tabular}{rl} % Start a table with two columns, one for dates and one for qualifications
+
+%------------------------------------------------
+% EDUCATION 1
+%------------------------------------------------
+
+2013 -- \textsc{Present} & \textbf{Bachelor's Degree} \\ 
+& \textsc{Physics}\\
+& \textsc{Biochemistry}\\
+& \textsc{Computer Science (minor)}\\
+\\
+& \textit{Oregon State University}\\
+& GPA: 3.72\\
+	
+%----------------------------------------------------------------------------------------
+
+\end{tabular}\\[10pt]
+
+%----------------------------------------------------------------------------------------
+%	COMPUTER SKILLS
+%----------------------------------------------------------------------------------------
+
+\section{Technical Skills} 
+
+\begin{tabular}{rl}
+Basic Knowledge
+& \textsc{PHP}, \textsc{MATLAB}, Javascript,\\ 
+& GIMP, Mathematica, \textsc{MySQL},\\
+& Drupal\\
+Intermediate Knowledge
+& \textsc{C/++}, \textsc{Python}, \LaTeX,\\
+& Linux, git, WordPress,\\
+& \textsc{HTML/CSS}\\
+\end{tabular}
+
+%----------------------------------------------------------------------------------------
+%	Other SKILLS
+%----------------------------------------------------------------------------------------
+
+\section{Something else} 
+
+\begin{tabular}{rl}
+Electronics
+& Robotics, Arduino, Soldering
+\end{tabular}
+
+%----------------------------------------------------------------------------------------
+	
+\end{minipage} % End right-hand side of the page
+
+\end{document}  

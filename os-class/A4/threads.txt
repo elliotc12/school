@@ -1,0 +1,48 @@
+threads 32 threads 100000 items
+        0.01 real         0.01 user         0.00 sys
+threads 16 threads 100000 items
+        0.02 real         0.02 user         0.00 sys
+threads 8 threads 100000 items
+        0.01 real         0.01 user         0.00 sys
+threads 4 threads 100000 items
+        0.01 real         0.01 user         0.00 sys
+threads 2 threads 100000 items
+        0.01 real         0.01 user         0.00 sys
+threads 1 threads 100000 items
+        0.02 real         0.01 user         0.00 sys
+threads 32 threads 1000000 items
+        0.13 real         0.18 user         0.02 sys
+threads 16 threads 1000000 items
+        0.13 real         0.18 user         0.02 sys
+threads 8 threads 1000000 items
+        0.14 real         0.18 user         0.02 sys
+threads 4 threads 1000000 items
+        0.13 real         0.17 user         0.02 sys
+threads 2 threads 1000000 items
+        0.14 real         0.18 user         0.02 sys
+threads 1 threads 1000000 items
+        0.21 real         0.18 user         0.02 sys
+threads 32 threads 10000000 items
+        1.32 real         2.01 user         0.18 sys
+threads 16 threads 10000000 items
+        2.06 real         2.28 user         0.19 sys
+threads 8 threads 10000000 items
+        2.33 real         1.86 user         0.19 sys
+threads 4 threads 10000000 items
+        1.84 real         1.97 user         0.21 sys
+threads 2 threads 10000000 items
+        2.05 real         1.82 user         0.19 sys
+threads 1 threads 10000000 items
+        2.53 real         1.78 user         0.19 sys
+threads 32 threads 100000000 items
+       14.87 real        20.25 user         1.66 sys
+threads 16 threads 100000000 items
+       16.48 real        21.55 user         1.60 sys
+threads 8 threads 100000000 items
+       14.55 real        20.21 user         1.55 sys
+threads 4 threads 100000000 items
+       14.56 real        19.26 user         1.54 sys
+threads 2 threads 100000000 items
+       14.65 real        19.07 user         1.55 sys
+threads 1 threads 100000000 items
+       20.15 real        17.25 user         1.51 sys
