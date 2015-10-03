@@ -1,4 +1,4 @@
-all: resume
+all: a1
 
-resume: latex/resume.tex
-	cd latex && xelatex resume.tex && mv resume.pdf ..
+a1: latex/a1.tex
+	cd latex && xelatex a1.tex && mv a1.pdf ..
