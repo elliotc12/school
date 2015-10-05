@@ -1,0 +1,118 @@
+1436654739.93	5	0.9	Beginning reading session!
+1436655239.29	5	0.9	None!
+1436655832.96	5	0.9	None
+1436656262.33	5	0.6	No
+1436657278.83	5	1.0	Drinking wata!
+1436657802.68	5	0.7	None, just got a text.
+1436658209.07	5	1.0	Still texting Aimee, need to pick up berries at 6:30. Yum!
+1436658737.82	5	0.4	Was delayed for a bit entering things into todo.txt.
+1436659162.7	5	1.1	None
+1436659575.98	5	1.6	Skimming boring stuff
+1436660045.54	5	1.2	no
+1436660392.83	5	2.0	Skimmed unimportant stuff. Next chapter I'll circle all the important points and not read the others, since the last half of this reading session was not on stuff I need to know.
+1436662412.4	5	0.9	Starting a new chapter.
+1436662883.5	5	1.2	None
+1436663282.79	5	0.8	No!
+1436663627.77	5	1.0	 
+1436664000.91	5	1.3	 
+1436670759.0	5	0.6	Just ate a can of tri-blend beans.
+1436671098.55	5	1.6	Skimming through functions I don't need to know.
+1436671438.55	5	1.3	 
+1436671895.49	5	1.3	Good, skipping more stuff. Hoping to get faster as my psympathetic nervous system regains control.
+1436672244.54	5	1.4	
+1436672578.19	5	2.0	
+1436673111.41	5	0.6	
+1436674490.71	5	0.3	blueberries
+1436675835.46	5	1.2	
+1436742255.3	5	2.3	Just ate a lot of blueberries. This is the start of the Biology reading, the previous readings were TLPI.
+1436742714.32	5	1.0	
+1436743126.39	5	2.1	
+1436743640.99	0	1.5	
+1436744106.41	5	2.0	
+1436744794.59	5	1.5	
+1436745171.64	5	1.0	
+1436746360.63	5	4.2	Skimmed a lot
+1436746715.33	5	1.25	
+1436747122.09	5	1.1	
+1436747443.83	5	2.0	
+1436747906.63	5	1.3	
+1436748560.86	5	1.5	
+1436748878.82	5	1.2	y
+1436920201.57	5	1.1	
+1436920748.0	5	1.0	
+1436921164.28	5	1.0	
+1436921473.97	5	0.0	
+1436921782.17	5	0.0	y
+1436922159.65	5	0.0	
+1437017286.68	5	0.0	0
+1437017684.48	5	0.0	0
+1437018278.31	5	0.0	0
+1437018598.11	5	0.0	0
+1437019058.56	5	0.0	0
+1437756098.82	5	1.3	Finished up the different signal descriptions.
+1437756973.15	5	1.0	no
+1437757310.96	5	0.8	
+1437948417.66	7	0.7	
+1437948859.35	7	1.6	
+1437949352.64	7	2.0	no
+1437950034.43	7	2.0	Read about file descriptor duplication and copy-on-write behavior of the fork() command.
+1438025542.97	10	1.5	Learned about pipes, which are bytestreams. A bytestream is a type of file where there is no lseeking possible. You can only read in blocks, then read in the next block, etc. Pipes are unidirectional. If you close the write end of a pipe, you write an EOF before you close it for the reader to read.
+1438026334.98	10	0.3	You can write under PIPE_BUF characters to a pipe and it is guaranteed to be atomic (not sure how...so the processor knows not to preempt the process and all interrupts are blocked when an atomic process is running? How is that guaranteed? If you write more than PIPE_BUF characters, it is not guaranteed to be an atomic write.
+1438026989.74	10	1.5	Learned about how to create pipes and how the two fds of a process are dup'd on a call to fork().
+1438027835.03	10	2.0	Learned the reason for forked processes to delete their unused pipe fds: the kernel doesn't have pipes behave normally if you don't. If there is still an unused write fd when reading, no EOF cwill be printed when the real writer closes. THis is a problem.
+1438028505.57	10	2.0	Learned how pipes can be used to synchronize processes. Read reads in the amount of bytes you tell it, and blocks until it has read that amount. Write blocks until there is room to write. Reading moves the lseek buffer forward (metaphorically), thusly "deleting" the data behind it that has already been read.
+1438029156.2	10	1.2	Didn't learn a lot.
+1438029879.11	10	1.5	Started learning about FIFOs and the magic that they can do. FIFOs are basically pipes, but they are actual files, not stored in memory somewhere. FIFOs can be used to do interesting things, which I"ll learn abou tin a second.
+1438030570.86	10	3.0	FIFOs can be used for lots of stuff. The tee command branches its input to both stdout AND a FIFO. pThreads is the mname of threads in Linux. ALl threads share the same heap (place where pointers are allocated), same globals, etc.
+1438031457.58	5	1.4	Learned about how threads work. Threads all share the heap and environmental and global variables. They each get their own stack in program memory. They all read from the same program text, and presumably have their own program counter. Threads have an advantage over child processes in that they are faster to create and easier to synchronize. I will not learn about that synchronization.
+1438031827.4	5	1.0	I learned about how threads in a single process share lots of stuff, like process ID, file descriptors, etc. They have separate thread IDs, signal blocking masks, stacks, scheduling information.
+1438035405.61	5	1.0	Speaking notes aloud.
+1438035748.28	5	1.0	no
+1438036148.59	5	2.0	
+1438036514.42	5	0.6	no
+1438036946.47	5	1.2	
+1438039084.83	5	1.3	
+1438039441.2	5	1.0	Learned about how threads are good since fast and easy, bad since smaller and kinda more dangerous.
+1438110196.34	5	0.4	no
+1438110646.19	5	1.0	
+1438111198.87	5	0.3	Interrupted this time.
+1438111536.06	5	1.0	I learned about how even the increment operator isn't necessarily atomic. In order to guarentee atomicity, use mutexes!
+1438111915.73	5	1.0	Learned how mutexes work. If you try to lock a locked mutex, you start blocking (immediately leave the processor) and try again later. I think it's best to immediately lock and unlock the mutex when you are using a shared resource, so as to minimize the time you are blocking others on the processor.
+1438112286.91	5	1.0	Learned how to make a mutex: just declare a variable of type pthread_mutex_t and a mutex will be statically allocated on the stack. Then use pthread_mutex_(un)lock to lock/unlock it.
+1438112712.52	5	1.5	Learned about the alternatives to pthread_lock, trylock and timedlock. trylock is good because you can do other stuff instead of blocking, but it is bad because you can get starved pretty easily. timedlock is good, but good programs shouldn't have long lock times anyway, so timedlock shouldn't be necessary.
+1438279744.4	5	1.0	Semaphores are like mutexes except can take on several values and can be used when there are multiple instances of some shared resource. They exist in the kernel, not userspace. Semaphores can be named or unnamed.
+1438280079.52	5	1.3	Learned how to make semaphores (they are kind of like files) using sem_open.
+1438280401.05	5	0.7	Learned about how to use semaphores a bit more.
+1438280750.9	5	2.0	Learned how to use semaphores. Use sem_wait when you want to use a resource. When the function returns, you are free to use it. sem_wait will decrement the semaphore, or block if it is zero. sem_pos is used when you are done, to increment the semaphore. 
+1438281081.37	5	2.0	Didn't really learn much. Read about how to get the value of a semaphore.
+1438281463.03	5	0.3	Semaphores are different form mutexes in that mutexes have ownership: if a thread locks a mutex, somehow the locker of that mutex (its thread id) is stored in the mutex such that only that mutex can unlock it. This is not the case for semaphores. Therefore semaphores are uglier. Also, there is a thing called "async safety" that semaphores have. Not sure what that means.
+1438288423.66	5	1.0	
+1439258945.66	5	4.0	
+1439259847.74	7	3.0	no
+1440431152.13	5	3.0	Reinforced that a prior is a probability of an event occuring, and when you get new information, these probabilities slide based on the new information. How likely an event is to occur is influenced by this new information, so you must factor it in.
+1440431549.72	5	3.0	Learned the term "brainware" - components of the brain. Cool word, since it is similar to hardware. "Intuitive explanation" = concept easily portable to brainware constructs. Quantities are easily visualized in spcacial parts of the brain.
+1440440981.53	5	0.0	
+1441840875.66	7	7.0	Learned about how libertarianism is more harmonious thann other political philosophies, like the Republican party (conglomerate of Christians, gun-lovers and libertarian-ish ppl) and Democrats (conglomerate of sprogress-loving SJWs, socialists and people who want to maximize human hapiness).
+1441841362.01	7	8.0	Read about how theory isn't always good, and even if llaissez-faire economics works in theory, that may not be how it actually works irl.
+1441845505.92	7	7.0	no
+1443303639.64	5	1.0	
+1443379387.67	7	3.0	Learned about proportionality of P,V and T for closed system and gained more intuition on what pressure actually is.
+1443381146.9	7	3.0	Learned PV=nRT, kelvin scale defined in terms of triple point of water, and how the relationship is only experimentally true when P=0. Presumably there are more terms that need to be added to make it a true relation at higher pressures.
+1443381930.99	7	2.0	Learned how to calculate pressure using force: just multiply gravity times mass to get gravitational force, and know that P/A is the upwards pressure force (pressure is exerted in all directions, unless there is a vacuum involved).
+1443382543.45	7	4.0	Partial pressures are just pressures due to different species.
+1443385850.38	7	3.0	Learned about how the Virial equation is a better equation of state and how partial pressure works.
+1443386744.38	7	3.0	Learned about PVT surfaces. THey show relationships between phases of water.
+1443388004.53	7	4.0	]
+1443388515.16	7	4.0	Modified Ideal Gas Law.
+1443389164.19	7	4.0	Learned how Maclaurin series work! I wish I had known that a year ago, they are cool...
+1443908135.72	5	3.0	o
+1443908538.89	5	1.0	no
+1443909075.27	5	0.0	n
+1443909384.98	5	0.0	n
+1443910079.02	5	0.0	no
+1443910419.6	5	0.0	Learned about the Maxwell construction and how dv/dP>0 is unstable. So VDW is not accurate in the LG region.
+1443925607.57	5	5.0	Thales believes that everything is water and made of gods. Water since water has lots of phases, and gods since everything is made of immortal objects. Aristotle called him the First PHilosopher.
+1443925982.05	5	7.0	Anaximander's argument was that, since everything that begins is started by something else, there must be something with no beginning that created everything else, since something cannot come from nothing.
+1443926410.23	5	8.0	Anaximander explains how a primal boundless chaos gives rise to all the things around us by physical processes we see (things separating when spun). He is using things we see in real life to explain stuff, which makes him at least semi-empirical.
+1443926819.41	5	6.0	Xenophanes, younger than Aximander and Thales, believes that the Gods/divine shouldn't be represented as Homer and Hesios represented them, as flawed yet powerful individuals. He believes the divine should be greater than that. So it seems like the greek gods weren't actually that popular or worshipped. Even back then, there was a desire for a strong, immortal, far-removed-from-humanity sort of Divine.
+1443927125.64	5	0.0	n

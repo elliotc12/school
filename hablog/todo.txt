@@ -1,0 +1,9 @@
+-Every time you are done reading, git commits the log.txt file
+-Option to describe how hard the material you just read was? If you read a page-long figure, you shouldn't count that as a full page of reading
+-Push to Habitica
+-Pause option while reading
+-Option to specify what book you're reading
+-Option to predict how long it will take you to read a chapter, given that you read this book at X speed (possibly given more information? your subjective mood or something?)
+-Add a pomodoro option. Similar to the reading, but for general tasks. Say hablog.py pom, say how long you want to pomodoro for, and then get points if you succesfully pomodoro'd.
+-Graph reading as you go, to make you want to read faster! Show goal!
+-Also add service to listen for git pushes and send Habitica requests to increment stats
