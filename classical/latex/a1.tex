@@ -1,0 +1,70 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+\usepackage{ifsym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Classical Mechanics Assignment One}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One}
+\textbf{What do you expect from this course?} \\ \\
+       {From this course I want to learn the physics techniques for modeling more complicated systems than what was taught in the introductory physics sequence. I want to get a better understanding for how physical modeling works and get a better intution for when to use particular techniques to model physical systems. I'd also like to learn how to use advanced techniques, like the Lagrangian, to characterizing physical systems.}
+
+\vspace{1 cm}
+
+\section{Problem Two}
+\textbf{What do you expect from the instructor?} \\ \\
+       {I expect the professor to answer questions during lecture and be available for office hours for help and clarification on homework assignments.}
+
+\vspace{1 cm}       
+
+\section{Problem Three}
+\textbf{What do you expect from your classmates?} \\ \\
+       {I expect my classmates to not be disruptive during lecture and work to create an environment conducive to learning. I expect them not to ask for homework solutions, but to ask for help on homework when needed.}
+
+\vspace{1 cm}       
+
+\section{Problem Four}
+\textbf{How prepared do you feel that you are for this class?} \\ \\
+       {I feel adequately prepared. I have taken the Paradigms series in the past year, in addition to the two linear algebra courses and calculus series recommended for this course. I am not worried about the material, and know that if anything challenging comes up, I can always do research, ask my classmates or the professor for help.}
+
+\end{document}
