@@ -67,29 +67,188 @@ $(1.0133*10^5 \frac{N}{m^2})(5*10^{-4}m^3) = (0.0172 mol + x)(8.314 \frac{J}{mol
 
 From this we can see that $x = 0.00325$\\
 
-Therefore we end up with 0.01395 mol $N_2O_4$ and 0.00325 mol $NO_2$.\\
+Therefore we end up with 0.01395 mol $N_2O_4$ and 0.0065 mol $NO_2$, for a total of $0.02045$.\\
 
-Mole fractions: 0.81 and 0.19.\\
+Mole fractions: 0.68 and 0.32.\\
 
 Percent dissociated: 19\%.
 
 \section{1.5}
-$Z = $
-$\frac{dZ}{dP} = $
+\begin{align}
+  Z = 1 + B'P + C'P^2 + ... &= 1 + \frac{B}{RT}P + \frac{C-B^2}{(RT)^2)}\\
+  \frac{\partial }{\partial P} \Big(1 + \frac{B}{RT}P + \frac{C-B^2}{(RT)^2}P^2 \Big) &= \frac{B}{RT} + \frac{2C-2B^2}{(RT)^2}P\\
+  \lim_{P\to0} \frac{B}{RT} + \frac{2C-2B^2}{(RT)^2}P &= \frac{B}{RT} = B'\\
+\end{align}
+
+\clearpage
 
 \section{1.14}
+
+\begin{align}
+  \kappa &= -V^{-1}\frac{dV}{dP}_T\\
+  nRT &= (P+\frac{an^2}{V^2})(V-nb)\\
+  nRT &= PV - Pnb + \frac{an^2}{V} - \frac{abn^3}{V^2}\\
+  \frac{\partial}{\partial P}nRT &= \frac{\partial}{\partial P} \Big(PV - Pnb + \frac{an^2}{V} - \frac{abn^3}{V^2} \Big)\\
+  0 &= P\frac{\partial V}{\partial P}_T + V - nb + \frac{-an^2}{V^2}\frac{\partial V}{\partial P}_T - \frac{-2abn^3}{V^3}\frac{\partial V}{\partial P}_T\\
+  nb - V &= (P + \frac{-an^2}{V^2} - \frac{-2abn^3}{V^3}) \frac{\partial V}{\partial P}_T\\
+  \frac{nb - V}{P + \frac{-an^2}{V^2} - \frac{-2abn^3}{V^3}} &= \frac{\partial V}{\partial P}_T\\
+  \kappa = \frac{-1}{V}\frac{\partial V}{\partial P}_T &= \frac{-1}{V}\frac{nb - V}{P + \frac{-an^2}{V^2} - \frac{-2abn^3}{V^3}}\\
+\end{align}
+
+We then look at the limiting case when volume goes to infinity, using L'Hospital's Rule: \\
+
+\begin{align}
+  \lim_{V\to \infty} \kappa &= \lim_{V\to \infty} \frac{-1}{V}\frac{nb - V}{P + \frac{-an^2}{V^2} - \frac{-2abn^3}{V^3}}\\
+  &= \frac{\frac{\partial}{\partial V}}{\frac{\partial}{\partial V}} \frac{nb - V}{PV + \frac{-an^2}{V} - \frac{-2abn^3}{V^2}}\\
+  &= \frac{-1}{P + \frac{an^2}{V^2} + \frac{-4abn^3}{V^3}}\\
+  &= \frac{-1}{P}\\
+\end{align}
+This is identical to the answer we found in problem 1.17.
 
 \section{1.17}
 
 \begin{align}
-\alpha &= \frac{1}{V}(\frac{\partial V}{\partial T})_P\\
-&= \frac{1}{V}(\frac{\partial \frac{nRT}{P}}{\partial T})_P\\
-&= \frac{nR}{VP}
+  \alpha &= \frac{1}{V}(\frac{\partial V}{\partial T})_P\\
+  &= \frac{1}{\frac{nRT}{P}}(\frac{\partial \frac{nRT}{P}}{\partial T})_P\\
+  &= \frac{P}{nRT} \frac{nR}{P}\\
+  &= \frac{1}{T}\\
 \end{align}
 
 \begin{align}
-\kappa &= \frac{-1}{V}(\frac{\partial \frac{nRT}{P}}{\partial P})_T\\
-&= \frac{nRT}{VP^2}
+  \kappa &= \frac{-1}{V}(\frac{\partial V}{\partial P})_T\\  
+  &= \frac{-1}{\frac{nRT}{P}}(\frac{\partial \frac{nRT}{P}}{\partial P})_T\\
+  &= \frac{-P}{nRT}\frac{-nRT}{P^2}\\
+  &= \frac{1}{P}\\
+\end{align}
+
+\section{1.18}
+
+\begin{align}
+  \alpha = \big(\frac{\partial V}{\partial T}\big)_P\frac{1}{V} &= c_P\\
+  \big(\frac{\partial V}{\partial T}\big)_P\frac{1}{V} &= c_P\\
+  \int \frac{1}{V} dV  &= \int c_P dT\\
+  ln(V) = c_PT + C\\
+  e^{c_PT+C} = V\\
+  V = Ce^{\alpha T}\\
+\end{align}
+This is true at constant P. \\
+
+\begin{align}
+  \kappa = \big(\frac{\partial V}{\partial P}\big)_T \frac{-1}{V} &= c_T\\
+  \big(\frac{\partial V}{\partial P}\big)_T \frac{1}{V} &= -c_T\\
+  \int frac{1}{V} dV &= \int -c_T dP\\
+  ln(V) &= -c_TP + C\\
+  V &= e^{-c_TP+C}\\
+  V &= Ce^{-c_TP} = Ce^{-\kappa P}\\
+\end{align}
+This is only true at constant T.\\
+
+We can then see by combining these two derivations for the general, non-constant case that $V = Ce^{\alpha T -\kappa P}$.
+
+\section{1.20}
+
+\begin{align}
+  \frac{\partial P}{\partial V}_T &= \big(\frac{\partial}{\partial V}_T\big) \frac{nRT}{V-nb}\\
+  &= \frac{-nRT}{(V-nb)^2}\\
+\end{align}
+
+and
+
+\begin{align}
+  \frac{\partial P}{\partial T}_T &= \big(\frac{\partial}{\partial T}\big)_V \frac{nRT}{V-nb}\\
+  &= \frac{nR}{V-nb}\\
+\end{align}
+
+Then we can see that:
+
+\begin{align}
+  \frac{\partial^2P}{\partial V\partial T} = \frac{\partial}{\partial T} \frac{-nRT}{(V-nb)^2}
+  &= \frac{-nr}{(V-nb)^2}\\
+\end{align}
+
+and
+
+\begin{align}
+  \frac{\partial^2P}{\partial T\partial V} = \frac{\partial}{\partial V} \frac{nR}{V-nb}
+  &= \frac{-nr}{(V-nb)^2}\\
+\end{align}
+
+and so
+
+\begin{align}
+  \frac{\partial^2P}{\partial T\partial V} = \frac{\partial^2P}{\partial V\partial T}
+\end{align}
+
+\section{1.26}
+\begin{align}
+  B = \sum_{i=1}^2\sum_{j=1}^2y_iy_jB_{ij} &= y_1y_1B_{11}+y_1y_2B_{12}+y_2y_1B_{12}+y_2y_2B_{22}\\
+  &= y_1^2B_{11}+y_2^2B_{22}+2y_1y_2B_{12}\\
+\end{align}
+
+\section{1.31}
+(a)\\
+\begin{align}
+  PV&=nRT\\
+  P(0.5L) &= (1 mol)R(600K)\\
+  P(0.5L * \frac{m^3}{1000L}) &= (1 mol)(8.314 \frac{N*m}{mol*K})(600K)\\
+  P &= \frac{8.314*600}{0.0005} \frac{N}{m^2} = 9.976e6 Pa\\
+\end{align}
+
+(b)\\
+From Wikipedia (en.wikipedia.org/wiki/Van\_der\_Waals\_constants\_(data\_page)):
+$$a = 24.71 \frac{L^2bar}{mol^2} = 24.71 \frac{L^2bar}{mol^2} * \frac{m^3}{10^3 L}^2 * \frac{10^5 Pa}{bar} = 2.471 \frac{m^6Pa}{mol^2}$$
+$$b = 0.1735\frac{L}{mol} = 0.1735\frac{L}{mol} * \frac{m^3}{1000 L} = 1.6*10^{-4} \frac{m^3}{mol}$$
+
+\begin{align}
+  (P+\frac{a}{\bar{V}^2})(\bar{V}-b) &= RT\\
+  (P+\frac{2.471}{\bar{V}^2})(\bar{V} - 1.6*10^{-4}) &= RT\\
+  (P+\frac{2.471}{0.0005^2})(0.0005 - 1.6*10^{-4}) &= (8.314)(600)\\
+  (P+9884000) &= \frac{(8.314)(600)}{(0.00034)}\\
+  P &= \frac{(8.314)(600)}{(0.00034)} - 9884000\\
+  P = 4.787764 * 10^6 Pa\\
+\end{align}
+
+\section{1.33}
+
+\begin{align}
+  \kappa = -V^{-1}(\frac{\partial V}{\partial P}_)T\\
+  -\kappa V = \frac{\partial V}{\partial P}_T\\
+  \int -\kappa V \partial P_T = \int \partial V\\
+  \int -\kappa \partial P_T = \int \frac{1}{V}\partial V\\
+  -P\kappa + C= ln(V)\\
+  V = e^{-\kappa P}e^{C}\\
+  V = C_0e^{-\kappa P}\\
+\end{align}
+
+\section{1.34}
+
+\begin{align}
+  P(\bar{V}-b) &= RT\\
+  \bar{V}-b &=\frac{RT}{P}\\
+  \bar{V} &= \frac{RT}{P}+b\\
+  V &= \frac{nRT}{P}+nb\\
+\end{align}
+
+\begin{align}
+  \alpha &= \frac{1}{V}\frac{\partial V}{\partial T}_P\\
+  &= \frac{1}{V}\frac{\partial \frac{nRT}{P}+nb}{\partial T}_P\\
+  &= \frac{1}{V} \frac{nR}{P}\\
+  &= \frac{nR}{PV}\\
+\end{align}
+
+\begin{align}
+  \kappa &= \frac{-1}{V}\frac{\partial V}{\partial P}_T\\
+  &= \frac{-1}{V}(\frac{\partial \frac{nRT}{P}+nb}{\partial P})_T\\
+  &= \frac{-1}{V}\frac{-nRT}{P^2}\\
+  &= \frac{nRT}{VP^2}\\
 \end{align}
 
 \end{document}
+
+
+  dV(P) = (dv/dP)_T * dP
+  dV(P) - -V\kappa dP
+  dV(P) / V = -kdP
+  integrate both sides indefinitely
+  ln(V) = -KP
+  V = Ce^(-kP)  
