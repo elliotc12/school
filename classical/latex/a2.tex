@@ -1,0 +1,166 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+\usepackage{marvosym} % Required for symbols in the colored box
+\usepackage{ifsym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Classical Mechanics Assignment One}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One}
+\textbf{Consider  a  ball  that  moves  vertically  under  the  influences  of  both  gravity  and  air resistance.  For  the  purposes  of  this  problem,  take  vertically  upward  as  the  positive 
+direction. (For instance, the gravitational force on the ball would be expressed as -mg in this case.) For each equation of motion below, determine whether that equation applies 
+to (i) a situation in which the ball moves upward, (ii) a situation in which the ball moves 
+downward, (iii) either of these, or (iv) neither of these. Explain your reasoning for each 
+case. c is a positive constant. Justify each answer, no need  to add a  final paragraph of 
+comment for the whole problem.} \\ \\
+
+\begin{equation}
+  m\frac{dv}{dt} = -mg + cv\\
+\end{equation}
+This motion equation corresponds to case (iii), either upwards or downwards motion. $\frac{dv}{dt}$ is positive when $cv > mg$, and negative when $cv < mg$. This means that in the case that v is positive and $cv$ has a larger magnitude than the downward acceleration $mg$, the acceleration will be positive and make velocity more positive, leading to upwards motion. When $cv$ is less than the magnitude of $mg$, gravity is either overcoming an upwards force or reinforcing a downward force and accelerating the ball downward.\\
+
+\begin{equation}
+  m\frac{dv}{dt} = -mg - cv\\
+\end{equation}
+This situation is the opposite of the above one: neither upwards nor downwards motion will ensue. This is because acceleration now moves opposite velocity. In the case where $v > \frac{-mg}{c}$, the ball will be accelerated downwards until $v < \frac{-mg}{c}$. Once this happens, the ball will be accelerated upwards until $v > \frac{-mg}{c}$ once again, and this will continue in a cycle.\\
+
+\begin{equation}
+  m\frac{dv}{dt} = -mg + cv^2\\
+\end{equation}
+This situation corresponds to (iii), either upwards or downwards motion. If $\sqrt{\frac{mg}{c}} < v_0$, then the acceleration will be upwards and an already upward-moving ball will move that way faster. If $\sqrt{\frac{mg}{c}} > v_0$, then the ball will be caught in a loop of its downward velocity being pushed upward or downward, but it will never be positive enough to have both v' and v positive at once.\\
+
+\begin{equation}
+  m\frac{dv}{dt} = -mg - cv^2\\
+\end{equation}
+
+
+\vspace{1 cm}
+
+\section{Problem Two}
+\textbf{Express  the  terminal  velocity  of  objects  falling  vertically  in  air  and  subject  to  the following (fictitious) drag  forces (no need to add a  final paragraph of comment  for the 
+whole problem):} \\ \\
+
+a.)
+\begin{align}
+  \vec{F}_{drag} &= -\alpha\log(v)\vec{v}\\
+  \frac{dv}{dt} &= -mg + \vec{F}_{drag}\\
+  \frac{dv}{dt} &= -mg - \alpha\log(v)v\\  
+  \frac{dv}{dt} &= -mg - \alpha\log(v_{term})v_{term} = 0\\
+  -mg &= \alpha\log(v_{term})v_{term}\\
+\end{align}
+
+b.)
+\begin{align}
+  \vec{F}_{drag} &= -\alpha v^3\vec{v}\\
+  \frac{dv}{dt} &= -mg + \vec{F}_{drag}\\
+  \frac{dv}{dt} &= -mg -\alpha v^3\vec{v}\\
+  \frac{dv}{dt} &= -mg -\alpha v^4\\
+  \frac{dv}{dt} &= -mg -\alpha v_{term}^4 = 0\\
+  -\alpha v_{term}^4 &= -mg\\
+  v_{term}^4 &= \frac{-mg}{\alpha}\\
+  v_{term} &= \sqrt[4]{\frac{-mg}{\alpha}}\\
+ \end{align}
+
+\vspace{1 cm}       
+
+\section{Problem Three}
+\textbf{Consider a softball of diameter 10cm and mass 200g and one of Millikan’s oil droplets 
+with  diameter  1µm  and  mass  1pg.  They  are  both subject  to  air  drag  of  equation
+$\vec{F}_{drag} = −\beta D\vec{v} −\gamma D^2v\vec{v}$, with $\beta = 1.6 \times 10^{−4}$ and $\gamma = 0.25$ (SI units).} \\ \\
+
+a. For  the  ball  and  the  droplet,  find  the  velocity  range  for  which  the  linear  (viscous) 
+term of the drag force dominates and the one for which the quadratic (momentum) 
+term dominates.\\
+
+\begin{align}
+  F_{vis} &> F_{mom}\\
+  -\beta D\vec{v_{vis}} &> -\gamma D^2v_{vis}\vec{v}_{vis}\\
+  \beta D\vec{v_{vis}} &< \gamma D^2v_{vis}\vec{v}_{vis}\\
+  \beta D\vec{v_{vis}} &< \gamma D^2v_{vis}\vec{v}_{vis}\\
+  \beta v_{vis} &< \gamma Dv^2_{vis}\\
+  \frac{\beta}{\gamma D} &< v_{vis}\\
+  \frac{\beta}{\gamma D} &< v_{vis}\\
+\end{align}
+Therefore, $\frac{\beta}{\gamma D}  > v_{mom}$.
+
+Ball:
+\begin{align}
+  \frac{\beta}{\gamma D} < v_{vis}\\
+  \frac{1.6*10^{-4}}{0.25*0.1} < v_{vis}\\
+  0.0064 \frac{m}{s} < v_{vis}
+\end{align}
+
+Oil droplet:
+\begin{align}
+  \frac{\beta}{\gamma D} < v_{vis}\\
+  \frac{1.6*10^{-4}}{0.25*10^{-6}} < v_{vis}\\
+  640 \frac{m}{s} < v_{vis}
+\end{align}
+
+b. Calculate the terminal velocity of the ball and of the droplets when they are falling 
+vertically.\\
+
+\begin{align}
+  \frac{dv}{dt} &= -mg −\beta D\vec{v} −\gamma D^2v\vec{v}\\
+  0 &= -mg −\beta Dv_{term} −\gamma D^2v^2_{term}\\
+  0 &= mg + \beta Dv_{term} + \gamma D^2v^2_{term}\\
+  0 &= \gamma D^2v^2_{term} + \beta Dv_{term} + mg\\
+  v_{term} &= \frac{-\beta D \pm \sqrt{\beta^2 D^2 - 4\gamma D^2mg}}{2\gamma D^2}\\
+\end{align}
+
+Ball:
+\begin{align}
+  v_{term} &= \frac{-\beta D \pm \sqrt{\beta^2 D^2 - 4\gamma D^2mg}}{2\gamma D^2}\\
+  v_{term} &= \frac{-1.6*10^{-4}*0.1 \pm \sqrt{1.6^2*10^{-8}*0.1^2 - 4*0.25*0.1^2*0.2*9.8}}{2*0.25*0.1^2}\\  
+\end{align}
+
+c. Reflect on your result. What term of the drag  force is dominant  for the  free-falling 
+softball? What term is dominant for the oil droplet?\\
+
+
+\vspace{1 cm}       
+
+\section{Problem Four}
+\textbf{How prepared do you feel that you are for this class?} \\ \\
+
+\end{document}
