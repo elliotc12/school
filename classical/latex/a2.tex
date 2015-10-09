@@ -39,7 +39,7 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Classical Mechanics Assignment One}
+\title{Classical Mechanics Assignment Two}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -67,7 +67,7 @@ This situation corresponds to (ii), downwards motion. When velocity is positive,
 \begin{equation}
   m\frac{dv}{dt} = -mg + cv^2\\
 \end{equation}
-This situation corresponds to either upward or downward motion. If $\sqrt(\frac{mg}{c}) < v$, then the object will constantly feel upward motion. If $\sqrt(\frac{mg}{c}) > v$, then the object will at first feel deceleration until v is so negative that $\sqrt(\frac{mg}{c}) < v$, at which point it will begin to accelerate until this is no longer true. It will oscillate around the negative v where $\sqrt(\frac{mg}{c}) > v$ indefinitely.
+This situation corresponds to either upward or downward motion. If $\sqrt{\frac{mg}{c}} < v$, then the object will constantly feel upward motion. If $\sqrt{\frac{mg}{c}} > v$, then the object will at first feel deceleration until v is so negative that $\sqrt{\frac{mg}{c}} < v$, at which point it will begin to accelerate until this is no longer true. It will oscillate around the negative v where $\sqrt{\frac{mg}{c}} > v$ indefinitely.
 
 \begin{equation}
   m\frac{dv}{dt} = -mg - cv^2\\
@@ -92,6 +92,8 @@ Here we treat $\hat{v}$ as a unit vector which always points in the direction of
   v_{term} &= e^{\frac{mg}{\alpha}}\\
 \end{align}
 
+This solution makes sense. It has positive sign, which makes sense, since positive sign corresponds to downward motion. Alpha is inversely proportional to terminal velocity, and mass is proportional.
+
 b.)
 \begin{align}
   \vec{F}_{drag} &= -\alpha v^3\vec{v}\\
@@ -102,7 +104,9 @@ b.)
   \alpha v_{term}^4 &= mg\\
   v_{term}^4 &= \frac{mg}{\alpha}\\
   v_{term} &= \sqrt[4]{\frac{mg}{\alpha}}\\
- \end{align}
+\end{align}
+
+This solution makes sense. Terminal velocity is proportional to mass and inversely proportional to alpha, as expected. For this particular system, where force is highly velocity-dependent, the terminal velocity grows a lot slower than in the above case, where force is less strongly velocity-dependent.
 
 \vspace{1 cm}       
 
@@ -111,9 +115,7 @@ b.)
 with  diameter  1µm  and  mass  1pg.  They  are  both subject  to  air  drag  of  equation
 $\vec{F}_{drag} = −\beta D\vec{v} −\gamma D^2v\vec{v}$, with $\beta = 1.6 \times 10^{−4}$ and $\gamma = 0.25$ (SI units).} \\ \\
 
-a. For  the  ball  and  the  droplet,  find  the  velocity  range  for  which  the  linear  (viscous) 
-term of the drag force dominates and the one for which the quadratic (momentum) 
-term dominates.\\
+a. For  the  ball  and  the  droplet,  find  the  velocity  range  for  which  the  linear  (viscous) term of the drag force dominates and the one for which the quadratic (momentum) term dominates.\\
 
 \begin{align}
   F_{vis} &> F_{mom}\\
@@ -179,15 +181,15 @@ This problem was cool because it showed that some objects never really feel quad
 a. Write and solve the equation of motion for the velocity as a function of time while the cyclist is coasting to a halt.\\
 
 \begin{align}
-  m\frac{dv}{dt} = F_f - cv^2\\
-  m\frac{dv}{F_f - cv^2} = dt\\
-  \int_{v0}^v m\frac{dv}{F_f - cv^2} = \int dt\\
-  \int_{v0}^v \frac{mdv}{F_f - cv^2} = t\\
-  \frac{m*\tanh^{-1}(\frac{\sqrt{c}v}{\sqrt{F}})}{\sqrt{cF}} - \frac{m*\tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})}{\sqrt{cF}} = t\\
-  \tanh^{-1}(\frac{\sqrt{c}v}{\sqrt{F}}) - \tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}}) = \frac{t\sqrt{cF}}{m}\\
-  \tanh^{-1}(\frac{\sqrt{c}v}{\sqrt{F}}) = \frac{t\sqrt{cF}}{m} + \tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})\\  
-  \tanh(\frac{t\sqrt{cF}}{m} + \tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})) = \frac{\sqrt{c}v}{\sqrt{F}}\\
-  \sqrt{\frac{F}{c}}\tanh(\frac{t\sqrt{cF}}{m} + \tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})) = v(t)\\    
+  m\frac{dv}{dt} = -F_f - cv^2\\
+  m\frac{dv}{-F_f - cv^2} = dt\\
+  \int_{v0}^v m\frac{dv}{-F_f - cv^2} = \int dt\\
+  \int_{v0}^v \frac{mdv}{F_f + cv^2} = -t\\
+  \frac{m*\tan^{-1}(\frac{\sqrt{c}v}{\sqrt{F}})}{\sqrt{cF}} - \frac{m*\tan^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})}{\sqrt{cF}} = -t\\
+  \tan^{-1}(\frac{\sqrt{c}v}{\sqrt{F}}) - \tan^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}}) = \frac{-t\sqrt{cF}}{m}\\
+  \tan^{-1}(\frac{\sqrt{c}v}{\sqrt{F}}) = \frac{-t\sqrt{cF}}{m} + \tan^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})\\  
+  \tan(\frac{-t\sqrt{cF}}{m} + \tan^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})) = \frac{\sqrt{c}v}{\sqrt{F}}\\
+  \sqrt{\frac{F}{c}}\tan(\frac{-t\sqrt{cF}}{m} + \tan^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})) = v(t)\\    
 \end{align}
 
 b. Plot  a  graph  of  the  result  for  a  cyclist  plus  bike  mass  of  80kg,  an  initial  velocity 20m/s, a quadratic drag coefficient  c = 0.2 (in SI units) and a  friction  force of 3 N.\\
@@ -210,7 +212,7 @@ Also by inspection of teh graph, we can see that it takes roughly 25 seconds to 
 - How long does it take for a complete stop (from the initial velocity to 0m/s)?\\
 It takes roughly 140 seconds to reach a complete stop, starting at 20m/s.\\
 
-This was a harder problem, but also intersting. We had to use the basic technique of physics, finding a differential equation to model a system and solving for velocity (or usually position), then use a computer to plot this solution, since it is difficult to interpret otherwise. I learned that from very simple initial forces (a constant force and a velocity squared force, both opposing motion), the equation for velocity can become complex (this one involved a hyperbolic tangent).
+This was a harder problem, but also intersting. We had to use the basic technique of physics, finding a differential equation to model a system and solving for velocity (or usually position), then use a computer to plot this solution, since it is difficult to interpret otherwise. I learned that from very simple initial forces (a constant force and a velocity squared force, both opposing motion), the equation for velocity can become complex (this one involved a tangent function).
 
 \section{Problem Five}
 
@@ -236,29 +238,20 @@ When going up:\\
   \frac{m}{2c} \log(\frac{cv_0^2 + gm}{gm}) = y_{max}\\  
 \end{align}
 
-
 When falling back down:\\
 \begin{align}
   m\frac{dv}{dt} = -mg + cv^2\\
   m\frac{dv}{dy}\frac{dy}{dt} = -mg + cv^2\\
   m\frac{dv}{dy}v = -mg + cv^2\\
   m\frac{dv}{-mg + cv^2}v = dy\\
-  \int_{v_0}^0 m\frac{dv}{-mg + cv^2}v = \int dy\\
-  \int_{v_0}^0 m\frac{mv}{-mg + cv^2}dv = -y_{max}\\
-  \int_{v_0^2}^0 \frac{mv}{-mg + cu}\frac{du}{2v} = -y_{max}\\
-  \frac{1}{2} \int_{v_0^2}^0 \frac{m}{-mg + cu} du = -y_{max}\\
-  \frac{m \log(-gm)}{2c} - \frac{m \log(cv_0^2 - gm)}{2c} = -y_{max}\\
-  \frac{m}{2c} \log(\frac{gm}{gm - cv_0^2}) = -y_{max}\\
-\end{align}
-
-We now have two expressions for $y_{max}$. We set them equal and see what we get:
-
-\begin{align}
-  \frac{m}{2c} \log(\frac{gm}{cv_0^2 + gm}) = -\frac{m}{2c} \log(\frac{gm}{gm - cv_0^2})\\
-  \log(\frac{gm}{cv_0^2 + gm}) = -\log(\frac{gm}{gm - cv_0^2})\\
-  \log(\frac{gm}{cv_0^2 + gm}) = \log(\frac{gm - cv_0^2}{gm})\\
-  \frac{gm}{cv_0^2 + gm} = \frac{gm - cv_0^2}{gm}\\
-  \frac{g^2m^2}{cv_0^2 + gm} = gm - cv_0^2\\    
+  \int_{0}^{vf} m\frac{dv}{-mg + cv^2}v = \int dy\\
+  \int_{0}^{vf} m\frac{mv}{-mg + cv^2}dv = -y_{max}\\
+  \int_{0}^{vf} \frac{mv}{-mg + cu}\frac{du}{2v} = -y_{max}\\
+  \frac{1}{2} \int_{0}^{vf} \frac{m}{-mg + cu} du = -y_{max}\\
+  \frac{m \log(cv_f^2 - gm)}{2c} - \frac{m \log(-gm)}{2c} = -y_{max}\\
+  \frac{m}{2c} (\log(cv_f^2 - gm) - \log(-gm)) = -y_{max}\\
+  \frac{m}{2c} \log(\frac{cv_f^2 - gm}{-gm}) = -y_{max}\\
+  \frac{m}{2c} \log(\frac{gm - cv_f^2}{gm}) = y_{max}\\
 \end{align}
 
 We now find $v_{term}$:
@@ -268,6 +261,19 @@ We now find $v_{term}$:
   -mg + cv_{term}^2 = 0\\
   cv_{term}^2 = mg\\
   v_{term} = \sqrt{\frac{mg}{c}}\\
+\end{align}
+
+We now have two expressions for $y_{max}$. We set them equal and see what we get:
+
+\begin{align}
+  \frac{m}{2c} \log(\frac{gm}{cv_0^2 + gm}) = \frac{m}{2c} \log(\frac{gm - cv_f^2}{gm})\\
+  \frac{gm}{cv_0^2 + gm} = \frac{gm - cv_f^2}{gm}\\
+  \frac{(gm)^2}{cv_0^2 + gm} = gm - cv_f^2\\
+  cv_f^2 = gm - \frac{(gm)^2}{cv_0^2 + gm}\\
+  v_f^2 = \frac{gm}{c} - \frac{(gm)^2}{c^2v_0^2 + cgm}\\
+  v_f^2 = v_{term}^2 - \frac{v_{term}^4}{v_0^2 + v_{term}^2}\\
+  v_f^2 = \frac{v_{term}^2(v_0^2 + v_{term}^2) - v_{term}^4}{v_0^2 + v_{term}^2}\\
+  v_f^2 = \frac{v_{term}^2v_0^2}{v_0^2 + v_{term}^2}\\      
 \end{align}
 
 This was a really interesting problem in that it had us do a fairly lengthy derivation of something. We had to apply lots of different knowledge - tricky integration, terminal velocity calculation and logarithm manipulation. It was really intersting to see how all the little parts fit together. This was probably the hardest part of the problem set in that it was really hard to get the correct answer, but it was a fun problem and a good test of math skills.\\
