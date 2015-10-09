@@ -2,6 +2,7 @@
 
 \usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
 
+\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{marvosym} % Required for symbols in the colored box
 \usepackage{ifsym} % Required for symbols in the colored box
@@ -47,8 +48,7 @@
 \maketitle{}
 
 \section{Problem One}
-\textbf{Consider  a  ball  that  moves  vertically  under  the  influences  of  both  gravity  and  air resistance.  For  the  purposes  of  this  problem,  take  vertically  upward  as  the  positive 
-direction. (For instance, the gravitational force on the ball would be expressed as -mg in this case.) For each equation of motion below, determine whether that equation applies 
+\textbf{Consider  a  ball  that  moves  vertically  under  the  influences  of  both  gravity  and  air resistance.  For  the  purposes  of  this  problem,  take  vertically  upward  as  the  positive direction. (For instance, the gravitational force on the ball would be expressed as -mg in this case.) For each equation of motion below, determine whether that equation applies 
 to (i) a situation in which the ball moves upward, (ii) a situation in which the ball moves 
 downward, (iii) either of these, or (iv) neither of these. Explain your reasoning for each 
 case. c is a positive constant. Justify each answer, no need  to add a  final paragraph of 
@@ -62,43 +62,46 @@ This motion equation corresponds to case (iii), either upwards or downwards moti
 \begin{equation}
   m\frac{dv}{dt} = -mg - cv\\
 \end{equation}
-This situation is the opposite of the above one: neither upwards nor downwards motion will ensue. This is because acceleration now moves opposite velocity. In the case where $v > \frac{-mg}{c}$, the ball will be accelerated downwards until $v < \frac{-mg}{c}$. Once this happens, the ball will be accelerated upwards until $v > \frac{-mg}{c}$ once again, and this will continue in a cycle.\\
+This situation corresponds to (ii), downwards motion. When velocity is positive, it feels downward acceleration. When velocity is negative, assuming air drag is small compared to gravity, the object will travel downwards until it reaches terminal velocity.
 
 \begin{equation}
   m\frac{dv}{dt} = -mg + cv^2\\
 \end{equation}
-This situation corresponds to (iii), either upwards or downwards motion. If $\sqrt{\frac{mg}{c}} < v_0$, then the acceleration will be upwards and an already upward-moving ball will move that way faster. If $\sqrt{\frac{mg}{c}} > v_0$, then the ball will be caught in a loop of its downward velocity being pushed upward or downward, but it will never be positive enough to have both v' and v positive at once.\\
+This situation corresponds to either upward or downward motion. If $\sqrt(\frac{mg}{c}) < v$, then the object will constantly feel upward motion. If $\sqrt(\frac{mg}{c}) > v$, then the object will at first feel deceleration until v is so negative that $\sqrt(\frac{mg}{c}) < v$, at which point it will begin to accelerate until this is no longer true. It will oscillate around the negative v where $\sqrt(\frac{mg}{c}) > v$ indefinitely.
 
 \begin{equation}
   m\frac{dv}{dt} = -mg - cv^2\\
 \end{equation}
-
+This situation corresponds to downward motion. $-cv^2$ will always be negative, and so the acceleration will always be downwards.\\
 
 \vspace{1 cm}
 
 \section{Problem Two}
-\textbf{Express  the  terminal  velocity  of  objects  falling  vertically  in  air  and  subject  to  the following (fictitious) drag  forces (no need to add a  final paragraph of comment  for the 
-whole problem):} \\ \\
+\textbf{Express  the  terminal  velocity  of  objects  falling  vertically  in  air  and  subject to the following (fictitious) drag  forces (no need to add a  final paragraph of comment  for the whole problem):} \\ \\
 
-a.)
+a.)\\
+Here we treat $\hat{v}$ as a unit vector which always points in the direction of velocity, in this case downwards.\\
+
 \begin{align}
-  \vec{F}_{drag} &= -\alpha\log(v)\vec{v}\\
+  \vec{F}_{drag} &= -\alpha\log(v)\hat{v}\\
   \frac{dv}{dt} &= -mg + \vec{F}_{drag}\\
-  \frac{dv}{dt} &= -mg - \alpha\log(v)v\\  
-  \frac{dv}{dt} &= -mg - \alpha\log(v_{term})v_{term} = 0\\
-  -mg &= \alpha\log(v_{term})v_{term}\\
+  \frac{dv}{dt} &= -mg + \alpha\log(v)\\  
+  \frac{dv}{dt} &= -mg + \alpha\log(v_{term}) = 0\\
+  \frac{mg}{\alpha} &= \log(v_{term})\\
+  \frac{mg}{\alpha} &= \log(v_{term})\\
+  v_{term} &= e^{\frac{mg}{\alpha}}\\
 \end{align}
 
 b.)
 \begin{align}
   \vec{F}_{drag} &= -\alpha v^3\vec{v}\\
+  \vec{F}_{drag} &= -\alpha v^4\hat{v}\\  
   \frac{dv}{dt} &= -mg + \vec{F}_{drag}\\
-  \frac{dv}{dt} &= -mg -\alpha v^3\vec{v}\\
-  \frac{dv}{dt} &= -mg -\alpha v^4\\
-  \frac{dv}{dt} &= -mg -\alpha v_{term}^4 = 0\\
-  -\alpha v_{term}^4 &= -mg\\
-  v_{term}^4 &= \frac{-mg}{\alpha}\\
-  v_{term} &= \sqrt[4]{\frac{-mg}{\alpha}}\\
+  \frac{dv}{dt} &= -mg -\alpha v^4\hat{v}\\
+  \frac{dv}{dt} &= -mg +\alpha v_{term}^4 = 0\\
+  \alpha v_{term}^4 &= mg\\
+  v_{term}^4 &= \frac{mg}{\alpha}\\
+  v_{term} &= \sqrt[4]{\frac{mg}{\alpha}}\\
  \end{align}
 
 \vspace{1 cm}       
@@ -137,30 +140,136 @@ Oil droplet:
   640 \frac{m}{s} < v_{vis}
 \end{align}
 
-b. Calculate the terminal velocity of the ball and of the droplets when they are falling 
-vertically.\\
+b. Calculate the terminal velocity of the ball and of the droplets when they are falling vertically.\\
+
+We let $\vec{v}$ point downward, and expect positive velocities.\\
 
 \begin{align}
   \frac{dv}{dt} &= -mg −\beta D\vec{v} −\gamma D^2v\vec{v}\\
-  0 &= -mg −\beta Dv_{term} −\gamma D^2v^2_{term}\\
-  0 &= mg + \beta Dv_{term} + \gamma D^2v^2_{term}\\
-  0 &= \gamma D^2v^2_{term} + \beta Dv_{term} + mg\\
-  v_{term} &= \frac{-\beta D \pm \sqrt{\beta^2 D^2 - 4\gamma D^2mg}}{2\gamma D^2}\\
+  0 &= -mg + \beta Dv_{term} +\gamma D^2v^2_{term}\\
+  0 &= \gamma D^2v^2_{term} + \beta Dv_{term} - mg\\
+  v_{term} &= \frac{-\beta D \pm \sqrt{\beta^2 D^2 + 4\gamma D^2mg}}{2\gamma D^2}\\
 \end{align}
 
 Ball:
 \begin{align}
   v_{term} &= \frac{-\beta D \pm \sqrt{\beta^2 D^2 - 4\gamma D^2mg}}{2\gamma D^2}\\
-  v_{term} &= \frac{-1.6*10^{-4}*0.1 \pm \sqrt{1.6^2*10^{-8}*0.1^2 - 4*0.25*0.1^2*0.2*9.8}}{2*0.25*0.1^2}\\  
+  v_{term} &= \frac{-1.6*10^{-4}*0.1 + \sqrt{1.6^2*10^{-8}*0.1^2 + 4*0.25*0.1^2*0.2*9.8}}{2*0.25*0.1^2}\\
+  &= 27.99 \frac{m}{s}\\
 \end{align}
 
-c. Reflect on your result. What term of the drag  force is dominant  for the  free-falling 
-softball? What term is dominant for the oil droplet?\\
+Oil droplet:
+\begin{align}
+  v_{term} &= \frac{-\beta D \pm \sqrt{\beta^2 D^2 - 4\gamma D^2mg}}{2\gamma D^2}\\
+  v_{term} &= \frac{-1.6*10^{-4}*10^{-6} + \sqrt{1.6^2*10^{-8}*10^{-12} + 4*0.25*10^{-12}*10^{-15}*9.8}}{2*0.25*10^{-12}}\\
+  = 6.1*10^{-5} \frac{m}{s}\\
+\end{align}
 
+c. Reflect on your result. What term of the drag force is dominant  for the  free-falling softball? What term is dominant for the oil droplet?\\
+
+The ball's terminal velocity is about 28 meters per second, which means quadratic drag is the dominating force. The oil droplet's terminal velocity is well below 640 meters per second, so it is under almost entirely linear drag. In fact, oil droplets never feel momentum/quadratic drag.\\
+
+This problem was cool because it showed that some objects never really feel quadratic drag. Oil drops, which have very low radius, feel very little quadratic drag. Basically all objects on the size scale of an oil-drop or smaller feel mostly viscous drag from the air they move. This problem also reinforced how to calculate terminal velocity. I also had to spend some time thinking about how to deal with the coordinate system and velocity vectors and what direction they point in. I decided to make them point down, and this made the sign of the drag forces upwards. \\
 
 \vspace{1 cm}       
 
 \section{Problem Four}
-\textbf{How prepared do you feel that you are for this class?} \\ \\
+\textbf{When a cyclist comes to a stop, without using the brakes, she is subject to two forces: the quadratic force of air resistance  $F_{air} = −cv^22$ and a constant friction force  $F_f$.} \\ \\
+
+a. Write and solve the equation of motion for the velocity as a function of time while the cyclist is coasting to a halt.\\
+
+\begin{align}
+  m\frac{dv}{dt} = F_f - cv^2\\
+  m\frac{dv}{F_f - cv^2} = dt\\
+  \int_{v0}^v m\frac{dv}{F_f - cv^2} = \int dt\\
+  \int_{v0}^v \frac{mdv}{F_f - cv^2} = t\\
+  \frac{m*\tanh^{-1}(\frac{\sqrt{c}v}{\sqrt{F}})}{\sqrt{cF}} - \frac{m*\tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})}{\sqrt{cF}} = t\\
+  \tanh^{-1}(\frac{\sqrt{c}v}{\sqrt{F}}) - \tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}}) = \frac{t\sqrt{cF}}{m}\\
+  \tanh^{-1}(\frac{\sqrt{c}v}{\sqrt{F}}) = \frac{t\sqrt{cF}}{m} + \tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})\\  
+  \tanh(\frac{t\sqrt{cF}}{m} + \tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})) = \frac{\sqrt{c}v}{\sqrt{F}}\\
+  \sqrt{\frac{F}{c}}\tanh(\frac{t\sqrt{cF}}{m} + \tanh^{-1}(\frac{\sqrt{c}v_0}{\sqrt{F}})) = v(t)\\    
+\end{align}
+
+b. Plot  a  graph  of  the  result  for  a  cyclist  plus  bike  mass  of  80kg,  an  initial  velocity 20m/s, a quadratic drag coefficient  c = 0.2 (in SI units) and a  friction  force of 3 N.\\
+
+\begin{figure}[h!]
+  \caption{Plot of cyclist velocity over time.}
+  \centering
+    \includegraphics[width=0.7\textwidth]{images/cyclist_velocity_m1.png}
+\end{figure}
+
+Answer the following graphically:\\
+- How long will it take the cyclist to slow down to 15 m/s?\\
+
+By examining the graph, we can see that it takes roughly ten seconds for the cyclist to slow from 20 m/s to 15 m/s.\\
+
+- How long to slow from 10m/s to 5m/s?\\
+
+Also by inspection of teh graph, we can see that it takes roughly 25 seconds to slow from 10m/s to 5m/s.\\
+
+- How long does it take for a complete stop (from the initial velocity to 0m/s)?\\
+It takes roughly 140 seconds to reach a complete stop, starting at 20m/s.\\
+
+This was a harder problem, but also intersting. We had to use the basic technique of physics, finding a differential equation to model a system and solving for velocity (or usually position), then use a computer to plot this solution, since it is difficult to interpret otherwise. I learned that from very simple initial forces (a constant force and a velocity squared force, both opposing motion), the equation for velocity can become complex (this one involved a hyperbolic tangent).
+
+\section{Problem Five}
+
+\textbf{A particle is fired vertically upward in a constant gravitational field with an initial speed $v_0$.  Show  that  if  there  is  a  retarding  force  proportional  to  the  square  of  the instantaneous speed, the speed of the particle when it returns to the initial position is:}
+
+$$ v = \frac{v_ov_{term}}{\sqrt{v_0^2+v^2_{term}}}  $$
+
+\textbf{where $v_{term}$ is the terminal velocity.}
+
+We need to solve the following differential equation:\\
+
+When going up:\\
+\begin{align}
+  m\frac{dv}{dt} = -mg - cv^2\\
+  m\frac{dv}{dy}\frac{dy}{dt} = -mg - cv^2\\
+  m\frac{dv}{dy}v = -mg - cv^2\\
+  m\frac{dv}{-mg - cv^2}v = dy\\
+  \int_{v_0}^0 m\frac{dv}{-mg - cv^2}v = \int dy\\
+  \int_{v_0}^0 m\frac{mv}{-mg - cv^2}dv = y_{max}\\
+  \int_{v_0^2}^0 \frac{mv}{-mg - cu}\frac{du}{2v} = y_{max}\\
+  \frac{1}{2} \int_{v_0^2}^0 \frac{m}{-mg - cu} du = y_{max}\\
+  \frac{m \log(cv_0^2 + gm)}{2c} - \frac{m \log(gm)}{2c} = y_{max}\\
+  \frac{m}{2c} \log(\frac{cv_0^2 + gm}{gm}) = y_{max}\\  
+\end{align}
+
+
+When falling back down:\\
+\begin{align}
+  m\frac{dv}{dt} = -mg + cv^2\\
+  m\frac{dv}{dy}\frac{dy}{dt} = -mg + cv^2\\
+  m\frac{dv}{dy}v = -mg + cv^2\\
+  m\frac{dv}{-mg + cv^2}v = dy\\
+  \int_{v_0}^0 m\frac{dv}{-mg + cv^2}v = \int dy\\
+  \int_{v_0}^0 m\frac{mv}{-mg + cv^2}dv = -y_{max}\\
+  \int_{v_0^2}^0 \frac{mv}{-mg + cu}\frac{du}{2v} = -y_{max}\\
+  \frac{1}{2} \int_{v_0^2}^0 \frac{m}{-mg + cu} du = -y_{max}\\
+  \frac{m \log(-gm)}{2c} - \frac{m \log(cv_0^2 - gm)}{2c} = -y_{max}\\
+  \frac{m}{2c} \log(\frac{gm}{gm - cv_0^2}) = -y_{max}\\
+\end{align}
+
+We now have two expressions for $y_{max}$. We set them equal and see what we get:
+
+\begin{align}
+  \frac{m}{2c} \log(\frac{gm}{cv_0^2 + gm}) = -\frac{m}{2c} \log(\frac{gm}{gm - cv_0^2})\\
+  \log(\frac{gm}{cv_0^2 + gm}) = -\log(\frac{gm}{gm - cv_0^2})\\
+  \log(\frac{gm}{cv_0^2 + gm}) = \log(\frac{gm - cv_0^2}{gm})\\
+  \frac{gm}{cv_0^2 + gm} = \frac{gm - cv_0^2}{gm}\\
+  \frac{g^2m^2}{cv_0^2 + gm} = gm - cv_0^2\\    
+\end{align}
+
+We now find $v_{term}$:
+
+\begin{align}
+  m\frac{dv}{dt} = -mg + cv^2 = 0\\
+  -mg + cv_{term}^2 = 0\\
+  cv_{term}^2 = mg\\
+  v_{term} = \sqrt{\frac{mg}{c}}\\
+\end{align}
+
+This was a really interesting problem in that it had us do a fairly lengthy derivation of something. We had to apply lots of different knowledge - tricky integration, terminal velocity calculation and logarithm manipulation. It was really intersting to see how all the little parts fit together. This was probably the hardest part of the problem set in that it was really hard to get the correct answer, but it was a fun problem and a good test of math skills.\\
 
 \end{document}
