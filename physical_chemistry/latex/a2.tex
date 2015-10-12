@@ -3,9 +3,6 @@
 \usepackage{amsmath}
 \usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
 
-\usepackage{marvosym} % Required for symbols in the colored box
-\usepackage{ifsym} % Required for symbols in the colored box
-
 \usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
 
 % Fonts and tweaks for XeLaTeX
@@ -75,13 +72,26 @@ The differential $dg = \frac{1}{y}df$ is exact:
 
 \section{2.11}
 
+For a Van der Waal's Gas, isothermal reversible work is given by:
+
 \begin{align}
   W &= \int_{v1}^{v2} \frac{\partial U}{\partial T}_V dT - PdV\\
   W &= \int_{v1}^{v2} -PdV\\
-  W &= -\int_{v1}^{v2} ( \frac{nRT}{\bar{V} - b} - \frac{\alpha}{\bar(V)^2} )dV\\
-  W &= -\int_{v1}^{v2} ( \frac{nRT}{\bar{V} - b} + \int_{v1}^{v2} \frac{\alpha}{\bar(V)^2} )dV\\
-  W &= -\int_{v1+b}^{v2+b} ( \frac{nRT}{u} + \int_{v1}^{v2} \frac{\alpha}{\bar(V)^2} )dV\\
-  W &= -nRT}\log(\frac{V_2}{V_1}) - \frac{\alpha}{\bar(V_2)}) + \frac{\alpha}{\bar(V_1)}\\      
+  W &= -\int_{v1}^{v2} \frac{nRT}{\bar{V} - b}dV - \frac{a}{\bar{V}^2} dV\\
+  W &= -\int_{v1}^{v2} \frac{nRT}{\bar{V} - b}dV + \int_{v1}^{v2} \frac{a}{\bar{V}^2}dV\\
+  W &= -\int_{v1-b}^{v2-b} \frac{nRT}{u}du + \int_{v1}^{v2} \frac{a}{\bar{V}^2}dV\\
+  W &= -nRT\log(\frac{V_2-b}{V_1-b}) + a(\frac{1}{\bar{V}_1} - \frac{1}{\bar{V}_2})\\      
 \end{align}
+
+For an ideal gas, isothermal reversible work is given by:\\
+
+\begin{align}
+  P &= \frac{nRT}{V}\\
+  W &= -\int_{v1}^{v2} PdV\\
+  W &= -\int_{v1}^{v2} \frac{nRT}{V}dV\\
+  W &= -nRT\log(\frac{V_2}{V_1})\\  
+\end{align}
+
+For one mole of $CH_4$ at 25C, the ideal gas work is $-(1)(8.314)(298)\log(\frac{50}{1}) = 9692J$. The Van der Waal's work is $-(1)(8.314)(298)\log(\frac{50-0.04278}{1-0.04278}) + (2.283)(\frac{1}{1} - \frac{1}{50}) = 4257J$
 
 \end{document}
