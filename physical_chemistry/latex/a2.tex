@@ -75,5 +75,13 @@ The differential $dg = \frac{1}{y}df$ is exact:
 
 \section{2.11}
 
+\begin{align}
+  W &= \int_{v1}^{v2} \frac{\partial U}{\partial T}_V dT - PdV\\
+  W &= \int_{v1}^{v2} -PdV\\
+  W &= -\int_{v1}^{v2} ( \frac{nRT}{\bar{V} - b} - \frac{\alpha}{\bar(V)^2} )dV\\
+  W &= -\int_{v1}^{v2} ( \frac{nRT}{\bar{V} - b} + \int_{v1}^{v2} \frac{\alpha}{\bar(V)^2} )dV\\
+  W &= -\int_{v1+b}^{v2+b} ( \frac{nRT}{u} + \int_{v1}^{v2} \frac{\alpha}{\bar(V)^2} )dV\\
+  W &= -nRT}\log(\frac{V_2}{V_1}) - \frac{\alpha}{\bar(V_2)}) + \frac{\alpha}{\bar(V_1)}\\      
+\end{align}
 
 \end{document}
