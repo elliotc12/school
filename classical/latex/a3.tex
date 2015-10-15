@@ -39,7 +39,7 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Classical Mechanics Assignment X}
+\title{Classical Mechanics Assignment 3}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -48,30 +48,67 @@
 \maketitle{}
 
 \section{Problem One}
-\textbf{Consider an object that is thrown vertically up with initial speed $v_0$ in a linear medium.} \\ \\
+\textbf{Consider an object that is thrown vertically up with initial speed $v_0$ in a linear medium.} \\
 
 \textbf{a. Measuring y upward from the point of release, write expressions for the object velocity and position as a function of time.}
 
 \begin{align*}
-  a(t) = -g - bv\\ ro ro diff eq!
-  v(t) = v_0 -gt\\
-  y(t) = v_0t - \frac{1}{2}gt^2\\
+  m\ddot{y}(t) &= -mg - b\dot{y}(t)\\
+  m\ddot{y}(t) &= -b\big(\frac{mg}{b} + \dot{y}(t))\\
+  m\ddot{y}(t) &= -b\big(\dot{y}_{term} + \dot{y}(t))
+  \hspace{1in}\ddot{y} = 0 \rightarrow \dot{y}_{term} = \frac{mg}{b}\\
+  m\ddot{y}(t) &= -b\phi(t)
+  \hspace{1.6in} \phi(t) = \dot{y}_{term} + \dot{y}(t)\\
+  m\ddot{\phi(t)} &= -b\phi(t)
+  \hspace{1.6in} \dot{\phi(t)} = \ddot{y}(t)\\
+  \phi(t) &= Ae^{-\frac{bt}{m}}\\
+  \dot{y}(t) &= Ae^{-\frac{b}{m}t} - \dot{y}_{term}
+  \hspace{1.6in} \dot{y}(0) = \dot{y}_0 = A - \dot{y}_{term}\\
+  \dot{y}(t) &= (\dot{y}_0 + \dot{y}_{term})e^{-\frac{b}{m}t} - \dot{y}_{term}\\
+  \dot{y}(t) &= \dot{y}_0e^{-\frac{b}{m}t} + \dot{y}_{term}(e^{-\frac{b}{m}t} - 1)\\
+  y(t) &= -\frac{m}{b}e^{-\frac{b}{m}t}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}t\\
 \end{align*}
 
 \textbf{b. Find the time at which the object reaches its highest point and its position at that time.}
 
-\textbf{c. Show that the limiting case for very small drag coefficient coincides with the solution for the frictionless motion.}
+\begin{align*}
+  \dot{y}(t) &= 0 = \dot{y}_0e^{-\frac{b}{m}t} + \dot{y}_{term}(e^{-\frac{b}{m}t} - 1)\\
+  \dot{y}_{term}(1 - e^{-\frac{b}{m}t}) &= \dot{y}_0e^{-\frac{b}{m}t}\\
+  \dot{y}_{term} - \dot{y}_{term}e^{-\frac{b}{m}t} &= \dot{y}_0e^{-\frac{b}{m}t}\\
+  \dot{y}_{term}e^{\frac{b}{m}t} &= \dot{y}_0 + \dot{y}_{term}\\
+  e^{\frac{b}{m}t} &= \frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}\\
+  t_{max} &= \frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\\
+  y(t_{max}) &= -\frac{m}{b}e^{-\frac{b}{m}\frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\\
+    y(t_{max}) &= -\frac{m}{b\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\\
+\end{align*}
 
 
+\textbf{c. Show that the limiting case for very small drag coefficient coincides with the solution for the frictionless motion.}\\
+For frictionless motion:
+\begin{align*}
+  \ddot{y}(t) &= -g\\
+  \dot{y}(t) &= \dot{y}_0 - gt\\
+  y(t) &= \dot{y}_0t - \frac{1}{2}gt^2\\
+  \dot{y}(t_{max}) &= 0 \rightarrow t_{max} = \frac{\dot{y}}{g}\\
+  y_{max} &= \frac{\dot{y}_0^2}{2g}\\
+\end{align*}
+
+For motion in a linear medium when $\lim_{b\rightarrow0}$:
+
+\begin{align*}
+  \lim_{b\rightarrow0}y(t_{max}) &= \lim_{b->0} \hspace{0.2cm} -\frac{m}{b\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\\
+  \lim_{b\rightarrow0}y(t_{max}) &= \lim_{b->0} \hspace{0.2cm} -\frac{m}{b\frac{\dot{y}_0 + \frac{mg}{b}}{\frac{mg}{b}}}\Big(\dot{y}_0 + \frac{mg}{b} \Big) - \frac{mg}{b}\frac{m}{b}\log{\frac{\dot{y}_0 + \frac{mg}{b}}{\frac{mg}{b}}}\\
+  \lim_{b\rightarrow0}y(t_{max}) &= \lim_{b->0} \hspace{0.2cm} -\frac{m}{b\frac{\dot{y}_0 + \frac{mg}{b}}{\frac{mg}{b}}}\Big(\dot{y}_0 + \frac{mg}{b} \Big) - \frac{mg}{b}\frac{m}{b}\log{\frac{\dot{y}_0 + \frac{mg}{b}}{\frac{mg}{b}}}\\
+\end{align*}
 
 
 \vspace{1 cm}
 
 \section{Problem Two}
-\textbf{A point mass of mass m slides down an inclined plane under the influence of gravity. If the motion is resisted by a force F=kmv2, show that the time required to move a distance d after starting from rest is:}
+\textbf{A point mass of mass m slides down an inclined plane under the influence of gravity. If the motion is resisted by a force $F=kmv^2$, show that the time required to move a distance d after starting from rest is:}
 
 \begin{equation*}
-  t = \frac{\cosh^{-1}(e^{kd}}{\sqrt{kg\sin(\Theta)}}\\
+  t = \frac{\cosh^{-1}(e^{kd})}{\sqrt{kg\sin(\Theta)}}\\
 \end{equation*}
 
 \textbf{Where $\Theta$ is the angle of inclination of the plane.} \\ \\
