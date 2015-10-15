@@ -3,9 +3,6 @@
 \usepackage{amsmath}
 \usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
 
-\usepackage{marvosym} % Required for symbols in the colored box
-\usepackage{ifsym} % Required for symbols in the colored box
-
 \usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
 
 % Fonts and tweaks for XeLaTeX
@@ -38,7 +35,7 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Physical Chemistry Assignment Two:\\2.2 2.4 ...}
+\title{Physical Chemistry Assignment Two}
 \author{Elliott Capek}
 
 \begin{document}
@@ -46,6 +43,18 @@
 \maketitle{}
 
 \section{2.2}
+Sodium metal in water will cause the following reaction:
+\begin{equation}
+  2Na(s) + 2H_2O(l) \rightarrow 2NaOH (aq) + H_2(g)
+\end{equation}
+
+This reaction evolves one mole of gas for two moles of sodium, so $\Delta N = \frac{1}{2}$.\\
+
+\begin{align}
+  W &= -P\Delta V\\
+  \Delta V &= \frac{\Delta nRT}{P} = \frac{\frac{1}{2} mol * 8.314 \frac{J}{mol * K} * 298K}{1 atm}\\
+  W &= -\frac{1}{2} mol * 8.314 \frac{J}{mol * K} * 298K = -1.24KJ\\
+\end{align}
 
 \section{2.4}
 
@@ -72,16 +81,177 @@ The differential $dg = \frac{1}{y}df$ is exact:
   \frac{\partial M}{\partial y}_x &= \frac{\partial N}{\partial x}_y\\
 \end{align}
 
-
 \section{2.11}
+For a Van der Waal's Gas, isothermal reversible work is given by:
 
 \begin{align}
   W &= \int_{v1}^{v2} \frac{\partial U}{\partial T}_V dT - PdV\\
   W &= \int_{v1}^{v2} -PdV\\
-  W &= -\int_{v1}^{v2} ( \frac{nRT}{\bar{V} - b} - \frac{\alpha}{\bar(V)^2} )dV\\
-  W &= -\int_{v1}^{v2} ( \frac{nRT}{\bar{V} - b} + \int_{v1}^{v2} \frac{\alpha}{\bar(V)^2} )dV\\
-  W &= -\int_{v1+b}^{v2+b} ( \frac{nRT}{u} + \int_{v1}^{v2} \frac{\alpha}{\bar(V)^2} )dV\\
-  W &= -nRT}\log(\frac{V_2}{V_1}) - \frac{\alpha}{\bar(V_2)}) + \frac{\alpha}{\bar(V_1)}\\      
+  W &= -\int_{v1}^{v2} \frac{nRT}{\bar{V} - b}dV - \frac{a}{\bar{V}^2} dV\\
+  W &= -\int_{v1}^{v2} \frac{nRT}{\bar{V} - b}dV + \int_{v1}^{v2} \frac{a}{\bar{V}^2}dV\\
+  W &= -\int_{v1-b}^{v2-b} \frac{nRT}{u}du + \int_{v1}^{v2} \frac{a}{\bar{V}^2}dV\\
+  W &= -nRT\log(\frac{V_2-b}{V_1-b}) + a(\frac{1}{\bar{V}_1} - \frac{1}{\bar{V}_2})\\
 \end{align}
+
+For an ideal gas, isothermal reversible work is given by:\\
+
+\begin{align}
+  P &= \frac{nRT}{V}\\
+  W &= -\int_{v1}^{v2} PdV\\
+  W &= -\int_{v1}^{v2} \frac{nRT}{V}dV\\
+  W &= -nRT\log(\frac{V_2}{V_1})\\
+\end{align}
+
+For one mole of $CH_4$ at 25C, the ideal gas work is $-(1)(8.314)(298)\log(\frac{50}{1}) = 9692J$. The Van der Waal's work is $-(1)(8.314)(298)\log(\frac{50-0.04278}{1-0.04278}) + (2.283)(\frac{1}{1} - \frac{1}{50}) = 4257J$
+
+\section{2.13}
+Work: 
+\begin{align}
+  W &= \int -PdV\\
+  &= \int_{V_1}^{V_2} \frac{-nRT}{V} dV\\
+  &= nRT\log(\frac{V_1}{V_2}) = (1 mol)(8.314 \frac{J}{mol K})(298.15K)\log(10)\\
+  &= 5704J = 5.7KJ\\
+\end{align}
+
+Heat:
+\begin{align}
+  U &= \frac{3}{2}nRT\\
+  dU &= \frac{3}{2}RT*dn + \frac{3}{2}nR * dT\\
+  dU &= 0\\
+  dU &= Q - w\\
+  0 &= Q  -5.7KJ\\
+  Q &= 5.7KJ\\
+\end{align}
+
+Enthalpy:
+\begin{align}
+  H &= \frac{5}{2}RT\\
+  dH &= \frac{5}{2}RdT = 0\\
+\end{align}
+
+Isothermal expansion:
+\begin{align}
+  W &= \int_{V_i}^{V_f} -PdV\\
+  W &= -P(V_f - V_i) = -P(\frac{nRT}{P_f} - \frac{nRT}{P_i})\\
+  W &= -P_{ext}*(1 mol)*(8.314)*(298.15K) * (\frac{1}{P_f} - \frac{1}{P_i})\\
+  W &= -(1 bar)*(1 mol)*(8.314)*(298.15K) * (\frac{1}{1 bar} - \frac{1}{10 bar})\\
+  W &= -2.2KJ\\
+\end{align}
+
+\section{2.16}
+
+\begin{align}
+  \gamma &= \frac{Cp}{Cv}\\
+  PV^{\gamma} &= k\\
+  P &= \frac{k}{V^{\gamma}}\\
+  W &= \int -PdV\\
+  W &= \int_{V_1}^{V_2} -\frac{k}{v^\gamma}dV\\
+  W &= -k\int_{V_1}^{V_2} V^{-\gamma}dV\\  
+  W &= -k\Big( \frac{V_2^{-\gamma+1}}{-\gamma + 1} - \frac{V_1^{-\gamma+1}}{-\gamma + 1} \Big) \\
+  W &= -k\frac{V_2^{-\gamma+1} - V_1^{-\gamma+1}}{-\gamma + 1}\\
+  W &= -k\frac{V_2^{-\gamma}V_2 - V_1^{-\gamma}V_1}{-\gamma + 1}\\
+  W &= -k\frac{V_2^{-\gamma}V_2 - V_1^{-\gamma}V_1}{-\gamma + 1}\\
+  W &= -k\frac{\frac{P_2}{k}V_2 - \frac{P_1}{k}V_1}{-\gamma + 1}\\    
+  W &= \frac{P_2V_2 - P_1V_1}{\gamma - 1}\\
+\end{align}
+
+Now we verify this gets good results...
+
+\begin{align}
+  -1261 \frac{J}{mol} &= \frac{P_2V_2 - P_1V_1}{\gamma - 1}\\
+  -1261 \frac{J}{mol} &= \frac{(0.315 bar)(45.4 \frac{L}{mol}) - (1 bar)(22.7 \frac{L}{mol})}{\frac{5}{3} - 1}\\
+  -1261 \frac{J}{mol} &= \frac{(0.315 bar)(45.4 \frac{L}{mol}) - (1 bar)(22.7 \frac{L}{mol})}{\frac{2}{3}}\\
+  -1261 \frac{J}{mol} &= \frac{ 1430.1 \frac{J}{mol}) - 2270 \frac{J}{mol}}{\frac{2}{3}}\\
+  -1261 \frac{J}{mol} &= -1260 \frac{J}{mol}
+\end{align}
+
+\section{unknownproblem}
+isothermal reversible: Du, DH = 0
+cyclic process: T, V, P, n, U, H are all zero in a cyclic process, but work isn't
+
+\section{2.22}
+\begin{align}
+  U &= \frac{3}{2}RT\\
+  w &= dU = \frac{3}{2}RdT\\
+  w &= \frac{3}{2}R(T_2 - T_1)\\
+  \frac{T_2}{T_1} &= \frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma} (Internet)
+  T_2 &= T_1\frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma}\\
+  w &= \frac{3}{2}R(T_1\frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma} - T_1)\\
+\end{align}
+
+\section{2.27}
+
+We take our liquid, calculate the enthalpy change to bring it to 273K, add the heat of enthalpy to freeze 273K liquid, then add the enthalpy change of going back to 262K.
+
+\begin{align}
+  \Delta H &= C_{P(l)} * \Delta T_1 + \Delta H* + C_{P(s)} * \Delta T_2\\
+  \Delta H &= 75.3 \frac{J}{K mol} * (273K - 263K) + -6004 \frac{J}{mol} + 36.8 \frac{J}{mol K} * (263K - 273K)\\
+   &= 10*75.3 - 6004 - 36.8*10 = -5619 \frac{J}{mol}\\
+\end{align}
+
+\section{2.44}
+%% TA certified
+%% W = -PdV - assume that dV = V cause they're similar
+%% W = nRT = 1033J
+%% dU = Q + W
+
+
+\section{2.64}
+%% TA certified
+%% C_{10}H_{8}_(l) + 0 \rightarrow H_2O_l + 10CO_2_g
+%% 0.4362g / 128.1904g/mol of C10H8 = 0.003403 mol
+%% DU = (10290 * 1.909) / 0.003403 = -5161 kJ/mol
+
+%% DH = DU + RT * change in mols? (sigma over all molecules involved in product/reactant)
+%% dN = -12 + 10 = -2
+%% DH = DU + RTdN
+%% DH = -5161 + R*T*-2 = -5166
+
+%% DrH  = \sum_product Hf - \sum_reactant Hf <- heat of formation
+%% -5166 = -393.409* 10 + -285.83 - DHf C10H8
+%% = 89.59 kJ/mol
+
+Internal Energy:
+\begin{align}
+  dU &= Cv dT\\
+  dU &= 10290 \frac{J}{K} * 1.909K\\
+  d\bar{U} &= \frac{19551J}{0.4362g / 128.19 g/mol} = -5161 KJ/mol\\
+\end{align}
+
+Enthalpy of Formation:
+\begin{align}
+  dH &= dU + RtdN\\
+  d\bar{H} &= -5161KJ/mol + 0.008314 * 298.15 * -2 = -5166KJ/mol\\  
+\end{align}
+
+\section{2.67}
+  %% C3H5N3O9 = 3)2 + 5/2H2O + 3/2Ns + 1/4O2
+  %% DrH = -1412.67kJ/mol
+  %% DrH = DrU + RTT \sum g
+  %% -1412.6 = DrU + RT*7.25
+  %% DU = -1430.63 kJ/mol
+
+  %% DH = DU + PDV = 0
+  %% -> DU = 0
+
+  %% DU = 0 = DU(298) + Cv(Tmax - 298)
+  %% Cv(Tmax-298) = -DU(298)
+  %% -(-1430.63 kJ/mol * 2) = 0.1 kJ / K * (Tmax-298)
+  %% Tmax = 3159.15K
+
+  %% Calculate pressure
+  %% PV=nRT
+  %% P=nRT/V
+  %% n = 0.2 * 7.25
+  %% P = 1.27*10^4 bar
+
+Reaction Enthalpy / Entropy:
+\begin{align}
+  \Delta_rH* = -1412.67 KJ/mol\\
+  \Delta_rU* = \Delta_rH* + RTdN\\
+  \Delta_rU* = \Delta_rH* + (8.314)(298K)*7.25 = -1430.63 KJ/mol\\  
+\end{align}
+
+
 
 \end{document}
