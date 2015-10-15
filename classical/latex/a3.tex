@@ -113,7 +113,46 @@ For motion in a linear medium when $\lim_{b\rightarrow0}$:
 
 \textbf{Where $\Theta$ is the angle of inclination of the plane.} \\ \\
 
+We define a one-dimensional coordinate system where the positive axis points in the direction of motion of the point.\\
 
+\begin{align*}
+  \vec{F} &= \sin(\Theta)mg - kmv^2\\
+  m\dot{v} &= \sin(\Theta)mg - kmv^2\\
+  \frac{dv}{dt} &= \sin(\Theta)g - kv^2\\
+  \frac{dv}{\sin(\Theta)g - kv^2} &= dt\\
+  \int_0^{v} \frac{dv}{\sin(\Theta)g - kv^2} &= \int_0^t dt\\
+  \int_0^{v} \frac{\csc(\Theta)}{g(1 - \frac{\csc(\Theta)k}{g}v^2)}dv &= \int_0^t dt\\
+  \frac{\csc(\Theta)}{g}\int_0^{v} \frac{1}{1 - \frac{\csc(\Theta)k}{g}v^2}dv &= \int_0^t dt\\
+  \frac{\csc(\Theta)}{g}\int_0^{v} \frac{1}{1 - \frac{\csc(\Theta)k}{g}v^2}dv &= \int_0^t dt
+  \hspace{1in} u = \mathrm{i}v\sqrt{\frac{\csc(\Theta)k}{g}}\\
+  -\frac{\csc(\Theta)}{g}\mathrm{i}\sqrt{\frac{g}{\csc(\Theta)k}}\int_0^{\mathrm{i}v\sqrt{\frac{\csc(\Theta)k}{g}}} \frac{1}{1 + u^2}du &= \int_0^t dt
+  \hspace{1in} dv = -\mathrm{i}\sqrt{\frac{g}{\csc(\Theta)k}}du\\
+  -\mathrm{i}\frac{\sqrt{\csc(\Theta)}}{\sqrt{kg}} \int_0^{\mathrm{i}v\sqrt{\frac{\csc(\Theta)k}{g}}} \frac{1}{1 + u^2}du &= \int_0^t dt\\
+  -\mathrm{i}\frac{\sqrt{\csc(\Theta)}}{\sqrt{kg}} \tan^{-1}\Bigg(\mathrm{i}v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg) &= \int_0^t dt\\
+  \frac{\sqrt{\csc(\Theta)}}{\sqrt{kg}} \tanh^{-1}\Bigg(v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg) &= t\\
+  \frac{\tanh^{-1}\Bigg(v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg)}{\sqrt{kg\sin(\Theta)}} &= t\\ 
+\end{align*}
+
+Now we try this...
+
+\begin{align*}
+  \frac{\tanh^{-1}\Bigg(v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg)}{\sqrt{kg\sin(\Theta)}} &= t\\
+  \tanh^{-1}\Bigg(v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg) &= t\sqrt{kg\sin(\Theta)}\\
+  v\sqrt{\frac{\csc(\Theta)k}{g}} &= \tanh\Big(t\sqrt{kg\sin(\Theta)}\Big)\\
+  v &= \frac{\tanh\Big(t\sqrt{kg\sin(\Theta)}\Big)}{\sqrt{\frac{\csc(\Theta)k}{g}}}\\    
+\end{align*}
+
+Now we try integrating...
+
+\begin{align*}
+  d &= \int_0^t v(t) dt\\
+  d &= \int_0^t \frac{\tanh\Big(t\sqrt{kg\sin(\Theta)}\Big)}{\sqrt{\frac{\csc(\Theta)k}{g}}} dt\\
+  d &= \frac{\log(\cosh\Big(t\sqrt{kg\sin(\Theta)}\Big))}{\sqrt{\frac{\csc(\Theta)k}{g}}}\\
+  d\sqrt{\frac{\csc(\Theta)k}{g}} &= \log(\cosh\Big(t\sqrt{kg\sin(\Theta)}\Big))\\
+  e^{d\sqrt{\frac{\csc(\Theta)k}{g}}} &= \cosh\Big(t\sqrt{kg\sin(\Theta)}\Big)\\
+  \cosh^{-1}\Bigg(e^{d\sqrt{\frac{\csc(\Theta)k}{g}}}) &= t\sqrt{kg\sin(\Theta)}\\
+  \frac{\cosh^{-1}\Big(e^{d\sqrt{\frac{\csc(\Theta)k}{g}}}\Big)}{\sqrt{kg\sin(\Theta)}} &= t\\        
+\end{align*}
 
 
 
