@@ -68,7 +68,7 @@
   \hspace{1.6in} \dot{y}(0) = \dot{y}_0 = A - \dot{y}_{term}\\
   \dot{y}(t) &= (\dot{y}_0 + \dot{y}_{term})e^{-\frac{b}{m}t} - \dot{y}_{term}\\
   \dot{y}(t) &= \dot{y}_0e^{-\frac{b}{m}t} + \dot{y}_{term}(e^{-\frac{b}{m}t} - 1)\\
-  y(t) &= -\frac{m}{b}e^{-\frac{b}{m}t}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}t\\
+  y(t) &= -\frac{m}{b^2}e^{-\frac{b}{m}t}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}t\\
 \end{align*}
 
 \textbf{b. Find the time at which the object reaches its highest point and its position at that time.}
@@ -80,10 +80,14 @@
   \dot{y}_{term}e^{\frac{b}{m}t} &= \dot{y}_0 + \dot{y}_{term}\\
   e^{\frac{b}{m}t} &= \frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}\\
   t_{max} &= \frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\\
-  y(t_{max}) &= -\frac{m}{b}e^{-\frac{b}{m}\frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\\
-    y(t_{max}) &= -\frac{m}{b\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\\
+  t_{max} &= \frac{m}{b}\log\Big(\frac{b\dot{y}_0 + mg}{mg}\Big)\\
+  t_{max} &= \frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= -\frac{m}{b^2}e^{-\frac{b}{m}\frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= -\frac{m}{b^2}\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= -\frac{m}{b^2}\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\Big(b\dot{y}_0 + mg\Big) - \dot{y}_{term}\frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= -\frac{gm^2}{b^2} - \frac{-m^2g}{b^2}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= \frac{gm^2}{b^2}\Bigg(\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big) - 1\Bigg)\\
 \end{align*}
-
 
 \textbf{c. Show that the limiting case for very small drag coefficient coincides with the solution for the frictionless motion.}\\
 For frictionless motion:
@@ -91,18 +95,17 @@ For frictionless motion:
   \ddot{y}(t) &= -g\\
   \dot{y}(t) &= \dot{y}_0 - gt\\
   y(t) &= \dot{y}_0t - \frac{1}{2}gt^2\\
-  \dot{y}(t_{max}) &= 0 \rightarrow t_{max} = \frac{\dot{y}}{g}\\
+  \dot{y}(t_{max}) &= 0 \rightarrow t_{max} = \frac{\dot{y}_0}{g}\\
   y_{max} &= \frac{\dot{y}_0^2}{2g}\\
 \end{align*}
 
 For motion in a linear medium when $\lim_{b\rightarrow0}$:
 
 \begin{align*}
-  \lim_{b\rightarrow0}y(t_{max}) &= \lim_{b->0} \hspace{0.2cm} -\frac{m}{b\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\\
-  \lim_{b\rightarrow0}y(t_{max}) &= \lim_{b->0} \hspace{0.2cm} -\frac{m}{b\frac{\dot{y}_0 + \frac{mg}{b}}{\frac{mg}{b}}}\Big(\dot{y}_0 + \frac{mg}{b} \Big) - \frac{mg}{b}\frac{m}{b}\log{\frac{\dot{y}_0 + \frac{mg}{b}}{\frac{mg}{b}}}\\
-  \lim_{b\rightarrow0}y(t_{max}) &= \lim_{b->0} \hspace{0.2cm} -\frac{m}{b\frac{\dot{y}_0 + \frac{mg}{b}}{\frac{mg}{b}}}\Big(\dot{y}_0 + \frac{mg}{b} \Big) - \frac{mg}{b}\frac{m}{b}\log{\frac{\dot{y}_0 + \frac{mg}{b}}{\frac{mg}{b}}}\\
+  \lim_{b\rightarrow0}\Bigg[\frac{gm^2}{b^2}\Bigg(\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big) - 1\Bigg)\Bigg] \rightarrow WolframAlpha &= \dot{y}_0 - gt\\
 \end{align*}
 
+This was a cool problem. It was good to go through the entire derivation of motion through a linear medium using a different coordinate system than the one we used in class. It made sure I really understood how that kind of motion worked and how to use separation of variables to solve for position. I had a bit of trouble with the algebra, and found that my solution didn't agree with the frictionless solution when b goes to zero for position, for some strange reason. I checked with others and they got the same thing I did, so I'm not sure what the problem is.\\
 
 \vspace{1 cm}
 
@@ -153,7 +156,7 @@ Now we try integrating out the v:
   \frac{\cosh^{-1}(e^{kd})}{\sqrt{kg\sin(\Theta)}} &= t\\        
 \end{align*}
 
-
+This was a really cool problem. I had a lot of fun trying to do the integral by myself and then using Mathematica to help me out. I think I'm a little better at doing trigonometric integration after doing this problem. I also know a little more about hyperbolic trigonometric functions now.\\
 
 \vspace{1 cm}
 
@@ -192,6 +195,8 @@ We plug in our values:\\
   t &= 231.752
 \end{align*}
 
+I liked this problem. After doing it I understand the rocket equation we're using pretty well. I think it's interesting that the equation only works when there is no normal force on the rocket, ie when the rocket is just taking off. This makes sense, since it would be impossible to include the normal force in the force declaration without using a picewise function or a step function.\\
+
 \section{Problem Four}
 \textbf{A projectile of mass M explodes while in flight at speed v into three fragments. The first fragment, with mass m1=M/2 travels in the original direction of the projectile; the second, with mass m2=M/6 travels in the opposite direction, and the third comes to rest. The energy released in the explosion is equal to five times the kinetic energy of the projectile just before exploding. What are the velocities of the first two fragments?} \\ \\
 \vspace{1 cm}
@@ -223,6 +228,8 @@ We plug this back into our first equation...\\
   V_1 &= 3V\\
   V_2 &= -3V\\
 \end{align*}
+
+This problem taught me more about how to do simple explosion calculations. If we make the assumption that we can just say the KE of a system increases when the explosion takes place, it is a very easy problem to figure out the velocities and trajectories of the particles using Physics 211-style momentum and energy conservation equations. I feel like it wouldn't be possible to apply in the real world since lots more factors would go into the calculation, since we wouldn't know what pieces would break. But if we did know what pieces would break, by doing structural analysis or something, maybe this wouldn't be such a bad approximation. We would know the chemical energy in the bomb, so the particle velocities would be easy to calculate.\\
 
 \section{Problem Five}
 \textbf{Find the center of mass of a uniform hemispherical shell of inner and outer radii a and b and mass M. Comment on the limiting cases. (5 bonus points)} \\ \\
