@@ -135,3 +135,15 @@
 1444606687.26	5	7.0	Still not much!
 1444607250.85	5	3.0	Work is path-dependent, yyou can pressurize and work against lots of pressure, or work against low pressure then pressurize, and reach the same state of pressurized higher volume but different work. 
 1444607570.08	5	3.0	Adiabatic systems are those that are heat-isolated, not constant temperature.
+1445110292.66	5	0.0	DNA discovered by Frederich Miecher in 1870, surgical dressings. DNA is RNA with an H instead of an OH on its 2' carbon. 5' goes to the O of a Phosphate, 3' goes to the O of a phosphate, 1' goes to base. Bases either double bond or triple bond (H bonds) to other bases.
+1445119138.71	5	0.0	DNA primary structure: ATGCTGAAA. DNA secondary structure: the way a single helix is formed. The bond lengths of the complementary bases in a helix. Tertiary Structure: the way different helices interact. Not sure if secondary or tertiary: supercoiling and the structures this creates. Probably secondary structure?
+1445124321.75	5	1.0	Learned that the hydrolysis of polynucleotides is favored, but incredibly slow kinetically. This makes it "metastable."
+1445125608.65	5	1.0	To make a DNA polymer you start with a nucleoside triphosphate. You add it to a polymer. The 3' OH on the polymer attacks the triphosphate and a diphosphate leaves. The diphosphate is a much better leaving group than an OH, which is why attack on a triphosphate is favorable when attack on a monophosphate is not favorable.
+1445127141.94	5	0.0	Diphosphate is easier to remove from a Pi than OH, and so that is why ATP must be added to a polynucleotide, not AMP.
+1445127903.51	5	1.0	Pyramidines pair with purines...Adenine and Guanine are purines, thymine and cytosine are pyramidines. AT and GC bond.
+1445129018.56	5	1.0	Conservative: DNA is conserved, initial and final template is the same. Semi-conserved: part of the final template is the same as the initial template. Noncoblah Dispersive: new template has atoms of old template, not in order though.
+1445131897.16	5	0.0	A form: RNA-RNA, RNA-DNA, low-humidity DNA-DNA. B form: DNA-DNA high humidity, ie, cellular conditions. A form more tightly packed, 11 residues per turn. B form less tightly packed, 10 per turn.
+1445132322.94	5	0.0	B-DNA is more stable than A at high humidity, but A more stable at low humidity. B stabilized by water in its minor groove (?) at high humidity.
+1445133208.81	5	0.0	Supercoiling: negative left-hand. supercoiling is tertiary structure of polynucleotide. Relaxed molecules float around and have longness. Super/supracoiled stuff doesn't do this.
+1445139805.43	5	3.0	Polynucleotides rich in CG bonds have a higher dH for denaturing, since CG bonds are stronger. A molecule with all AT bonds would be much easier to break than one with all CG bonds.
+1445141078.7	5	0.0	0
