@@ -147,3 +147,7 @@
 1445133208.81	5	0.0	Supercoiling: negative left-hand. supercoiling is tertiary structure of polynucleotide. Relaxed molecules float around and have longness. Super/supracoiled stuff doesn't do this.
 1445139805.43	5	3.0	Polynucleotides rich in CG bonds have a higher dH for denaturing, since CG bonds are stronger. A molecule with all AT bonds would be much easier to break than one with all CG bonds.
 1445141078.7	5	0.0	0
+1445645319.43	5	1.0	bla
+1445827401.49	6	2.0	AAs are chiral - there is a D and an----- Also an RS form, think D and L are used more though. In a Fischer projection the H and R groups are opposite, and the amine and carboxyl groups are opposite too.
+1445829969.71	6	0.0	You can predict where stuff'll cleave. R1 means it cleaves to the right, R2 means it cleaves to the left. Cysteine forms disulfide bonds with other cysteines, and so cannot react with certain things.
+1445831039.11	6	3.0	Proline is a cyclic amino acid, and has an NH2 group. This means it's pretty stable and won't give up any Hs at 10 pH. probably. Also cysteine forms disulfide bonds when it gets oxidized. A good oxidizer like O2 would come in and take electrons from two SH groups, so they couldn't support their Hs. They would then bond together.
