@@ -33,11 +33,13 @@
 
 \usepackage{titlesec} % Allows creating custom \section's
 
+\allowdisplaybreaks
+
 % Format of the section titles
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Classical Mechanics Assignment X}
+\title{Classical Mechanics Assignment 3}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -46,46 +48,191 @@
 \maketitle{}
 
 \section{Problem One}
-\textbf{Consider an object that is thrown vertically up with initial speed $v_0$ in a linear medium.} \\ \\
+\textbf{Consider an object that is thrown vertically up with initial speed $v_0$ in a linear medium.} \\
 
 \textbf{a. Measuring y upward from the point of release, write expressions for the object velocity and position as a function of time.}
 
 \begin{align*}
+<<<<<<< HEAD
   v'(t) = -g - bv\\
   
+=======
+  m\ddot{y}(t) &= -mg - b\dot{y}(t)\\
+  m\ddot{y}(t) &= -b\big(\frac{mg}{b} + \dot{y}(t))\\
+  m\ddot{y}(t) &= -b\big(\dot{y}_{term} + \dot{y}(t))
+  \hspace{1in}\ddot{y} = 0 \rightarrow \dot{y}_{term} = \frac{mg}{b}\\
+  m\ddot{y}(t) &= -b\phi(t)
+  \hspace{1.6in} \phi(t) = \dot{y}_{term} + \dot{y}(t)\\
+  m\ddot{\phi(t)} &= -b\phi(t)
+  \hspace{1.6in} \dot{\phi(t)} = \ddot{y}(t)\\
+  \phi(t) &= Ae^{-\frac{bt}{m}}\\
+  \dot{y}(t) &= Ae^{-\frac{b}{m}t} - \dot{y}_{term}
+  \hspace{1.6in} \dot{y}(0) = \dot{y}_0 = A - \dot{y}_{term}\\
+  \dot{y}(t) &= (\dot{y}_0 + \dot{y}_{term})e^{-\frac{b}{m}t} - \dot{y}_{term}\\
+  \dot{y}(t) &= \dot{y}_0e^{-\frac{b}{m}t} + \dot{y}_{term}(e^{-\frac{b}{m}t} - 1)\\
+  y(t) &= -\frac{m}{b^2}e^{-\frac{b}{m}t}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}t\\
+>>>>>>> 0bfb7d8f1132214a61ca6c220afcb5ebb93df94c
 \end{align*}
 
 \textbf{b. Find the time at which the object reaches its highest point and its position at that time.}
 
-\textbf{c. Show that the limiting case for very small drag coefficient coincides with the solution for the frictionless motion.}
+\begin{align*}
+  \dot{y}(t) &= 0 = \dot{y}_0e^{-\frac{b}{m}t} + \dot{y}_{term}(e^{-\frac{b}{m}t} - 1)\\
+  \dot{y}_{term}(1 - e^{-\frac{b}{m}t}) &= \dot{y}_0e^{-\frac{b}{m}t}\\
+  \dot{y}_{term} - \dot{y}_{term}e^{-\frac{b}{m}t} &= \dot{y}_0e^{-\frac{b}{m}t}\\
+  \dot{y}_{term}e^{\frac{b}{m}t} &= \dot{y}_0 + \dot{y}_{term}\\
+  e^{\frac{b}{m}t} &= \frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}\\
+  t_{max} &= \frac{m}{b}\log{\frac{\dot{y}_0 + \dot{y}_{term}}{\dot{y}_{term}}}\\
+  t_{max} &= \frac{m}{b}\log\Big(\frac{b\dot{y}_0 + mg}{mg}\Big)\\
+  t_{max} &= \frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= -\frac{m}{b^2}e^{-\frac{b}{m}\frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= -\frac{m}{b^2}\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}\frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= -\frac{m}{b^2}\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\Big(b\dot{y}_0 + mg\Big) - \dot{y}_{term}\frac{-m}{b}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= -\frac{gm^2}{b^2} - \frac{-m^2g}{b^2}\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big)\\
+  y(t) &= \frac{gm^2}{b^2}\Bigg(\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big) - 1\Bigg)\\
+\end{align*}
 
+\textbf{c. Show that the limiting case for very small drag coefficient coincides with the solution for the frictionless motion.}\\
+For frictionless motion:
+\begin{align*}
+  \ddot{y}(t) &= -g\\
+  \dot{y}(t) &= \dot{y}_0 - gt\\
+  y(t) &= \dot{y}_0t - \frac{1}{2}gt^2\\
+  \dot{y}(t_{max}) &= 0 \rightarrow t_{max} = \frac{\dot{y}_0}{g}\\
+  y_{max} &= \frac{\dot{y}_0^2}{2g}\\
+\end{align*}
 
+For motion in a linear medium when $\lim_{b\rightarrow0}$:
 
+\begin{align*}
+  \lim_{b\rightarrow0}\Bigg[\frac{gm^2}{b^2}\Bigg(\log\Big(\frac{mg}{b\dot{y}_0 + mg}\Big) - 1\Bigg)\Bigg] \rightarrow WolframAlpha &= \dot{y}_0 - gt\\
+\end{align*}
+
+This was a cool problem. It was good to go through the entire derivation of motion through a linear medium using a different coordinate system than the one we used in class. It made sure I really understood how that kind of motion worked and how to use separation of variables to solve for position. I had a bit of trouble with the algebra, and found that my solution didn't agree with the frictionless solution when b goes to zero for position, for some strange reason. I checked with others and they got the same thing I did, so I'm not sure what the problem is.\\
 
 \vspace{1 cm}
 
 \section{Problem Two}
-\textbf{A point mass of mass m slides down an inclined plane under the influence of gravity. If the motion is resisted by a force F=kmv2, show that the time required to move a distance d after starting from rest is:}
+\textbf{A point mass of mass m slides down an inclined plane under the influence of gravity. If the motion is resisted by a force $F=kmv^2$, show that the time required to move a distance d after starting from rest is:}
 
 \begin{equation*}
-  t = \frac{\cosh^{-1}(e^{kd}}{\sqrt{kg\sin(\Theta)}}\\
+  t = \frac{\cosh^{-1}(e^{kd})}{\sqrt{kg\sin(\Theta)}}\\
 \end{equation*}
 
 \textbf{Where $\Theta$ is the angle of inclination of the plane.} \\ \\
 
+We define a one-dimensional coordinate system where the positive axis points in the direction of motion of the point.\\
 
+\begin{align*}
+  \vec{F} &= \sin(\Theta)mg - kmv^2\\
+  m\dot{v} &= \sin(\Theta)mg - kmv^2\\
+  \frac{dv}{dt} &= \sin(\Theta)g - kv^2\\
+  \frac{dv}{\sin(\Theta)g - kv^2} &= dt\\
+  \int_0^{v} \frac{dv}{\sin(\Theta)g - kv^2} &= \int_0^t dt\\
+  \int_0^{v} \frac{\csc(\Theta)}{g(1 - \frac{\csc(\Theta)k}{g}v^2)}dv &= \int_0^t dt\\
+  \frac{\csc(\Theta)}{g}\int_0^{v} \frac{1}{1 - \frac{\csc(\Theta)k}{g}v^2}dv &= \int_0^t dt\\
+  \frac{\csc(\Theta)}{g}\int_0^{v} \frac{1}{1 - \frac{\csc(\Theta)k}{g}v^2}dv &= \int_0^t dt
+  \hspace{1in} u = \mathrm{i}v\sqrt{\frac{\csc(\Theta)k}{g}}\\
+  -\frac{\csc(\Theta)}{g}\mathrm{i}\sqrt{\frac{g}{\csc(\Theta)k}}\int_0^{\mathrm{i}v\sqrt{\frac{\csc(\Theta)k}{g}}} \frac{1}{1 + u^2}du &= \int_0^t dt
+  \hspace{1in} dv = -\mathrm{i}\sqrt{\frac{g}{\csc(\Theta)k}}du\\
+  -\mathrm{i}\frac{\sqrt{\csc(\Theta)}}{\sqrt{kg}} \int_0^{\mathrm{i}v\sqrt{\frac{\csc(\Theta)k}{g}}} \frac{1}{1 + u^2}du &= \int_0^t dt\\
+  -\mathrm{i}\frac{\sqrt{\csc(\Theta)}}{\sqrt{kg}} \tan^{-1}\Bigg(\mathrm{i}v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg) &= \int_0^t dt\\
+  \frac{\sqrt{\csc(\Theta)}}{\sqrt{kg}} \tanh^{-1}\Bigg(v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg) &= t\\
+  \frac{\tanh^{-1}\Bigg(v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg)}{\sqrt{kg\sin(\Theta)}} &= t\\ 
+  \frac{\tanh^{-1}\Bigg(v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg)}{\sqrt{kg\sin(\Theta)}} &= t\\
+  \tanh^{-1}\Bigg(v\sqrt{\frac{\csc(\Theta)k}{g}}\Bigg) &= t\sqrt{kg\sin(\Theta)}\\
+  v\sqrt{\frac{\csc(\Theta)k}{g}} &= \tanh\Big(t\sqrt{kg\sin(\Theta)}\Big)\\
+  v &= \frac{\tanh\Big(t\sqrt{kg\sin(\Theta)}\Big)}{\sqrt{\frac{\csc(\Theta)k}{g}}}\\    
+\end{align*}
 
+Now we try integrating out the v:
 
+\begin{align*}
+  d &= \int_0^t v(t) dt\\
+  d &= \int_0^t \frac{\tanh\Big(t\sqrt{kg\sin(\Theta)}\Big)}{\sqrt{\frac{\csc(\Theta)k}{g}}} dt\\
+  d &= \frac{\log(\cosh\Big(t\sqrt{kg\sin(\Theta)}\Big))}{\sqrt{kg\sin(\Theta)}\sqrt{\frac{\csc(\Theta)k}{g}}}\\
+  d &= \frac{\log(\cosh\Big(t\sqrt{kg\sin(\Theta)}\Big))}{\sqrt{\frac{kg}{\csc(\Theta)}}\sqrt{\frac{\csc(\Theta)k}{g}}}\\
+ d &= \frac{\log(\cosh\Big(t\sqrt{kg\sin(\Theta)}\Big))}{k}\\    
+  kd &= \log(\cosh\Big(t\sqrt{kg\sin(\Theta)}\Big))\\
+  e^{kd} &= \cosh\Big(t\sqrt{kg\sin(\Theta)}\Big)\\
+  \cosh^{-1}(e^{kd}) &= t\sqrt{kg\sin(\Theta)}\\
+  \frac{\cosh^{-1}(e^{kd})}{\sqrt{kg\sin(\Theta)}} &= t\\        
+\end{align*}
+
+This was a really cool problem. I had a lot of fun trying to do the integral by myself and then using Mathematica to help me out. I think I'm a little better at doing trigonometric integration after doing this problem. I also know a little more about hyperbolic trigonometric functions now.\\
 
 \vspace{1 cm}
 
 \section{Problem Three}
 \textbf{A badly designed rocket has an initial mass of 7x104 kg and on firing it burns its fuel at a rate of 250 kg/s. The exhaust speed is 2500 m/s. If the rocket has a vertical ascent from rest on the Earth, how long after the rocket engines fire will the rocket lift off?} \\ \\
-\vspace{1 cm}
+%\vspace{1 cm}
+Here $m$ is the mass of the rocket, $m_0$ is the initial mass of the rocket, $dm$ is the mass of the particles being ejected per timestep $dt$, $v$ is the rocket's velocity, $v_{ex}$ is the exhaust's velocity and $dv$ is the rocket's change in velocity per timestep $dt$.
+
+\begin{align*}
+  m\ddot{y} &= -mg - \dot{m}v_{ex}\\
+  m\ddot{y} &= -mg + |\dot{m}|v_{ex}\\
+  \ddot{y} &= -g + \frac{|\dot{m}|}{m}v_{ex}\\
+  \frac{dv}{dt} &= -g + \frac{|\dot{m}|}{m}v_{ex}\\
+  dv &= \Big(-g + \frac{|\dot{m}|}{m}v_{ex}\Big)dt\\
+  dv &= \Big(-g + \frac{|\dot{m}|}{m}v_{ex}\Big)\Big(-\frac{dm}{|\dot{m}|}\Big)\\
+  dv &= \Big(\frac{g}{|\dot{m}|} - \frac{v_{ex}}{m}\Big)dm\\
+  \int_0^v dv &= \int_{m_0}^m \Big(\frac{g}{|\dot{m}|} - \frac{v_{ex}}{m}\Big)dm\\
+  v &= \frac{g}{|\dot{m}|}\big(m-m_0) - v_{ex}\log(\frac{m}{m_0})\\
+  v &= \frac{-g}{|\dot{m}|}\big(m_0-m) + v_{ex}\log(\frac{m_0}{m})\\  
+\end{align*}
+
+This is an incorrect equation in that it predicts negative velocity when the gravitational force is stronger than the exhaust force. This is because we didn't include the normal force term in our initial enumeration of the forces acting on the rocket. The second thrust exceeds gravity the normal force disappears and our equation becomes correct. This coincides with the time the rocket lifts off:\\
+
+\begin{align*}
+  0 &= \frac{-g}{|\dot{m}|}\big(m_0-m) + v_{ex}\log(\frac{m_0}{m})\\
+  \frac{-g}{|\dot{m}|}\big(m_0-m) &= v_{ex}\log(\frac{m_0}{m})\\
+\end{align*}
+
+We plug in our values:\\
+
+\begin{align*}
+  \Big(\frac{-9.8\frac{m}{s^2}}{250\frac{kg}{s}}\Big)\big(7*10^4kg - 250\frac{kg}{s}t) &= \big(2500\frac{m}{s}\big)\log\Big(\frac{7*10^{4}kg}{250\frac{kg}{s}t}\Big)\\
+  \Big(1.568^{e-5}\frac{1}{kg}\Big)\big(7e4 kg - 250*t kg) &= \log\Big(\frac{7e4}{250*t}\Big)\\
+  1.0976 - 0.00392t &= \log\Big(\frac{280}{t}\Big)\\
+  -4.5372 - 0.00392t &= -\log(t)\\
+  t &= 231.752
+\end{align*}
+
+I liked this problem. After doing it I understand the rocket equation we're using pretty well. I think it's interesting that the equation only works when there is no normal force on the rocket, ie when the rocket is just taking off. This makes sense, since it would be impossible to include the normal force in the force declaration without using a picewise function or a step function.\\
 
 \section{Problem Four}
 \textbf{A projectile of mass M explodes while in flight at speed v into three fragments. The first fragment, with mass m1=M/2 travels in the original direction of the projectile; the second, with mass m2=M/6 travels in the opposite direction, and the third comes to rest. The energy released in the explosion is equal to five times the kinetic energy of the projectile just before exploding. What are the velocities of the first two fragments?} \\ \\
 \vspace{1 cm}
+
+Using conservation of momentum and conservation of energy, we can form two equations:\\
+
+\begin{align*}
+  MV &= \frac{1}{2}MV_1 + \frac{1}{6}MV_2\\
+  3MV^2 &= \frac{1}{4}MV_1^2 + \frac{1}{12}MV_2^2\\
+\end{align*}
+
+We have two equations and two unknowns. We can solve for $V_1$ and $V_2$:\\
+
+\begin{align*}
+  V &= \frac{1}{2}V_1 + \frac{1}{6}V_2\\
+  V^2 &= \frac{1}{4}V_1^2 + \frac{1}{36}V_2^2 + \frac{1}{6}V_1V_2\\
+  3V^2 &= \frac{1}{4}V_1^2 + \frac{1}{12}V_2^2\\
+  V^2 &= \frac{1}{12}V_1^2 + \frac{1}{36}V_2^2\\
+  \frac{1}{4}V_1^2 + \frac{1}{36}V_2^2 + \frac{1}{6}V_1V_2 &= \frac{1}{12}V_1^2 + \frac{1}{36}V_2^2\\
+  \frac{1}{6}V_1^2 + \frac{1}{6}V_1V_2 &= 0\\
+  V_1 &= -V_2\\
+\end{align*}
+
+We plug this back into our first equation...\\
+
+\begin{align*}
+  V &= \frac{1}{2}V_1 + -\frac{1}{6}V_1\\
+  V &= \frac{1}{3}V_1\\
+  V_1 &= 3V\\
+  V_2 &= -3V\\
+\end{align*}
+
+This problem taught me more about how to do simple explosion calculations. If we make the assumption that we can just say the KE of a system increases when the explosion takes place, it is a very easy problem to figure out the velocities and trajectories of the particles using Physics 211-style momentum and energy conservation equations. I feel like it wouldn't be possible to apply in the real world since lots more factors would go into the calculation, since we wouldn't know what pieces would break. But if we did know what pieces would break, by doing structural analysis or something, maybe this wouldn't be such a bad approximation. We would know the chemical energy in the bomb, so the particle velocities would be easy to calculate.\\
 
 \section{Problem Five}
 \textbf{Find the center of mass of a uniform hemispherical shell of inner and outer radii a and b and mass M. Comment on the limiting cases. (5 bonus points)} \\ \\

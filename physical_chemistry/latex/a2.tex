@@ -165,16 +165,12 @@ Now we verify this gets good results...
   -1261 \frac{J}{mol} &= -1260 \frac{J}{mol}
 \end{align}
 
-\section{unknownproblem}
-isothermal reversible: Du, DH = 0
-cyclic process: T, V, P, n, U, H are all zero in a cyclic process, but work isn't
-
 \section{2.22}
 \begin{align}
   U &= \frac{3}{2}RT\\
   w &= dU = \frac{3}{2}RdT\\
   w &= \frac{3}{2}R(T_2 - T_1)\\
-  \frac{T_2}{T_1} &= \frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma} (Internet)
+  \frac{T_2}{T_1} &= \frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma} (Internet)\\
   T_2 &= T_1\frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma}\\
   w &= \frac{3}{2}R(T_1\frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma} - T_1)\\
 \end{align}
@@ -188,12 +184,6 @@ We take our liquid, calculate the enthalpy change to bring it to 273K, add the h
   \Delta H &= 75.3 \frac{J}{K mol} * (273K - 263K) + -6004 \frac{J}{mol} + 36.8 \frac{J}{mol K} * (263K - 273K)\\
    &= 10*75.3 - 6004 - 36.8*10 = -5619 \frac{J}{mol}\\
 \end{align}
-
-\section{2.44}
-%% TA certified
-%% W = -PdV - assume that dV = V cause they're similar
-%% W = nRT = 1033J
-%% dU = Q + W
 
 
 \section{2.64}
@@ -252,6 +242,20 @@ Reaction Enthalpy / Entropy:
   \Delta_rU* = \Delta_rH* + (8.314)(298K)*7.25 = -1430.63 KJ/mol\\  
 \end{align}
 
+Now we know the change in internal energy is zero, and the reaction's energy is -1430 Kj/mol, so we can use it to find $T_{max}$:
+\begin{align}
+  dU &= \Delta_rU* + C_v\Delta T\\
+  0 &= -1430.63 + C_v\Delta T\\
+  1430.63 \frac{KJ}{mol} * 2 mol &=  0.1 \frac{KJ}{mol K}(T_{max} - 298)\\
+  T_{max} &= 3159.15K\\
+\end{align}
+
+Pressure
+\begin{align}
+  P &= \frac{nRT}{V}\\
+  P &= \frac{0.2  * 7.5 * 8.314 * 298}{3}\\
+  P &= 1.27*10^4 bar\\
+\end{align}
 
 
 \end{document}
