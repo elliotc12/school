@@ -4,8 +4,6 @@
 
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage{marvosym} % Required for symbols in the colored box
-\usepackage{ifsym} % Required for symbols in the colored box
 
 \usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
 
@@ -55,6 +53,10 @@
 \textbf{a. Measuring y upward from the point of release, write expressions for the object velocity and position as a function of time.}
 
 \begin{align*}
+<<<<<<< HEAD
+  v'(t) = -g - bv\\
+  
+=======
   m\ddot{y}(t) &= -mg - b\dot{y}(t)\\
   m\ddot{y}(t) &= -b\big(\frac{mg}{b} + \dot{y}(t))\\
   m\ddot{y}(t) &= -b\big(\dot{y}_{term} + \dot{y}(t))
@@ -69,6 +71,7 @@
   \dot{y}(t) &= (\dot{y}_0 + \dot{y}_{term})e^{-\frac{b}{m}t} - \dot{y}_{term}\\
   \dot{y}(t) &= \dot{y}_0e^{-\frac{b}{m}t} + \dot{y}_{term}(e^{-\frac{b}{m}t} - 1)\\
   y(t) &= -\frac{m}{b^2}e^{-\frac{b}{m}t}\Big(\dot{y}_0 + \dot{y}_{term} \Big) - \dot{y}_{term}t\\
+>>>>>>> 0bfb7d8f1132214a61ca6c220afcb5ebb93df94c
 \end{align*}
 
 \textbf{b. Find the time at which the object reaches its highest point and its position at that time.}
