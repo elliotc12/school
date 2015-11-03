@@ -53,16 +53,26 @@
 \textbf{Find the shape assumed by an infinitely flexible rope of linear density $\rho$ and length L with both sides attached to the ceiling of a room. (Hint, the shape will minimize the gravitational potential energy of the rope).}
 
 \begin{align*}
-  PE_{aug} &= \int_{-a}^{a} \left[-gy\rho \sqrt{1 + x'^2} - \lambda\sqrt{1+x'^2}\right]dx\\
-  f(y,y',x) &= -gy\rho \sqrt{1 + x'^2} - \lambda\sqrt{1+x'^2}\\
+  PE_{aug} &= \int_{-a}^{a} \left[-gy\rho \sqrt{1 + y'^2} - \lambda\sqrt{1+y'^2}\right]dx\\
+  f(y,y',x) &= -\left(gy\rho + \lambda\right)\sqrt{1 + y'^2}\\
 \end{align*}
 
-We use the $\frac{df}{dx'} = k$ form of the Euler-Lagrange equation:
+We use the $f - y'\frac{df}{dy'} = k$ form of the Euler-Lagrange equation:
 
 \begin{align*}
-  \frac{-gy\rho x'}{\sqrt{1 + x'^2}} - \frac{\lambda x'}{\sqrt{1+x'^2}} &= k\\
-  \frac{-gy\rho x' - \lambda x'}{\sqrt{1 + x'^2}} &= k\\
+  -\left(gy\rho + \lambda\right)\sqrt{1 + y'^2} + \frac{\left(gy\rho + \lambda\right)y'^2}{\sqrt{1 + y'^2}} &= k\\
+  -\left(gy\rho + \lambda\right)\left(1 + y'^2\right) + \left(gy\rho + \lambda\right)y'^2 &= k\sqrt{1 + y'^2}\\
+  -\left(gy\rho + \lambda\right) &= k\sqrt{1 + y'^2}\\
+  \frac{\left(gy\rho + \lambda\right)^2 - k^2}{k^2} &= y'^2\\
+  \sqrt{\frac{\left(gy\rho + \lambda\right)^2 - k^2}{k^2}} &= \frac{dy}{dx}\\
+  \int dx &= \int \frac{k}{\sqrt{\left(gy\rho + \lambda\right)^2 - k^2}}dy\\
+  x &= \frac{1}{g\rho}\int \frac{1}{\sqrt{u^2/k^2 - 1}}du\\
+  x &= \frac{1}{g\rho}\cosh^{-1}\left(\frac{u}{k}\right) + C\\
+  x &= \frac{1}{g\rho}\cosh^{-1}\left(\frac{gy\rho + \lambda}{k}\right) + C\\
+  \frac{k\cosh(g\rho x - C) - \lambda}{g\rho} &= y(x)\\
 \end{align*}
+
+This was an interesting problem. In our solution k, C and $\lambda$ are all arbitrary constants which can be found by taking into account the initial conditions L, $x_1$ and $x_2$. It was tough to get the integral to work out. I knew it should have been an inverse hyperbolic cosine, so I had to intermediate solutions pretty heavily to get them in a form that would integrate to what I needed.\\
 
 \section{Problem Two}
 \textbf{Demonstrate that the shortest distance between two points in 3D is a straight line.}
