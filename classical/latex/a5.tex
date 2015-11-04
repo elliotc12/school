@@ -53,8 +53,8 @@
 \textbf{Find the shape assumed by an infinitely flexible rope of linear density $\rho$ and length L with both sides attached to the ceiling of a room. (Hint, the shape will minimize the gravitational potential energy of the rope).}
 
 \begin{align*}
-  PE_{aug} &= \int_{-a}^{a} \left[-gy\rho \sqrt{1 + x'^2} - \lambda\sqrt{1+x'^2}\right]dx\\
-  f(y,y',x) &= -gy\rho \sqrt{1 + x'^2} - \lambda\sqrt{1+x'^2}\\
+  PE_{aug} &= \int_{-a}^{a} \left[-gy\rho \sqrt{1 + x'^2} - \lambda\sqrt{1+x'^2}\right]dy\\
+  f(x,x',y) &= -gy\rho \sqrt{1 + x'^2} - \lambda\sqrt{1+x'^2}\\
 \end{align*}
 
 We use the $\frac{df}{dx'} = k$ form of the Euler-Lagrange equation:
@@ -62,6 +62,10 @@ We use the $\frac{df}{dx'} = k$ form of the Euler-Lagrange equation:
 \begin{align*}
   \frac{-gy\rho x'}{\sqrt{1 + x'^2}} - \frac{\lambda x'}{\sqrt{1+x'^2}} &= k\\
   \frac{-gy\rho x' - \lambda x'}{\sqrt{1 + x'^2}} &= k\\
+  \left(g^2y^2\rho^2 + \lambda^2 + 2\lambda gy\rho\right)x'^2 &= k^2\left(1 + x'^2\right)\\
+  \left(g^2y^2\rho^2 + \lambda^2 + 2\lambda gy\rho -k^2\right)x'^2 &= k^2\\
+  x' &= \sqrt{\frac{k^2}{\left(g^2y^2\rho^2 + \lambda^2 + 2\lambda gy\rho -k^2\right)}}\\
+  \int dx &= \int \sqrt{\frac{k^2}{\left(g^2y^2\rho^2 + \lambda^2 + 2\lambda gy\rho -k^2\right)}}dy\\
 \end{align*}
 
 \section{Problem Two}
