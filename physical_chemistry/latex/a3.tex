@@ -35,227 +35,97 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Physical Chemistry Assignment Three: 3.4, 3.5, 3.6, 3.9, 3.12, 3.13, 3.20, 3.31, 3.34, 3.39}
+\title{Physical Chemistry Assignment Two}
 \author{Elliott Capek}
 
 \begin{document}
-
 \maketitle{}
 
-\section{2.2}
-Sodium metal in water will cause the following reaction:
-\begin{equation}
-  2Na(s) + 2H_2O(l) \rightarrow 2NaOH (aq) + H_2(g)
-\end{equation}
+\section{Problem 3.4}
 
-This reaction evolves one mole of gas for two moles of sodium, so $\Delta N = \frac{1}{2}$.\\
+\begin{align*}
+  \Delta S_1 &= \int \frac{dW}{T} = \int_{V_1}^{V_2} \frac{R}{V}dV
+  \hspace{2cm} \mbox{Isothermal} \rightarrow dU = 0\\
+  &= R\ln\left(\frac{V_2}{V_1}\right)\\
+  \vspace{1cm}\\
+  \Delta S_2 &= \int \frac{dU}{T} = \int_{T_2}^{T_1} \frac{C_v}{T}dT
+  \hspace{2cm} \mbox{Adiabatic Path: } \Delta S = 0\\
+  &= C_v\ln\left(\frac{T_1}{T_2}\right)\\
+  &= C_v\ln\left(\frac{V_2^{R/C_v}}{V_1^{R/C_v}}\right)\\
+  &= R\ln\left(\frac{V_2}{V_1}\right)\\
+\end{align*}
 
-\begin{align}
-  W &= -P\Delta V\\
-  \Delta V &= \frac{\Delta nRT}{P} = \frac{\frac{1}{2} mol * 8.314 \frac{J}{mol * K} * 298K}{1 atm}\\
-  W &= -\frac{1}{2} mol * 8.314 \frac{J}{mol * K} * 298K = -1.24KJ\\
-\end{align}
+\section{Problem 3.5}
+\textbf{a.}
+\begin{align*}
+  \Delta S &= \frac{\Delta H}{T} = \frac{40.69 \frac{kJ}{mol}}{373.15K} = 109 \frac{J}{K mol}\\
+\end{align*}
+\textbf{b.}
+Universal entropy changes for reversible processes are zero.\\
 
-\section{2.4}
+\section{Problem 3.6}
+\begin{align*}
+  \Delta H &= \int_{T_1}^{T_2} C_p dT = \int_{T_1}^{T_2} 26.684 + 42.264*10^{-3}T - 142.4*10^{-7}T^2 dT = 33.36 \frac{kJ}{mol}\\
+  \Delta S &= \int_{T_1}^{T_2} \frac{C_p}{T} dT = \int_{T_1}^{T_2} \frac{26.684}{T} + 42.264*10^{-3} - 142.4*10^{-7}T dT = 55.4 \frac{J}{K mol}\\
+\end{align*}
 
-The differential $df = dx - \frac{x}{y}dy$ is inexact:
-\begin{align}
-  df &= dx - \frac{x}{y}dy\\
-  df &= M(x,y)dx + N(x,y)dy\\
-  M(x,y) &= 1\\
-  N(x,y) &= -\frac{x}{y}\\
-  \frac{\partial M}{\partial y}_x &= 0\\
-  \frac{\partial N}{\partial x}_y &= \frac{x}{y^2}\\
-  \frac{\partial M}{\partial y}_x &\neq \frac{\partial N}{\partial x}_y\\
-\end{align}
+\section{Problem 3.9}
+\begin{align*}
+  \Delta S_1 &= \frac{\Delta H}{T} = \int_{T_1}^{\frac{T_1+T_2}{2}} \frac{C_p}{T}dT\\
+    &= C_p\ln\left(\frac{T_1+T_2}{2T_1}\right)\\
+    \Delta S_2 &= C_p\ln\left(\frac{T_1+T_2}{2T_2}\right)\\
+    \Delta S &= C_p\ln\left(\frac{\left(T_1+T_2\right)^2}{4T_1T_2}\right)\\
+\end{align*}
 
-The differential $dg = \frac{1}{y}df$ is exact:
-\begin{align}
-  dg &= \frac{1}{y}df\\
-     &= \frac{1}{y}dx - \frac{x}{y^2}dy\\
-  dg &= M(x,y)dx + N(x,y)dy\\
-  M(x,y) &= \frac{1}{y}\\
-  N(x,y) &= -\frac{x}{y^2}\\
-  \frac{\partial M}{\partial y}_x &= -\frac{1}{y^2}\\
-  \frac{\partial N}{\partial x}_y &= -\frac{1}{y^2}\\
-  \frac{\partial M}{\partial y}_x &= \frac{\partial N}{\partial x}_y\\
-\end{align}
+\section{Problem 3.12}
+\textbf{a.}
+\begin{align*}
+  \Delta U &= 0
+  \hspace{5cm} \mbox{Isothermal process}\\
+  w &= -nRT\ln\left(\frac{V_2}{V_2}\right) = -(1 mol)(8.314 \frac{J}{mol K})(300K)\ln\left(\frac{300}{90}\right) = -3kJ\\
+  q &= -w = 3kJ\\
+  \Delta S &= \frac{dQ}{T} = 10 \frac{J}{K}\\
+\end{align*}
 
-\section{2.11}
-For a Van der Waal's Gas, isothermal reversible work is given by:
+\textbf{b.}
+\begin{align*}
+  \Delta U &= 0\\
+  w &=  -1kJ\\
+  q &= = 1kJ\\
+  \Delta S &= \frac{dQ}{T} = 3.3 \frac{J}{K}\\
+\end{align*}
 
-\begin{align}
-  W &= \int_{v1}^{v2} \frac{\partial U}{\partial T}_V dT - PdV\\
-  W &= \int_{v1}^{v2} -PdV\\
-  W &= -\int_{v1}^{v2} \frac{nRT}{\bar{V} - b}dV - \frac{a}{\bar{V}^2} dV\\
-  W &= -\int_{v1}^{v2} \frac{nRT}{\bar{V} - b}dV + \int_{v1}^{v2} \frac{a}{\bar{V}^2}dV\\
-  W &= -\int_{v1-b}^{v2-b} \frac{nRT}{u}du + \int_{v1}^{v2} \frac{a}{\bar{V}^2}dV\\
-  W &= -nRT\log(\frac{V_2-b}{V_1-b}) + a(\frac{1}{\bar{V}_1} - \frac{1}{\bar{V}_2})\\
-\end{align}
+\textbf{c.}
+\begin{align*}
+  &\mbox{Must be the same, state function}\\
+  \Delta U &= 0\\
+  w &=  -1kJ\\
+  q &= 1kJ\\
+  \Delta S &= \frac{dQ}{T} = 3.3 \frac{J}{K}\\
+\end{align*}
 
-For an ideal gas, isothermal reversible work is given by:\\
+\section{Problem 3.13}
+\textbf{a.}
+\begin{align*}
+  \Delta S &= nR\ln\left(\frac{V_2}{V_1}\right)\\
+  &= nR\ln\left(\frac{P_1}{P_2}\right) = (1 mol)(8.314)\ln(10) = 19.14 \frac{J}{K}\\
+  &\mbox{Entropy is a state function, both cases have same entropy change}\\
+\end{align*}
 
-\begin{align}
-  P &= \frac{nRT}{V}\\
-  W &= -\int_{v1}^{v2} PdV\\
-  W &= -\int_{v1}^{v2} \frac{nRT}{V}dV\\
-  W &= -nRT\log(\frac{V_2}{V_1})\\
-\end{align}
+\textbf{b.}
+Universal entropy change for a reversible process is zero. This is true for both cases, since entropy is a state function.\\
 
-For one mole of $CH_4$ at 25C, the ideal gas work is $-(1)(8.314)(298)\log(\frac{50}{1}) = 9692J$. The Van der Waal's work is $-(1)(8.314)(298)\log(\frac{50-0.04278}{1-0.04278}) + (2.283)(\frac{1}{1} - \frac{1}{50}) = 4257J$
-
-\section{2.13}
-Work: 
-\begin{align}
-  W &= \int -PdV\\
-  &= \int_{V_1}^{V_2} \frac{-nRT}{V} dV\\
-  &= nRT\log(\frac{V_1}{V_2}) = (1 mol)(8.314 \frac{J}{mol K})(298.15K)\log(10)\\
-  &= 5704J = 5.7KJ\\
-\end{align}
-
-Heat:
-\begin{align}
-  U &= \frac{3}{2}nRT\\
-  dU &= \frac{3}{2}RT*dn + \frac{3}{2}nR * dT\\
-  dU &= 0\\
-  dU &= Q - w\\
-  0 &= Q  -5.7KJ\\
-  Q &= 5.7KJ\\
-\end{align}
-
-Enthalpy:
-\begin{align}
-  H &= \frac{5}{2}RT\\
-  dH &= \frac{5}{2}RdT = 0\\
-\end{align}
-
-Isothermal expansion:
-\begin{align}
-  W &= \int_{V_i}^{V_f} -PdV\\
-  W &= -P(V_f - V_i) = -P(\frac{nRT}{P_f} - \frac{nRT}{P_i})\\
-  W &= -P_{ext}*(1 mol)*(8.314)*(298.15K) * (\frac{1}{P_f} - \frac{1}{P_i})\\
-  W &= -(1 bar)*(1 mol)*(8.314)*(298.15K) * (\frac{1}{1 bar} - \frac{1}{10 bar})\\
-  W &= -2.2KJ\\
-\end{align}
-
-\section{2.16}
-
-\begin{align}
-  \gamma &= \frac{Cp}{Cv}\\
-  PV^{\gamma} &= k\\
-  P &= \frac{k}{V^{\gamma}}\\
-  W &= \int -PdV\\
-  W &= \int_{V_1}^{V_2} -\frac{k}{v^\gamma}dV\\
-  W &= -k\int_{V_1}^{V_2} V^{-\gamma}dV\\  
-  W &= -k\Big( \frac{V_2^{-\gamma+1}}{-\gamma + 1} - \frac{V_1^{-\gamma+1}}{-\gamma + 1} \Big) \\
-  W &= -k\frac{V_2^{-\gamma+1} - V_1^{-\gamma+1}}{-\gamma + 1}\\
-  W &= -k\frac{V_2^{-\gamma}V_2 - V_1^{-\gamma}V_1}{-\gamma + 1}\\
-  W &= -k\frac{V_2^{-\gamma}V_2 - V_1^{-\gamma}V_1}{-\gamma + 1}\\
-  W &= -k\frac{\frac{P_2}{k}V_2 - \frac{P_1}{k}V_1}{-\gamma + 1}\\    
-  W &= \frac{P_2V_2 - P_1V_1}{\gamma - 1}\\
-\end{align}
-
-Now we verify this gets good results...
-
-\begin{align}
-  -1261 \frac{J}{mol} &= \frac{P_2V_2 - P_1V_1}{\gamma - 1}\\
-  -1261 \frac{J}{mol} &= \frac{(0.315 bar)(45.4 \frac{L}{mol}) - (1 bar)(22.7 \frac{L}{mol})}{\frac{5}{3} - 1}\\
-  -1261 \frac{J}{mol} &= \frac{(0.315 bar)(45.4 \frac{L}{mol}) - (1 bar)(22.7 \frac{L}{mol})}{\frac{2}{3}}\\
-  -1261 \frac{J}{mol} &= \frac{ 1430.1 \frac{J}{mol}) - 2270 \frac{J}{mol}}{\frac{2}{3}}\\
-  -1261 \frac{J}{mol} &= -1260 \frac{J}{mol}
-\end{align}
-
-\section{2.22}
-\begin{align}
-  U &= \frac{3}{2}RT\\
-  w &= dU = \frac{3}{2}RdT\\
-  w &= \frac{3}{2}R(T_2 - T_1)\\
-  \frac{T_2}{T_1} &= \frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma} (Internet)\\
-  T_2 &= T_1\frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma}\\
-  w &= \frac{3}{2}R(T_1\frac{P_2}{P_1}^\frac{\gamma - 1}{\gamma} - T_1)\\
-\end{align}
-
-\section{2.27}
-
-We take our liquid, calculate the enthalpy change to bring it to 273K, add the heat of enthalpy to freeze 273K liquid, then add the enthalpy change of going back to 262K.
-
-\begin{align}
-  \Delta H &= C_{P(l)} * \Delta T_1 + \Delta H* + C_{P(s)} * \Delta T_2\\
-  \Delta H &= 75.3 \frac{J}{K mol} * (273K - 263K) + -6004 \frac{J}{mol} + 36.8 \frac{J}{mol K} * (263K - 273K)\\
-   &= 10*75.3 - 6004 - 36.8*10 = -5619 \frac{J}{mol}\\
-\end{align}
-
-
-\section{2.64}
-%% TA certified
-%% C_{10}H_{8}_(l) + 0 \rightarrow H_2O_l + 10CO_2_g
-%% 0.4362g / 128.1904g/mol of C10H8 = 0.003403 mol
-%% DU = (10290 * 1.909) / 0.003403 = -5161 kJ/mol
-
-%% DH = DU + RT * change in mols? (sigma over all molecules involved in product/reactant)
-%% dN = -12 + 10 = -2
-%% DH = DU + RTdN
-%% DH = -5161 + R*T*-2 = -5166
-
-%% DrH  = \sum_product Hf - \sum_reactant Hf <- heat of formation
-%% -5166 = -393.409* 10 + -285.83 - DHf C10H8
-%% = 89.59 kJ/mol
-
-Internal Energy:
-\begin{align}
-  dU &= Cv dT\\
-  dU &= 10290 \frac{J}{K} * 1.909K\\
-  d\bar{U} &= \frac{19551J}{0.4362g / 128.19 g/mol} = -5161 KJ/mol\\
-\end{align}
-
-Enthalpy of Formation:
-\begin{align}
-  dH &= dU + RtdN\\
-  d\bar{H} &= -5161KJ/mol + 0.008314 * 298.15 * -2 = -5166KJ/mol\\  
-\end{align}
-
-\section{2.67}
-  %% C3H5N3O9 = 3)2 + 5/2H2O + 3/2Ns + 1/4O2
-  %% DrH = -1412.67kJ/mol
-  %% DrH = DrU + RTT \sum g
-  %% -1412.6 = DrU + RT*7.25
-  %% DU = -1430.63 kJ/mol
-
-  %% DH = DU + PDV = 0
-  %% -> DU = 0
-
-  %% DU = 0 = DU(298) + Cv(Tmax - 298)
-  %% Cv(Tmax-298) = -DU(298)
-  %% -(-1430.63 kJ/mol * 2) = 0.1 kJ / K * (Tmax-298)
-  %% Tmax = 3159.15K
-
-  %% Calculate pressure
-  %% PV=nRT
-  %% P=nRT/V
-  %% n = 0.2 * 7.25
-  %% P = 1.27*10^4 bar
-
-Reaction Enthalpy / Entropy:
-\begin{align}
-  \Delta_rH* = -1412.67 KJ/mol\\
-  \Delta_rU* = \Delta_rH* + RTdN\\
-  \Delta_rU* = \Delta_rH* + (8.314)(298K)*7.25 = -1430.63 KJ/mol\\  
-\end{align}
-
-Now we know the change in internal energy is zero, and the reaction's energy is -1430 Kj/mol, so we can use it to find $T_{max}$:
-\begin{align}
-  dU &= \Delta_rU* + C_v\Delta T\\
-  0 &= -1430.63 + C_v\Delta T\\
-  1430.63 \frac{KJ}{mol} * 2 mol &=  0.1 \frac{KJ}{mol K}(T_{max} - 298)\\
-  T_{max} &= 3159.15K\\
-\end{align}
-
-Pressure
-\begin{align}
-  P &= \frac{nRT}{V}\\
-  P &= \frac{0.2  * 7.5 * 8.314 * 298}{3}\\
-  P &= 1.27*10^4 bar\\
-\end{align}
-
+\section{Problem 3.20}
+\begin{align*}
+  \Delta S_1 &= \int_{V_1}^{V_1+V_2} \frac{dQ}{T} = \int_{V_1}^{V_1+V_2} \frac{dW}{T}\\
+  &= n_1R\ln\left(\frac{V_1+V_2}{V_1}\right)\\
+  &= n_1R\ln\left(\frac{\frac{n_1}{P_1} + \frac{n_2}{P_2}}{\frac{n_1}{P_1}}\right)\\
+  &= n_1R\ln\left(\frac{3/2}{1}\right) = 0.4R\\
+  \vspace{1cm}\\
+  \Delta S_2 &= n_2R\ln\left(\frac{\frac{n_1}{P_1} + \frac{n_2}{P_2}}{\frac{n_2}{P_2}}\right)\\
+  &= n_1R\ln\left(\frac{3/2}{1/2}\right) = R\\
+  \vspace{1cm}
+  \Delta S &= 1.4R = 11.6 \frac{J}{K}\\
+\end{align*}
 
 \end{document}
