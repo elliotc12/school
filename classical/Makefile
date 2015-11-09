@@ -1,4 +1,4 @@
-default: a5
+default: a6
 
 a1: latex/a1.tex
 	cd latex && xelatex a1.tex && mv a1.pdf ..
@@ -14,3 +14,6 @@ a4: latex/a4.tex
 
 a5: latex/a5.tex
 	cd latex && xelatex a5.tex && mv a5.pdf ..
+
+a6: latex/a6.tex
+	cd latex && xelatex a6.tex && mv a6.pdf ..

@@ -1,0 +1,153 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{marvosym} % Required for symbols in the colored box
+\usepackage{ifsym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+\allowdisplaybreaks
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Classical Mechanics Assignment 6}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One: Ball on an Inclined Plane}
+\textbf{Write the Lagrangian for a cylinder (mass m, radius R, and moment of inertia I) that rolls without slipping straight down an inclined plane at an angle $\alpha$ from the horizontal. Use as your generalized coordinates the cylinder’s distance x measured down the plane from its starting point. Solve the Lagrange equation for the cylinder’s acceleration $\ddot{x}$. Remember that $T = \frac{1}{2} mv^2 + \frac{1}{2} I\omega^2$ where $v$ is the velocity of the center of mass and $\omega$ is the cylinder’s angular velocity.}
+
+\begin{align*}
+  x' &= x\cos(\alpha)\\
+  y' &= -x\sin(\alpha)\\
+  \omega &= \frac{v}{2\pi R}\\
+  \vspace{1cm}\\
+  U &= mgy' = -mgx\sin(\alpha)\\
+  T &= \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2\\
+  &= \frac{1}{2}m\left(\dot{x}'^2 + \dot{y}'^2\right) + \frac{1}{2}I\left(\frac{\dot{x}'^2 + \dot{y}'^2}{2\pi R}\right)\\
+  &= \frac{1}{2}m\left(\dot{x}^2\sin^2(\alpha) + \dot{x}^2\cos^2(\alpha)\right) + \frac{1}{2}I\left(\frac{\dot{x}^2\sin^2(\alpha) + \dot{x}^2\cos^2(\alpha)}{4\pi^2R^2}\right)\\
+  &= m\left(\dot{x}^2\right) + I\left(\frac{\dot{x}^2}{4\pi^2R^2}\right)\\
+  &= \dot{x}^2\left(\frac{I + 4\pi^2R^2m}{4\pi^2R^2}\right)\\
+  L &= \dot{x}^2\left(\frac{I + 4\pi^2R^2m}{4\pi^2R^2}\right) + mgx\sin(\alpha)\\
+  \vspace{1cm}\\
+  &\frac{dL}{dx} - \frac{d}{dt}\frac{dL}{d\dot{x}} = 0\\
+  &mg\sin(\alpha) - \ddot{x}\left(\frac{I + 4\pi^2R^2m}{\pi^2R^2}\right) = 0\\
+  \ddot{x} &= \frac{\pi^2R^2mg\sin(\alpha)}{I + 4\pi^2R^2m}\\
+  x &= \frac{\pi^2R^2mg\sin(\alpha)}{2I + 8\pi^2R^2m}t^2
+\end{align*}
+
+It took me a while to figure out why I needed to set up kinetic energy in cartesian coordinates. I thought I could just take my axes to be in the x direction (down the slope), but that isn't how we've done other problems. Although I did use the cartesian coordinates method, I found that using other cartesian coordinates (ones more natural to the problem, where x is in the direction of the wedge) would have yielded the same answer. I will try to apply these smarter cartesian coordinates to further problems.\\
+
+\section{Problem Two: Bead on a Spiral}
+\textbf{A smooth wire is bent into the shape of a helix, with cylindrical coordinates $\rho=R$ and $z=\lambda\phi$, where $R$ and $\lambda$ are constants and the z axis is vertically up (and gravity is vertically down). Using z as your generalized coordinate, write down the Lagrangian for a bead of mass m threaded on the wire. Find the Lagrange equation and the bead’s vertical acceleration $\ddot{z}$. In the limit that $R → 0$, what is $\ddot{z}$? Does this make sense?}
+
+\begin{align*}
+  v &= \sqrt{\dot{\rho}^2 + \rho^2\dot{\phi}^2 + \dot{z}^2}\\
+  &= \sqrt{\rho^2\frac{\dot{z}^2}{\lambda^2} + \dot{z}^2}\\
+  \vspace{1cm}\\
+  T &= \frac{1}{2}mv^2\\
+  &= \frac{1}{2}m\left(\rho^2\frac{\dot{z}^2}{\lambda^2} + \dot{z}^2\right)\\
+  U &= mgz\\
+  L &= \frac{1}{2}m\left(\rho^2\frac{\dot{z}^2}{\lambda^2} + \dot{z}^2\right) - mgz\\
+  \vspace{1cm}\\
+  &\frac{dL}{dz} - \frac{d}{dt}\frac{dL}{d\dot{z}} = 0\\
+  -mg - \ddot{z}m\left(\frac{\rho^2}{\lambda^2}+1\right) &= 0\\
+  \ddot{z} &= \frac{-g}{\frac{R^2}{\lambda^2}+1}\\
+\end{align*}
+
+Fun problem. It was simple and easy to set up. It was interesting to think about how the problem would be different if the helix was moving. Also, when R goes to zero, the rhs of the equation just turns to -g, which is exactly what you would expect: a frictionless bead falling down a straight loop. It was cool that this works out.\\
+
+\section{Problem Three: }
+\textbf{Write the Lagrangian for a cylinder (mass m, radius r, and moment of inertia $I=\frac{mr^2}{2}$) that rolls without slipping in the bottom of a circular shaped hole of equation $z = −\sqrt{R^2 − x^2}$ , where z is the vertical axis (see figure below). Find the angular frequency of small oscillations about the bottom of the hole.}
+
+\begin{align*}
+  x &= (R-r)\sin(\theta)\\
+  z &= -(R-r)\cos(\theta)\\
+  v^2 &= (R-r)^2\dot{\theta}^2\\
+  \omega^2 &= \frac{v^2}{r^2} = \frac{(R-r)^2\dot{\theta}^2}{r^2}\\
+  \vspace{1cm}\\
+  T &= \frac{1}{2}mv^2 + \frac{1}{2}I\omega^2\\
+  &= \frac{1}{2}m(R-r)^2\dot{\theta}^2 + \frac{1}{2}I\frac{(R-r)^2\dot{\theta}^2}{r^2}\\
+  &= \frac{1}{2}\left(m + \frac{I}{r^2}\right)(R-r)^2\dot{\theta}^2\\
+  U &= -mg(R-r)\cos(\theta)\\
+  L &= \frac{1}{2}\left(m + \frac{I}{r^2}\right)(R-r)^2\dot{\theta}^2 + mg(R-r)\cos(\theta)\\
+  \vspace{1cm}\\
+  \frac{dL}{d\theta} - \frac{d}{dt}\frac{dL}{d\dot{\theta}} &= 0\\
+  -mg(R-r)\sin(\theta) - \left(m + \frac{I}{r^2}\right)(R-r)^2\ddot{\theta} &= 0\\
+  \left(m + \frac{I}{r^2}\right)(R-r)\ddot{\theta} &= -mg\sin(\theta)\\
+  \ddot{\theta} &= \frac{-mg\sin(\theta)}{\left(m + \frac{I}{r^2}\right)(R-r)}\\
+  \ddot{\theta} &= \frac{-2g\sin(\theta)}{3(R-r)}\\
+\end{align*}
+
+We then take the small angle approximation:
+
+\begin{align*}
+  \ddot{\theta} &= \frac{-2g\theta}{3(R-r)}\\
+\end{align*}
+
+Suppose our solution for $\theta$ takes the form $\theta = e^{wt}$. Then we can see that $\omega = \sqrt{\frac{2g}{3(R-r)}}$.\\
+
+Cool problem! It felt nice to get a final result that looks like that of a pendulum, even though we used a completely different method. The small angle approximation helped a lot for this problem, I was struggling at applying it for a while. Remembering how to find the angular frequency was good for me, the method of guessing the solution takes the form of a pendulum solution and comparing the solutions together to create new information is cool.\\
+
+\section{Problem Four: }
+\textbf{The figure below shows a simple pendulum (mass m, length l) whose point of support P is attached to the edge of a wheel (center O, radius R) that is forced to rotate at a fixed angular velocity $\omega$. At t=0, the point P is level with O on the right. Write the Lagrangian and find the equation of motion for the angle $\phi$. [Hint: Be careful writing down the kinetic energy T. A safe way to get the velocity right is to write down the position of the bob at time t, and then differentiate.] Check that your answer makes sense in the special case that $\omega=0$.}
+\begin{align*}
+  x &= R\cos(\omega t) + l\sin(\phi)\\
+  y &= R\sin(\omega t) - l\cos(\phi)\\
+  \dot{x} &= -\omega R\sin(\omega t) + l\cos(\phi)\dot{\phi}\\
+  \dot{y} &= \omega R\cos(\omega t) + l\sin(\phi)\dot{\phi}\\
+  \vspace{1cm}\\
+  T &= \frac{1}{2}mv^2\\
+  &= \frac{1}{2}m\left(\omega^2R^2\sin^2(\omega t) + l^2\cos^2(\phi)\dot{\phi}^2 - 2\omega Rl\sin(\omega t)\cos(\phi)\dot{\phi} + \omega^2 R^2\cos^2(\omega t) + l^2\sin^2(\phi)\dot{\phi}^2 + 2\omega Rl\cos(\omega t)\sin(\phi)\dot{\phi}\right)\\
+  &= \frac{1}{2}m\left(\omega^2R^2 + l^2\dot{\phi}^2 + 2\dot{\phi}\omega Rl\left(\cos(\omega t)\sin(\phi) - \sin(\omega t)\cos(\phi)\right)\right)\\
+  &= \frac{1}{2}m\left(\omega^2R^2 + l^2\dot{\phi}^2 + 2\dot{\phi}\omega Rl\sin(\phi - \omega t)\right)\\
+  U &= mgy = mg\left(R\sin(\omega t) - l\cos(\phi)\right)\\
+  L &= \frac{1}{2}m\left(\omega^2R^2 + l^2\dot{\phi}^2 + 2\dot{\phi}\omega Rl\sin(\phi - \omega t)\right) - mg\left(R\sin(\omega t) - l\cos(\phi)\right)\\
+  &= \frac{m\omega^2R^2}{2} + \frac{ml^2\dot{\phi}^2}{2} + m\dot{\phi}\omega Rl\sin(\phi - \omega t) - mg\left(R\sin(\omega t) - l\cos(\phi)\right)\\
+  \vspace{1cm}\\
+  &\frac{dL}{d\phi} - \frac{d}{dt}\frac{dL}{d\dot{\phi}} = 0\\
+  &\frac{dL}{d\phi} = m\dot{\phi}\omega Rl\cos(\phi - \omega t) - mgl\sin(\phi)\\
+  &\frac{dL}{d\dot{\phi}} = ml^2\dot{\phi} + m\omega Rl\sin(\phi - \omega t)\\
+  &\frac{d}{dt}\frac{dL}{d\dot{\phi}} = ml^2\ddot{\phi} - m\omega Rl\cos(\phi - \omega t)\left(\dot{\phi} - \omega\right)\\
+  &m\dot{\phi}\omega Rl\cos(\phi - \omega t) - mgl\sin(\phi) - ml^2\ddot{\phi} + m\omega Rl\cos(\phi - \omega t)\left(\dot{\phi} - \omega\right) = 0\\
+  &\omega^2R\cos(\phi - \omega t) + g\sin(\phi) = l\ddot{\phi}\\
+\end{align*}
+
+This solution makes sense because, for the case where $\omega = 0$, the equation would be just $g\sin(\phi) = l\ddot{\phi}$, which is the equation for a pendulum. This was a cool problem, I feel like I'm getting experienced at using Lagrangians. Applying the equation of tangential velocity was also something I had to remember how to do. I think it's interesting that coming at the problem from different angles (cartesian coordinates in one direction or another) will yield the same answer.\\
+
+\end{document}
