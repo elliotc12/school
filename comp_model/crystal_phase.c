@@ -6,8 +6,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-const double M_PI =  3.14159265358979323846;
-const int size = 100;
+const double m_pi =  3.14159265358979323846;
+const int size = 15;
 
 void log_data(double* data, int fd) {
   char* str = malloc(100 * sizeof(char));
@@ -43,7 +43,7 @@ int main() {
   double alpha = 0.9;
   double gamma = 10.0;
   double Teq = 1.0;
-  int r = 50;
+  int r = 10;
 
   int fd;
   if ((fd = open("data.txt", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWOTH | S_IROTH)) == -1)
@@ -65,7 +65,7 @@ int main() {
   double T_new[arrsize];
   double phi_grad_angle[arrsize];
   double t = 0;
-  double t_final = 0.005;
+  double t_final = 0.0007;
 
   for (int y = 0; y<size; y++) {
     for (int x = 0; x<size; x++) {
@@ -111,9 +111,9 @@ int main() {
 
 	if (dphi_dx[x+y*size] == 0) {
 	  if (dphi_dy[x+y*size] < 0)
-	    phi_grad_angle[x+y*size] = -0.5 * M_PI;
+	    phi_grad_angle[x+y*size] = -0.5 * m_pi;
 	  else if (dphi_dy[x+y*size] > 0)
-	    phi_grad_angle[x+y*size] =  0.5 * M_PI;
+	    phi_grad_angle[x+y*size] =  0.5 * m_pi;
 	}
 	else {
 	  phi_grad_angle[x+y*size] = atan2(dphi_dy[x+y*size], dphi_dx[x+y*size]);
@@ -134,13 +134,13 @@ int main() {
 
 	term3 = dep2_dx*dphi_dx[x+y*size] + dep2_dy*dphi_dy[x+y*size];
 
-	m = alpha/M_PI * atan(gamma*(Teq-T[x+y*size]));
+	m = alpha/m_pi * atan(gamma*(Teq-T[x+y*size]));
 
 	phi_new[x+y*size] = phi[x+y*size] + (term1 + term2 + ep[x+y*size]*ep[x+y*size]
 		     *lap_phi[x+y*size] + term3 + phi[x+y*size]*(1.0-phi[x+y*size])
 		     *(phi[x+y*size] - 0.5 - m)) * dt / tau;
 
-	T_new[x+y*size] = T[x+y*size] + lap_T[x+y*size]*dt + k*(phi[x+y*size] /*-phiold?*/);
+	T_new[x+y*size] = T[x+y*size] + lap_T[x+y*size]*dt + k*(phi_new[x+y*size] - phi[x+y*size]);
       }
     }
     
