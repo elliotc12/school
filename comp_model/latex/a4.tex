@@ -1,0 +1,109 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage{amsmath}
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Computational Modeling HW 4}
+\author{Elliott Capek}
+
+\begin{document}
+
+\maketitle{}
+
+\section{4.2: Dimensional Analysis of Ship Drag Model}
+We want to create dimensionless $\pi$-groups for a model using the following variables and units: [D] = kg m/$\mbox{s}^2$, [L] = m, [v] = m/s, [$\mu$] = kg/(m s), [g] = m/$\mbox{s}^2$, and [$\rho$] = kg/$\mbox{m}^3$\\
+
+We lay out our dimensional matrix like so:
+
+\begin{equation*}
+  \begin{tabular}{c|c c c c c c}
+    ~ & L & v & $\mu$ & g & $\rho$ & D\\
+    \hline
+    kg & 0 &  0 &  1 &  0 &  1 & 1\\
+    m  & 1 &  1 & -1 &  1 & -3 & 1 \\
+    s  & 0 & -1 & -1 & -2 &  0 & 2 \\
+  \end{tabular}
+\end{equation*}
+
+We then perform row reduction to put our matrix in a simplified form:
+
+\begin{equation*}
+  \begin{pmatrix}
+    1 &  0 &  0 & -1 & -1 &  5\\
+    0 &  1 &  0 &  2 & -1 & -3\\
+    0 &  0 &  1 &  0 &  1 &  1\\
+  \end{pmatrix}
+\end{equation*}
+
+This system has six columns and three dimensions, so by the Buckingham Pi theorem, it should have three basis vectors for its null space (or three pi groups). Three good basis vectors are these:
+
+\begin{align*}
+  S_1 =
+  \begin{pmatrix}
+    1\\
+    -2\\
+    0\\
+    1\\
+    0\\
+    0\\
+  \end{pmatrix}
+  \hspace{1cm}
+  S_2 =
+  \begin{pmatrix}
+    1\\
+    1\\
+    -1\\
+    0\\
+    1\\
+    0\\
+  \end{pmatrix}
+  \hspace{1cm}
+  S_3 =
+  \begin{pmatrix}
+    -5\\
+    3\\
+    -1\\
+    0\\
+    0\\
+    1\\
+  \end{pmatrix}
+\end{align*}
+
+From this we can derive $\pi$-groups of $\pi_1 = \frac{Lg}{v^2}$, $\pi_2 = \frac{Lv\rho}{\mu}$, and $\pi_3 = \frac{v^3D}{L^5\mu}$. These three vectors can be linearly combined in any way we want. If we just add the three together, we get the $\pi$ group $\pi_{1+2+3} = \frac{v^2g\rho D}{L^3\mu^2}$, which is unitless as desired. From this we can derive an equation for drag: $D = C\frac{L^3\mu}{v^2g\rho}$. Here C is a unitless proportionality constant.\\
+
+This particular expression for drag, while unitless, doesn't make a lot of sense. Drag has the strongest proportionality to velocity, but we see here that it is inversely proportional. Water density $\rho$ should also be proportional to drag, not inversely proportional. It also isn't clear why the drag would be so strongly related to the ship's length L. But we don't expect intuitive answers through this method, there were an infinite number of linear combinations of our $\pi$-groups we could have chosen to represent D.\\
+
+The $\pi$-groups themselves are also arbitrary. We could have chosen a different basis for our null space. The groups are all dimensionless, as desired, but this method of generating dimensionless parameters is not based in physics but math, and so there is no guarentee that the $\pi$-groups will mean anything.
+\end{document}

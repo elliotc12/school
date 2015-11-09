@@ -35,11 +35,97 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Physical Chemistry Assignment Three: 3.4, 3.5, 3.6, 3.9, 3.12, 3.13, 3.20, 3.31, 3.34, 3.39}
+\title{Physical Chemistry Assignment Three}
 \author{Elliott Capek}
 \begin{document}
 
 \maketitle{}
+
+\section{Problem 3.4}
+\begin{align*}
+  \Delta S_1 &= \int \frac{dW}{T} = \int_{V_1}^{V_2} \frac{R}{V}dV
+  \hspace{2cm} \mbox{Isothermal} \rightarrow dU = 0\\
+  &= R\ln\left(\frac{V_2}{V_1}\right)\\
+  \vspace{1cm}\\
+  \Delta S_2 &= \int \frac{dU}{T} = \int_{T_2}^{T_1} \frac{C_v}{T}dT
+  \hspace{2cm} \mbox{Adiabatic Path: } \Delta S = 0\\
+  &= C_v\ln\left(\frac{T_1}{T_2}\right)\\
+  &= C_v\ln\left(\frac{V_2^{R/C_v}}{V_1^{R/C_v}}\right)\\
+  &= R\ln\left(\frac{V_2}{V_1}\right)\\
+\end{align*}
+
+\section{Problem 3.5}
+\textbf{a.}
+\begin{align*}
+  \Delta S &= \frac{\Delta H}{T} = \frac{40.69 \frac{kJ}{mol}}{373.15K} = 109 \frac{J}{K mol}\\
+\end{align*}
+\textbf{b.}
+Universal entropy changes for reversible processes are zero.\\
+
+\section{Problem 3.6}
+\begin{align*}
+  \Delta H &= \int_{T_1}^{T_2} C_p dT = \int_{T_1}^{T_2} 26.684 + 42.264*10^{-3}T - 142.4*10^{-7}T^2 dT = 33.36 \frac{kJ}{mol}\\
+  \Delta S &= \int_{T_1}^{T_2} \frac{C_p}{T} dT = \int_{T_1}^{T_2} \frac{26.684}{T} + 42.264*10^{-3} - 142.4*10^{-7}T dT = 55.4 \frac{J}{K mol}\\
+\end{align*}
+
+\section{Problem 3.9}
+\begin{align*}
+  \Delta S_1 &= \frac{\Delta H}{T} = \int_{T_1}^{\frac{T_1+T_2}{2}} \frac{C_p}{T}dT\\
+    &= C_p\ln\left(\frac{T_1+T_2}{2T_1}\right)\\
+    \Delta S_2 &= C_p\ln\left(\frac{T_1+T_2}{2T_2}\right)\\
+    \Delta S &= C_p\ln\left(\frac{\left(T_1+T_2\right)^2}{4T_1T_2}\right)\\
+\end{align*}
+
+\section{Problem 3.12}
+\textbf{a.}
+\begin{align*}
+  \Delta U &= 0
+  \hspace{5cm} \mbox{Isothermal process}\\
+  w &= -nRT\ln\left(\frac{V_2}{V_2}\right) = -(1 mol)(8.314 \frac{J}{mol K})(300K)\ln\left(\frac{300}{90}\right) = -3kJ\\
+  q &= -w = 3kJ\\
+  \Delta S &= \frac{dQ}{T} = 10 \frac{J}{K}\\
+\end{align*}
+
+\textbf{b.}
+\begin{align*}
+  \Delta U &= 0\\
+  w &=  -1kJ\\
+  q &=   1kJ\\
+  \Delta S &= \frac{dQ}{T} = 3.3 \frac{J}{K}\\
+\end{align*}
+
+\textbf{c.}
+\begin{align*}
+  &\mbox{Must be the same, state function}\\
+  \Delta U &= 0\\
+  w &=  -1kJ\\
+  q &= 1kJ\\
+  \Delta S &= \frac{dQ}{T} = 3.3 \frac{J}{K}\\
+\end{align*}
+
+\section{Problem 3.13}
+\textbf{a.}
+\begin{align*}
+  \Delta S &= nR\ln\left(\frac{V_2}{V_1}\right)\\
+  &= nR\ln\left(\frac{P_1}{P_2}\right) = (1 mol)(8.314)\ln(10) = 19.14 \frac{J}{K}\\
+  &\mbox{Entropy is a state function, both cases have same entropy change}\\
+\end{align*}
+
+\textbf{b.}
+Universal entropy change for a reversible process is zero. This is true for both cases, since entropy is a state function.\\
+
+\section{Problem 3.20}
+\begin{align*}
+  \Delta S_1 &= \int_{V_1}^{V_1+V_2} \frac{dQ}{T} = \int_{V_1}^{V_1+V_2} \frac{dW}{T}\\
+  &= n_1R\ln\left(\frac{V_1+V_2}{V_1}\right)\\
+  &= n_1R\ln\left(\frac{\frac{n_1}{P_1} + \frac{n_2}{P_2}}{\frac{n_1}{P_1}}\right)\\
+  &= n_1R\ln\left(\frac{3/2}{1}\right) = 0.4R\\
+  \vspace{1cm}\\
+  \Delta S_2 &= n_2R\ln\left(\frac{\frac{n_1}{P_1} + \frac{n_2}{P_2}}{\frac{n_2}{P_2}}\right)\\
+  &= n_1R\ln\left(\frac{3/2}{1/2}\right) = R\\
+  \vspace{1cm}
+  \Delta S &= 1.4R = 11.6 \frac{J}{K}\\
+\end{align*}
 
 \section{Problem 3.31}
 \begin{align*}
@@ -70,6 +156,5 @@
   &= \int_0^{T'}\frac{\alpha T^3}{T}dT\\
   &= \frac{\alpha T'^3}{3} = \frac{C_p}{3}\\
 \end{align*}
-
 
 \end{document}
