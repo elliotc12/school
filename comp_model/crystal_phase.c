@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 const double m_pi =  3.14159265358979323846;
-const int size = 300;
+const int size = 1000;
 
 void log_data(double* data, int fd) {
   char* str = malloc(100 * sizeof(char));
@@ -34,7 +34,7 @@ int main() {
   double dx = 0.03; //m
   double dy = 0.03; //m
   double dt = 0.0003; //s
-  double t_final = 100*dt;
+  double t_final = 10*dt;
   double tau = 0.0003;
   double epsilonbar = 0.01;
   double mu = 1.0;
@@ -54,17 +54,17 @@ int main() {
     }
 
   int arrsize = size*size;
-  double T[arrsize];
-  double ep[arrsize];
-  double dep_dt[arrsize];
-  double phi[arrsize];
-  double dphi_dx[arrsize];
-  double dphi_dy[arrsize];
-  double lap_T[arrsize];
-  double lap_phi[arrsize];
-  double phi_new[arrsize];
-  double T_new[arrsize];
-  double phi_grad_angle[arrsize];
+  double* T = malloc(sizeof(double) * arrsize);
+  double* ep = malloc(sizeof(double) * arrsize);
+  double* dep_dt = malloc(sizeof(double) * arrsize);
+  double* phi = malloc(sizeof(double) * arrsize);
+  double* dphi_dx = malloc(sizeof(double) * arrsize);
+  double* dphi_dy = malloc(sizeof(double) * arrsize);
+  double* lap_T = malloc(sizeof(double) * arrsize);
+  double* lap_phi = malloc(sizeof(double) * arrsize);
+  double* phi_new = malloc(sizeof(double) * arrsize);
+  double* T_new = malloc(sizeof(double) * arrsize);
+  double* phi_grad_angle = malloc(sizeof(double) * arrsize);
   double t = 0;
 
   for (int y = 0; y<size; y++) {
