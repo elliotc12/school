@@ -7,7 +7,7 @@
 #include <unistd.h>
 
 const double m_pi =  3.14159265358979323846;
-const int size = 15;
+const int size = 300;
 
 void log_data(double* data, int fd) {
   char* str = malloc(100 * sizeof(char));
@@ -34,6 +34,7 @@ int main() {
   double dx = 0.03; //m
   double dy = 0.03; //m
   double dt = 0.0003; //s
+  double t_final = 100*dt;
   double tau = 0.0003;
   double epsilonbar = 0.01;
   double mu = 1.0;
@@ -43,10 +44,10 @@ int main() {
   double alpha = 0.9;
   double gamma = 10.0;
   double Teq = 1.0;
-  int r = 10;
+  int r = sqrt(20);
 
   int fd;
-  if ((fd = open("data.txt", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWOTH | S_IROTH)) == -1)
+  if ((fd = open("data.txt", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWOTH | S_IROTH)) == -1)
     {
       perror("open failed: ");
       exit(EXIT_FAILURE);
@@ -65,7 +66,6 @@ int main() {
   double T_new[arrsize];
   double phi_grad_angle[arrsize];
   double t = 0;
-  double t_final = 0.0007;
 
   for (int y = 0; y<size; y++) {
     for (int x = 0; x<size; x++) {
@@ -87,10 +87,12 @@ int main() {
     }
   }
 
+  log_data(phi, fd);
+
   int ym, yp, xm, xp;
   double dep2_dx, dep2_dy, term1, term2, term3, m;
   for (t=0; t<t_final; t+=dt) {
-    printf("t=%f\n", t);
+    if ((int)(t/dt) % (int)(t_final/(dt*10)) == 0) printf("step %g of %g\n", t/dt, t_final/dt);
     for (int y = 0; y<size; y++) {
       for (int x = 0; x<size; x++) {
 	ym = y-1;

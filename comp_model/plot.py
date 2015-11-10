@@ -1,14 +1,18 @@
 #! /usr/bin/env python
 
+from __future__ import division
+
 import math
 import numpy as np
 import time
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 
-data = np.genfromtxt("data.txt")
-print len(data)
 plt.ion()
+
+data = np.genfromtxt("data.txt")
+time = 1 # s
+frames = 10
 
 ax = plt.gca()
 ax.set_aspect("equal", adjustable="box")
@@ -23,7 +27,7 @@ while i < len(data):
     print str(i) + " of " + str(len(data))
     Z = np.reshape(data[i], (math.sqrt(len(data[i])), math.sqrt(len(data[i]))))
     plt.imshow(Z)
-    plt.pause(1)
-    i+=1
+    plt.pause(time/frames)
+    i += int(len(data)/frames)
 
 plt.show()
