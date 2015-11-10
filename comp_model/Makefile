@@ -10,5 +10,6 @@ a4: latex/a4.tex
 	cd latex && xelatex a4.tex && mv a4.pdf ..
 
 crystal: crystal_phase.c
-	gcc crystal_phase.c -g -std=c99 -lm -o crystal
-
+	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
+	./crystal
+	./plot.py
