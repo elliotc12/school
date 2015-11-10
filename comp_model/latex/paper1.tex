@@ -1,0 +1,78 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage{amsmath}
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Effect of Parameters in Phase-Field Model for simulating Solid-Liquid Transitions}
+\author{Elliott Capek}
+
+\begin{document}
+\maketitle{}
+
+\section{Introduction}
+The Phase-Field model is a method for simulating phase transitions in systems. Phase transitions in real life are discontinuous, making them hard to represent analytically. The Phase-Field method overcomes this by representing the phase of a region with a space- and time-dependent function $\phi(r,t)$. $\phi$ ranges from $0$ to $1$, with either end of the range being one phase or the other, and numbers between $0$ and $1$ representing transitional regions. These transitional regions, while not physical, can approximate reality well if the distance between a 0-zone and a 1-zone is as small as possible. \\
+
+In this paper we seek to reproduce the results of Sanal [1], where a solid-liquid phase transition with anisotropic dependence is time-evolved. The anisotropy (angular dependence) of the equations used in this paper allow for radially-symmetric crystals to form. In this formulation, $\phi=1$ corresponds to solid phase and $\phi=0$ corresponds to liquid phase. The equation for time-evolving $\phi$ is given in Sanal as:
+
+\begin{equation}  \label{eq:dPhidt}
+  \tau \frac{\partial \phi}{\partial t} = -\frac{\partial}{\partial x} \left(\epsilon \frac{d\epsilon}{d\theta}\frac{\partial\phi}{\partial y}\right) + \frac{\partial}{\partial y} \left(\epsilon \frac{d\epsilon}{d\theta}\frac{\partial \phi}{\partial x}\right) + \nabla \cdot \left(\epsilon^2\nabla\phi\right) + \phi\left(1-\phi\right)\left(\phi-0.5+m\right)
+\end{equation}
+
+Here $\tau$ is the relaxation time, or the time it takes $\phi$ to come into equilibrium with its neighbors. $\epsilon$ is a small $\theta$-dependent parameter which controls how quickly the solid-liquid interface moves. $\theta$ is the angle from the origin measured from the horizontal. Making $\epsilon$ depend on $\theta$ introduces anisotropy into the model, allowing different angles to spread at different rates. $m$ is the thermodynamic driving force, a temperature-dependent number which determines how favorable solidification is. Larger values of temperature (and hence $m$) correspond to quicker solidification. \\
+
+The equation for $\epsilon(\theta)$ is given as follows:
+
+\begin{equation}
+  \epsilon = 1 + \delta\cos\left(j\left(\theta_0-\theta\right)\right)
+\end{equation}
+
+where $\delta$ is the strength of anisotropy, $j$ is the harmonic number and $\theta_0$ is the angular offset. The higher $j$ is, the more angular extrema will exist in the system.\\
+
+Temperature is also important to this model, as it decides the value of m, the rate of interface front movement. Temperature's time-evolution is given by:
+
+\begin{equation}  \label{eq:dTdt}
+  \frac{\partial T}{\partial t} = \nabla^2T + k\frac{\partial \phi}{\partial t}
+\end{equation}
+
+where k is the latent heat of the phase change. Liquid freezing into a solid is exergonic, so heat is evolved when $\frac{\partial\phi}{\partial t}$ is positive. \\
+
+\section{Method}
+To simulate the behavior of the differential equation given by Sanal, we use the forwards-Euler finite difference method to time-evolve Equations (\ref{eq:dPhidt}) and (\ref{eq:dTdt}). We implement this in a C program (see Code section) and a Python script using matplotlib to plot our results.
+
+\section{Results}
+
+\section{Next Steps}
+
+\end{document}

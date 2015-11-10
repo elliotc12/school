@@ -9,7 +9,10 @@ a2: latex/a2.tex
 a4: latex/a4.tex
 	cd latex && xelatex a4.tex && mv a4.pdf ..
 
-crystal: crystal_phase.c
+crystal: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
 	./crystal
-	./plot.py
+	python2.7 plot.py
+
+paper: latex/paper1.tex
+	cd latex && xelatex paper1.tex && mv paper1.pdf ..

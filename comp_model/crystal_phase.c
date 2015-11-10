@@ -8,13 +8,15 @@
 
 const double m_pi =  3.14159265358979323846;
 const int size = 500;
-const int animate = 0;
+const int animate = 1;
+const int skiprate = 1;
+const int debug = 0;
 
 void log_data(double* data, int fd) {
   char* str = malloc(10 * sizeof(char));
   for (int y = 0; y < size; y++) {
     for (int x = 0; x < size; x++) {
-      sprintf(str, "%2.2f", data[x+y*size]);
+      sprintf(str, "%2.4f", data[x+y*size]);
       strcat(str, " ");
       if (write(fd, str, sizeof(char) * strlen(str)) == -1)
 	{
@@ -35,12 +37,12 @@ int main() {
   double dx = 0.03; //m
   double dy = 0.03; //m
   double dt = 0.0003; //s
-  double t_final = 100*dt;
+  double t_final = 500*dt;
   double tau = 0.0003;
   double epsilonbar = 0.01;
   double mu = 1.0;
   double k = 4;
-  double delta = 0.04;
+  double delta = 0.01;
   double anisotropy = 4.0;
   double alpha = 0.9;
   double gamma = 10.0;
@@ -145,7 +147,7 @@ int main() {
 
 	term3 = dep2_dx*dphi_dx[x+y*size] + dep2_dy*dphi_dy[x+y*size];
 
-	double phiold = phi[x+y*size]; // wrong stuff
+	double phiold = phi[x+y*size];
 	
 	m = alpha/m_pi * atan(gamma*(Teq-T[x+y*size]));
 	
@@ -154,18 +156,20 @@ int main() {
                phiold*(1.0-phiold)*(phiold - 0.5 + m)) * dt / tau;
 
 	T_new[x+y*size] = T[x+y*size] + lap_T[x+y*size]*dt + k*(phi_new[x+y*size] - phiold);
-	//phi[x+y*size] = phi_new[x+y*size]; // wrong stuff
-	//T[x+y*size] = T_new[x+y*size];    // wrong stuff
+	/* if (x==3 && y==3) printf("%2.2g\n", lap_T[x+y*size]*dt); */
       }
     }
     
     for (int y = 0; y<size; y++) {
       for (int x = 0; x<size; x++) {
+	if (debug) printf("%2.4g ", T[x+y*size]);
     	phi[x+y*size] = phi_new[x+y*size];
     	T[x+y*size] = T_new[x+y*size];
       }
+      if (debug) printf("\n");
     }
-    if (animate) log_data(phi, fd);
+    if (debug) printf("\n");
+    if (animate && (int)(t/dt) % skiprate == 0) log_data(phi, fd);
   }
   log_data(phi, fd);
   close(fd);

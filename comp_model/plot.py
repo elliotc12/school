@@ -13,7 +13,7 @@ plt.ion()
 
 data = np.genfromtxt("data.txt")
 time = 1 # s
-frames = 50
+frames = 20
 
 ax = plt.gca()
 ax.set_aspect("equal", adjustable="box")
@@ -37,4 +37,4 @@ else:
         Z = np.reshape(data[i], (math.sqrt(len(data[i])), math.sqrt(len(data[i]))))
         plt.imshow(Z)
         plt.pause(time/frames)
-        i += int(len(data)/frames)
+        i += math.ceil(len(data)/frames)
