@@ -58,7 +58,7 @@ The equation for $\epsilon(\theta)$ is given as follows:
   \epsilon = 1 + \delta\cos\left(j\left(\theta_0-\theta\right)\right)
 \end{equation}
 
-where $\delta$ is the strength of anisotropy, $j$ is the harmonic number and $\theta_0$ is the angular offset. The higher $j$ is, the more angular extrema will exist in the system.\\
+where $\delta$ is the strength of anisotropy, $j$ is the harmonic number and $\theta_0$ is the angular offset. The higher $j$ is, the more angular ``modes'' will exist in the system.\\
 
 Temperature is also important to this model, as it decides the value of m, the rate of interface front movement. Temperature's time-evolution is given by:
 
@@ -68,11 +68,29 @@ Temperature is also important to this model, as it decides the value of m, the r
 
 where k is the latent heat of the phase change. Liquid freezing into a solid is exergonic, so heat is evolved when $\frac{\partial\phi}{\partial t}$ is positive. \\
 
-\section{Method}
-To simulate the behavior of the differential equation given by Sanal, we use the forwards-Euler finite difference method to time-evolve Equations (\ref{eq:dPhidt}) and (\ref{eq:dTdt}). We implement this in a C program (see Code section) and a Python script using matplotlib to plot our results.
+\section{Derivation of $\phi$-evolution}
+The derivation of the equation for $\frac{d\phi}{dt}$ begins with a free energy functional:
 
-\section{Results}
+\begin{equation}
+  F = \int f(\phi,m) + \frac{\epsilon(\phi)^2}{2}|\nabla\phi|^2 dV
+\end{equation}
 
-\section{Next Steps}
+F, the free energy, is a functional of $\phi(r,t)$ and $\epsilon(\phi)$. The above equation has two components: function $f(\phi,m)$, which is the potential energy of the system, and the $\epsilon$ term, which represents the surface tension of the crystal.\\
+
+Potential f only needs to be defined between $\phi=0$ and $\phi=1$, due to the definition of $\phi$. f should have local minima at $\phi=0$ and $\phi=1$ to encourage settling at either phase and discourage transitional values of $\phi$. The potential is also m-dependent. m is the thermodynamic driving force of the phase-change reaction. It decides if it is favorable or unfavorable to be a solid or liquid, and is a function of T. It will be defined later. Potential depends on m in that the higher m is, the more favorable the liquid phase should be. Sanal presents the following as the phase-transition potential:
+
+\begin{equation}
+  f(\phi,m) = \frac{1}{4}\phi^4 - (\frac{1}{2} - \frac{1}{3}m)\phi^3 + (\frac{1}{4}-\frac{1}{2}m)\phi^2
+\end{equation}
+
+The epsilon term in the F functional exists to make the phase-transition region as small as possible, and also to introduce anisotropy. The potential f discourages $\phi$ from taking transition values, but it isn't detailed enough. It discourages transition values system-wide, but we want to make the transition region as small as possible. This requires a $\nabla\phi$, which is present in the $\epsilon$-term. The larger $\nabla\phi$, the smaller the solid-liquid interface will be. Because we want to encourage small solid-liquid as well as liquid-solid transitions, the gradient term becomes $|\nabla\phi|$. The actual $\epsilon(\phi)$ function controls where $\phi$ should change. This $\epsilon$ is actually a function of the negative gradient of phi, $\epsilon(-\nabla\phi)$ since it only depends on the angle of the interface. This is to introduce anisotropy. $\epsilon$ is defined as follows:
+
+\begin{equation}
+  \epsilon = 1 + \delta\cos(j(\phi_0-\phi))
+\end{equation}
+
+where $\delta$ is a small value which controls strength of anisotropy, $j$ controls how many angular nodes show up, and $\phi_0$ rotates the crystal. The basic function of $\epsilon$ is to control where the phase-transition should appear, or in this case, how expensive certain angles of the phase transition should be. Certain angles are cheap, and so the system will have the barrier take those on, and some will be expensive, so the system will try and minimize the area of the interface at that angle. In particular, values of $j(\phi_0-\phi)$ close to $-1$ will be favored and values close to $1$ will be disfavored.
+
+The free energy functional is a value that is minimized when a system evolves in time. We can use this fact to time-evolve $\phi$.
 
 \end{document}
