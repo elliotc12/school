@@ -12,7 +12,10 @@ import matplotlib.mlab as mlab
 plt.ion()
 
 data = np.genfromtxt("data.txt")
-time = 1 # s
+
+hi = raw_input("Press any key to play animation.")
+
+time = 10 # s
 frames = 20
 
 ax = plt.gca()
@@ -28,7 +31,11 @@ datafile = open("data.txt", "r").read()
 
 if  len(data.shape) == 1:
     Z = np.reshape(data, (math.sqrt(len(data)), math.sqrt(len(data))))
+    fig = plt.figure()
     plt.imshow(Z)
+    fig.suptitle('Anisotropy j=2', fontsize=20)
+    plt.xlabel('x')
+    plt.ylabel('y')
     input("Press enter to continue.")
     sys.exit(0)
 else:

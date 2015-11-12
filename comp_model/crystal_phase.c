@@ -7,9 +7,9 @@
 #include <unistd.h>
 
 const double m_pi =  3.14159265358979323846;
-const int size = 500;
+const int size = 300;
 const int animate = 1;
-const int skiprate = 1;
+const int skiprate = 10;
 const int debug = 0;
 
 void log_data(double* data, int fd) {
@@ -34,21 +34,21 @@ void log_data(double* data, int fd) {
 }
 
 int main() {
-  double dx = 0.03; //m
-  double dy = 0.03; //m
+  double dx = 0.034; //m
+  double dy = 0.034; //m
   double dt = 0.0003; //s
-  double t_final = 500*dt;
+  double t_final = 1000*dt; // Just forced temperature to 1, unphysical!
   double tau = 0.0003;
   double epsilonbar = 0.01;
   double mu = 1.0;
-  double k = 4;
-  double delta = 0.01;
+  double k = 1;
+  double delta = 0.02;
   double anisotropy = 4.0;
   double alpha = 0.9;
   double gamma = 10.0;
   double Teq = 1.0;
   double T0 = 0;
-  int r = sqrt(40);
+  int r = 70;
 
   int fd;
   if ((fd = open("data.txt", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWOTH | S_IROTH)) == -1)
@@ -139,7 +139,7 @@ int main() {
 	dep2_dx = (ep[xp+y*size]*ep[xp+y*size] - ep[xm+y*size]*ep[xm+y*size]) / dx;
 	dep2_dy = (ep[x+yp*size]*ep[x+yp*size] - ep[x+ym*size]*ep[x+ym*size]) / dy;
 
-	term1 = -(ep[xp+y*size]*dep_dt[xp+y*size]*dphi_dy[xp+y*size]
+	term1 = (ep[xp+y*size]*dep_dt[xp+y*size]*dphi_dy[xp+y*size]
 		 - ep[xm+y*size]*dep_dt[xm+y*size]*dphi_dy[xm+y*size]) / dx;
 	
 	term2 = (ep[x+yp*size]*dep_dt[x+yp*size]*dphi_dx[x+yp*size]
@@ -162,7 +162,7 @@ int main() {
     
     for (int y = 0; y<size; y++) {
       for (int x = 0; x<size; x++) {
-	if (debug) printf("%2.4g ", T[x+y*size]);
+	if (debug) printf("%2.4g ", phi[x+y*size]);
     	phi[x+y*size] = phi_new[x+y*size];
     	T[x+y*size] = T_new[x+y*size];
       }
