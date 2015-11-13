@@ -1,0 +1,86 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+\allowdisplaybreaks
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Classical Mechanics Assignment 7}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One: Shrinking Pendulum Hamiltonian}
+
+\begin{align*}
+  x &= \ell\sin\theta\\
+  y &= -\ell\cos\theta\\
+  \dot{x} &= \dot{\ell}\sin\theta + \ell\cos\theta\dot{\theta}\\
+  \dot{y} &= -\dot{\ell}\cos\theta + \ell\sin\theta\dot{\theta}\\
+  \vspace{1cm}\\
+  T &= \frac{1}{2}m\left(\dot{\ell}^2 + \ell^2\dot{\theta}^2\right)\\
+  U &= -mg\ell\cos\theta\\
+  \mathcal{L} &= \frac{1}{2}m\left(\dot{\ell}^2 + \ell^2\dot{\theta}^2\right) + mg\ell\cos\theta\\
+  \vspace{1cm}\\
+  p_{\theta} &= m\ell^2\dot{\theta}\\
+  p_{\ell} &= m\dot{\ell}\\
+  \mathcal{H} &= p_{\theta}\dot{\theta} + p_{\ell}\dot{\ell} - \mathcal{L} = m\ell^2\dot{\theta}^2 + m\dot{\ell}^2 - \frac{1}{2}m\left(\dot{\ell}^2 + \ell^2\dot{\theta}^2\right) - mg\ell\cos\theta\\
+  &= \frac{1}{2}m\left(\alpha^2 + \ell^2\dot{\theta}^2\right) - mg\ell\cos\theta\\
+  \vspace{1cm}\\
+  T + U &= \frac{1}{2}m\left(\alpha^2 + \ell^2\dot{\theta}^2\right) - mg\ell\cos\theta\\
+\end{align*}
+
+As we can see, the Hamiltonian and the total energy for this system are identical. Because the Lagrangian for this system has no time-dependence, we know that $\mathcal{H}$ must be conserved, and thus total energy is conserved.\\
+
+This problem was a basic tour of how to set up problems using the Hamiltonian. We didn't solve it to completion, but the answer could have been found by deriving $\mathcal{H}$ with respect to momentum and the velocities. It took me a second to figure out this problem, since I wasn't considering that there are actually two generalized coordinates in this problem - $\theta$ and $l$. Once I figured this out, the problem became much easier.\\
+
+\section{Problem Two}
+
+\textbf{A spherical pendulum consists of a bob of mass m attached to a weightless extension rod of length l. The end of the rod opposite the bob pivots freely (in all directions) about some fixed point. Set up the Hamiltonian function in spherical coordinates. (If $p_{\phi}=0$, the result is the same as that for the plane pendulum.) Combine the term that depends on $p_{\phi}$ with the ordinary potential energy to find the effective potential $V(\theta,p_{\phi})$. Sketch V as a function of $\theta$ for several values of $p_{\phi}$, including $p_{\phi}$ = 0. Discuss the features of the motion, pointing out the differences between $p_{\phi}=0$ and $p_{\phi} \neq 0$. Discuss the limiting case of the conical pendulum ($\theta = $constant) with reference to the V − $\theta$ diagram.}
+
+\begin{align*}
+  x &= \ell\sin\phi\cos\theta\\
+  y &= \ell\sin\phi\sin\theta\\
+  \dot{x} &= \ell\cos\phi\cos\theta\dot{\phi} - \ell\sin\phi\sin\theta\dot{\theta}\\
+  \dot{y} &= \ell\cos\phi\sin\theta\dot{\phi} + \ell\sin\phi\cos\theta\dot{\theta}\\
+  T &= \frac{1}{2}m\left(\ell^2\cos^2\phi\dot{\phi}^2 + \ell^2\sin^2\phi\dot{\theta}^2\right)\\
+\end{align*}
+
+\end{document}
