@@ -34,14 +34,14 @@ void log_data(double* data, int fd) {
 }
 
 int main() {
-  double dx = 0.03; //m
-  double dy = 0.03; //m
+  double dx = 0.034; //m
+  double dy = 0.034; //m
   double dt = 0.0003; //s
-  double t_final = 500*dt;
+  double t_final = 1000*dt; // Just forced temperature to 1, unphysical!
   double tau = 0.0003;
   double epsilonbar = 0.01;
   double mu = 1.0;
-  double k = 4;
+  double k = 1;
   double delta = 0.02;
   double anisotropy = 4.0;
   double alpha = 0.9;
