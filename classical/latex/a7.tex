@@ -57,9 +57,13 @@
 
 \textbf{The suspension point remains fixed. Compute the Lagrangian and Hamiltonian functions. Compare the Hamiltonian and the total energy, and discuss the conservation of energy for the system.}
 
+\section{Problem One: Shrinking Pendulum Hamiltonian}
+
+
 \begin{align*}
   x &= \ell\sin\theta\\
   y &= -\ell\cos\theta\\
+
   \dot{x} &= -\alpha\sin\theta + \ell\cos\theta\dot{\theta}\\
   \dot{y} &= \alpha\cos\theta + \ell\sin\theta\dot{\theta}\\
   \vspace{1cm}\\
@@ -68,5 +72,36 @@
   \mathcal{L} &= \frac{1}{2}m\left(\alpha^2+\ell^2\dot{\theta}^2\right) + mg\ell\cos\theta\\
 \end{align*}
 
+
+  \dot{x} &= \dot{\ell}\sin\theta + \ell\cos\theta\dot{\theta}\\
+  \dot{y} &= -\dot{\ell}\cos\theta + \ell\sin\theta\dot{\theta}\\
+  \vspace{1cm}\\
+  T &= \frac{1}{2}m\left(\dot{\ell}^2 + \ell^2\dot{\theta}^2\right)\\
+  U &= -mg\ell\cos\theta\\
+  \mathcal{L} &= \frac{1}{2}m\left(\dot{\ell}^2 + \ell^2\dot{\theta}^2\right) + mg\ell\cos\theta\\
+  \vspace{1cm}\\
+  p_{\theta} &= m\ell^2\dot{\theta}\\
+  p_{\ell} &= m\dot{\ell}\\
+  \mathcal{H} &= p_{\theta}\dot{\theta} + p_{\ell}\dot{\ell} - \mathcal{L} = m\ell^2\dot{\theta}^2 + m\dot{\ell}^2 - \frac{1}{2}m\left(\dot{\ell}^2 + \ell^2\dot{\theta}^2\right) - mg\ell\cos\theta\\
+  &= \frac{1}{2}m\left(\alpha^2 + \ell^2\dot{\theta}^2\right) - mg\ell\cos\theta\\
+  \vspace{1cm}\\
+  T + U &= \frac{1}{2}m\left(\alpha^2 + \ell^2\dot{\theta}^2\right) - mg\ell\cos\theta\\
+\end{align*}
+
+As we can see, the Hamiltonian and the total energy for this system are identical. Because the Lagrangian for this system has no time-dependence, we know that $\mathcal{H}$ must be conserved, and thus total energy is conserved.\\
+
+This problem was a basic tour of how to set up problems using the Hamiltonian. We didn't solve it to completion, but the answer could have been found by deriving $\mathcal{H}$ with respect to momentum and the velocities. It took me a second to figure out this problem, since I wasn't considering that there are actually two generalized coordinates in this problem - $\theta$ and $l$. Once I figured this out, the problem became much easier.\\
+
+\section{Problem Two}
+
+\textbf{A spherical pendulum consists of a bob of mass m attached to a weightless extension rod of length l. The end of the rod opposite the bob pivots freely (in all directions) about some fixed point. Set up the Hamiltonian function in spherical coordinates. (If $p_{\phi}=0$, the result is the same as that for the plane pendulum.) Combine the term that depends on $p_{\phi}$ with the ordinary potential energy to find the effective potential $V(\theta,p_{\phi})$. Sketch V as a function of $\theta$ for several values of $p_{\phi}$, including $p_{\phi}$ = 0. Discuss the features of the motion, pointing out the differences between $p_{\phi}=0$ and $p_{\phi} \neq 0$. Discuss the limiting case of the conical pendulum ($\theta = $constant) with reference to the V − $\theta$ diagram.}
+
+\begin{align*}
+  x &= \ell\sin\phi\cos\theta\\
+  y &= \ell\sin\phi\sin\theta\\
+  \dot{x} &= \ell\cos\phi\cos\theta\dot{\phi} - \ell\sin\phi\sin\theta\dot{\theta}\\
+  \dot{y} &= \ell\cos\phi\sin\theta\dot{\phi} + \ell\sin\phi\cos\theta\dot{\theta}\\
+  T &= \frac{1}{2}m\left(\ell^2\cos^2\phi\dot{\phi}^2 + \ell^2\sin^2\phi\dot{\theta}^2\right)\\
+\end{align*}
 
 \end{document}
