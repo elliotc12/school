@@ -1,4 +1,4 @@
-default: crystal
+default: crystal der
 
 a1: latex/a1.tex
 	cd latex && xelatex a1.tex && mv a1.pdf ..
@@ -16,3 +16,6 @@ crystal: crystal_phase.c plot.py
 
 paper: latex/paper1.tex
 	cd latex && xelatex paper1.tex && mv paper1.pdf ..
+
+der: latex/der.tex
+	cd latex && xelatex der.tex && mv der.pdf ..
