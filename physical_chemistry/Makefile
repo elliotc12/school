@@ -1,4 +1,4 @@
-default: a4 pchem_tips
+default: a5 pchem_tips
 
 all: a2
 
@@ -13,6 +13,9 @@ a3: latex/a3.tex
 
 a4: latex/a4.tex
 	cd latex && xelatex a4.tex && mv a4.pdf ..
+
+a5: latex/a5.tex
+	cd latex && xelatex a5.tex && mv a5.pdf ..
 
 pchem_tips:
 	cd latex && xelatex pchem_tips.tex && mv pchem_tips.pdf ..
