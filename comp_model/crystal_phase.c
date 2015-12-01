@@ -8,8 +8,8 @@
 
 const double m_pi =  3.14159265358979323846;
 const int size = 215;
-const int animate = 0;
-const int skiprate = 1;
+const int animate = 1;
+const int skiprate = 20;
 const int debug = 0;
 
 void log_data(double* data, int fd) {
@@ -40,9 +40,9 @@ int main() {
   double t_final = 0.2; //s
   
   double tau = 0.0003;
-  double delta_bar = 0.01;
+  double delta_bar = 0.01; // Thickness of layer (?)
   double F = 1.8; // Latent heat of fusion
-  double mu = 0.02;
+  double mu = 0.02; // Strength of anisotropy
   double anisotropy = 4.0;
   double beta = 0.9; // n-shifting coefficient
   double eta = 10.0; // n-shifting coefficient
