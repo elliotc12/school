@@ -1,4 +1,4 @@
-default: crystal der
+default: crystal
 
 a1: latex/a1.tex
 	cd latex && xelatex a1.tex && mv a1.pdf ..
@@ -13,6 +13,11 @@ crystal: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
 	./crystal
 	python2.7 plot.py
+
+crystal-debug: crystal_phase.c plot.py
+	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
+	./crystal
+	python2.7 plot.py noprompt
 
 paper: latex/paper1.tex
 	cd latex && xelatex paper1.tex && mv paper1.pdf ..

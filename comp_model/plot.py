@@ -13,10 +13,11 @@ plt.ion()
 
 data = np.genfromtxt("data.txt")
 
-hi = raw_input("Press any key to play animation.")
+if len(sys.argv[1:]) == 0:
+    hi = raw_input("Press any key to play animation.")
 
 time = 10 # s
-frames = 20
+frames = len(data) / 10
 
 ax = plt.gca()
 ax.set_aspect("equal", adjustable="box")
@@ -43,5 +44,5 @@ else:
         print str(i) + " of " + str(len(data))
         Z = np.reshape(data[i], (math.sqrt(len(data[i])), math.sqrt(len(data[i]))))
         plt.imshow(Z)
-        plt.pause(time/frames)
+        plt.pause(0.001)
         i += math.ceil(len(data)/frames)
