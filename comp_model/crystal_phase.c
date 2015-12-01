@@ -7,10 +7,10 @@
 #include <unistd.h>
 
 const double m_pi =  3.14159265358979323846;
-const int size = 15;
-const int animate = 1;
+const int size = 215;
+const int animate = 0;
 const int skiprate = 1;
-const int debug = 1;
+const int debug = 0;
 
 void log_data(double* data, int fd) {
   char* str = malloc(10 * sizeof(char));
@@ -37,12 +37,12 @@ int main() {
   double dx = 0.03; //m
   double dy = 0.03; //m
   double dt = 0.0001; //s
-  double t_final = 0.05; //s
+  double t_final = 0.2; //s
   
   double tau = 0.0003;
   double delta_bar = 0.01;
   double F = 1.8; // Latent heat of fusion
-  double mu = 0.1;
+  double mu = 0.02;
   double anisotropy = 4.0;
   double beta = 0.9; // n-shifting coefficient
   double eta = 10.0; // n-shifting coefficient
@@ -113,23 +113,23 @@ int main() {
 	dphi_dx[x+y*size] = (phi[xp+y*size] - phi[xm+y*size]) / dx;
 	dphi_dy[x+y*size] = (phi[x+yp*size] - phi[x+ym*size]) / dy;
 
-	lap_phi[x+y*size] = (2.0*(phi[xm+ym*size] +
-				  phi[xm+y*size] +
-				  phi[xm+yp*size] +
-				  phi[x+ym*size] +
-				  phi[x+yp*size] +
-				  phi[xp+ym*size] +
-				  phi[xp+y*size] +
-				  phi[xp+yp*size]) - 12.0*phi[x+y*size]) / (3.0*dx*dy);
+	lap_phi[x+y*size] = ((phi[xm+ym*size] +
+			      phi[xm+y*size] +
+			      phi[xm+yp*size] +
+			      phi[x+ym*size] +
+			      phi[x+yp*size] +
+			      phi[xp+ym*size] +
+			      phi[xp+y*size] +
+			      phi[xp+yp*size]) - 8.0*phi[x+y*size]) / (3.0*dx*dy);
 	
-	lap_u[x+y*size] = (2.0*(u[xm+ym*size] +
-				u[xm+y*size] +
-				u[xm+yp*size] +
-				u[x+ym*size] +
-				u[x+yp*size] +
-				u[xp+ym*size] +
-				u[xp+y*size] +
-				u[xp+yp*size]) - 12.0*u[x+y*size]) / (3.0*dx*dx);
+	lap_u[x+y*size] = ((u[xm+ym*size] +
+			    u[xm+y*size] +
+			    u[xm+yp*size] +
+			    u[x+ym*size] +
+			    u[x+yp*size] +
+			    u[xp+ym*size] +
+			    u[xp+y*size] +
+			    u[xp+yp*size]) - 8.0*u[x+y*size]) / (3.0*dx*dx);
 
 	phi_grad_angle[x+y*size] = atan2(dphi_dy[x+y*size], dphi_dx[x+y*size]);
 
@@ -153,7 +153,7 @@ int main() {
 	phi_new[x+y*size] = phi[x+y*size] + (term1 + term2 + term3 +
 	       delta[x+y*size]*delta[x+y*size]*lap_phi[x+y*size] +
                phi[x+y*size]*(1.0-phi[x+y*size])*(phi[x+y*size] - 0.5 + n)) * dt / tau;
-
+	
 	u_new[x+y*size] = u[x+y*size] + lap_u[x+y*size]*dt + F*(phi_new[x+y*size] - phi[x+y*size]);
 	/* if (x==3 && y==3) printf("%2.2g\n", lap_T[x+y*size]*dt); */
       }
@@ -161,8 +161,8 @@ int main() {
     
     for (int y = 0; y<size; y++) {
       for (int x = 0; x<size; x++) {
-	//if (debug) printf("%2.4g ", lap_u[x+y*size]*dt);
-	if (debug) printf("%2.4g ", u[x+y*size]);
+	if (debug) printf("%2.4g ", lap_u[x+y*size]*dt);
+	//if (debug) printf("%2.4g ", u[x+y*size]);
 	//if (debug) printf("%2.4g ", phi[x+y*size]);
     	phi[x+y*size] = phi_new[x+y*size];
     	u[x+y*size] = u_new[x+y*size];
