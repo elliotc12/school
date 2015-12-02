@@ -1,4 +1,4 @@
-default: crystal
+default: crystal-plot
 
 a1: latex/a1.tex
 	cd latex && xelatex a1.tex && mv a1.pdf ..
@@ -9,15 +9,15 @@ a2: latex/a2.tex
 a4: latex/a4.tex
 	cd latex && xelatex a4.tex && mv a4.pdf ..
 
-crystal: crystal_phase.c plot.py
+crystal-plot: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
 	./crystal
-	python2.7 plot.py
+	python2.7 plot.py weirdcrystal-hidef
 
 crystal-debug: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
 	./crystal
-	python2.7 plot.py noprompt
+	python2.7 plot.py 
 
 paper: latex/paper1.tex
 	cd latex && xelatex paper1.tex && mv paper1.pdf ..

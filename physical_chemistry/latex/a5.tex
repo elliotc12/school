@@ -41,5 +41,100 @@
 
 \maketitle{}
 
+\section{Problem 5.2}
+
+We know the total pressure and perfect product at equilibrium, so we can find all the partial pressures at equilbrium.
+
+\begin{align*}
+  P_{NH_3} &= (0.0204)(10.13 bar) = 0.207 bar\\
+  P_{H_2} &= 2.48 bar\\
+  P_{N_2} &= 7.442 bar\\
+  K &= \frac{P_{NH_3}/P'}{(P_{H_2}/P')^\frac{3}{2}(P_{N_2}/P')^{\frac{1}{2}}}\\
+  &= \frac{0.207}{2.48^\frac{3}{2}7.442^\frac{1}{2}} = 6.5 * 10^{-3}\\
+\end{align*}
+
+\section{Problem 5.9}
+We use the fact that $k = \frac{4\xi^2}{1-\xi^2}$ for diatomic gas dissociation, so $\xi = \left(\frac{k}{k+4}\right)^\frac{1}{2}$\\
+
+\begin{align*}
+  \Delta_rG' &= -RT\ln(K)\\
+  &= -(8.314)(2000K)\ln(K)\\
+  K &= e^\frac{\Delta_rG'}{-(8.314)(2000K)}\\
+  \vspace{1cm}\\
+  \Delta_rG' &= 2*\Delta_fG'_{H} - \Delta_fG'_{H_2}\\
+  &= 2*106760 J/mol = 213520 J/mol\\
+  k &= e^\frac{213520}{-(8.314)(2000K)} = 2.64*10^{-6}\\
+  \xi &= \left(\frac{2.64*10^{-6}}{2.64*10^{-6}+4}\right)^\frac{1}{2} = 0.000814\\
+  \%_{H} &= 0.0814\%\\
+  \vspace{1cm}\\
+  \Delta_rG' &= 2*\Delta_fG'_{O} - \Delta_fG'_{O_2}\\
+  &= 2*121552 J/mol = 243104 J/mol\\
+  k &= e^\frac{243104}{-(8.314)(2000K)} = 4.47*10^{-7}\\
+  \xi &= \left(\frac{4.47*10^{-7}}{4.47*10^{-7}+4}\right)^\frac{1}{2} = 0.000334\\
+  \%_{O} &= 0.0334\%\\
+  \vspace{1cm}\\
+  \Delta_rG' &= 2*\Delta_fG'_{I} - \Delta_fG'_{I_2}\\
+  &= 2*(-29000) J/mol = -58000 J/mol\\
+  k &= e^\frac{-58000}{-(8.314)(2000K)} = 32.7\\
+  \xi &= \left(\frac{32.7}{32.7+4}\right)^\frac{1}{2} = 0.94\\
+  \%_{I} &= 94\%\\
+\end{align*}
+
+\section{Problem 5.17}
+\begin{align*}
+  \mbox{Initial conditions: } n_{CO} = 1, n_{H_2} = 2, n_{meth} = 0\\
+  \mbox{Equilibrium conditions: } n_{CO} = 0.1, n_{H_2} = 0.2, n_{meth} = 0.9\\
+  P_{CO} &= \frac{0.1}{1.2}P = 0.083P\\
+  P_{H_2} &= \frac{0.2}{1.2}P = 0.166P\\
+  P_{meth} &= \frac{0.1}{1.2}P = 0.753P\\
+  K &= 6.09*10^{-3} = \frac{P_{meth}/P}{P_{CO}/P(P_{H_2}/P)^2}\\
+  P &= 231 bar\\
+\end{align*}
+
+\section{Problem 5.27}
+\begin{align*}
+  K_c &= \frac{[A_2]}{[A]^2} = \frac{n_{A_2}}{n_A}V\\
+  n_0 &= n_A + 2\frac{n_A^2K_c}{V}\\
+  n_A &= n_0\left(1-2K_cn_0/V\right)
+  \hspace{1cm} \mbox{Taylor Series approx}\\
+  \frac{PV}{RT} &= n_A + n_{A_2} = n_A\left(1+K_cn_A/V\right)\\
+  \frac{PV}{RT} &= n_0\left(1-2K_cn_0/V\right)\left(1+K_cn_A/V\right)\\
+  \frac{PV}{RT} &= 1 - \frac{K_c}{V}
+  \hspace{1cm}\mbox{Ignore small cross terms}\\
+\end{align*}
+
+\section{Problem 5.36}
+\begin{align*}
+  \Delta_rH' &= \frac{8.314*523*1273*\ln(\frac{0.0721}{100})}{750} = -53.4kJ/mol\\
+  \ln\left(\frac{K_1}{K_2}\right) &= \frac{53400*120}{8.314*1393*1273}\\
+\end{align*}
+
+Finish!!!!!!!!!!!!!!!!!!!!!!!!
+
+\section{Problem 5.37}
+\begin{align*}
+  hi
+\end{align*}
+
+Finish!!!!!!!!!!!!!!!!!!!!!!!!
+
+\section{Problem 5.53}
+\begin{align*}
+  &\mbox{Initial conditions: } P_{NH_2} = P'\\
+  &\mbox{Equilibrium conditions: } P_{NH_2} = P'(1-\alpha), P_{N_2} = \frac{1}{2}\alpha P', P_{H_2} = \frac{3}{2}\alpha P'\\
+  \vspace{1cm}\\
+  P_t &= P'(1-\alpha) + \frac{1}{2}\alpha P' + \frac{3}{2}\alpha P'\\
+  P' &= \frac{P_t}{1+\alpha}\\
+  \vspace{1cm}\\
+  K_c &= \frac{\left(\frac{1}{2}\alpha P'\right)^{1/2}\left(\frac{3}{2}\alpha P'\right)^{3/2}}{P'\left(1-\alpha\right)}\\
+  &= \frac{((\frac{3}{2})^\frac{3}{2}(\frac{1}{2})^\frac{1}{2})\alpha^2 P'}{P'(1-\alpha)}\\
+  &= \frac{(\frac{3}{2})^\frac{3}{2}(\frac{1}{2})^\frac{1}{2}\alpha^2 P'}{P'(1-\alpha)}\\
+  K_c &= \frac{((\frac{3}{2})^\frac{3}{2}(\frac{1}{2})^\frac{1}{2})\alpha^2 P_t}{1-\alpha^2}\\
+  K_c(1-\alpha^2) &= ((\frac{3}{2})^\frac{3}{2}(\frac{1}{2})^\frac{1}{2})\alpha^2P_t\\
+  1-\alpha^2 &= \frac{((\frac{3}{2})^\frac{3}{2}(\frac{1}{2})^\frac{1}{2})\alpha^2P_t}{K_c}\\
+  \alpha^2 &= \frac{1}{1+\frac{((\frac{3}{2})^\frac{3}{2}(\frac{1}{2})^\frac{1}{2})P_t}{K_c}}\\
+  \alpha^2 &= \frac{1}{1+P_tk}\\
+  \alpha &= \sqrt{\frac{1}{1+P_tk}}\\
+\end{align*}
 
 \end{document}

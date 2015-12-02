@@ -7,9 +7,9 @@
 #include <unistd.h>
 
 const double m_pi =  3.14159265358979323846;
-const int size = 215;
+const int size = 500;
 const int animate = 1;
-const int skiprate = 20;
+const int skiprate = 10;
 const int debug = 0;
 
 void log_data(double* data, int fd) {
@@ -37,19 +37,19 @@ int main() {
   double dx = 0.03; //m
   double dy = 0.03; //m
   double dt = 0.0001; //s
-  double t_final = 0.2; //s
+  double t_final = 0.5; //s
   
   double tau = 0.0003;
-  double delta_bar = 0.01; // Thickness of layer (?)
+  double delta_bar = 0.011; // Average thickness of layer (?)
   double F = 1.8; // Latent heat of fusion
   double mu = 0.02; // Strength of anisotropy
-  double anisotropy = 4.0;
+  double anisotropy = 6.0;
   double beta = 0.9; // n-shifting coefficient
   double eta = 10.0; // n-shifting coefficient
   double TM = 1.0;
   double T0 = 0.0;
   double theta_0 = 1.57;
-  int r = 5;
+  int r = 2;
 
   int fd;
   if ((fd = open("data.txt", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWOTH | S_IROTH)) == -1)

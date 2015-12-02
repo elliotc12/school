@@ -1,4 +1,4 @@
-default: a5 pchem_tips
+default: a5
 
 all: a2
 
