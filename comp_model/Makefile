@@ -12,7 +12,7 @@ a4: latex/a4.tex
 crystal-plot: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
 	./crystal
-	python2.7 plot.py weirdcrystal-hidef
+	python2.7 plot.py video
 
 crystal-debug: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal

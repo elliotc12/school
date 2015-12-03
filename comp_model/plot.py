@@ -35,19 +35,17 @@ if  len(data.shape) == 1:
     sys.exit(0)
     
 else:
-    f = 1
     while i < len(data):
         print str(i) + " of " + str(len(data))
         Z = np.reshape(data[i], (math.sqrt(len(data[i])), math.sqrt(len(data[i]))))
         plt.imshow(Z)
         
         if len(sys.argv[1:]) == 1:        
-            fname = 'PNGs/%s-%03d.png' % (sys.argv[1], f)
+            fname = 'PNGs/%s-%03d.png' % (sys.argv[1], i)
             plt.savefig(fname)
-
+            
         plt.pause(0.0001)
-        i += math.ceil(len(data)/frames)
-        f += 1
+        i += 1
     
 if len(sys.argv[1:]) == 1:        
     os.system("convert -delay 50 PNGs/%s-*.png GIFs/%s.gif" % (sys.argv[1], sys.argv[1]))
