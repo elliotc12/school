@@ -13,6 +13,7 @@ crystal-plot: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
 	./crystal
 	python2.7 plot.py video
+	rm PNGs/*
 
 crystal-debug: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
