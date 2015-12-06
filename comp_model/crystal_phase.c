@@ -7,9 +7,9 @@
 #include <unistd.h>
 
 const double m_pi =  3.14159265358979323846;
-const int size = 500;
+const int size = 1000;
 const int animate = 1;
-const int skiprate = 450;
+const int skiprate = 250;
 const int debug = 0;
 
 void log_data(double* data, int fd) {
@@ -43,7 +43,7 @@ int main() {
   double delta_bar = 0.01; // Average thickness of layer (?)
   double F = 1.8; // Latent heat of fusion
   double mu = 0.02; // Strength of anisotropy
-  double anisotropy = 8.0;
+  double anisotropy = 6.0;
   double beta = 0.9; // n-shifting coefficient
   double eta = 10.0; // n-shifting coefficient
   double TM = 1.0;

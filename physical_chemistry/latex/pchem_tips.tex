@@ -1,6 +1,7 @@
 \documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
 
 \usepackage{amsmath}
+\usepackage{gensymb}
 \usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
 
 \usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
@@ -40,13 +41,16 @@
 
 \maketitle{}
 
-\section{Random relationships}
-
-\subsection{Weird unknown axioms}
-
+\section{Equations}
 \begin{align*}
   \left(\frac{dU}{dV}\right)_T &= T\left(\frac{dP}{dT}\right)_V - P\\
   \left(\frac{dH}{dP}\right)_T &= -T\left(\frac{dV}{dT}\right)_P + V\\
+  &\mbox{Arrived at via first law, expanding}\\
+  &\mbox{a differential and a Maxwell relation}\\
+\end{align*}
+
+\begin{align*}
+  \frac{d\left(\frac{G}{T}\right)}{dT} &= -\frac{H}{T^2}\\
 \end{align*}
 
 \begin{align*}
@@ -69,5 +73,57 @@
   \frac{dS}{dT} &=\frac{C_p}{T}\\
 \end{align*}
 
+\begin{align*}
+  \frac{\partial G}{\partial P}_T &= V\\
+  \Delta \overline{G}_{ideal} &= \Delta G_{ideal}\degree + RT\ln\left(\frac{P}{P\degree}\right)\\
+  \Delta \overline{G} &= \Delta G\degree + RT\ln\left(\frac{f}{P\degree}\right)\\
+  \frac{f}{P} &= e^{\frac{1}{RT}\int_0^P(\bar{V}-\bar{V}^{id})dP} = e^{\int_0^P\frac{Z-1}{P}dP}\\
+  \mu_i &= \mu_i\degree + RT\ln(a_i)\\
+  \mu_i &= \mu_i\degree + RT\ln\left(\frac{f_i}{P\degree}\right)\\
+\end{align*}
+
+\begin{align*}
+  K &= \Pi a_{i,eq}^{\nu_i}\\
+  Q &= \Pi a_{i}^{\nu_i}\\
+  K &= e^{\frac{-\Delta_r G\degree}{RT}}\\
+  K_{gas} &= \Pi\left(\frac{f_{i,eq}}{P\degree}\right)^{\nu_i}\\
+  K_{gas,ideal} &= \Pi\left(\frac{P_{i,eq,ideal}}{P\degree}\right)^{\nu_i}\\
+\end{align*}
+Equilibrium constant. The product of all the concentrations of the reaction. At standard state, the Gibbs free energy is $\sum \mu_i\degree\nu_i$.
+
+\begin{align*}
+  P_i &= \frac{n_iRT}{V} = C_iRT\\
+  K_p &= \Pi \left(\frac{C_iRT}{P\degree}\right)^{\nu_i} = \left(\frac{C_i\degree RT}{P\degree}\right)^{\nu_i} \Pi \left(\frac{C_i}{C_i\degree}\right)^{\nu_i}\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Ideal gas expansion}&\hspace{2cm}\Delta S = R\ln(\frac{V_2}{V_1})\\
+  \mbox{Ideal gas mixing}&\hspace{2cm}\Delta S = -R\sum y_i\ln(y_i)\\
+  \mbox{Nonideal phase transition}&\hspace{2cm} \Delta S = \frac{\Delta H}{T}\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Boltzmann Hypothesis}&\hspace{2cm} S = k\ln(\Omega)\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Second law of thermodynamics}&\hspace{2cm} dS \geq \frac{dQ_{rev}}{T}\\
+  \mbox{Third law of thermodynamics}&\hspace{2cm}\mbox{Crystals have zero entropy}\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Carnot cycle}&\hspace{2cm}\eta = \frac{w}{q_1} = \frac{\Delta T}{T_1}\\
+\end{align*}
+
+\begin{align*}
+  \mu_i = \mu_i\degree + RT\ln\left(\frac{P_i}{P\degree}\right)\\
+  \overline{G}_i = \overline{G}_i\degree + RT\ln\left(\frac{P_i}{P\degree}\right)\\
+\end{align*}
+
+\section{Things to know}
+\begin{align*}
+  &\mbox{Prove entropy is exact for both ideal and nonideal gasses}\\
+  &\mbox{Derive first relations in document, the ones with dU/dV}\\
+\end{align*}
 
 \end{document}
