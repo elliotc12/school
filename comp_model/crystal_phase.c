@@ -41,7 +41,7 @@ int main() {
   
   double tau = 0.0003;
   double delta_bar = 0.01; // Average thickness of layer (?)
-  double F = 1.8; // Latent heat of fusion
+  double F = 0.5; // Latent heat of fusion
   double mu = 0.02; // Strength of anisotropy
   double anisotropy = 6.0;
   double beta = 0.9; // n-shifting coefficient
