@@ -7,9 +7,13 @@
 #include <unistd.h>
 
 const double m_pi =  3.14159265358979323846;
+<<<<<<< HEAD
 const int size = 215;
+=======
+const int size = 1000;
+>>>>>>> bcadcb6ba16aac3549056064faf90d3ae51a63d9
 const int animate = 1;
-const int skiprate = 10;
+const int skiprate = 250;
 const int debug = 0;
 
 void log_data(double* data, int fd) {
@@ -37,11 +41,19 @@ int main() {
   double dx = 0.03; //m
   double dy = 0.03; //m
   double dt = 0.0001; //s
+<<<<<<< HEAD
   double t_final = 0.2; //s
   
   double tau = 0.0003;
   double delta_bar = 0.01; // Average thickness of layer (?)
   double F = 1.8; // Latent heat of fusion
+=======
+  double t_final = 0.7; //s
+  
+  double tau = 0.0003;
+  double delta_bar = 0.01; // Average thickness of layer (?)
+  double F = 0.5; // Latent heat of fusion
+>>>>>>> bcadcb6ba16aac3549056064faf90d3ae51a63d9
   double mu = 0.02; // Strength of anisotropy
   double anisotropy = 6.0;
   double beta = 0.9; // n-shifting coefficient
@@ -49,7 +61,11 @@ int main() {
   double TM = 1.0;
   double T0 = 0.0;
   double theta_0 = 1.57;
+<<<<<<< HEAD
   int r = 4;
+=======
+  int r = 3;
+>>>>>>> bcadcb6ba16aac3549056064faf90d3ae51a63d9
 
   int fd;
   if ((fd = open("data.txt", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWOTH | S_IROTH)) == -1)
