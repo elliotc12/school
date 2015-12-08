@@ -78,7 +78,8 @@
   \Delta \overline{G}_{ideal} &= \Delta G_{ideal}\degree + RT\ln\left(\frac{P}{P\degree}\right)\\
   \Delta \overline{G} &= \Delta G\degree + RT\ln\left(\frac{f}{P\degree}\right)\\
   \frac{f}{P} &= e^{\frac{1}{RT}\int_0^P(\bar{V}-\bar{V}^{id})dP} = e^{\int_0^P\frac{Z-1}{P}dP}\\
-  \mu_i &= \mu_i\degree + RT\ln(a_i)\\
+  \mu_i &= \mu_i\degree + RT\ln(a_i) \hspace{2cm}\mbox{Activity ~ purity, caps at 1}\\
+  &\mbox{Pure liquids have an activity of 1}\\
   \mu_i &= \mu_i\degree + RT\ln\left(\frac{f_i}{P\degree}\right)\\
 \end{align*}
 
@@ -145,6 +146,29 @@ Equilibrium constant. The product of all the concentrations of the reaction. At 
 
 \begin{align*}
   \ln\left(\frac{K_2}{K_1}\right) &= \frac{\Delta_r H\degree(T_2-T_1)}{RT_1T_2}\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Clapeyron Equation}\\
+  \frac{dP}{dT} &= \frac{\Delta S}{\Delta V} = \frac{\Delta H}{T\Delta V}\\
+  a_i &= \frac{P_i}{P_i*}\hspace{2cm}\mbox{The activity is the vapor pressure over the pure vapor pressure}\\
+  P_i &= x_iP_i*\hspace{2cm}\mbox{xi is mol frawction of i in liquid}\\
+  a_i &= x_i\hspace{2cm}\mbox{Ideal solutions only}\\
+  \mu_i(l) &= \mu_i(l)\degree + RT\ln(x_i)\hspace{2cm}\mbox{Ideal solutions only}\\
+  P_i &= y_iP = K_ix_i\hspace{2cm}\mbox{Henry's law}\\
+\end{align*}
+
+\begin{align*}
+  n_i &= nz_i = n_{\ell}x_i + n_{v}y_i\hspace{2cm}\mbox{x: solution fraction, y: vapor fraction}\\
+  \frac{n_\ell}{n_v} &= \frac{z_i - y_i}{x_i - z_i}\hspace{2cm}\mbox{Lever rule, tells you liquid:gas, since z in between x and y}\\
+  \mu_i &= \mu_i\degree + RT\ln(v_ix_i)\\
+  v_i &= \frac{P_i}{x_iP_i*} = \frac{y_iP}{x_iP_i*}\hspace{2cm}\mbox{Rault's law pure}\\
+  v_i' &= \frac{y_iP}{x_iK_i}\hspace{2cm}\mbox{Henry's law dilute}\\
+\end{align*}
+
+\begin{align*}
+  \Delta T &= \frac{RT^2_{f/b}x_B}{\Delta H}\hspace{2cm}\mbox{Boiling/Freezing pt change}\\
+  \Delta T &= \frac{RT^2_{f/b}m_Am_B}{\Delta H}\\
 \end{align*}
 
 \section{Things to know}
