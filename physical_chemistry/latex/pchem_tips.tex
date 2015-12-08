@@ -94,12 +94,34 @@ Equilibrium constant. The product of all the concentrations of the reaction. At 
 \begin{align*}
   P_i &= \frac{n_iRT}{V} = C_iRT\\
   K_p &= \Pi \left(\frac{C_iRT}{P\degree}\right)^{\nu_i} = \left(\frac{C_i\degree RT}{P\degree}\right)^{\nu_i} \Pi \left(\frac{C_i}{C_i\degree}\right)^{\nu_i}\\
+  K_c &= \Pi\left(\frac{c_i}{c\degree}\right)^{\nu_i}\\
+  k &= \frac{c}{K}\\
 \end{align*}
 
 \begin{align*}
-  \mbox{Ideal gas expansion}&\hspace{2cm}\Delta S = R\ln(\frac{V_2}{V_1})\\
+  V &= \frac{mRT}{MP}\\
+  &\mbox{For dissociation A -> 2B}\\
+  K &= \frac{4\xi^2}{1-\xi^2}\\
+  \xi &= \frac{M_1-M_2}{M_2}\\
+\end{align*}
+
+\begin{align*}
+  k &= e^{\frac{-\Delta G}{RT}}\\
+\end{align*}
+
+\begin{align*}
+  \Delta_f G_{isomer} &= -RT\ln\left(\sum e^{\frac{-\Delta_f G_i}{RT}}\right)\\
+  \Delta_f H_{isomer}\degree &= \sum r_i \Delta_f H_i\degree\\
+  r_i &= e^{\frac{\Delta_f G_{isomer} - \Delta_f G_i}{RT}}\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Ideal gas expansion - isothermal?}&\hspace{2cm}\Delta S = R\ln(\frac{V_2}{V_1}) = R\ln(\frac{P_1}{P_2})\\
   \mbox{Ideal gas mixing}&\hspace{2cm}\Delta S = -R\sum y_i\ln(y_i)\\
   \mbox{Nonideal phase transition}&\hspace{2cm} \Delta S = \frac{\Delta H}{T}\\
+  \mbox{Constant V heating}&\hspace{2cm} \Delta S = \int_{T1}^{T2} \frac{C_V}{T}dT\\
+  \mbox{Constant P heating}&\hspace{2cm} \Delta S = \int_{T1}^{T2} \frac{C_P}{T}dT\\
+  \mbox{Phase change constant T,P}&\hspace{2cm} \Delta S = \frac{\Delta H}{T}\\
 \end{align*}
 
 \begin{align*}
@@ -116,8 +138,13 @@ Equilibrium constant. The product of all the concentrations of the reaction. At 
 \end{align*}
 
 \begin{align*}
-  \mu_i = \mu_i\degree + RT\ln\left(\frac{P_i}{P\degree}\right)\\
-  \overline{G}_i = \overline{G}_i\degree + RT\ln\left(\frac{P_i}{P\degree}\right)\\
+  \mu_i &= \mu_i\degree + RT\ln\left(\frac{P_i}{P\degree}\right)\\
+  \overline{G}_i &= \overline{G}_i\degree + RT\ln\left(\frac{P_i}{P\degree}\right)\\
+  \Delta_r G &= \sum \nu_i\mu_i = \sum \nu_i \Delta_f G_i\\
+\end{align*}
+
+\begin{align*}
+  \ln\left(\frac{K_2}{K_1}\right) &= \frac{\Delta_r H\degree(T_2-T_1)}{RT_1T_2}\\
 \end{align*}
 
 \section{Things to know}
