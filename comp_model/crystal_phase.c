@@ -7,8 +7,8 @@
 #include <unistd.h>
 
 const double m_pi =  3.14159265358979323846;
-const int size = 300;
-const int animate = 0;
+const int size = 350;
+const int animate = 1;
 const int skiprate = 1000;
 const int debug = 0;
 
@@ -37,20 +37,22 @@ int main() {
   double dx = 0.03; //m
   double dy = 0.03; //m
   double dt = 0.0001; //s
-  double t_final = 0.4; //s
+  double t_final = 0.2; //s
   
   double tau = 0.0003;
   double delta_bar = 0.01; // Average thickness of layer (?)
-  double F = 2.0; // Latent heat of fusion
+  double F = 0.8; // Latent heat of fusion
 
   double mu = 0.02; // Strength of anisotropy
-  double anisotropy = 4.0;
+  double anisotropy = 6.0;
   double beta = 0.9; // n-shifting coefficient
   double eta = 10.0; // n-shifting coefficient
   double TM = 1.0;
   double T0 = 0.0;
   double theta_0 = 1.57;
-  int r = 10;
+  int r = 3;
+
+  double eccentricity = 1.0;
 
   int fd;
   if ((fd = open("data.txt", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IWOTH | S_IROTH)) == -1)
@@ -87,7 +89,7 @@ int main() {
       u_new[x+y*size] = 0;
       phi_grad_angle[x+y*size] = 0;
 
-      if ((x-size/2.0)*(x-size/2.0) + (y-size/2.0)*(y-size/2.0) < r*r) {
+      if (eccentricity*(x-size/2.0)*(x-size/2.0) + (y-size/2.0)*(y-size/2.0) < r*r) {
 	phi[x+y*size] = 1.0;
       }
     }

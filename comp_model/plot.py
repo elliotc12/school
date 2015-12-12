@@ -35,6 +35,12 @@ if  len(data.shape) == 1:
     sys.exit(0)
     
 else:
+    Z = np.reshape(data[0], (math.sqrt(len(data[0])), math.sqrt(len(data[0]))))
+    cax = plt.imshow(Z)
+
+    cbar = plt.colorbar(cax)#, ticks=[-1, 0, 1])
+    #cbar.ax.set_yticklabels(['< -1', '0', '> 1'])  # vertically oriented colorbar
+        
     while i < len(data):
         print str(i) + " of " + str(len(data))
         Z = np.reshape(data[i], (math.sqrt(len(data[i])), math.sqrt(len(data[i]))))

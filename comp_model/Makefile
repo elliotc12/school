@@ -1,4 +1,4 @@
-default: paper2
+default: crystal-plot
 
 a1: latex/a1.tex
 	cd latex && xelatex a1.tex && mv a1.pdf ..
@@ -12,7 +12,8 @@ a4: latex/a4.tex
 crystal-plot: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
 	./crystal
-	python2.7 plot.py
+	python2.7 plot.py video
+	rm PNGs/*
 
 crystal-debug: crystal_phase.c plot.py
 	gcc crystal_phase.c -g -std=c99 -lm -O2 -o crystal
