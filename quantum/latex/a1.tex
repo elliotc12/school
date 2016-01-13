@@ -135,11 +135,36 @@ $\ket{E_3}$ state.\\
 
 \section{8.7}
 We begin with the potential and find the r-values at which $E=V$. We then calculate
-the probability using $P = \int \psi^* \psi dr$.
+the probability using $P = \int_r^\infty \psi^* \psi dr$.
 
 \begin{align*}
   V(r) &= \frac{-e^2}{4\pi\epsilon_0r}\\
-  E_1 &= \frac{-1}{2}
+\end{align*}
+
+We first solve for the forbidden distance:
+
+\begin{align*}
+  V(r) &= E_2\\
+  -\frac{Z\alpha\hslash c}{r} &= -\frac{1}{2n^2}\alpha^2m_ec^2\\
+  \frac{-1.44 \mbox{eV nm}}{r} &= -3.4 \mbox{eV}\\
+  r &= 2.36 \mbox{nm}
+\end{align*}
+
+Next we find the probability of our particles being further than this:
+
+\begin{align*}
+  P_{200} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
+  \frac{1}{\pi}\left(\frac{1}{2a_0}\right)^3\left[1-\frac{r}{2a_0}\right]e^{-r/a_0}
+  r^2\sin(\theta)drd\phi d\theta = \\
+  P_{21-1} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
+  \frac{-1}{8\pi}\left(\frac{1}{2a_0}\right)^3\frac{r}{a_0}e^{-r}{a_0}\sin^2(\theta)e^{2i\phi}
+  r^2\sin(\theta)drd\phi d\theta = \\
+  P_{210} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
+  \frac{1}{4\pi}\left(\frac{1}{2a_0}\right)^3\frac{r}{a_0}e^{-r}{a_0}\cos^2(\theta)
+  r^2\sin(\theta)drd\phi d\theta = \\
+  P_{211} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
+  \frac{1}{8\pi}\left(\frac{1}{2a_0}\right)^3\frac{r}{a_0}e^{-r}{a_0}\sin^2(\theta)e^{-2i\phi}
+  r^2\sin(\theta)drd\phi d\theta = \\
 \end{align*}
 
 
