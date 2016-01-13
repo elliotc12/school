@@ -154,16 +154,16 @@ Next we find the probability of our particles being further than this:
 
 \begin{align*}
   P_{200} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
-  \frac{1}{\pi}\left(\frac{1}{2a_0}\right)^3\left[1-\frac{r}{2a_0}\right]e^{-r/a_0}
+  \frac{1}{\sqrt{8\sqrt{2}\pi a_0^{3/2}}}\left(2-\frac{r}{a_0}\right)e^{\frac{-r}{2a_0}}
   r^2\sin(\theta)drd\phi d\theta = \\
   P_{21-1} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
-  \frac{-1}{8\pi}\left(\frac{1}{2a_0}\right)^3\frac{r}{a_0}e^{-r}{a_0}\sin^2(\theta)e^{2i\phi}
+  \left(\frac{3r}{16\pi\sqrt{6}a_0^{5/2}}\right)^{1/2}\sin(\theta)e^{-i\phi}e^{-\frac{r}{2a_0}}
   r^2\sin(\theta)drd\phi d\theta = \\
   P_{210} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
-  \frac{1}{4\pi}\left(\frac{1}{2a_0}\right)^3\frac{r}{a_0}e^{-r}{a_0}\cos^2(\theta)
+  \left(\frac{3r}{8\pi\sqrt{6}a_0^{5/2}}\right)^{1/2}\cos(\theta)e^{-\frac{r}{2a_0}}
   r^2\sin(\theta)drd\phi d\theta = \\
   P_{211} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
-  \frac{1}{8\pi}\left(\frac{1}{2a_0}\right)^3\frac{r}{a_0}e^{-r}{a_0}\sin^2(\theta)e^{-2i\phi}
+  -\left(\frac{3r}{16\pi\sqrt{6}a_0^{5/2}}\right)^{1/2}\sin(\theta)e^{i\phi}e^{-\frac{r}{2a_0}}
   r^2\sin(\theta)drd\phi d\theta = \\
 \end{align*}
 
