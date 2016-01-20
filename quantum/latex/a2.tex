@@ -229,6 +229,48 @@ We then find the probability of finding the particle in this region:
 %%   <E> &= \sigma \hbar\omega\left(n+\frac{1}{2}\right)|c_n|^2\\
 %%   &= \frac{2 + \frac{27}{4} + 5}{\frac{21}{2}} = 1.3 eV\\
 %% \end{align*}
+\section{5: 2D QHO}
+To take the QHO to two dimensions, we use the following Hamiltonian:
+
+\begin{align*}
+  H &= \frac{\hat{p}_x^2}{2m} + \frac{\hat{p}_y^2}{2m}
+  + \frac{1}{2}m\omega^2\left(x^2+y^2\right)\\
+\end{align*}
+
+We notice that none of the terms in this Hamiltonian are coupled, so we break it
+up into two Hamiltonians:
+
+\begin{align*}
+  H_x &= \frac{\hat{p}_x^2}{2m} \frac{1}{2}m\omega^2x^2)\\
+  H_y &= \frac{\hat{p}_y^2}{2m} \frac{1}{2}m\omega^2y^2)\\
+  H &= H_x + H_y\\
+\end{align*}
+
+our energy eigenvalue equation then takes the form:
+
+\begin{align*}
+  \left(\hat{H}_x + \hat{H}_y\right)X(x)Y(y) &= (E_x + E_y)X(x)Y(y)\\
+\end{align*}
+
+This equation is basically the sum of two uncoupled QHOs. Because of this, we
+can calculate the energy fairly easily:
+
+\begin{align*}
+  E_{xy} &= E_x + E_y = \left(n_x+n_y + 1\right)\hbar\omega\\
+\end{align*}
+
+From this we can see that the system is very degenerate. For the $n^{th}$-highest
+energy level there are $\frac{n}{2}$ possible states that have that energy: for
+the tenth energy level, the possible n-numbers are $1,9$, $2,8$, $3,7$, $4,6$ and
+$5,5$.\\
+
+We can construct the ground level energy state by taking the product of the two
+uncoupled QHOs:
+
+\begin{align*}
+  \psi_0(x,y) &= \left(\frac{m\omega}{\pi\hbar}\right)
+  e^{-m\omega\left(x^2+y^2\right)/2\hbar}\\
+\end{align*}
 
 \section{6: Position, momentum commutator}
 Here we find the value of the position, momentum commutator:
