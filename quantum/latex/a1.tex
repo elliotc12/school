@@ -1,0 +1,185 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+\usepackage{ifsym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{physics}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Quantum Mechanics Assignment One}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem 2.17}
+This problem asks us to take the following spin-1 state and figure out the probabilities of
+measuring z- and x-component spins, and also to find their expectation value.\\
+
+\begin{align*}
+  \ket{\Psi} \doteq &\frac{1}{\sqrt{30}}
+  \begin{pmatrix}
+    1\\
+    2\\
+    5i\\
+  \end{pmatrix}
+\end{align*}
+
+We use the normal $P_x = \abs{\braket{\Psi_x}{\Psi}}^2$ to find probabilities. It is simple to
+calculate the braket since both states are in the $S_z$ representation.
+
+\begin{align*}
+  P_{1} = \abs{\braket{\Psi_{1}}{\Psi}}^2 &=
+  \abs{\frac{1}{\sqrt{30}}\begin{pmatrix}1&0&0\end{pmatrix}\begin{pmatrix}1\\2\\5i\\\end{pmatrix}}^2
+  = \frac{1}{30}\\
+  P_{0} = \abs{\braket{\Psi_{0}}{\Psi}}^2 &=
+  \abs{\frac{1}{\sqrt{30}}\begin{pmatrix}0&1&0\end{pmatrix}\begin{pmatrix}1\\2\\5i\\\end{pmatrix}}^2
+  = \frac{4}{30}\\
+  P_{-1} = \abs{\braket{\Psi_{-1}}{\Psi}}^2 &=
+  \abs{\frac{1}{\sqrt{30}}\begin{pmatrix}0&0&1\end{pmatrix}\begin{pmatrix}1\\2\\5i\\\end{pmatrix}}^2
+  = \frac{25}{30}\\
+\end{align*}
+\begin{align*}
+  \expval{S_z}{\Psi} &= \frac{1}{30}\begin{pmatrix}1&2&-5i\end{pmatrix}\begin{pmatrix}
+      \hslash&0&0\\0&0&0\\0&0&-\hslash\\\end{pmatrix}\begin{pmatrix}1\\2\\5i\end{pmatrix}
+        = \frac{1}{30}\begin{pmatrix}1&2&-5i\end{pmatrix}
+          \begin{pmatrix}\hslash\\0\\5\hslash i\end{pmatrix}
+            = \frac{1}{30}\left(1 + -25\right) = \frac{-4}{5}\\
+\end{align*}
+
+We then want to compute the expectation value of the spin in the x-direction. We use the
+$S_z$ representation of $S_x$:
+
+\begin{align*}
+  \expval{S_x}{\Psi} &= \frac{1}{30}\begin{pmatrix}1&2&-5i\end{pmatrix}\frac{\hslash}{\sqrt{2}}
+    \begin{pmatrix}0&1&0\\1&0&1\\0&1&0\\\end{pmatrix}\begin{pmatrix}1\\2\\5i\end{pmatrix}
+        = \frac{1}{30\sqrt{2}}\begin{pmatrix}1&2&-5i\end{pmatrix}
+          \begin{pmatrix}2\\1+5i\\2\end{pmatrix}\\
+            = \frac{4}{30\sqrt{2}}\\
+\end{align*}
+
+\section{Problem 5.11}
+This problem asks us to find the probabilities to find $n=2$ Hydrogen electrons in the classically
+forbidden region.\\
+
+This problem deals with an infinite square well wave which suddenly has its right potential wall
+move from $L$ to $3L$. We are asked to find the probability of finding the wave in the ground or
+first excited state. This problem is basically asking us to find the $c_1$ and $c_2$ coefficients
+of the old wave function in the new well, and from them find probabilities.
+
+\begin{align*}
+  \Psi(x) &= \sqrt{\frac{2}{L}}\sin\left(\frac{\pi x}{L}\right)\\
+  \ket{E_1} &= \sqrt{\frac{2}{3L}}\sin\left(\frac{\pi x}{3L}\right)\\
+  \ket{E_2} &= \sqrt{\frac{2}{3L}}\sin\left(\frac{2\pi x}{3L}\right)\\
+\end{align*}
+
+We wish to find the $c_1$ and $c_2$ coefficients for this system.
+
+\begin{align*}
+  c_1 &= \braket{E_1}{\Psi} = \int_0^{3L} \sqrt{\frac{2}{3L}}\sin\left(\frac{\pi x}{3L}\right)*
+  \sqrt{\frac{2}{L}}\sin\left(\frac{\pi x}{L}\right)dx\\
+  &= \sqrt{\frac{4}{3L^3}}\int_0^{3L}
+  \sin\left(\frac{\pi x}{3L}\right)\sin\left(\frac{\pi x}{L}\right)\\
+  &= \sqrt{\frac{2}{3L^3}}\left(\int_0^{3L} \cos\left(\frac{2\pi x}{3L}\right)dx
+  - \int_0^{3L} \cos\left(\frac{4\pi x}{3L}\right)dx\right)\\
+  &= 0\\
+\end{align*}
+
+\begin{align*}
+  c_2 &= \braket{E_2}{\Psi} = \int_0^{3L} \sqrt{\frac{2}{3L}}\sin\left(\frac{2\pi x}{3L}\right)*
+  \sqrt{\frac{2}{L}}\sin\left(\frac{\pi x}{L}\right)dx\\
+  &= \sqrt{\frac{4}{3L^3}}\int_0^{3L}
+  \sin\left(\frac{2\pi x}{3L}\right)\sin\left(\frac{\pi x}{L}\right)\\
+  &= \sqrt{\frac{2}{3L^3}}\left(\int_0^{3L} \cos\left(\frac{\pi x}{3L}\right)dx
+  - \int_0^{3L} \cos\left(\frac{5\pi x}{3L}\right)dx\right)\\
+  &= 0\\
+\end{align*}
+
+From this we can see that the probability of measuring the wave in the new tripled well to be in
+$\ket{E_1}$ or $\ket{E_2}$ is zero, since $P_n = \abs{c_n}^2$. This result is to be expected, since
+the wave should be completely in the second excited state, $\ket{E_3}$. This is because extending
+the $\Psi(x)$ wave function from $0$ to $3L$ results in a two-node wave function identical to the
+$\ket{E_3}$ state.\\
+
+\section{8.7}
+We begin with the potential and find the r-values at which $E=V$. We then calculate
+the probability using $P = \int_r^\infty \psi^* \psi dr$.
+
+\begin{align*}
+  V(r) &= \frac{-e^2}{4\pi\epsilon_0r}\\
+\end{align*}
+
+We first solve for the forbidden distance:
+
+\begin{align*}
+  V(r) &= E_2\\
+  -\frac{Z\alpha\hslash c}{r} &= -\frac{1}{2n^2}\alpha^2m_ec^2\\
+  \frac{-1.44 \mbox{eV nm}}{r} &= -3.4 \mbox{eV}\\
+  r &= 2.36 \mbox{nm}
+\end{align*}
+
+Next we find the probability of our particles being further than this:
+
+\begin{align*}
+  P_{200} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
+  \frac{r^2}{32\pi a_0^3}\left(2-\frac{r}{a_0}\right)^2e^{\frac{-r}{a_0}}
+  \sin(\theta)drd\phi d\theta = 2.09*10^{-14}\\
+  P_{21-1} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
+  \frac{r^4}{64\pi a_0^5}e^{\frac{-r}{a_0}}\sin^3(\theta)
+  drd\phi d\theta = 7.62*10^{-15}\\
+  P_{210} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
+  \frac{r^4}{32\pi a_0^5}e^{\frac{-r}{a_0}}\cos^2(\theta)
+  \sin(\theta)drd\phi d\theta = 7.62*10^{-15}\\
+  P_{211} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
+  \frac{r^4}{64\pi a_0^5}e^{\frac{-r}{a_0}}\sin^3(\theta)
+  drd\phi d\theta = 7.62*10^{-15}\\
+\end{align*}
+
+We note that it is much more likely for the s-shell electron to be found in the forbidden (far
+from atom) zone than the p-shell electrons. This is indicative of the shape of the s vs p shells
+and how spread-out they are from the nucleus. We also note that, though we started off with 3
+different wave functions for the $\ell = 1$ states, we get the same probabilities in the end.
+This is to be expected, since the different $m_\ell$-numbered states are just rotations of each
+other around the atom's axis, their shapes are the same.\\
+
+I was initially confused as to why the units of the wave function were in $m^{-3/2}$, but then
+recalled that complex conjugating the wave function and integrating over three dimensions would
+cancel out these units.\\
+
+
+\end{document}

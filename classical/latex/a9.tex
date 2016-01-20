@@ -55,13 +55,80 @@
 \begin{align*}
   m_1 &= 5m\\
   \vec{r_1} &= (a, 2a, 0)\\
-  m_2 &= 5m\\
+  m_2 &= 2m\\
   \vec{r_2} &= (0, -2a, a)\\
-  m_3 &= 5m\\
+  m_3 &= 3m\\
   \vec{r_3} &= (a, a, -a)\\
-  m_4 &= 5m\\
+  m_4 &= m\\
   \vec{r_4} &= (3a, a, -2a)\\
 \end{align*}
 \textbf{Find the inertia tensor, the principal axes, and the moments of inertia. Explicitly check that the principal axes are orthogonal to each other. (Hint: you can use an online solver for the third degree polynomial, such as: http://www.calculatorsoup.com/calculators/algebra/cubicequation.php)}
+
+\begin{align*}
+  I &=
+  \begin{pmatrix}
+    \int_V \rho(y^2+z^2)dV & -\int_V xydV & -\int_V xzdV\\
+     -\int_V xydV & \int_V \rho(x^2+z^2)dV & -\int_V yzdV\\
+     -\int_V xzdV & -\int_V yzdV & \int_V \rho(x^2+y^2)dV\\
+  \end{pmatrix}\\
+  I &=
+  \begin{pmatrix}
+    M\sum (y_i^2+z_i^2) & -\sum x_iy_i & -\sum x_iz_i\\
+     -\sum x_iy_i & M\sum (x_i^2+z_i^2) & -\sum y_iz_i\\
+     -\sum x_iz_i & -\sum y_iz_i & M\sum (x_i^2+y_i^2)\\
+  \end{pmatrix}\\
+  I &=
+  Ma^2
+  \begin{pmatrix}
+    41 & -16 & 9\\
+    -16 & 26 & 9\\
+    9 & 9 & 49\\
+  \end{pmatrix}
+\end{align*}
+
+We now want to find the solutions to the eigenvalue equation:
+
+\begin{align*}
+  &\det
+  \begin{pmatrix}
+    Ma^241-\lambda & -Ma^216 & Ma^29\\
+    -Ma^216 & Ma^226-\lambda & Ma^29\\
+    Ma^29 & Ma^29 & Ma^249-\lambda\\
+  \end{pmatrix} = 0\\
+  \lambda_1 &= 54.9631\hspace{0.1cm}Ma^2\\
+  \lambda_2 &= 49.3639\hspace{0.1cm}Ma^2\\
+  \lambda_3 &= 11.673\hspace{0.1cm}Ma^2\\
+\end{align*}
+
+These are our moments of inertia. We can then find our angular eigenvectors, which represent our principal axes:
+
+\begin{align*}
+  \omega_1 &=
+  \begin{pmatrix}
+    0.62\\
+    -0.1\\
+    0.78\\
+  \end{pmatrix}\hspace{1cm}
+  \omega_2 =
+  \begin{pmatrix}
+    -0.59\\
+    0.6\\
+    0.54\\
+  \end{pmatrix}\hspace{1cm}
+  \omega_3 =
+  \begin{pmatrix}
+    -0.53\\
+    -0.79\\
+    0.32\\
+  \end{pmatrix}
+\end{align*}
+
+We now verify this is an orthogonal basis:
+
+\begin{align*}
+  \omega_1 \cdot \omega_2 = \omega_1 \cdot \omega_3 = \omega_2 \cdot \omega_3 \approx 0\\
+\end{align*}
+
+This was a cool problem. I think it's really interesting that all objects have three principal axes. This is not at all intuitive. I can see that all objects have at least one principal axis. And by this, there must be two vectors orthogonal to it, so it makes sense given that assumption that there are three principal axes. This is still unintuitive, though. This problem involved using linear algebra solvers online since the actual eigenvalues were so ugly. But it was a good exercise. It was interesting to take the continuous form of the I equation and discretize it.\\
 
 \end{document}

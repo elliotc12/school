@@ -1,4 +1,4 @@
-default: a9
+default: cm-equations
 
 a1: latex/a1.tex
 	cd latex && xelatex a1.tex && mv a1.pdf ..
@@ -26,3 +26,6 @@ a8: latex/a8.tex
 
 a9: latex/a9.tex
 	cd latex && xelatex a9.tex && mv a9.pdf ..
+
+cm-equations: latex/cm-equations.tex
+	cd latex && xelatex cm-equations.tex && mv cm-equations.pdf ..

@@ -23,5 +23,8 @@ crystal-debug: crystal_phase.c plot.py
 paper: latex/paper1.tex
 	cd latex && xelatex paper1.tex && mv paper1.pdf ..
 
+paper2: latex/paper2.tex
+	cd latex && xelatex paper2.tex && mv paper2.pdf ..
+
 der: latex/der.tex
 	cd latex && xelatex der.tex && mv der.pdf ..
