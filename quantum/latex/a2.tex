@@ -39,7 +39,7 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Quantum Mechanics Assignment One}
+\title{Quantum Mechanics Assignment Two}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -47,139 +47,110 @@
 
 \maketitle{}
 
-\section{Problem 2.17}
-This problem asks us to take the following spin-1 state and figure out the probabilities of
-measuring z- and x-component spins, and also to find their expectation value.\\
+\section{9.4: Forbidden region probability for QHO}
+For this problem we want to calculate the probability of measuring a QHO ground-state object outside
+of the classically allowed region. We do this by calculating the turning points of a classical HO,
+ie finding the x-values where energy equals potential, and then integrating $\psi^*\psi$ over the
+forbidden region to find the chance of forbidden observation.\\
 
+We first find the turning point for the ground state $n=0$:
 \begin{align*}
-  \ket{\Psi} \doteq &\frac{1}{\sqrt{30}}
-  \begin{pmatrix}
-    1\\
-    2\\
-    5i\\
-  \end{pmatrix}
+  V_{HO} &= E_0\\
+  \frac{1}{2}m\omega^2x^2 &= \hbar\omega\left(0+\frac{1}{2}\right)\\
+  x_0 &= \sqrt{\frac{\hbar}{m\omega}}\\
 \end{align*}
 
-We use the normal $P_x = \abs{\braket{\Psi_x}{\Psi}}^2$ to find probabilities. It is simple to
-calculate the braket since both states are in the $S_z$ representation.
+We then find the probability of finding the particle in this region:
 
 \begin{align*}
-  P_{1} = \abs{\braket{\Psi_{1}}{\Psi}}^2 &=
-  \abs{\frac{1}{\sqrt{30}}\begin{pmatrix}1&0&0\end{pmatrix}\begin{pmatrix}1\\2\\5i\\\end{pmatrix}}^2
-  = \frac{1}{30}\\
-  P_{0} = \abs{\braket{\Psi_{0}}{\Psi}}^2 &=
-  \abs{\frac{1}{\sqrt{30}}\begin{pmatrix}0&1&0\end{pmatrix}\begin{pmatrix}1\\2\\5i\\\end{pmatrix}}^2
-  = \frac{4}{30}\\
-  P_{-1} = \abs{\braket{\Psi_{-1}}{\Psi}}^2 &=
-  \abs{\frac{1}{\sqrt{30}}\begin{pmatrix}0&0&1\end{pmatrix}\begin{pmatrix}1\\2\\5i\\\end{pmatrix}}^2
-  = \frac{25}{30}\\
+  P_{forb} &= \int_{\infty}^{-x_0} \psi_0^*\psi_0 dx + \int_{x_0}^{\infty} \psi_0^*\psi_0 dx\\
+  &= \int_{\infty}^{-x_0} \sqrt{\frac{m\omega}{\pi\hbar}}e^{-m\omega x^2 / \hbar}dx
+  + \int_{x_0}^{\infty} \sqrt{\frac{m\omega}{\pi\hbar}}e^{-m\omega x^2 / \hbar} dx\\
+  &= \sqrt{\frac{m\omega}{\pi\hbar}} \left(\frac{-\hbar}{m\omega}\right)\left(
+    \frac{1}{x}e^{-m\omega x^2 / \hbar} \Bigg|_{-\infty}^{-\sqrt{\frac{\hbar}{m\omega}}} +
+    \frac{1}{x}e^{-m\omega x^2 / \hbar} \Bigg|_{\sqrt{\frac{\hbar}{m\omega}}}^{\infty}\right)\\
+  &= \frac{2}{\sqrt{\pi}} = 0.41\\
 \end{align*}
+
+\section{9.9: QHO expectation values via integration, operator method}
+In this problem we use both wave function integration and the operator method to find the
+expectation values of various observables: x, p, $x^2$, $p^2$.
+
+\textbf{a.) Ground state wave function calculations}
 \begin{align*}
-  \expval{S_z}{\Psi} &= \frac{1}{30}\begin{pmatrix}1&2&-5i\end{pmatrix}\begin{pmatrix}
-      \hslash&0&0\\0&0&0\\0&0&-\hslash\\\end{pmatrix}\begin{pmatrix}1\\2\\5i\end{pmatrix}
-        = \frac{1}{30}\begin{pmatrix}1&2&-5i\end{pmatrix}
-          \begin{pmatrix}\hslash\\0\\5\hslash i\end{pmatrix}
-            = \frac{1}{30}\left(1 + -25\right) = \frac{-4}{5}\\
+  <x> &= \int_{-\infty}^{\infty} \psi^*x\psi dx\\
+  &= \int_{-\infty}^{\infty} \sqrt{\frac{m\omega}{\pi\hbar}}e^{-m\omega x^2 / \hbar}x dx = 0\\
 \end{align*}
-
-We then want to compute the expectation value of the spin in the x-direction. We use the
-$S_z$ representation of $S_x$:
-
-\begin{align*}
-  \expval{S_x}{\Psi} &= \frac{1}{30}\begin{pmatrix}1&2&-5i\end{pmatrix}\frac{\hslash}{\sqrt{2}}
-    \begin{pmatrix}0&1&0\\1&0&1\\0&1&0\\\end{pmatrix}\begin{pmatrix}1\\2\\5i\end{pmatrix}
-        = \frac{1}{30\sqrt{2}}\begin{pmatrix}1&2&-5i\end{pmatrix}
-          \begin{pmatrix}2\\1+5i\\2\end{pmatrix}\\
-            = \frac{4}{30\sqrt{2}}\\
-\end{align*}
-
-\section{Problem 5.11}
-This problem asks us to find the probabilities to find $n=2$ Hydrogen electrons in the classically
-forbidden region.\\
-
-This problem deals with an infinite square well wave which suddenly has its right potential wall
-move from $L$ to $3L$. We are asked to find the probability of finding the wave in the ground or
-first excited state. This problem is basically asking us to find the $c_1$ and $c_2$ coefficients
-of the old wave function in the new well, and from them find probabilities.
+We don't need to perform the $<x>$ integral because it involves integrating an odd function over
+an even domain, which always results in zero. This is to be expected, because the wave ground-state
+wave function is symmetric across zero.\\
 
 \begin{align*}
-  \Psi(x) &= \sqrt{\frac{2}{L}}\sin\left(\frac{\pi x}{L}\right)\\
-  \ket{E_1} &= \sqrt{\frac{2}{3L}}\sin\left(\frac{\pi x}{3L}\right)\\
-  \ket{E_2} &= \sqrt{\frac{2}{3L}}\sin\left(\frac{2\pi x}{3L}\right)\\
+  <p> &= \int_{-\infty}^{\infty} \psi^* -i\hbar \frac{d}{dx}\psi dx\\
+  &= \int_{-\infty}^{\infty}
+  -i\sqrt{\frac{m\omega}{\pi\hbar}}(-m\omega x)e^{\frac{-m\omega x^2}{2\hbar}}dx = 0\\
 \end{align*}
-
-We wish to find the $c_1$ and $c_2$ coefficients for this system.
+This integral is zero since we are again integrating an odd function over an even domain. This
+makes sense because, since the spacial distribution of the wave function is equal on both sides
+of the x-axis, the velocities (and hence momenta) should be equal as well.\\
 
 \begin{align*}
-  c_1 &= \braket{E_1}{\Psi} = \int_0^{3L} \sqrt{\frac{2}{3L}}\sin\left(\frac{\pi x}{3L}\right)*
-  \sqrt{\frac{2}{L}}\sin\left(\frac{\pi x}{L}\right)dx\\
-  &= \sqrt{\frac{4}{3L^3}}\int_0^{3L}
-  \sin\left(\frac{\pi x}{3L}\right)\sin\left(\frac{\pi x}{L}\right)\\
-  &= \sqrt{\frac{2}{3L^3}}\left(\int_0^{3L} \cos\left(\frac{2\pi x}{3L}\right)dx
-  - \int_0^{3L} \cos\left(\frac{4\pi x}{3L}\right)dx\right)\\
-  &= 0\\
+  <x^2> &= \int_{-\infty}^{\infty} \psi^*x^2\psi dx\\
+  &= \int_{-\infty}^{\infty} \sqrt{\frac{m\omega}{\pi\hbar}}e^{-m\omega x^2 / \hbar}x^2 dx\\
+  &= 2\sqrt{\frac{m\omega}{\pi\hbar}}\int_{0}^{\infty} e^{-m\omega x^2 / \hbar}x^2 dx\\
+  &= 2\sqrt{\frac{m\omega}{\pi\hbar}} *
+  \frac{\sqrt{\pi}}{4(\frac{m\omega}{\hbar})^{3/2}} \hspace{2cm}\mbox{Wolfram}\\
+  &= \frac{\hbar}{2m\omega}\\
 \end{align*}
+Here we exploit the fact that integrating an even function over an even domain is equivalent to
+doubling the integral of the function over half the domain. The answer makes sense, since increasing
+$m\omega$ corresponds to making the quadratic potential steeper, hence making the wave function
+tighter.\\
 
 \begin{align*}
-  c_2 &= \braket{E_2}{\Psi} = \int_0^{3L} \sqrt{\frac{2}{3L}}\sin\left(\frac{2\pi x}{3L}\right)*
-  \sqrt{\frac{2}{L}}\sin\left(\frac{\pi x}{L}\right)dx\\
-  &= \sqrt{\frac{4}{3L^3}}\int_0^{3L}
-  \sin\left(\frac{2\pi x}{3L}\right)\sin\left(\frac{\pi x}{L}\right)\\
-  &= \sqrt{\frac{2}{3L^3}}\left(\int_0^{3L} \cos\left(\frac{\pi x}{3L}\right)dx
-  - \int_0^{3L} \cos\left(\frac{5\pi x}{3L}\right)dx\right)\\
-  &= 0\\
+  <p^2> &= \int_{-\infty}^{\infty} \psi^* \left(-\hbar^2 \frac{d^2}{dx^2}\right)\psi dx\\
+  &= \sqrt{\frac{m\omega}{\pi\hbar}}\int_{-\infty}^{\infty} -\hbar^2e^{\frac{-m\omega x^2}{\hbar}}
+  \left(\frac{m^2\omega^2x^2}{\hbar^2} - \frac{m\omega x}{\hbar}\right)dx\\
+  &= -\hbar^2\sqrt{\frac{m\omega}{\pi\hbar}}\left(
+  \int_{-\infty}^{\infty} e^{\frac{-m\omega x^2}{\hbar}}\frac{m^2\omega^2x^2}{\hbar^2}dx -
+  \int_{-\infty}^{\infty} e^{\frac{-m\omega x^2}{\hbar}}\frac{m\omega}{\hbar}\right)dx\\
+  &= -\hbar^2\sqrt{\frac{m\omega}{\pi\hbar}}
+  \left(\frac{1}{4}\sqrt{\frac{m\pi\omega}{\hbar}} -
+  \frac{1}{2}\sqrt{\frac{m\pi\omega}{\hbar}}\right) \hspace{2cm}\mbox{Wolfram}\\
+  &= \frac{\hbar m\omega}{4}\\
 \end{align*}
+This answer is intuitive, since increasing mass as well as oscillatory speed should both increase
+the expected momentum.
 
-From this we can see that the probability of measuring the wave in the new tripled well to be in
-$\ket{E_1}$ or $\ket{E_2}$ is zero, since $P_n = \abs{c_n}^2$. This result is to be expected, since
-the wave should be completely in the second excited state, $\ket{E_3}$. This is because extending
-the $\Psi(x)$ wave function from $0$ to $3L$ results in a two-node wave function identical to the
-$\ket{E_3}$ state.\\
-
-\section{8.7}
-We begin with the potential and find the r-values at which $E=V$. We then calculate
-the probability using $P = \int_r^\infty \psi^* \psi dr$.
+\textbf{b.) Any-state operator method calculations}
+Here we define the position and momentum operators in terms of the raising and lowering operators:
+\begin{align*}
+  \hat{x} &= \sqrt{\frac{\hbar}{2m\omega}}\left(a + a^\dagger\right)\\
+  \hat{p} &= i\sqrt{\frac{m\omega\hbar}{2}}\left(a^\dagger - a\right)\\
+\end{align*}
+We then solve for the various expectation values using these definitions:
 
 \begin{align*}
-  V(r) &= \frac{-e^2}{4\pi\epsilon_0r}\\
+  <x> &= \bra{n}x\ket{n}\\
+  &= \sqrt{\frac{\hbar}{2m\omega}}\bra{n}\left(a + a^\dagger\right)\ket{n}\\
+  &= \sqrt{\frac{\hbar}{2m\omega}}
+  \left(\sqrt{n}\bra{n}\ket{n-1} + \sqrt{n+1}\bra{n}\ket{n+1}\right) = 0\\
 \end{align*}
-
-We first solve for the forbidden distance:
+This answer indicates that all pure QHO wave functions are centered around zero. This makes
+sense since the QHO wave functions are all made up of either even or odd functions. When squared,
+as is done when finding the probability, the equation becomes entirely even, meaning it is
+symmetric across the y-axis. From this we can see that all QHO wave functions have an expectation
+value of zero for x-measurement.
 
 \begin{align*}
-  V(r) &= E_2\\
-  -\frac{Z\alpha\hslash c}{r} &= -\frac{1}{2n^2}\alpha^2m_ec^2\\
-  \frac{-1.44 \mbox{eV nm}}{r} &= -3.4 \mbox{eV}\\
-  r &= 2.36 \mbox{nm}
+  <p> &= \bra{n}\hat{p}\ket{n}\\
+  &= i\sqrt{\frac{m\hbar\omega}{2}}\bra{n}\left(a^\dagger-a\right)\ket{n}\\
+  &= i\sqrt{\frac{m\hbar\omega}{2}}
+  \left(\sqrt{n+1}\bra{n}\ket{n+1} - \sqrt{n}\bra{n}\ket{n-1}\right) = 0\\
 \end{align*}
+This is an interesting result. It is intuitive that any wave function should have an expectation of
+zero for momentum, else the wave function would move through space.
 
-Next we find the probability of our particles being further than this:
-
-\begin{align*}
-  P_{200} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
-  \frac{r^2}{32\pi a_0^3}\left(2-\frac{r}{a_0}\right)^2e^{\frac{-r}{a_0}}
-  \sin(\theta)drd\phi d\theta = 2.09*10^{-14}\\
-  P_{21-1} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
-  \frac{r^4}{64\pi a_0^5}e^{\frac{-r}{a_0}}\sin^3(\theta)
-  drd\phi d\theta = 7.62*10^{-15}\\
-  P_{210} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
-  \frac{r^4}{32\pi a_0^5}e^{\frac{-r}{a_0}}\cos^2(\theta)
-  \sin(\theta)drd\phi d\theta = 7.62*10^{-15}\\
-  P_{211} &= \int_{2.36}^\infty \int_0^{2\pi} \int_0^\pi
-  \frac{r^4}{64\pi a_0^5}e^{\frac{-r}{a_0}}\sin^3(\theta)
-  drd\phi d\theta = 7.62*10^{-15}\\
-\end{align*}
-
-We note that it is much more likely for the s-shell electron to be found in the forbidden (far
-from atom) zone than the p-shell electrons. This is indicative of the shape of the s vs p shells
-and how spread-out they are from the nucleus. We also note that, though we started off with 3
-different wave functions for the $\ell = 1$ states, we get the same probabilities in the end.
-This is to be expected, since the different $m_\ell$-numbered states are just rotations of each
-other around the atom's axis, their shapes are the same.\\
-
-I was initially confused as to why the units of the wave function were in $m^{-3/2}$, but then
-recalled that complex conjugating the wave function and integrating over three dimensions would
-cancel out these units.\\
-
+How does this reconcile w/ fact that p involves a spacial derivative?
 
 \end{document}
