@@ -110,14 +110,14 @@ tighter.\\
 \begin{align*}
   <p^2> &= \int_{-\infty}^{\infty} \psi^* \left(-\hbar^2 \frac{d^2}{dx^2}\right)\psi dx\\
   &= \sqrt{\frac{m\omega}{\pi\hbar}}\int_{-\infty}^{\infty} -\hbar^2e^{\frac{-m\omega x^2}{\hbar}}
-  \left(\frac{m^2\omega^2x^2}{\hbar^2} - \frac{m\omega x}{\hbar}\right)dx\\
+  \left(\frac{m^2\omega^2x^2}{\hbar^2} - \frac{m\omega}{\hbar}\right)dx\\
   &= -\hbar^2\sqrt{\frac{m\omega}{\pi\hbar}}\left(
   \int_{-\infty}^{\infty} e^{\frac{-m\omega x^2}{\hbar}}\frac{m^2\omega^2x^2}{\hbar^2}dx -
   \int_{-\infty}^{\infty} e^{\frac{-m\omega x^2}{\hbar}}\frac{m\omega}{\hbar}\right)dx\\
   &= -\hbar^2\sqrt{\frac{m\omega}{\pi\hbar}}
-  \left(\frac{1}{4}\sqrt{\frac{m\pi\omega}{\hbar}} -
-  \frac{1}{2}\sqrt{\frac{m\pi\omega}{\hbar}}\right) \hspace{2cm}\mbox{Wolfram}\\
-  &= \frac{\hbar m\omega}{4}\\
+  \left(\frac{1}{2}\sqrt{\frac{m\pi\omega}{\hbar}} -
+  \sqrt{\frac{m\pi\omega}{\hbar}}\right) \hspace{2cm}\mbox{Wolfram}\\
+  &= \frac{\hbar m\omega}{2}\\
 \end{align*}
 This answer is intuitive, since increasing mass as well as oscillatory speed should both increase
 the expected momentum.
@@ -149,8 +149,86 @@ value of zero for x-measurement.
   \left(\sqrt{n+1}\bra{n}\ket{n+1} - \sqrt{n}\bra{n}\ket{n-1}\right) = 0\\
 \end{align*}
 This is an interesting result. It is intuitive that any wave function should have an expectation of
-zero for momentum, else the wave function would move through space.
+zero for momentum, else the wave function would move through space due to a nonzero average
+velocity.
 
-How does this reconcile w/ fact that p involves a spacial derivative?
+\begin{align*}
+  <x^2> &= \bra{n}x^2\ket{n}\\
+  &= \frac{\hbar}{2m\omega}\bra{n}\left(a + a^\dagger\right)\left(a + a^\dagger\right)\ket{n}\\
+  &= \frac{\hbar}{2m\omega}\bra{n}
+  \left(aa + aa^\dagger + a^\dagger a + a^\dagger a^\dagger\right)\ket{n}\\
+  &= \frac{\hbar}{2m\omega}
+  \left(aa + aa^\dagger + a^\dagger a + a^\dagger a^\dagger\right)\ket{n}\\
+  &= \frac{\hbar}{2m\omega} \left(\sqrt{n-1}\sqrt{n-2}\bra{n}\ket{n-2} + (n+1)\bra{n}\ket{n} +
+  (n)\bra{n}\ket{n} + \sqrt{n+1}\sqrt{n+2}\bra{n}\ket{n+2}\right)\\
+  &= \frac{\hbar}{2m\omega} \left(2n+1\right)\\
+\end{align*}
+This is an interesting result which indicates that for each extra rung on the ladder, the
+expectation of the squared position increases linearly, meaning the expectation of the magnitude
+of x increases as $\sqrt{n}$. This makes sense, since increasing energy levels have less and less
+room to expand in the quadratic potential well. The $n=0$ state corresponds to the wave function
+solution for the ground state found above.\\
 
+\begin{align*}
+  <p^2> &= \bra{n}p^2\ket{n}\\
+  &= -\frac{m\hbar\omega}{2}\bra{n}\left(a^\dagger-a\right)\left(a^\dagger-a\right)\ket{n}\\
+  &= -\frac{m\hbar\omega}{2}\bra{n}
+  \left(a^\dagger a^\dagger - a^\dagger a - aa^\dagger + aa\right)\ket{n}\\
+  &= -\frac{m\hbar\omega}{2}\bra{n}\left(\sqrt{n-1}\sqrt{n-2}\bra{n}\ket{n-2}
+  - (n)\bra{n}\ket{n} - (n+1)\bra{n}\ket{n} + \sqrt{n+1}\sqrt{n+2}\bra{n}\ket{n+2}\right)\\
+  &= \frac{\hbar m\omega}{2}\left(2n + 1\right)
+\end{align*}
+This result is similar to the above one for $x^2$ with different units. It is still a $\sqrt{n}$
+relationship for momentum, which makes sense.\\
+
+\textbf{c.) Uncertainty principle}\\
+Since the above two cases agree with each other, we check that the more general case of part
+\textbf{b.} agrees with the uncertainty principle.
+
+\begin{align*}
+  \Delta x &= \sqrt{<x^2>-<x>^2}\\
+  &= \sqrt{\frac{\hbar}{2m\omega} \left(2n+1\right)}\\
+  \Delta p &= \sqrt{<p^2>-<p>^2}\\
+  &= \sqrt{\frac{\hbar m\omega}{2}\left(2n + 1\right)}\\
+  \Delta x \Delta p &= \sqrt{\frac{\hbar}{2m\omega} \left(2n+1\right)}
+  \sqrt{\frac{\hbar m\omega}{2}\left(2n + 1\right)}\\
+  &= \frac{\hbar}{2}(2n+1)\\
+\end{align*}
+This is an interesting result which indicates that uncertainty increases as the pure wave function
+gets more energetic. Ground state is the state with maximum certainty. The higher states get
+progressively more uncertain, which makes sense since both the velocity and the well get larger
+for higher states.\\
+
+\section{9.13: }
+
+\section{9.14: Unknown QHO wavefunction}
+We are given the wave function $\psi(x,0) = A\left[1 - 3\sqrt{\frac{m\omega}{\hbar}}x +
+  2\frac{m\omega}{\hbar}x^2\right]$. Because its highest-order polynomial term is $x^2$, we know
+that it must be made up of the $n = 0, 1, 2$ energy states. We now figure out the coefficients for
+each:
+
+\begin{align*}
+  c_0 &= \int_{-\infty}^{\infty} \phi_0^*\psi dx\\
+  &= A\int_{-\infty}^{\infty} \left(\frac{m\omega}{\pi\hbar}\right)^{1/2}e^{-m\omega x^2/\hbar}
+  \left(1 - 3\sqrt{\frac{m\omega}{\hbar}}x +
+  2\frac{m\omega}{\hbar}x^2\right)e^{-m\omega x^2/(2\hbar)}dx\\
+  &= 2\\
+  c_1 &= A\int_{-\infty}^{\infty} \frac{2\sqrt{\frac{m\omega}{\hbar}x}}{\sqrt{2}}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/2} \left(1 - 3\sqrt{\frac{m\omega}{\hbar}}x +
+    2\frac{m\omega}{\hbar}x^2\right)e^{-m\omega x^2/\hbar}dx\\
+ &= -\frac{3}{\sqrt{2}}\\
+ c_2 &= A\int_{-\infty}^{\infty} \frac{\frac{4m\omega}{\hbar}x^2 - 2}{\sqrt{8}}
+    \left(\frac{m\omega}{\pi\hbar}\right)^{1/2} \left(1 - 3\sqrt{\frac{m\omega}{\hbar}}x +
+    2\frac{m\omega}{\hbar}x^2\right)e^{-m\omega x^2/\hbar}dx\\
+ &= \sqrt{2}\\
+\end{align*}
+
+From this we can see that $\psi(x,0) = \sqrt{\frac{21}{2}}
+\left(2\ket{0} + -\frac{3}{\sqrt{2}}\ket{1} + \sqrt{2}\ket{2}\right)$. It is then easy to compute
+the expectation value: \\
+
+\begin{align*}
+  <E> &= \sigma \hbar\omega\left(n+\frac{1}{2}\right)|c_n|^2\\
+  &= \frac{2 + \frac{27}{4} + 5}{\frac{21}{2}} = 1.3 eV\\
+\end{align*}
 \end{document}
