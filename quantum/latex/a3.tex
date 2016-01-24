@@ -93,17 +93,116 @@ We then calculate expectation values for the system:\\
 \textbf{Momentum}
 \begin{align*}
   <p> &= -i\sqrt{\frac{\hbar}{2m\omega}}\bra{\psi}\left(a - a^\dagger)\right)\ket{\psi}\\
-  &= -i\sqrt{\frac{\hbar}{2m\omega}}\left(\bra{\psi}a\ket{\psi}
+  &= -i\sqrt{\frac{\hbar m\omega}{2}}\left(\bra{\psi}a\ket{\psi}
   - \bra{\psi}a^\dagger\ket{\psi}\right)\\
-  &= -i\sqrt{\frac{\hbar}{2m\omega}}\left(\sqrt{2}c_1^*(t)c_2(t)\bra{1}\ket{1}
+  &= -i\sqrt{\frac{\hbar m\omega}{2}}\left(\sqrt{2}c_1^*(t)c_2(t)\bra{1}\ket{1}
   - \sqrt{2}c_1(t)c_2^*(t)\bra{2}\ket{2}\right)\\
-  &= -i*0.6*0.8*\sqrt{\frac{\hbar}{m\omega}}\left(e^{i\omega t} - e^{-i\omega t}\right)\\
-  &= -0.48\sqrt{\frac{\hbar}{m\omega}}\sin(\omega t)\\
+  &= -i*0.6*0.8*\sqrt{\hbar m\omega}\left(e^{i\omega t} - e^{-i\omega t}\right)\\
+  &= -0.48\sqrt{\hbar m\omega}\sin(\omega t)\\
 \end{align*}
+
+An interesting result! First, the units look good. Second, the magnitude of the expected momentum
+integrated over time is zero, meaning that the particle won't travel anywhere, which is good. The
+trigonometric function suggests that the particle's momentum oscillates sinusoidally at the
+classical frequency, just as we expect for a classical oscillator.\\
 
 \textbf{Energy}
 \begin{align*}
-  \braket{p} &= 
+  <H> &= \bra{1}(\frac{3}{2}\hbar\omega)\ket{1} + \bra{2}(\frac{5}{2}\hbar\omega)\ket{2}\\
+  &= 0.36 * \frac{3}{2}\hbar\omega + 0.64 * \frac{5}{2}\hbar\omega\\
+  &= 2.08\hbar\omega\\
 \end{align*}
 
+This is an expected result closest to the most-represented eigenstate in the system. It makes sense
+that there is no time-dependence, since that would mean energy would be entering and leaving the
+system, and energy is conserved for QM expectation values.
+
+\section{9.17: More Expectation Values}
+Similar to the above problem we are given a wavefunction and asked to calculate expectation values
+from it. We begin by figuring out its normalization constant:
+
+\textbf{Normalization constant}
+\begin{align*}
+  \psi(x,0) &= A\left[\phi_0(x) + 2\phi_1(x) + 2\phi_2(x)\right]\\
+  \braket{\psi} &= 1
+  A^2\left(1 + 4 + 4\right) &= 1 \rightarrow A = \frac{1}{3}\\
+\end{align*}
+
+Therefore our full time-evolved wavefunction is:
+
+\begin{align*}
+  \psi(x,t) &= \frac{1}{3}e^{\frac{-i\omega t}{2}}\phi_0(x)
+  + \frac{2}{3}e^{\frac{-3i\omega t}{2}}\phi_1(x)
+  + \frac{2}{3}e^{\frac{-5i\omega t}{2}}\phi_2(x)\\
+\end{align*}
+
+\textbf{Energy measurements}
+By inspection we see that the first three energy levels of the QHO spectrum are represented in the
+wave function, so these are the only ones we calculate the energy for.
+
+\begin{align*}
+  \mathbb{P}(\frac{1}{2}\omega) &= |\bra{0}\ket{\psi}|^2 = |c_0|^2 = \frac{1}{9}\\
+  \mathbb{P}(\frac{3}{2}\omega) &= |\bra{1}\ket{\psi}|^2 = |c_1|^2 = \frac{4}{9}\\
+  \mathbb{P}(\frac{5}{2}\omega) &= |\bra{2}\ket{\psi}|^2 = |c_2|^2 = \frac{4}{9}\\
+\end{align*}
+
+We can see the probabilities sum up to 1, as desired.\\
+
+\textbf{Momentum expectation value}
+\begin{align*}
+  <p> &= -i\sqrt{\frac{\hbar}{2m\omega}}\bra{\psi}\left(a - a^\dagger)\right)\ket{\psi}\\
+  &= -i\sqrt{\frac{\hbar m\omega}{2}}\left(\bra{\psi}a\ket{\psi}
+  - \bra{\psi}a^\dagger\ket{\psi}\right)\\
+  &= -i\sqrt{\frac{\hbar m\omega}{2}}
+  \Bigg(
+  \sqrt{1}\frac{2}{9}e^{\frac{i\omega t}{2}}e^{\frac{-3i\omega t}{2}}\bra{0}\ket{0}
+  + \sqrt{2}\frac{4}{9}e^{\frac{3i\omega t}{2}}e^{\frac{-5i\omega t}{2}}\bra{1}\ket{1}\\
+  &-\sqrt{1}\frac{2}{9}e^{\frac{3i\omega t}{2}}e^{\frac{-i\omega t}{2}}\bra{1}\ket{1}
+  - \sqrt{2}\frac{4}{9}e^{\frac{5i\omega t}{2}}e^{\frac{-3i\omega t}{2}}\bra{2}\ket{2}
+  \Bigg)\\
+  &= -i\sqrt{\frac{\hbar m\omega}{2}}
+  \left(\frac{2}{9}e^{-i\omega t} + \sqrt{2}\frac{4}{9}e^{-i\omega t}
+  - \frac{2}{9}e^{i\omega t} - \sqrt{2}\frac{4}{9}e^{i\omega t}\right)\\
+  &= \frac{-2i}{9}\sqrt{\frac{\hbar m\omega}{2}}
+  \Bigg(
+  \cos(\omega t) - i\sin(\omega t)
+  + \sqrt{8}\cos(\omega t) - i\sqrt{8}\sin(\omega t)\\
+  &- \cos(\omega t) - i\sin(\omega t)
+  - \sqrt{8}\cos(\omega t) - i\sqrt{8}\sin(\omega t)
+  \Bigg)\\
+  &= \frac{4i}{9}\sqrt{\frac{\hbar m\omega}{2}}\left(1 + \sqrt{8}\right)\sin(\omega t)\\
+\end{align*}
+
+This is another cool result. It is messier than the previous momentum expectation value due to
+a larger number of states, but still has proper units and displays the sinusoidal oscillation
+typical of systems with adjacent energies. I wonder why systems without adjacent energies have a
+zero expectation value for momentum. What is special about adjacent states that makes them
+``couple''?\\
+
+\textbf{Energy expectation}
+\begin{align*}
+  <H> &= \frac{1}{9}\frac{1}{2}\hbar\omega + \frac{4}{9}\hbar{3}{2}\hbar\omega
+  + \frac{4}{9}\frac{5}{2}\hbar\omega\\
+  &= \frac{33}{18}\hbar\omega = 1.83\hbar\omega\\
+\end{align*}
+
+A cool and expected result.\\
+
+\textbf{Energy standard deviation}
+We must first find the value of $<H^2>$:
+\begin{align*}
+  <H^2> &= \frac{1}{9}\frac{1}{4}\hbar^2\omega^2 + \frac{4}{9}\hbar{9}{4}\hbar^2\omega^2
+  + \frac{4}{9}\frac{25}{4}\hbar^2\omega^2\\
+  &= \frac{137}{36}\hbar^2\omega^2 = 3.8\hbar^2\omega^2\\
+\end{align*}
+
+We then calculate the standard deviation:
+\begin{align*}
+  \Delta E &= \sqrt{<H^2> - <H>^2} = \sqrt{(3.8 - 3.34)\hbar^2\omega^2}\\
+  &= \sqrt{0.46\hbar^2\omega^2} \approx \frac{2}{3}\hbar\omega\\
+\end{align*}
+
+Standard deviations in QHO systems are interesting because all the energies are evenly spaced. This
+value represents how spread-out the states are. It is expected that because the states are close
+together for this system, the standard deviation is small.
 \end{document}
