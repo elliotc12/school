@@ -110,7 +110,7 @@ classical frequency, just as we expect for a classical oscillator.\\
 \begin{align*}
   <H> &= \bra{1}(\frac{3}{2}\hbar\omega)\ket{1} + \bra{2}(\frac{5}{2}\hbar\omega)\ket{2}\\
   &= 0.36 * \frac{3}{2}\hbar\omega + 0.64 * \frac{5}{2}\hbar\omega\\
-  &= 2.08\hbar\omega\\
+  &= 2.14\hbar\omega\\
 \end{align*}
 
 This is an expected result closest to the most-represented eigenstate in the system. It makes sense
@@ -124,7 +124,7 @@ from it. We begin by figuring out its normalization constant:
 \textbf{Normalization constant}
 \begin{align*}
   \psi(x,0) &= A\left[\phi_0(x) + 2\phi_1(x) + 2\phi_2(x)\right]\\
-  \braket{\psi} &= 1
+  \braket{\psi} &= 1\\
   A^2\left(1 + 4 + 4\right) &= 1 \rightarrow A = \frac{1}{3}\\
 \end{align*}
 
@@ -205,4 +205,123 @@ We then calculate the standard deviation:
 Standard deviations in QHO systems are interesting because all the energies are evenly spaced. This
 value represents how spread-out the states are. It is expected that because the states are close
 together for this system, the standard deviation is small.
+
+\section{9.22: Fictional System}
+Here we are given the energy spectrum $E_n = n^3\hbar\omega$ and asked to give some information
+about the system: its Hamiltonian and eigenstates in energy representation (matrix form)
+and the matrix representation of the operator $A\ket{n} = 3n^2\ket{n+2}$.\\
+
+Because any operator in its own basis is diagonal and because any eigenvector in its own basis is
+a unit vector, we represent the Hamiltonian and eigenvectors as so:
+
+\begin{align*}
+  H \doteq
+  \begin{pmatrix}
+    \hbar\omega & 0 & 0 & ...\\
+    0 & 8\hbar\omega & 0 & ...\\
+    0 & 0 & 27\hbar\omega & ...\\
+    ... & ... & ... & ...\\
+  \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+  \ket{1} \doteq
+  \begin{pmatrix}
+    1\\
+    0\\
+    0\\
+    ...\\
+  \end{pmatrix}
+  \hspace{1cm}
+  \ket{2} \doteq
+  \begin{pmatrix}
+    0\\
+    1\\
+    0\\
+    ...\\
+  \end{pmatrix}
+  \hspace{1cm}
+  \ket{3} \doteq
+  \begin{pmatrix}
+    0\\
+    0\\
+    1\\
+    ...\\
+  \end{pmatrix}
+\end{align*}
+
+To find the matrix representation of A we exploit the fact that in the energy basis eigenstates
+are represented by vectors with a single unit entry. Thus the first column of our matrix will only
+interact with the n=1 vector, the second column with the n=2 vector, etc. We also know that the
+result of our matrix-vector multiplication should produce a vector two energies higher than the
+input state. Thus it is easy to see that we will construct a matrix with elements two spaces below
+diagonal with values of $3n^2$, where n is the current column.
+
+\begin{align*}
+  A \doteq
+  \begin{pmatrix}
+    0 & 0 & 0 & 0 & 0 & ...  \\
+    0 & 0 & 0 & 0 & 0 & ...  \\
+    3 & 0 & 0 & 0 & 0 & ...  \\
+    0 & 12 & 0 & 0 & 0 & ... \\
+    0 & 0 & 27 & 0 & 0 & ... \\
+    0 & 0 & 0 & 48 & 0 & ... \\
+    ... & ... & ... & ... & ... & ... \\
+  \end{pmatrix}
+\end{align*}
+
+\section{Paper}
+The paper \textit{Quantum ground state and single-phonon control of a mechanical resonator} is a
+demonstration that a macroscopic, harmonic-oscillating ``quantum drum'' can be cooled enough to
+display behavior normally only predicted for microscopic systems. This is interesting because it
+is an easy validation of quantum mechanics. The project entails cooling a resonator until its
+heat energy is much smaller than that predicted for its oscillation energy, ensuring that
+energy measurements are only of the oscillation. The energy is then measured, and it is shown that
+only discrete values are taken on, not a continuum, as predicted by QM.\\
+
+It is interesting to me that the microscopic details of the system need not be taken into account.
+It seems like the individual wave functions of each atom in the oscillator can just be summed
+into one giant wave function for the oscillator. Maybe that simplification can only be done at
+very cold temperatures?\\
+
+\section{10.1: Diagonalize a perturbed Hamiltonian}
+We begin with the perturbed Hamiltonian in the $S_z$ basis and convert it into its own perturbed
+basis. We then show that the eigenvalues in this basis are identical to those found by redefining
+the direction of Z, aka $E_n = \pm \frac{\hbar}{2} \sqrt{(\omega_0 + \omega_1)^2 + \omega_2^2}$.
+
+We begin with the perturbed matrix and diagonalize it:\\
+
+\begin{align*}
+  H &\doteq
+  \pm\frac{\hbar}{2}
+  \begin{pmatrix}
+    \omega_0 + \omega_1 & \omega_2\\
+    \omega_2 & -\omega_0 - \omega_1\\
+  \end{pmatrix}
+  =
+  \pm\frac{\hbar}{2}
+  \begin{pmatrix}
+    -\omega_2 & \omega_2\left(\frac{-\omega_2}{\omega_0 + \omega_1}\right)\\
+    \omega_2 & -\omega_0 - \omega_1\\
+  \end{pmatrix}
+  =
+  \pm\frac{\hbar}{2}
+  \begin{pmatrix}
+    -\omega_2 & \frac{-\omega_2^2}{\omega_0 + \omega_1}\\
+    0 & -\omega_0 - \omega_1 - \frac{-\omega_2^2}{\omega_0 + \omega_1}\\
+  \end{pmatrix}\\
+  &=
+  \pm\frac{\hbar}{2}
+  \begin{pmatrix}
+    -\omega_2 & \frac{-\omega_2^2}{\omega_0 + \omega_1}\\
+    0 & \frac{\omega_2^2}{\omega_0 + \omega_1}\\
+  \end{pmatrix}
+  =
+  \pm\frac{\hbar}{2}
+  \begin{pmatrix}
+    -\omega_2 & 0\\
+    0 & \frac{\omega_2^2}{\omega_0 + \omega_1}\\
+  \end{pmatrix}
+\end{align*}
+
 \end{document}
