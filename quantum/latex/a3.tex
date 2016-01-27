@@ -170,7 +170,7 @@ We can see the probabilities sum up to 1, as desired.\\
   &- \cos(\omega t) - i\sin(\omega t)
   - \sqrt{8}\cos(\omega t) - i\sqrt{8}\sin(\omega t)
   \Bigg)\\
-  &= \frac{4i}{9}\sqrt{\frac{\hbar m\omega}{2}}\left(1 + \sqrt{8}\right)\sin(\omega t)\\
+  &= \frac{-4}{9}\sqrt{\frac{\hbar m\omega}{2}}\left(1 + \sqrt{8}\right)\sin(\omega t)\\
 \end{align*}
 
 This is another cool result. It is messier than the previous momentum expectation value due to
@@ -270,6 +270,13 @@ diagonal with values of $3n^2$, where n is the current column.
   \end{pmatrix}
 \end{align*}
 
+This was a cool problem that shows that it is very easy to construct a Hamiltonian for a given
+quantum system in matrix representation (not necessarily position representation). It is
+important to note that operator A is not an actual physical operator, since it has no eigenvalue
+equation.\\
+
+\clearpage
+
 \section{Paper}
 The paper \textit{Quantum ground state and single-phonon control of a mechanical resonator} is a
 demonstration that a macroscopic, harmonic-oscillating ``quantum drum'' can be cooled enough to
@@ -289,7 +296,8 @@ We begin with the perturbed Hamiltonian in the $S_z$ basis and convert it into i
 basis. We then show that the eigenvalues in this basis are identical to those found by redefining
 the direction of Z, aka $E_n = \pm \frac{\hbar}{2} \sqrt{(\omega_0 + \omega_1)^2 + \omega_2^2}$.
 
-We begin with the perturbed matrix and diagonalize it:\\
+We begin with the perturbed matrix and use the fact that the eigenvalues of a matrix will be the
+diagonal elements in the diagonalized form:\\
 
 \begin{align*}
   H &\doteq
@@ -297,31 +305,37 @@ We begin with the perturbed matrix and diagonalize it:\\
   \begin{pmatrix}
     \omega_0 + \omega_1 & \omega_2\\
     \omega_2 & -\omega_0 - \omega_1\\
-  \end{pmatrix}
-  =
-  \pm\frac{\hbar}{2}
-  \begin{pmatrix}
-    -\omega_2 & \omega_2\left(\frac{-\omega_2}{\omega_0 + \omega_1}\right)\\
-    \omega_2 & -\omega_0 - \omega_1\\
-  \end{pmatrix}
-  =
-  \pm\frac{\hbar}{2}
-  \begin{pmatrix}
-    -\omega_2 & \frac{-\omega_2^2}{\omega_0 + \omega_1}\\
-    0 & -\omega_0 - \omega_1 - \frac{-\omega_2^2}{\omega_0 + \omega_1}\\
   \end{pmatrix}\\
-  &=
-  \pm\frac{\hbar}{2}
-  \begin{pmatrix}
-    -\omega_2 & \frac{-\omega_2^2}{\omega_0 + \omega_1}\\
-    0 & \frac{\omega_2^2}{\omega_0 + \omega_1}\\
-  \end{pmatrix}
-  =
-  \pm\frac{\hbar}{2}
-  \begin{pmatrix}
-    -\omega_2 & 0\\
-    0 & \frac{\omega_2^2}{\omega_0 + \omega_1}\\
-  \end{pmatrix}
 \end{align*}
+
+\begin{align*}
+  \det\left(H - \lambda I\right) &= 0\\
+  \left(\omega_0 + \omega_1 - \lambda\right)
+  \left(-\omega_0 - \omega_1 - \lambda\right) - \omega_2^2 &= 0\\
+  \lambda^2 - \left(\omega_0 + \omega_1\right)^2 - \omega_2^2 &= 0\\
+  \lambda = \pm\sqrt{\left(\omega_0 + \omega_1\right)^2 + \omega_2^2}\\
+\end{align*}
+
+We then use these eigenvalues to construct a diagonal matrix. We know that the basis for the
+perturbed Hamiltonian will be very similar to the unperturbed Hamiltonian, so we arrange our
+perturbed Hamiltonian with the top left element positive and bottom right negative:
+
+\begin{align*}
+  H_p &\doteq
+  \pm\frac{\hbar}{2}
+  \begin{pmatrix}
+    \sqrt{\left(\omega_0 + \omega_1\right)^2 + \omega_2^2} & 0\\
+    0 & -\sqrt{\left(\omega_0 + \omega_1\right)^2 + \omega_2^2}\\
+  \end{pmatrix}\\
+\end{align*}
+
+We have already shown that the eigenvalues agree with those in McIntyre (10.9). What we have done in
+this problem is taken a matrix in the unperturbed energy basis and transformed it into its own
+perturbed basis. We know this is a new basis because the perturbed Hamiltonian in the original
+basis was not diagonal.\\
+
+It is a good confirmation that the method used in McIntyre to find the eigenvalues of the perturbed
+system, redefining the direction of Z to point in the direction of the new B-field, yielded the same
+result as creating a new basis for the perturbed Hamiltonian.\\
 
 \end{document}
