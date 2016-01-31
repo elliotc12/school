@@ -47,295 +47,59 @@
 
 \maketitle{}
 
-\section{9.16: Time evolving QHO state}
-We are given the probabilities of measuring certain energies for a QHO state $\ket{\psi}$. We
-are asked to find the energy basis representation for this state and compute the expectations for
-momentum and energy.\\
+\section{10.8: Magnetic Perturbation Spin 1}
+For this problem we want to find the energy perturbations due to a magnetic field perturbation
+in the x direction, while remaining in the z basis. To do this we first find the
+perturbed Hamiltonian, which is just the x spin-1 matrix times a factor, and
+then use the formula
+%$E_n^{(2)} = \sum_{m\noteq n}\frac{|\bra{n^{(0)}}H'\ket{n^{(0)}|^2}{(E_n^{(0)}-E_m^{(0)}}}}$
+to find the second-order energy corrections.\\
 
-\textbf{Finding energy representation}
-\begin{align*}
-  |\bra{1}\ket{\psi}|^2 = 0.36 \rightarrow |c_1|^2 &= 0.36 \rightarrow c_1 = e^{ai}0.6\\
-  |\bra{2}\ket{\psi}|^2 = 0.64 \rightarrow |c_1|^2 &= 0.64 \rightarrow c_1 = e^{bi}0.8\\
-\end{align*}
-
-\textbf{Time evolution}
-\begin{align*}
-  \ket{\psi} &= 0.6e^{ai}e^{-iE_1t/\hbar}\ket{1} + 0.8e^{bi}e^{-iE_2t/\hbar}\ket{2}\\
-  &= 0.6e^{ai}e^{-3i\omega t/2}\ket{1} + 0.8e^{bi}e^{-5i\omega t/2}\ket{2}\\
-\end{align*}
-
-We are told that the expectation value for position is minimized at $t=0$. We can use this to find
-the relative phases of the wave function coefficients:\\
-
-\textbf{Calculating relative phase}
-\begin{align*}
-  <x> &= \bra{\psi}\left(\sqrt{\frac{\hbar}{2m\omega}}
-  \left(a + a^\dagger\right)\right)\ket{\psi}\\
-  &= \sqrt{\frac{\hbar}{2m\omega}}\left(\bra{\psi}a\ket{\psi}
-  + \bra{\psi}a^\dagger\ket{\psi}\right)\\
-  &= \sqrt{\frac{\hbar}{2m\omega}}\left(\sqrt{2}c_1^*(t)c_2(t)\bra{1}\ket{1}
-  + \sqrt{2}c_1(t)c_2^*(t)\bra{2}\ket{2}\right)\\
-  &= \sqrt{\frac{\hbar}{m\omega}}\left(c_1^*(t)c_2(t) + c_1(t)c_2^*(t)\right)\\
-  &= \sqrt{\frac{\hbar}{m\omega}}\left(0.6*0.8*e^{i(b-a)} + 0.6*0.8e^{i(a-b)}\right)
-  \hspace{2cm}\mbox{Time-dependent terms are 1 when t=0}\\
-  &= 2*0.6*0.8*\sqrt{\frac{\hbar}{m\omega}}\left(\cos(b-a) + i\sin(b-a)\right)\\
-\end{align*}
-
-To minimize this expectation value, $a-b = b-a = \pi$. Thus we represent our system as follows:
+We first find the perturbed Hamiltonian:
 
 \begin{align*}
-  \psi(t) &= 0.6e^{i\pi}e^{-3i\omega t/2}\ket{1} + 0.8e^{-5i\omega t/2}\ket{2}\\
-  &= -0.6e^{-3i\omega t/2}\ket{1} + 0.8e^{-5i\omega t/2}\ket{2}\\
-\end{align*}
-
-We then calculate expectation values for the system:\\
-
-\textbf{Momentum}
-\begin{align*}
-  <p> &= -i\sqrt{\frac{\hbar}{2m\omega}}\bra{\psi}\left(a - a^\dagger)\right)\ket{\psi}\\
-  &= -i\sqrt{\frac{\hbar m\omega}{2}}\left(\bra{\psi}a\ket{\psi}
-  - \bra{\psi}a^\dagger\ket{\psi}\right)\\
-  &= -i\sqrt{\frac{\hbar m\omega}{2}}\left(\sqrt{2}c_1^*(t)c_2(t)\bra{1}\ket{1}
-  - \sqrt{2}c_1(t)c_2^*(t)\bra{2}\ket{2}\right)\\
-  &= -i*0.6*0.8*\sqrt{\hbar m\omega}\left(e^{i\omega t} - e^{-i\omega t}\right)\\
-  &= -0.48\sqrt{\hbar m\omega}\sin(\omega t)\\
-\end{align*}
-
-An interesting result! First, the units look good. Second, the magnitude of the expected momentum
-integrated over time is zero, meaning that the particle won't travel anywhere, which is good. The
-trigonometric function suggests that the particle's momentum oscillates sinusoidally at the
-classical frequency, just as we expect for a classical oscillator.\\
-
-\textbf{Energy}
-\begin{align*}
-  <H> &= \bra{1}(\frac{3}{2}\hbar\omega)\ket{1} + \bra{2}(\frac{5}{2}\hbar\omega)\ket{2}\\
-  &= 0.36 * \frac{3}{2}\hbar\omega + 0.64 * \frac{5}{2}\hbar\omega\\
-  &= 2.14\hbar\omega\\
-\end{align*}
-
-This is an expected result closest to the most-represented eigenstate in the system. It makes sense
-that there is no time-dependence, since that would mean energy would be entering and leaving the
-system, and energy is conserved for QM expectation values.
-
-\section{9.17: More Expectation Values}
-Similar to the above problem we are given a wavefunction and asked to calculate expectation values
-from it. We begin by figuring out its normalization constant:
-
-\textbf{Normalization constant}
-\begin{align*}
-  \psi(x,0) &= A\left[\phi_0(x) + 2\phi_1(x) + 2\phi_2(x)\right]\\
-  \braket{\psi} &= 1\\
-  A^2\left(1 + 4 + 4\right) &= 1 \rightarrow A = \frac{1}{3}\\
-\end{align*}
-
-Therefore our full time-evolved wavefunction is:
-
-\begin{align*}
-  \psi(x,t) &= \frac{1}{3}e^{\frac{-i\omega t}{2}}\phi_0(x)
-  + \frac{2}{3}e^{\frac{-3i\omega t}{2}}\phi_1(x)
-  + \frac{2}{3}e^{\frac{-5i\omega t}{2}}\phi_2(x)\\
-\end{align*}
-
-\textbf{Energy measurements}
-By inspection we see that the first three energy levels of the QHO spectrum are represented in the
-wave function, so these are the only ones we calculate the energy for.
-
-\begin{align*}
-  \mathbb{P}(\frac{1}{2}\omega) &= |\bra{0}\ket{\psi}|^2 = |c_0|^2 = \frac{1}{9}\\
-  \mathbb{P}(\frac{3}{2}\omega) &= |\bra{1}\ket{\psi}|^2 = |c_1|^2 = \frac{4}{9}\\
-  \mathbb{P}(\frac{5}{2}\omega) &= |\bra{2}\ket{\psi}|^2 = |c_2|^2 = \frac{4}{9}\\
-\end{align*}
-
-We can see the probabilities sum up to 1, as desired.\\
-
-\textbf{Momentum expectation value}
-\begin{align*}
-  <p> &= -i\sqrt{\frac{\hbar}{2m\omega}}\bra{\psi}\left(a - a^\dagger)\right)\ket{\psi}\\
-  &= -i\sqrt{\frac{\hbar m\omega}{2}}\left(\bra{\psi}a\ket{\psi}
-  - \bra{\psi}a^\dagger\ket{\psi}\right)\\
-  &= -i\sqrt{\frac{\hbar m\omega}{2}}
-  \Bigg(
-  \sqrt{1}\frac{2}{9}e^{\frac{i\omega t}{2}}e^{\frac{-3i\omega t}{2}}\bra{0}\ket{0}
-  + \sqrt{2}\frac{4}{9}e^{\frac{3i\omega t}{2}}e^{\frac{-5i\omega t}{2}}\bra{1}\ket{1}\\
-  &-\sqrt{1}\frac{2}{9}e^{\frac{3i\omega t}{2}}e^{\frac{-i\omega t}{2}}\bra{1}\ket{1}
-  - \sqrt{2}\frac{4}{9}e^{\frac{5i\omega t}{2}}e^{\frac{-3i\omega t}{2}}\bra{2}\ket{2}
-  \Bigg)\\
-  &= -i\sqrt{\frac{\hbar m\omega}{2}}
-  \left(\frac{2}{9}e^{-i\omega t} + \sqrt{2}\frac{4}{9}e^{-i\omega t}
-  - \frac{2}{9}e^{i\omega t} - \sqrt{2}\frac{4}{9}e^{i\omega t}\right)\\
-  &= \frac{-2i}{9}\sqrt{\frac{\hbar m\omega}{2}}
-  \Bigg(
-  \cos(\omega t) - i\sin(\omega t)
-  + \sqrt{8}\cos(\omega t) - i\sqrt{8}\sin(\omega t)\\
-  &- \cos(\omega t) - i\sin(\omega t)
-  - \sqrt{8}\cos(\omega t) - i\sqrt{8}\sin(\omega t)
-  \Bigg)\\
-  &= \frac{-4}{9}\sqrt{\frac{\hbar m\omega}{2}}\left(1 + \sqrt{8}\right)\sin(\omega t)\\
-\end{align*}
-
-This is another cool result. It is messier than the previous momentum expectation value due to
-a larger number of states, but still has proper units and displays the sinusoidal oscillation
-typical of systems with adjacent energies. I wonder why systems without adjacent energies have a
-zero expectation value for momentum. What is special about adjacent states that makes them
-``couple''?\\
-
-\textbf{Energy expectation}
-\begin{align*}
-  <H> &= \frac{1}{9}\frac{1}{2}\hbar\omega + \frac{4}{9}\hbar{3}{2}\hbar\omega
-  + \frac{4}{9}\frac{5}{2}\hbar\omega\\
-  &= \frac{33}{18}\hbar\omega = 1.83\hbar\omega\\
-\end{align*}
-
-A cool and expected result.\\
-
-\textbf{Energy standard deviation}
-We must first find the value of $<H^2>$:
-\begin{align*}
-  <H^2> &= \frac{1}{9}\frac{1}{4}\hbar^2\omega^2 + \frac{4}{9}\hbar{9}{4}\hbar^2\omega^2
-  + \frac{4}{9}\frac{25}{4}\hbar^2\omega^2\\
-  &= \frac{137}{36}\hbar^2\omega^2 = 3.8\hbar^2\omega^2\\
-\end{align*}
-
-We then calculate the standard deviation:
-\begin{align*}
-  \Delta E &= \sqrt{<H^2> - <H>^2} = \sqrt{(3.8 - 3.34)\hbar^2\omega^2}\\
-  &= \sqrt{0.46\hbar^2\omega^2} \approx \frac{2}{3}\hbar\omega\\
-\end{align*}
-
-Standard deviations in QHO systems are interesting because all the energies are evenly spaced. This
-value represents how spread-out the states are. It is expected that because the states are close
-together for this system, the standard deviation is small.
-
-\section{9.22: Fictional System}
-Here we are given the energy spectrum $E_n = n^3\hbar\omega$ and asked to give some information
-about the system: its Hamiltonian and eigenstates in energy representation (matrix form)
-and the matrix representation of the operator $A\ket{n} = 3n^2\ket{n+2}$.\\
-
-Because any operator in its own basis is diagonal and because any eigenvector in its own basis is
-a unit vector, we represent the Hamiltonian and eigenvectors as so:
-
-\begin{align*}
-  H \doteq
+  H' &= \vec{\mu} \cdot \vec{B_2}\\
+  &= \frac{g e}{2m} \hat{\mu} \cdot B_2 \hat{x}\\
+  &= \frac{\hbar\omega_2}{2} S_x
+  \hspace{2cm}\omega_2 = \frac{geB}{2m}\\
+  &=
   \begin{pmatrix}
-    \hbar\omega & 0 & 0 & ...\\
-    0 & 8\hbar\omega & 0 & ...\\
-    0 & 0 & 27\hbar\omega & ...\\
-    ... & ... & ... & ...\\
+    0 & \frac{\hbar\omega_2}{2} & 0\\
+    \frac{\hbar\omega_2}{2} & 0 & \frac{\hbar\omega_2}{2}\\
+    0 & \frac{\hbar\omega_2}{2} & 0\\
   \end{pmatrix}
 \end{align*}
 
-\begin{align*}
-  \ket{1} \doteq
-  \begin{pmatrix}
-    1\\
-    0\\
-    0\\
-    ...\\
-  \end{pmatrix}
-  \hspace{1cm}
-  \ket{2} \doteq
-  \begin{pmatrix}
-    0\\
-    1\\
-    0\\
-    ...\\
-  \end{pmatrix}
-  \hspace{1cm}
-  \ket{3} \doteq
-  \begin{pmatrix}
-    0\\
-    0\\
-    1\\
-    ...\\
-  \end{pmatrix}
-\end{align*}
-
-To find the matrix representation of A we exploit the fact that in the energy basis eigenstates
-are represented by vectors with a single unit entry. Thus the first column of our matrix will only
-interact with the n=1 vector, the second column with the n=2 vector, etc. We also know that the
-result of our matrix-vector multiplication should produce a vector two energies higher than the
-input state. Thus it is easy to see that we will construct a matrix with elements two spaces below
-diagonal with values of $3n^2$, where n is the current column.
+Then we just apply the second-order perturbation energy equation to find our
+energy changes, noticing that there will be no first-order corrections because
+$H'$ has zeroes along its diagonal.
 
 \begin{align*}
-  A \doteq
-  \begin{pmatrix}
-    0 & 0 & 0 & 0 & 0 & ...  \\
-    0 & 0 & 0 & 0 & 0 & ...  \\
-    3 & 0 & 0 & 0 & 0 & ...  \\
-    0 & 12 & 0 & 0 & 0 & ... \\
-    0 & 0 & 27 & 0 & 0 & ... \\
-    0 & 0 & 0 & 48 & 0 & ... \\
-    ... & ... & ... & ... & ... & ... \\
-  \end{pmatrix}
-\end{align*}
-
-This was a cool problem that shows that it is very easy to construct a Hamiltonian for a given
-quantum system in matrix representation (not necessarily position representation). It is
-important to note that operator A is not an actual physical operator, since it has no eigenvalue
-equation.\\
-
-\clearpage
-
-\section{Paper}
-The paper \textit{Quantum ground state and single-phonon control of a mechanical resonator} is a
-demonstration that a macroscopic, harmonic-oscillating ``quantum drum'' can be cooled enough to
-display behavior normally only predicted for microscopic systems. This is interesting because it
-is an easy validation of quantum mechanics. The project entails cooling a resonator until its
-heat energy is much smaller than that predicted for its oscillation energy, ensuring that
-energy measurements are only of the oscillation. The energy is then measured, and it is shown that
-only discrete values are taken on, not a continuum, as predicted by QM.\\
-
-It is interesting to me that the microscopic details of the system need not be taken into account.
-It seems like the individual wave functions of each atom in the oscillator can just be summed
-into one giant wave function for the oscillator. Maybe that simplification can only be done at
-very cold temperatures?\\
-
-\section{10.1: Diagonalize a perturbed Hamiltonian}
-We begin with the perturbed Hamiltonian in the $S_z$ basis and convert it into its own perturbed
-basis. We then show that the eigenvalues in this basis are identical to those found by redefining
-the direction of Z, aka $E_n = \pm \frac{\hbar}{2} \sqrt{(\omega_0 + \omega_1)^2 + \omega_2^2}$.
-
-We begin with the perturbed matrix and use the fact that the eigenvalues of a matrix will be the
-diagonal elements in the diagonalized form:\\
-
-\begin{align*}
-  H &\doteq
-  \pm\frac{\hbar}{2}
-  \begin{pmatrix}
-    \omega_0 + \omega_1 & \omega_2\\
-    \omega_2 & -\omega_0 - \omega_1\\
-  \end{pmatrix}\\
+  E_n^{(2)} = \sum_{m\noteq n}\frac{|\bra{n^{(0)}}H'\ket{n^{(0)}|^2}{(E_n^{(0)}-E_m^{(0)}}}}\\
 \end{align*}
 
 \begin{align*}
-  \det\left(H - \lambda I\right) &= 0\\
-  \left(\omega_0 + \omega_1 - \lambda\right)
-  \left(-\omega_0 - \omega_1 - \lambda\right) - \omega_2^2 &= 0\\
-  \lambda^2 - \left(\omega_0 + \omega_1\right)^2 - \omega_2^2 &= 0\\
-  \lambda = \pm\sqrt{\left(\omega_0 + \omega_1\right)^2 + \omega_2^2}\\
+  E_{\frac{-1}{2}} &=
+  \frac{|H'_{\frac{-1}{2},0}|^2}{E_{0} - E_{\frac{-1}{2}}} +
+  \frac{|H'_{\frac{-1}{2},\frac{1}{2}}|^2}{E_{\frac{1}{2}} - E_{\frac{-1}{2}}}\\
+  &= \frac{\hbar^2\omega_2^2}{2\hbar\omega_0}
+  = \frac{\hbar\omega_2^2}{2\omega_0}\\
 \end{align*}
-
-We then use these eigenvalues to construct a diagonal matrix. We know that the basis for the
-perturbed Hamiltonian will be very similar to the unperturbed Hamiltonian, so we arrange our
-perturbed Hamiltonian with the top left element positive and bottom right negative:
 
 \begin{align*}
-  H_p &\doteq
-  \pm\frac{\hbar}{2}
-  \begin{pmatrix}
-    \sqrt{\left(\omega_0 + \omega_1\right)^2 + \omega_2^2} & 0\\
-    0 & -\sqrt{\left(\omega_0 + \omega_1\right)^2 + \omega_2^2}\\
-  \end{pmatrix}\\
+  E_{0} &=
+  \frac{|H'_{\frac{-1}{2},0}|^2}{E_{0} - E_{\frac{-1}{2}}} +
+  \frac{|H'_{\frac{-1}{2},\frac{1}{2}}|^2}{E_{\frac{1}{2}} - E_{\frac{-1}{2}}}\\
+  &= \frac{\hbar^2\omega_2^2}{2\hbar\omega_0}
+  = \frac{\hbar\omega_2^2}{2\omega_0}\\
 \end{align*}
 
-We have already shown that the eigenvalues agree with those in McIntyre (10.9). What we have done in
-this problem is taken a matrix in the unperturbed energy basis and transformed it into its own
-perturbed basis. We know this is a new basis because the perturbed Hamiltonian in the original
-basis was not diagonal.\\
-
-It is a good confirmation that the method used in McIntyre to find the eigenvalues of the perturbed
-system, redefining the direction of Z to point in the direction of the new B-field, yielded the same
-result as creating a new basis for the perturbed Hamiltonian.\\
+\begin{align*}
+  E_{\frac{1}{2}} &=
+  \frac{|H'_{\frac{-1}{2},0}|^2}{E_{0} - E_{\frac{-1}{2}}} +
+  \frac{|H'_{\frac{-1}{2},\frac{1}{2}}|^2}{E_{\frac{1}{2}} - E_{\frac{-1}{2}}}\\
+  &= \frac{\hbar^2\omega_2^2}{2\hbar\omega_0}
+  = \frac{\hbar\omega_2^2}{2\omega_0}\\
+\end{align*}
 
 \end{document}
