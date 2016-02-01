@@ -1,0 +1,105 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+%\usepackage{physics}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Quantum Mechanics Assignment Three}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{10.8: Magnetic Perturbation Spin 1}
+For this problem we want to find the energy perturbations due to a magnetic field perturbation
+in the x direction, while remaining in the z basis. To do this we first find the
+perturbed Hamiltonian, which is just the x spin-1 matrix times a factor, and
+then use the formula
+%$E_n^{(2)} = \sum_{m\noteq n}\frac{|\bra{n^{(0)}}H'\ket{n^{(0)}|^2}{(E_n^{(0)}-E_m^{(0)}}}}$
+to find the second-order energy corrections.\\
+
+We first find the perturbed Hamiltonian:
+
+\begin{align*}
+  H' &= \vec{\mu} \cdot \vec{B_2}\\
+  &= \frac{g e}{2m} \hat{\mu} \cdot B_2 \hat{x}\\
+  &= \frac{\hbar\omega_2}{2} S_x
+  \hspace{2cm}\omega_2 = \frac{geB}{2m}\\
+  &=
+  \begin{pmatrix}
+    0 & \frac{\hbar\omega_2}{2} & 0\\
+    \frac{\hbar\omega_2}{2} & 0 & \frac{\hbar\omega_2}{2}\\
+    0 & \frac{\hbar\omega_2}{2} & 0\\
+  \end{pmatrix}
+\end{align*}
+
+Then we just apply the second-order perturbation energy equation to find our
+energy changes, noticing that there will be no first-order corrections because
+$H'$ has zeroes along its diagonal.
+
+\begin{align*}
+  E_n^{(2)} = \sum_{m\noteq n}\frac{|\bra{n^{(0)}}H'\ket{n^{(0)}|^2}{(E_n^{(0)}-E_m^{(0)}}}}\\
+\end{align*}
+
+\begin{align*}
+  E_{\frac{-1}{2}} &=
+  \frac{|H'_{\frac{-1}{2},0}|^2}{E_{0} - E_{\frac{-1}{2}}} +
+  \frac{|H'_{\frac{-1}{2},\frac{1}{2}}|^2}{E_{\frac{1}{2}} - E_{\frac{-1}{2}}}\\
+  &= \frac{\hbar^2\omega_2^2}{2\hbar\omega_0}
+  = \frac{\hbar\omega_2^2}{2\omega_0}\\
+\end{align*}
+
+\begin{align*}
+  E_{0} &=
+  \frac{|H'_{\frac{-1}{2},0}|^2}{E_{0} - E_{\frac{-1}{2}}} +
+  \frac{|H'_{\frac{-1}{2},\frac{1}{2}}|^2}{E_{\frac{1}{2}} - E_{\frac{-1}{2}}}\\
+  &= \frac{\hbar^2\omega_2^2}{2\hbar\omega_0}
+  = \frac{\hbar\omega_2^2}{2\omega_0}\\
+\end{align*}
+
+\begin{align*}
+  E_{\frac{1}{2}} &=
+  \frac{|H'_{\frac{-1}{2},0}|^2}{E_{0} - E_{\frac{-1}{2}}} +
+  \frac{|H'_{\frac{-1}{2},\frac{1}{2}}|^2}{E_{\frac{1}{2}} - E_{\frac{-1}{2}}}\\
+  &= \frac{\hbar^2\omega_2^2}{2\hbar\omega_0}
+  = \frac{\hbar\omega_2^2}{2\omega_0}\\
+\end{align*}
+
+\end{document}
