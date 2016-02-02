@@ -160,4 +160,67 @@ ground state is corrected most by the $\ket{3^{(0)}}$ state. This makes sense, s
 similar-energy waves correct each other the most. This conceptually makes sense, since the wave
 would take on characteristics of those similar to it in energy.\\
 
+\section{10.24: Degenerate Perturbation}
+Here we are given just the perturbed Hamiltonian of a system and are asked to find the first
+nonvanishing energy correction to each of the four states. The perturbed Hamiltonian is:
+
+\begin{equation*}
+  H \doteq
+  \begin{pmatrix}
+    3 & \epsilon & 0 & 0\\
+    \epsilon & 3 & 2\epsilon & 0\\
+    0 & 2\epsilon & 5 & \epsilon\\
+    0 & 0 & \epsilon & 7\\
+  \end{pmatrix}
+\end{equation*}
+
+\textbf{a.}
+We are told that there are no diagonal perturbation elements, and so because the Hamiltonian is in
+the original basis we write our states as follows:
+
+\begin{equation*}
+  3V_0,
+  \begin{pmatrix}
+    1 \\ 0 \\ 0 \\ 0\\
+  \end{pmatrix}
+  \hspace{2cm}
+  3V_0,
+  \begin{pmatrix}
+    0 \\ 1 \\ 0 \\ 0\\
+  \end{pmatrix}
+  \hspace{2cm}
+  5V_0,
+  \begin{pmatrix}
+    0 \\ 0 \\ 1 \\ 0\\
+  \end{pmatrix}
+  \hspace{2cm}
+  7V_0,
+  \begin{pmatrix}
+    0 \\ 0 \\ 0 \\ 1\\
+  \end{pmatrix}
+  \hspace{2cm}
+\end{equation*}
+
+\textbf{b.}
+First-order corrections always manifest as terms on the Hamiltonian's diagonal. Our diagonal has
+no such terms, and so all corrections are 2nd-order or higher. We first solve for the nondegenerate
+$\ket{3}$ and $\ket{4}$ state energy corrections:
+
+\begin{align*}
+  E_3^{(2)} &=
+  \frac{|H'_{3,1}|^2}{E_1 - E_3} +
+  \frac{|H'_{3,2}|^2}{E_2 - E_3} +
+  \frac{|H'_{3,4}|^2}{E_4 - E_3}\\
+  &= \frac{4\epsilon^2}{-2V_0} + \frac{\epsilon^2}{-4V_0}\\
+  &= \frac{-9\epsilon^2}{4V_0}
+\end{align*}
+
+\begin{align*}
+  E_4^{(2)} &=
+  \frac{|H'_{4,1}|^2}{E_1 - E_4} +
+  \frac{|H'_{4,2}|^2}{E_2 - E_4} +
+  \frac{|H'_{4,3}|^2}{E_3 - E_4}\\
+  &= \frac{-\epsilon^2}{2V_0}
+\end{align*}
+
 \end{document}
