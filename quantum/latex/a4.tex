@@ -223,6 +223,86 @@ $\ket{3}$ and $\ket{4}$ state energy corrections:
   &= \frac{-\epsilon^2}{2V_0}
 \end{align*}
 
-We then solve for the perturbed states: 
+Now we solve for the perturbed states. We begin with the order-one correction equation:\\
+
+\begin{align*}
+  \left(H_0 - E_n^0\right)\ket{2^{(1)}} &= \left(E_n^{(1)} - H'\right)\ket{n^{(0)}}\\
+\end{align*}
+
+We then populate this equation with our values, solving for $E_1^1$:\\
+
+\begin{align*}
+  \begin{pmatrix}
+    0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0\\
+    0 & 0 & 2 & 0\\
+    0 & 0 & 0 & 4\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_{11}\\
+    c_{22}\\
+    c_{33}\\
+    c_{44}\\
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    E_1^1 - H_{11}' & -H_{12}' & -H_{13}' & -H_{14}'\\
+    -H_{21}' & E_1^1 - H_{22}' & -H_{23}' & -H_{24}'\\
+    -H_{31}' & -H_{32}' & E_1^1 - H_{33}' & -H_{34}'\\
+    -H_{41}' & -H_{42}' & -H_{43}' & E_1^1 - H_{44}'\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    \alpha\\
+    \beta\\
+    0\\
+    0\\
+  \end{pmatrix}
+\end{align*}
+
+This leads to the following system of equations:\\
+
+\begin{align*}
+  \left(E_1^{(1)} - H_{11}'\right)\alpha + H_{12}'\beta &= 0\\
+  H_{21}'\alpha + \left(E_1^{(1)} - H_{22}'\right)\beta &= 0\\
+\end{align*}
+
+which can be turned into an energy eigenvalue equation:\\
+
+\begin{align*}
+  \begin{pmatrix}
+    H_{11}' & H_{12}'\\
+    H_{21}' & H_{22}'\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    \alpha\\
+    \beta\\
+  \end{pmatrix}
+  &=
+  E_1^{(1)}
+  \begin{pmatrix}
+    \alpha\\
+    \beta\\
+  \end{pmatrix}\\
+  \begin{pmatrix}
+    0 & \epsilon\\
+    \epsilon & 0\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    \alpha\\
+    \beta\\
+  \end{pmatrix}
+  &=
+  E_1^{(1)}
+  \begin{pmatrix}
+    \alpha\\
+    \beta\\
+  \end{pmatrix}\\
+\end{align*}
+
+We then solve for the eigenvalues of this system and get the following result:
+
+\begin{align*}
+  E_1^{(1)} &= \pm \epsilon\\
+\end{align*}
 
 \end{document}
