@@ -52,7 +52,7 @@ For this problem we want to find the energy perturbations due to a magnetic fiel
 in the x direction, while remaining in the z basis. To do this we first find the
 perturbed Hamiltonian, which is just the x spin-1 matrix times a factor, and
 then use the formula
-%$E_n^{(2)} = \sum_{m\noteq n}\frac{|\bra{n^{(0)}}H'\ket{n^{(0)}|^2}{(E_n^{(0)}-E_m^{(0)}}}}$
+$E_n^{(2)} = \sum_{m\neq n}\frac{|\bra{n^{(0)}}H'\ket{n^{(0)}}|^2}{(E_n^{(0)}-E_m^{(0)})}$
 to find the second-order energy corrections.\\
 
 We first find the perturbed Hamiltonian:
@@ -75,27 +75,89 @@ energy changes, noticing that there will be no first-order corrections because
 $H'$ has zeroes along its diagonal.
 
 \begin{align*}
-  E_n^{(2)} = \sum_{m\neq n}\frac{|\bra{n^{(0)}}H'\ket{n^{(0)}|^2}}{(E_n^{(0)}-E_m^{(0)}}
+  E_n^{(2)} = \sum_{m\neq n}\frac{|\bra{n^{(0)}}H'\ket{n^{(0)}|^2}}{(E_n^{(0)}-E_m^{(0)})}
 \end{align*}
 
 \begin{align*}
-  E_1 &=
+  E_1^{(2)} &=
   \frac{|H'_{1,2}|^2}{E_2 - E_1} +
   \frac{|H'_{1,3}|^2}{E_{3} - E_{1}}\\
-  &= \frac{\hbar^2\omega_2^2}{2\hbar\omega_0}
-  = \frac{\hbar\omega_2^2}{2\omega_0}\\
+  &= \frac{\hbar^2\omega_2^2}{4\hbar\omega_0}\\
+  &= \frac{\hbar\omega_2^2}{4\omega_0}\\
 \end{align*}
 
 \begin{align*}
-  E_2 &=
+  E_2^{(2)} &=
   \frac{|H'_{2,1}|^2}{E_1 - E_2} +
-  \frac{|H'_{1,3}|^2}{E_3 - E_2}\\
+  \frac{|H'_{2,3}|^2}{E_3 - E_2}\\
+  &= -\frac{\hbar^2\omega_2^2}{4\hbar\omega_0} + \frac{\hbar^2\omega_2^2}{4\hbar\omega_0}\\
+  &= 0\\
 \end{align*}
 
 \begin{align*}
-  E_3 &=
+  E_3^{(2)} &=
   \frac{|H'_{3,1}|^2}{E_1 - E_3} +
   \frac{|H'_{3,2}|^2}{E_2 - E_3}\\
+  &= -\frac{\hbar\omega_2^2}{4\omega_0}\\
 \end{align*}
+
+These are nicely symmetric energy corrections typical of physics problems. From this we can see
+that the ratio between the initial and perturbation Larmor frequencies is the only factor in
+deciding the magnitude of the perturbation. It is kind of weird that having a big initial
+Larmor frequency decreases the magnitude of the perturbation energy.\\
+
+We now plot our results:\\
+\vspace{7cm}
+
+
+As expected, we see quadratic dependence of the energy change on on perturbation strength for the
+second-order correction.
+\section{9.17: Ramp correction to Infinite Square Well}
+Here we find the first-order energy corrections for an infinite square well wavefunction where a
+ramp potential $H' = V'(x) = \beta x$ is applied. Because the correction Hamiltonian is in the
+x basis, we'll need to use wave function notation to find the ground-state energy correction:
+
+\begin{align*}
+  E_1^{(1)} &= \bra{1}H'\ket{1}\\
+  &= \frac{2\beta}{L}\int_0^L \sin^2\left(\frac{\pi x}{L}\right)x dx\\
+  &= \frac{\beta L}{2}\\
+\end{align*}
+
+This shows how easy it is to apply perturbation theory to find the energy corrections for simple
+systems. The units make sense and as we expect, both $\beta$ and L increase the energy shift.\\
+
+\section{10.18: Dirac delta Infinite Square Well}
+In this problem we deal with an infinite square well which has been perturbed by a delta function:
+$H' = V(x) = LV_0\delta(x-L/2)$\\
+
+\textbf{a.} First, we calculate the nth energy perturbation $E_n^1$ using wave function notation:
+
+\begin{align*}
+  E_n^{(1)} &= \bra{n}H'\ket{n}\\
+  &= \int_0^L 2\sin^2\left(\frac{n\pi x}{L}\right)V_0\delta(x-L/2)dx\\
+  &= 2V_0\sin^2\left(\frac{n\pi}{2}\right)\\
+  \begin{cases}
+    2V_0 & \mbox{n is odd}\\
+    0 & \mbox{n is even}\\
+  \end{cases}\\
+\end{align*}
+
+\textbf{b.}
+This result is based on the parity of the function. Even-parity functions have zero density at the
+center of the well, whereas odd-parity functions have nonzero density there. Therefore conceptually
+we can say that the delta potential only interacts with the odd functions; the even functions tunnel
+right through.\\
+
+\textbf{c.}
+The corrected wave function is given by:
+
+\begin{align*}
+  \ket{1} = \sum_{m\neq1} \frac{2mL^2\bra{m}H'\ket{m}}{\left(m^2-1\right)\hbar^2\pi^2}\\
+\end{align*}
+
+This value will be maximized when m is the smallest odd number larger than 1, i.e, 3. Thus the
+ground state is corrected most by the $\ket{3^{(0)}}$ state. This makes sense, since in general
+similar-energy waves correct each other the most. This conceptually makes sense, since the wave
+would take on characteristics of those similar to it in energy.\\
 
 \end{document}
