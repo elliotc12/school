@@ -4,8 +4,7 @@
 
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage{marvosym} % Required for symbols in the colored box
-\usepackage{ifsym} % Required for symbols in the colored box
+\usepackage{listings}
 
 \usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
 
@@ -55,5 +54,35 @@ Here we are asked to compute the score for different given alignments.\\
 \textbf{A.} 3\\
 \textbf{B.} 1\\
 
+\section{Problem Two: BLAST}
+
+\section{Problem Four: Database size}
+We use the definition of E-value to compute database size, using an E-value of $e^{-27}:\\
+
+\begin{align*}
+  m &= \frac{E2^{S'}}{n} = \frac{e^{-27}2^{121}}{150} = 3.3*10^{22}\\
+\end{align*}
+
+\section{Problem Seven: GC Content}
+GC content is conserved when taking reverse complement, since Gs and Cs map to
+each other.\\
+
+For original probability $p_{N0}$ and reverse complement probability $P_N'$:\\
+
+\begin{align*}
+  p_{G0} &= p_C'\\
+  p_{C0} &= p_G'\\
+  p_G &= \frac{p_{G0} + p_G'}{2} = \frac{p_{G0} + p_{C0}}{2} = \frac{0.63}{2} = 0.315\\
+  p_C &= 0.315\\
+  p_A &= 0.185\\
+  p_T &= 0.185\\
+\end{align*}
+
+\section{Problem Eight: MEME}
+Here we enter some MEME commands to find motifs:\\
+\textbf{A.} meme proteins.fasta -protein -mod zoops -minw 10\\
+\textbf{B.} meme sequences.fa -rna -mod anr -minw 5 -maxw 10\\
+\textbf{C.} meme cores.fasta -dna -mod oops -nmotifs 5 \# -revcomp not specified,
+only search forward strand\\
 
 \end{document}
