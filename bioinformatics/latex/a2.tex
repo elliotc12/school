@@ -50,18 +50,84 @@
 
 \section{Problem One: Scoring Alignments}
 Here we are asked to compute the score for different given alignments.\\
-
 \textbf{A.} 3\\
 \textbf{B.} 1\\
 
 \section{Problem Two: BLAST}
+When BLASTp'ing the \textit{Drosophila melanogaster} hedgehog gene, six results come up when
+compared to the human protein database. These all seme like ``valid'' hits just by looking
+at their names (they are all ``hedgehogs'' of some type). When looking for valid hits, identity
+and query cover are very important. Having high query cover, as do the ``desert'' and ``indian''
+hedgehog genes, means the genes occupy roughly the same space, ie one is not a subcomponent of
+the other. Having a high identity means the genes are similar. Another important factor is having
+a low E-value. All the elements in this list have low E-values, meaning it is unlikely any of
+them are just random hits. Total score changes based on the lengths of the sequences, so is
+more difficult to interpret.\\
 
-\section{Problem Four: Database size}
-We use the definition of E-value to compute database size, using an E-value of $e^{-27}:\\
+\section{Problem Three: Computing frequency matrix elements}
+In this problem we use the following information: (2S, 4N, 2T) to compute various frequency,
+normalized frequency and probability elements:\\
 
 \begin{align*}
-  m &= \frac{E2^{S'}}{n} = \frac{e^{-27}2^{121}}{150} = 3.3*10^{22}\\
+  f &= \mbox{Number of occurrences}\\
+  q &= \mbox{Number of occurences normalized}\\
+  p &= \mbox{Number of pairs involving this element, double cound identical pairs}\\
 \end{align*}
+
+\begin{align*}
+  f_{SS} &= 1\\
+  f_{TT} &= 4 * 3 = 12\\
+  f_{NN} &= 1\\
+  f_{ST} &= 2 * 4 = 8\\
+  f_{NS} &= 2 * 2 = 4\\
+  f_{NT} &= 2 * 4 = 8\\
+  q_{SS} &= 1 / 34\\
+  q_{TT} &= 12 / 34 = 6 / 17\\
+  q_{NN} &= 1 / 34\\
+  q_{ST} &= 8 / 34 = 4 / 17\\
+  q_{NS} &= 4 / 34 = 2 / 17\\
+  q_{NT} &= 4 / 17\\
+  p_S &= 1 + 6 = 7\\
+  p_T &= 12 + 1 = 13\\
+  p_N &= 1 + 6 = 7\\
+\end{align*}
+
+\section{Problem Four: Database size}
+We use the definition of E-value to compute database size, using an E-value of $10^{-27}$:\\
+
+\begin{align*}
+  m &= \frac{E*2^{S'}}{n} = \frac{10^{-27}*2^{121}}{150} \approx 1.77*10^7\\
+\end{align*}
+
+This is about 18 million residues. This seems small for a database, since this would be around
+60 million nucleotides, which is two orders of magnitude smaller than the number of nucleotides
+in the human genome. However, perhaps it is only a section of the genome, or perhaps it is for
+a smaller organism.\\
+
+\section{Problem Five: Dinosaur protein}
+Here we begin with the given sequence and use BioPython to transcribe() and translate() it into:\\
+
+MVHWTALITGHWGGKAECGAEADDARVVILYPLAVFASFGNLSDTAILGNPMVRAHKLSFGDAVNLDNIKN
+TIIFSWQLLHCDLHENFRLLGDIDAVEWASHEREIVSKDFDPECCQAAWQKLVRVAHAKYH\\
+
+We then run a BLAST nonredundant database protein search on it. We get dozens of hits with 100\%
+query cover and roughly 65\% identity. Such a high query cover indicates that the entire sequence
+is used in the alignment, meaning the given and matched sequences are likely to be the same gene.
+The low identity means that there is a lot of difference between the given and matched sequences.
+Most of these sequences have a very low E-value (roughly $10^{-35}$), meaning that it is highly
+unlikely that our results are due to chance.\\
+
+This all comes together to mean that this could be a dinosaur Hemoglobin, since the matches are
+of high accuracy and there is lots of mutation.\\
+
+\section{Problem Six: Orca homeobox conservation}
+After running a BLASTp nonredundant search on the \textit{Orcinus orca} protein sequence, I found
+that there was a 99\% identity between the orca and \textit{Sus scrofa} sequences, and only a
+96\% similarity between orca and \textit{Bos taurus} sequences. There was also a 100\% sequence
+cover with the boar, but only 92\% with the cow. This means that the orca sequence is almost
+identical to the boar sequence, meaning orcas and boars are a lot more closely related. The
+E-values were very low $10^{-175}$, meaning it is incredibly unlikely that these sequences were
+randomly related.\\
 
 \section{Problem Seven: GC Content}
 GC content is conserved when taking reverse complement, since Gs and Cs map to
