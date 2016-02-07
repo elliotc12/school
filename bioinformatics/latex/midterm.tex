@@ -48,7 +48,7 @@
 
 \maketitle{}
 \section{One: DP Alignment Algorithms}
-Smith-Waterman and Needleman-Wunsch are two very similar dynamic programming
+Needleman-Wunsch and Smith-Waterman are two very similar dynamic programming
 algorithms for finding the optimal alignment of a set of text sequences. The
 basic premise of the algorithms is filling in a table that corresponds to every
 possible alignment that can be made, then choosing the optimal alignment based
@@ -56,21 +56,86 @@ on scoring guidelines. The reason this isn't a ridiculously slow process is
 because the table represents not every possible alignment, but the branch points
 between different alignments.\\
 
-Smith-Waterman (SW) is used to find global alignments, so the entire sequences matter.
-Needleman-Wunsch (NW) is used to find local alignments, where only a subset of the
-sequence is to be considered. In order to only consider a subset of the sequence,
-two modifications to SW are made to achieve NW. These changes effectively limit
+Needleman-Wunsch (NW) is used to find global alignments, so the entire sequences
+matter. Smith-Waterman (SW) is used to find local alignments, where only a subset of
+the sequence is to be considered. In order to only consider a subset of the sequence,
+two modifications to NW are made to achieve SW. These changes effectively limit
 the portion of the DP table being considered. The first change is that no section in
 the table can have a score lower than the score of the top-left (start of global
 alignment) element. This conceptually means that the alignment can begin anywhere
 in the sequence, since having the same score as the global alignment start means
 that any table element can be treated as the alignment start.\\
 
-The second change is that the NW alignment can end anywhere, not at the bottom-right
-corner of the table. This effectively means that the local alignmemnt can end before
-the entire sequence is considered.\\
+The second change is that the SW alignment ``ends'' at the highest-scoring value,
+not at the bottom-right corner of the table. This effectively means that the local
+alignment can end before the entire sequence is considered.\\
 
-\section{Two: }
+\section{Two: BLAST Scores}
+\textbf{E-Value:} The expected number of hits that score equal to or higher than a
+particular hit for a given query sequence. Conceptually similar to how unreliable a
+score is, but also takes into account the size of the database and sequence length.
+
+\begin{align*}
+  E &= Knme^{-\lambda S}\\
+\end{align*}
+
+Inverse exponential relationship to score means larger scores have lower E-values,
+as expected since higher scores correspond to better alignments. Query sequence length
+n also important, since longer sequences are more likely to have a random local
+alignment in them. Database size m is important for the same reason: more sequences
+in the database lead to a higher chance of getting a random hit.\\
+
+The E-value is a weird number in that it isn't for a particular score, but for any
+score greater than a particular number. It is useful for assessing how useful a hit
+is. If the hit has a high E-value, then there is a good chance that it is a random
+hit that shouldn't be trusted.\\
+
+\textbf{p-Value:} The probability of getting a score equal to or higher than the score
+of a given hit for a particular query due to chance. Given by:
+
+\begin{align*}
+  P(S\geq x) &= 1 - e^{-Knme^{-\lambda x}}\\
+\end{align*}
+
+As score threshold x gets larger, the probability gets smaller, as expected. The two
+terms in this presumably come from integrating over the Poisson distribution, where
+1 is the probability of having less than the maximum score and the term on the right
+is the probability of having a score less than x.\\
+The p-value is used to calculate E, which is more useful when evaluating the validity
+of queries.\\
+
+\section{Three: BLOSUM Matrix}
+Here we calculate BLOSUM matrix elements for an alignment with
+\textbf{5 R, 2H, 2 L}.\\
+
+\begin{align*}
+  f_{RR} &= \begin{pmatrix} n_R\\ 2\\ \end{pmatrix} = 10\\
+  f_{HH} &= \begin{pmatrix} n_H\\ 2\\ \end{pmatrix} = 1\\
+  f_{LL} &= \begin{pmatrix} n_L\\ 2\\ \end{pmatrix} = 1\\
+  f_{HL} &= n_H \times n_L = 4\\
+  f_{HR} &= n_H \times n_R = 10\\
+  f_{LR} &= n_L \times n_R = 10\\
+  q_{RR} &= \frac{f_{RR}}{f_{RR} + f_{HH} + f_{LL} + f_{HL} + f_{HR} + f_{LR}}
+  = \frac{10}{36} = 0.277\\
+  q_{HH} &= \frac{f_{HH}}{f_{RR} + f_{HH} + f_{LL} + f_{HL} + f_{HR} + f_{LR}}
+  = \frac{1}{36} = 0.027\\
+  q_{LL} &= \frac{f_{LL}}{f_{RR} + f_{HH} + f_{LL} + f_{HL} + f_{HR} + f_{LR}}
+  = \frac{1}{36} = 0.027\\
+  q_{HL} &= \frac{f_{HL}}{f_{RR} + f_{HH} + f_{LL} + f_{HL} + f_{HR} + f_{LR}}
+  = \frac{4}{36} = 0.111\\
+  q_{HR} &= \frac{f_{HR}}{f_{RR} + f_{HH} + f_{LL} + f_{HL} + f_{HR} + f_{LR}}
+  = \frac{10}{36} = 0.277\\
+  q_{LR} &= \frac{f_{LR}}{f_{RR} + f_{HH} + f_{LL} + f_{HL} + f_{HR} + f_{LR}}
+  = \frac{10}{36} = 0.277\\
+  p_R &= q_{RR} + \frac{1}{2}\left(q_{RH} + q_{RL}\right) = 0.277 +
+  \frac{0.277 + 0.277}{2} = 0.558\\
+  p_H &= q_{HH} + \frac{1}{2}\left(q_{HR} + q_{HL}\right) = 0.027 +
+  \frac{0.111 + 0.277}{2} = 0.221\\
+  p_L &= q_{LL} + \frac{1}{2}\left(q_{LH} + q_{LR}\right) = 0.027 +
+  \frac{0.111 + 0.277}{2} = 0.221\\
+\end{align*}
+
+Here all q-terms and p-terms sum to one, as desired.
 
 
 \end{document}
