@@ -1,0 +1,76 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+\allowdisplaybreaks
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Bioinformatics Midterm}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+\section{One: DP Alignment Algorithms}
+Smith-Waterman and Needleman-Wunsch are two very similar dynamic programming
+algorithms for finding the optimal alignment of a set of text sequences. The
+basic premise of the algorithms is filling in a table that corresponds to every
+possible alignment that can be made, then choosing the optimal alignment based
+on scoring guidelines. The reason this isn't a ridiculously slow process is
+because the table represents not every possible alignment, but the branch points
+between different alignments.\\
+
+Smith-Waterman (SW) is used to find global alignments, so the entire sequences matter.
+Needleman-Wunsch (NW) is used to find local alignments, where only a subset of the
+sequence is to be considered. In order to only consider a subset of the sequence,
+two modifications to SW are made to achieve NW. These changes effectively limit
+the portion of the DP table being considered. The first change is that no section in
+the table can have a score lower than the score of the top-left (start of global
+alignment) element. This conceptually means that the alignment can begin anywhere
+in the sequence, since having the same score as the global alignment start means
+that any table element can be treated as the alignment start.\\
+
+The second change is that the NW alignment can end anywhere, not at the bottom-right
+corner of the table. This effectively means that the local alignmemnt can end before
+the entire sequence is considered.\\
+
+\section{Two: }
+
+
+\end{document}

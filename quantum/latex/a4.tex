@@ -58,15 +58,15 @@ to find the second-order energy corrections.\\
 We first find the perturbed Hamiltonian:
 
 \begin{align*}
-  H' &= \vec{\mu} \cdot \vec{B_2}\\
-  &= \frac{g e}{2m} \hat{\mu} \cdot B_2 \hat{x}\\
-  &= \frac{\hbar\omega_2}{2} S_x
+  H' &= -\vec{\mu} \cdot \vec{B_2}\\
+  &= -\frac{g e}{2m} \hat{\mu} \cdot B_2 \hat{x}\\
+  &= -\frac{\hbar\omega_2}{2} S_x
   \hspace{2cm}\omega_2 = \frac{geB}{2m}\\
   &=
-  \begin{pmatrix}
-    0 & \frac{\hbar\omega_2}{2} & 0\\
-    \frac{\hbar\omega_2}{2} & 0 & \frac{\hbar\omega_2}{2}\\
-    0 & \frac{\hbar\omega_2}{2} & 0\\
+  -\begin{pmatrix}
+    0 & \frac{\hbar\omega_2}{\sqrt{2}} & 0\\
+    \frac{\hbar\omega_2}{\sqrt{2}} & 0 & \frac{\hbar\omega_2}{\sqrt{2}}\\
+    0 & \frac{\hbar\omega_2}{\sqrt{2}} & 0\\
   \end{pmatrix}
 \end{align*}
 
@@ -84,6 +84,7 @@ $H'$ has zeroes along its diagonal.
   \frac{|H'_{1,3}|^2}{E_{3} - E_{1}}\\
   &= \frac{\hbar^2\omega_2^2}{4\hbar\omega_0}\\
   &= \frac{\hbar\omega_2^2}{4\omega_0}\\
+  &= \frac{geB_2^2\hbar}{4mB_0}
 \end{align*}
 
 \begin{align*}
@@ -99,6 +100,7 @@ $H'$ has zeroes along its diagonal.
   \frac{|H'_{3,1}|^2}{E_1 - E_3} +
   \frac{|H'_{3,2}|^2}{E_2 - E_3}\\
   &= -\frac{\hbar\omega_2^2}{4\omega_0}\\
+  &= \frac{-geB_2^2\hbar}{4mB_0}
 \end{align*}
 
 These are nicely symmetric energy corrections typical of physics problems. From this we can see
@@ -160,6 +162,23 @@ ground state is corrected most by the $\ket{3^{(0)}}$ state. This makes sense, s
 similar-energy waves correct each other the most. This conceptually makes sense, since the wave
 would take on characteristics of those similar to it in energy.\\
 
+\textbf{d.}
+Here we must use wave function notation since the perturbed Hamiltonian is in the
+spacial representation:
+
+\begin{align*}
+  E_1^{(1)} &= \bra{1^0}H'\ket{1^0}\\
+  &= \frac{2V_0}{L\epsilon}
+  \int_{\frac{L}{2}-\frac{\epsilon L}{2}}^{\frac{L}{2}+\frac{\epsilon L}{2}}
+  \sin^2\left(\frac{\pi x}{L}\right)dx\\
+  &= V_0 + \frac{2V_0\sin(\pi\epsilon)}{\pi\epsilon}
+  \hspace{2cm}\mbox{Wolfram Alpha}\\
+\end{align*}
+
+\textbf{e.}
+The limit of our energy correction as $\epsilon\rightarrow\infty$ is just $2V_0$,
+as expected, since this case is identical to the delta function case.\\
+
 \section{10.24: Degenerate Perturbation}
 Here we are given just the perturbed Hamiltonian of a system and are asked to find the first
 nonvanishing energy correction to each of the four states. The perturbed Hamiltonian is:
@@ -208,19 +227,19 @@ $\ket{3}$ and $\ket{4}$ state energy corrections:
 
 \begin{align*}
   E_3^{(2)} &=
-  \frac{|H'_{3,1}|^2}{E_1 - E_3} +
-  \frac{|H'_{3,2}|^2}{E_2 - E_3} +
-  \frac{|H'_{3,4}|^2}{E_4 - E_3}\\
-  &= \frac{4\epsilon^2}{-2V_0} + \frac{\epsilon^2}{-4V_0}\\
-  &= \frac{-9\epsilon^2}{4V_0}
+  \frac{|H'_{3,1}|^2}{E_3 - E_1} +
+  \frac{|H'_{3,2}|^2}{E_3 - E_2} +
+  \frac{|H'_{3,4}|^2}{E_3 - E_4}\\
+  &= \frac{4\epsilon^2}{2V_0} - \frac{\epsilon^2}{2V_0}\\
+  &= \frac{3\epsilon^2}{2V_0}
 \end{align*}
 
 \begin{align*}
   E_4^{(2)} &=
-  \frac{|H'_{4,1}|^2}{E_1 - E_4} +
-  \frac{|H'_{4,2}|^2}{E_2 - E_4} +
-  \frac{|H'_{4,3}|^2}{E_3 - E_4}\\
-  &= \frac{-\epsilon^2}{2V_0}
+  \frac{|H'_{4,1}|^2}{E_4 - E_1} +
+  \frac{|H'_{4,2}|^2}{E_4 - E_2} +
+  \frac{|H'_{4,3}|^2}{E_4 - E_3}\\
+  &= \frac{\epsilon^2}{2V_0}
 \end{align*}
 
 Now we solve for the perturbed states. We begin with the order-one correction equation:\\
@@ -303,6 +322,12 @@ We then solve for the eigenvalues of this system and get the following result:
 
 \begin{align*}
   E_1^{(1)} &= \pm \epsilon\\
+\end{align*}
+
+This means that the final corrected energies are:
+
+\begin{align*}
+  E_1 &= E_2 = 3 \pm \epsilon\\
 \end{align*}
 
 \end{document}
