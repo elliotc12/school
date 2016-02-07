@@ -137,5 +137,17 @@ Here we calculate BLOSUM matrix elements for an alignment with
 
 Here all q-terms and p-terms sum to one, as desired.
 
+\section{Four: BLAST flubber}
+
+\textbf{A.)} blastall -p blastp -i flubber.fasta -o flubber\_blast.txt\\
+\textbf{B.)} The top his is for protein FluB of \textit{Actinomadura vulgaris}.
+The highest scoring alignment has a score of 754, the total score is 1213 and the
+E-value is 0.\\
+\textbf{C.)} E-value calculation:
+
+\begin{align*}
+  E &= Knme^{-\lambda S}\\
+  &= K(2.5*10^{10})(417)e^{-\lambda * 1213}\\
+\end{align*}
 
 \end{document}
