@@ -150,4 +150,28 @@ E-value is 0.\\
   &= K(2.5*10^{10})(417)e^{-\lambda * 1213}\\
 \end{align*}
 
+\section{Five: MEME commands}
+
+Check this with the homework on your desk and online if possible
+
+\textbf{A.)} meme peptides.fasta -protein -mod anr -minw 7 -maxw 7\\
+\textbf{B.)} meme enhancers.fa -dna -mod oops -maxw 10\\
+
+\section{Six: blastall commands}
+\textbf{A.)} formatdb -p F -t midichlorians -n midichlorians -i yoda.microbiome.fasta\\
+\textbf{B.)} blastall -p blastp -i transcripts.fa -d myProteins  -g 2 -o transcripts.txt # gap pen rite??\\
+\textbf{C.)} blastall -p blastp -i proteins.fa -d myGenome -o proteins.txt\\
+
+\section{Eight: Revcomp GC}
+
+from Bio import SeqIO
+
+seq = Bio.Seq(``sequence'')
+print ``Is GC content of sequence and sequence.revcomp equal?''
+print seq.cg() == seq.revcomp.cg()
+
+Then try it on sequence...
+
+\section{Nine: }
+
 \end{document}
