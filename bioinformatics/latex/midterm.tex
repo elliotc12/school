@@ -146,32 +146,44 @@ E-value is 0.\\
 \textbf{C.)} E-value calculation:
 
 \begin{align*}
-  E &= Knme^{-\lambda S}\\
-  &= K(2.5*10^{10})(417)e^{-\lambda * 1213}\\
+  E &= nm*2^{-S'}\\
+  &= (2.5*10^{10})(417)2^{-1213}\\
+  &= 7.4*10^{-353} \approx 0\\
 \end{align*}
 
 \section{Five: MEME commands}
 
 Check this with the homework on your desk and online if possible
 
-\textbf{A.)} meme peptides.fasta -protein -mod anr -minw 7 -maxw 7\\
-\textbf{B.)} meme enhancers.fa -dna -mod oops -maxw 10\\
+\textbf{A.)} meme peptides.fasta -protein -mod anr -nmotifs 3 -minw 7 -maxw 7\\
+\textbf{B.)} meme enhancers.fa -dna -mod oops -nmotifs 1 -maxw 10\\
 
 \section{Six: blastall commands}
 \textbf{A.)} formatdb -p F -t midichlorians -n midichlorians -i yoda.microbiome.fasta\\
-\textbf{B.)} blastall -p blastp -i transcripts.fa -d myProteins  -g 2 -o transcripts.txt # gap pen rite??\\
+\textbf{B.)} blastall -p blastp -i transcripts.fa -d myProteins -G 2 -o transcripts.txt\\
 \textbf{C.)} blastall -p blastp -i proteins.fa -d myGenome -o proteins.txt\\
 
 \section{Eight: Revcomp GC}
+from Bio.SeqUtils import GC\\
+from Bio import SeqIO\\
+seq = Bio.Seq(``GCGTAGCTGATCACCAGCTAGCGACGTATCAAAAACGCTGACGGGGTA'')\\
+print ``Are GC contents of sequence and sequence.reverse\_complement() equal?''\\
+print GC(seq) == GC(seq.reverse\_complement())\\
+>>> True!\\
 
-from Bio import SeqIO
+\section{Nine: DNA concatenation}
+from Bio.Seq import Seq\\
+seq = Bio.Seq(``ACGTTACGAGGAGAGTC'')\\
+seq\_RNA = seq.transcribe()\\
+print seq\_RNA + seq\_RNA.reverse\_complement() + seq\_RNA\\
 
-seq = Bio.Seq(``sequence'')
-print ``Is GC content of sequence and sequence.revcomp equal?''
-print seq.cg() == seq.revcomp.cg()
+\section{Ten: PHRED scores}
 
-Then try it on sequence...
-
-\section{Nine: }
+\begin{align*}
+  p_{err}(Z) &= 10^{-\frac{ord(Z)+33}{10}} = 10^{-12.3} = 5*10^{-13}\\
+  p_{err}(z) &= 10^{-\frac{ord(z)+33}{10}} = 10^{-15.5} = 3.16*10^{-16}\\
+  p_{err}(:) &= 10^{-\frac{ord(:)+33}{10}} = 10^{-9.1} = 1.7*10^{-10}\\
+  p_{err}(+) &= 10^{-\frac{ord(+)+33}{10}} = 10^{-7.6} = 7.94*10^{-10}\\
+\end{align*}
 
 \end{document}
