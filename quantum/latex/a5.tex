@@ -47,6 +47,27 @@
 
 \maketitle{}
 
+\section{1: Effect of E-field on H spectrum}
+Here we examine how a perturbing electric field influences the n=2 to n=1 transition for
+the Hydrogen atom.\\
+
+\textbf{a.)} First we find the unperturbed transition energy:\\
+
+\begin{align*}
+  E_2 - E_1 &= -13.6 \mbox{eV} \left(\frac{1}{2^2} - \frac{1}{1^2}\right) = 10.2 \mbox{eV}\\
+\end{align*}
+
+\textbf{b.)} Now we apply a 0.5 V/m electric field and see how the spectrum changes. The Stark
+Effect tells us that the energy levels will be perturbed by either zero or
+$\pm3e\epsilon a_0$, which for this electric field would be $\pm 2.64*10^{-2}eV$. This comes out
+to be a change of roughly $0.25$ percent, which is a fairly small value.\\
+
+The perturbation due to the electric field can be interpreted as the energy change of the
+electric dipole moment interacting with the applied field. Some of the n=2 states are radially
+symmetric, and so have no electric dipole to alter the energy. However certain combinations of
+orbitals (ie $\bra{200}+\bra{210}$) do have a bias to part of the electron, and so do have an
+energy change.\\
+
 \section{11.7: $\vec{S} \cdot \vec{I}$ simplified}
 
 Here we show how using angular momentum ladder operators can simplify the dot product
@@ -64,5 +85,18 @@ $\vec{S} \cdot \vec{I}$:\\
 This is a useful math trick with no physical meaning! Multiplying raising and lowering operators
 together has no physical significance, let alone operators for different particles. Nevertheless
 this will probably come in handy later.\\
+
+\section{11.9: Commutators}
+Here we show that the spin magnitude operators \textbf{$S^2$} and \textbf{$I^2$} commute with
+the perturbation Hamiltonian, while the component operators \textbf{$S_z$} and \textbf{$I_z$}
+do not.
+
+\begin{align*}
+  \left[S^2, H'_{hf}\right] &= \left(S^2H'_{hf} - H'_{hf}S^2\right)\ket{m_p,m_s}\\
+  &= S^2H'_{hf}\ket{m_p,m_s} - H'_{hf}S^2\ket{m_p,m_s}\\
+  &= S^2E_{m_p,m_s}\ket{m_p,m_s} - H'_{hf}S^2\frac{3\hbar^2}{4}\ket{m_p,m_s}\\
+  &= \frac{3\hbar^2}{4}E_{m_p,m_s}\ket{m_p,m_s} - E_{m_p,m_s}S^2\frac{3\hbar^2}{4}\ket{m_p,m_s}\\
+  &= 0\\
+\end{align*}
 
 \end{document}
