@@ -39,7 +39,8 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Quantum Mechanics Assignment Six}
+
+\title{Quantum Mechanics Assignment Seven}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -47,7 +48,52 @@
 
 \maketitle{}
 
-\section{11.12: blah}
+
+\section{Problem 1: Relativistic Fine Correction}
+
+This problem asks us to work through parts of the derivation of perturbation theory applied to
+the relativistic correction to the Hydrogen energy spectrum.\\
+
+\textbf{a.)}Here we show how to find the expectation value of $p^4$ more easily:\\
+
+\begin{align*}
+  &\bra{n,\ell,m}p^4\ket{n,\ell,m}\\
+  &= \bra{n,\ell,m}p^2p^2\ket{n,\ell,m}\\
+  &= 4m^2\bra{n,\ell,m}\left(H_0 + \frac{e^2}{4\pi\epsilon r}\right)
+  \left(H_0 + \frac{e^2}{4\pi\epsilon r}\right)\ket{n,\ell,m}\\
+  &= 4m^2\left(\bra{n,\ell,m}H_0^2\ket{n,\ell,m}
+  + \bra{n,\ell,m}H_0\frac{e^2}{4\pi\epsilon r}\ket{n,\ell,m}
+  + \bra{n,\ell,m}\frac{e^2}{4\pi\epsilon r}H_0\ket{n,\ell,m}
+  + \bra{n,\ell,m}\frac{e^4}{16\pi^2\epsilon^2r^2}\ket{n,\ell,m}\right)\\
+  &= 4m^2\left((E_n^{(0)})^2
+  + E_n^{(0)}\bra{n,\ell,m}\frac{e^2}{4\pi\epsilon r}\ket{n,\ell,m}
+  + \bra{n,\ell,m}\frac{e^2}{4\pi\epsilon r}\ket{n,\ell,m}E_n^{(0)}
+  + \frac{e^4}{16\pi^2\epsilon^2r^2}\bra{n,\ell,m}\frac{1}{r^2}\ket{n,\ell,m}\right)\\
+  &= 4m^2\left((E_n^{(0)})^2
+  + \frac{e^2E_n^{(0)}}{4\pi\epsilon}\braket{\frac{1}{r}}
+  + \frac{e^2}{4\pi\epsilon}\braket{\frac{1}{r}}E_n^{(0)}
+  + \frac{e^4}{16\pi^2\epsilon^2r^2}\braket{\frac{1}{r^2}}\right)\\
+  &= 4m^2\left((E_n^{(0)})^2
+  + \frac{e^2E_n^{(0)}}{2\pi\epsilon}\braket{\frac{1}{r}}
+  + \frac{e^4}{16\pi^2\epsilon^2r^2}\braket{\frac{1}{r^2}}\right)\\
+\end{align*}
+
+\textbf{b.)}\\
+
+\textbf{c.)} We perform the following integrals using Mathematica:
+
+\begin{align*}
+  \braket{\frac{1}{r}}_{20} &= \left(\frac{Z}{2a}\right)^3\int_0^\infty
+  4r\left(1-\frac{Zr}{2a}\right)^2e^{-Zr/a}dr = \frac{Z}{4a}\\
+  \braket{\frac{1}{r^2}}_{20} &= \left(\frac{Z}{2a}\right)^3\int_0^\infty
+  4\left(1-\frac{Zr}{2a}\right)^2e^{-Zr/a}dr = \frac{Z^2}{4a^2}\\
+  \braket{\frac{1}{r}}_{21} &= \left(\frac{Z}{2a}\right)^3\int_0^\infty
+  \frac{Z^2r}{3a^2}e^{Zr/a}dr = \frac{Z}{4a}\\
+  \braket{\frac{1}{r^2}}_{21} &= \left(\frac{Z^5}{24a^5}\right)^3\int_0^\infty
+  r^2e^{-Zr/a}dr = \frac{Z^2}{12a^2}\\
+\end{align*}
+
+These are the desired results. We then assume this is true for all n, $\ell$ quantum numbers.\\
 
 \textbf{d.)}
 Here we expand McIntyre (12.26) and show that it is equivalent to (12.30):\\
@@ -82,13 +128,35 @@ then I realized that it was just a normal operator, like $\hat{r^2}$. Exploiting
 the fact that the complex conjugate Hamiltonian acts on bras the same way that the
 normal Hamiltonian acts on kets was another important method to solving this problem.\\
 
+
 \section{2: Spectroscopy Numbers}
 Here we discuss the spectroscopic labels and splitting we see in the figure in the
 problem.\\
 
 The labels are kind of like spectroscopic notation. The upper term (3d, 2p, etc...) is
 the n and $\ell$ number for the state, where $\ell$ is translated into alphabet
-notation. The subscript is the 
+notation. The subscript is the F-number (L+S) for that orbital. The spin of the electron can be
+$\pm\frac{1}{2}$, so the F-number plus or minus $\frac{1}{2}$ is the $\ell$-number. $3d_{5/2}$ is
+the n=3, $\ell$=2 orbital \textit{where the angular momentum and spin momentum combine}. There is
+another orbital where they are subtracted.\\
+
+The $3p_{3/2}$ and $3d_{3/2}$ orbitals both have corrections of 1.62GHz, as seen in the table. They
+are made up of the following linear combinations of uncoupled states:\\
+
+\begin{align*}
+  \ket{n,F,M_F} &= \ket{n,M_I,M_s}\\
+  \ket{3,\frac{3}{2}, \frac{ 3}{2}} &= \ket{3,1,\frac{1}{2}}\\
+  \ket{3,\frac{3}{2}, \frac{ 1}{2}} &= \frac{1}{\sqrt{3}}\ket{3,1,\frac{1}{2}}
+  + \sqrt{\frac{2}{3}}\ket{2,0,\frac{1}{2}}\\
+  \ket{3,\frac{3}{2}, \frac{-1}{2}} &= \sqrt{\frac{2}{3}}\ket{3,0,-\frac{1}{2}}
+  + \frac{1}{\sqrt{3}}\ket{3,-1,\frac{1}{2}}\\
+  \ket{3,\frac{3}{2}, \frac{-3}{2}} &= \ket{3,-1,-\frac{1}{2}}\\
+\end{align*}
+
+I liked this problem. I didn't get to finish it, but it was interesting thinking about how to use
+Clebsch-Gordan tables to compare bases. It was also helpful thinking about how there are different
+quantum states for when angular momenta combine vs subtract from each other. This doesn't make
+sense but is an important part of quantum mechanics.\\
 
 \section{3: Energies}
 Here we calculate many different energies and show how they are related.\\
