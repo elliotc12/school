@@ -1,0 +1,145 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Quantum Mechanics Assignment Six}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{11.12: blah}
+
+\textbf{d.)}
+Here we expand McIntyre (12.26) and show that it is equivalent to (12.30):\\
+
+\begin{align*}
+  \braket{H'_{rel}} &=
+  -\frac{1}{2mc^2}\left((E_n^0)^2 +
+  2\frac{e^2}{4\pi\epsilon_0}E_n^0\braket{\frac{1}{r}} +
+  \frac{e^4}{16\pi^2\epsilon_0^2}\braket{\frac{1}{r^2}}\right)\\
+  &= -\frac{1}{2mc^2}\left(\frac{\alpha^4m^2c^4}{4n^4}
+  + 2\frac{e^2}{4\pi\epsilon_0}\left(\frac{-\alpha^2mc^2}{2n^2}\right)
+  \left(\frac{1}{n^2a_0}\right) +
+  \frac{e^4}{16\pi^2\epsilon_0^2}\left(\frac{1}{(\ell+1/2)n^3a_0^2}\right)\right)\\
+  &= \frac{-\alpha^4mc^2}{8n^4}
+  + \frac{e^2}{4\pi\epsilon_0}\left(\frac{\alpha^2}{2n^2}\right)
+  \left(\frac{1}{n^2a_0}\right) +
+  \frac{-e^4}{2*16\pi^2\epsilon_0^2}\left(\frac{1}{(\ell+1/2)n^3a_0^2mc^2}\right)\\
+  &= \frac{-\alpha^4mc^2}{8n^4}
+  + a_0\alpha^2mc^2\left(\frac{\alpha^2}{2n^2}\right)
+  \left(\frac{1}{n^2a_0}\right) +
+  \frac{-1}{2}a_0^2\alpha^4m^2c^4\left(\frac{1}{(\ell+1/2)n^3a_0^2mc^2}\right)\\
+  &= \alpha^4mc^2\left(\frac{3}{8n^4}\right) +
+  \frac{1}{2}\alpha^4mc^2\left(\frac{-1}{(\ell+1/2)n^3}\right)\\
+  &= -\frac{1}{2}\alpha^4mc^2\left(\frac{1}{n^3\left(\ell+\frac{1}{2}\right)} -
+    \frac{3}{4n^4}\right)\\
+\end{align*}
+
+\section{2: Spectroscopy Numbers}
+
+\section{3: Energies}
+Here we calculate many different energies and show how they are related.\\
+
+\textbf{a.) Unperturbed energies}
+\begin{align*}
+  E_1^0 - E_2^0 &= -13.7eV\left(\frac{1}{4} - \frac{1}{1}\right)\\
+  &= 10.275eV\\
+  &= \frac{3}{8}\alpha^2mc^2\\
+  &= 2.48 * 10^6 GHz\\
+\end{align*}
+
+\textbf{b.) SO corrections to energy}
+\begin{align*}
+  E_{S}' &= \frac{1}{4}\alpha^4mc^2\frac{j(j+1)
+    - \ell(\ell+1) - \frac{3}{4}}{n^3\ell(\ell+\frac{1}{2})(\ell+1)}\\
+  E_{n=2,\ell=0} &= 0\\
+  E_{n=2,\ell=1} &= \frac{-29}{384}\alpha^4mc^2\\
+  &= -1.1 *10^{-4} eV\\
+  &= 0.026 GHz\\
+  E_{n=1,\ell=0} &= 0\\
+\end{align*}
+
+\textbf{c.) Relativistic corrections to energy}
+\begin{align*}
+  E_{rel}' &= -\frac{1}{2}\alpha^4mc^2
+  \left(\frac{1}{n^3(\ell+\frac{1}{2})} - \frac{3}{4n^4}\right)\\
+  E_{n=2,\ell=1} &= -\frac{7}{384}\alpha^4mc^2\\
+  &= -2.6*10^{-5} eV\\
+  &= 6.39 GHz\\
+  E_{n=2,\ell=0} &= -\frac{13}{128}\alpha^4mc^2\\
+  &= 1.4*10^{-4} eV\\
+  &= -35.6 GHz\\
+  E_{n=1,\ell=0} &= -\frac{5}{8}\alpha^4mc^2\\
+  &= 9.1*10^{-4} eV\\
+  &= -219.2 GHz\\
+\end{align*}
+
+\textbf{d.) Total fine-structure corrections}
+
+\begin{align*}
+  E_{n=2,\ell=1} &= -\frac{7}{384}\alpha^4mc^2 = -2.6*10^{-5} eV = -6.39 GHz\\
+  E_{n=2,\ell=0} &= -\frac{17}{96}\alpha^4mc^2 = -2.5*10^{-4} = -35.6 GHz\\
+  E_{n=1,\ell=0} &= -\frac{5}{8}\alpha^4mc^2 = -9.1*10^{-4} eV = -219.2 GHz\\
+\end{align*}
+
+\textbf{e.) }
+\begin{align*}
+  E_{n=2,\ell=1}: 6.39 GHz \rightarrow \lambda = 4.69*10^7 nm = .0496m\\
+  E_{n=2,\ell=0}: 35.6 GHz \rightarrow \lambda = 8.42*10^6 nm = 0.00842m\\
+  E_{n=1,\ell=0}: 219.2 GHz \rightarrow \lambda = 1.37*10^6 nm = 0.0137m\\
+\end{align*}
+
+\textbf{f.) Rest mass}
+The reduced mass must be used! The electrons are travelling at roughly 1\% the speed
+of light, so they feel relativistic effects non-negligibly.\\
+
+This was a cool, long problem! It is interesting that the $\ell=0$ states have no
+SO corrections, since they have no angular momentum and hence there is no apparent
+B-field that they see due to ``orbiting'' the proton. The numbers are weird, it is odd
+to me that there are such large differences (nearly a factor of ten) betwen the
+corrections between the first three quantum states, but I guess this is because
+the orbitals behave pretty differently. The fact that the relativistic differences
+have nearly a ten-fold difference in energy might indicate that the electrons have
+vastly different speeds, which is an interesting result.\\
+
+\end{document}
