@@ -124,7 +124,7 @@ by Clustalw and Phyml.
   \centering
   \includegraphics[width=0.45\textwidth]{h3-clustalw.png}
   \includegraphics[width=0.45\textwidth]{h3-phyml.png}
-  \caption{ClustalW tree on left, Phyml tree on right. 332-Arabidopsis, 156-human, 688-zebrafish,
+  \caption{ClustalW tree on left for H3, Phyml tree on right. 332-Arabidopsis, 156-human, 688-zebrafish,
   387-mouse, 787-drosophila melanogaster, 327-tobacco.}
 \end{figure}
 
@@ -168,10 +168,56 @@ both finds the same number: one.\\
   \centering
   \includegraphics[width=0.45\textwidth]{clustalw.png}
   \includegraphics[width=0.45\textwidth]{phyml.png}
-  \caption{ClustalW on left, PhyML on right.}
+  \caption{ClustalW on left for HoxA, PhyML on right.}
 \end{figure}
 
-We see similar behavior here, where ClustalW insists on making a binary tree, whereas PhyML does
-not.
+We see similar behavior here, where ClustalW insists on making a binary tree,
+whereas PhyML does not. The trees look similar and seem to convey the same
+information, which is good. It is interesting that zebrafish have such a
+large distance from the other organisms. I guess it makes sense, since they
+are an early type of fish? Plus the mRNA sequence for the zebrafish was much shorter
+than the other sequences.\\
+
+ClustalW Newick:
+\begin{verbatim}
+((gi|human:0.08731,gi|chimpanzee:-0.00104):0.09698,
+(gi|mouse:0.10978,gi|rat:-0.05153):0.09846,gi|zebrafish:0.58169);
+\end{verbatim}
+
+PhyML Newick:
+\begin{verbatim}
+(((gi|chimpan:0.017786,gi|human:0.039499):0.032820,gi|zebrafi:0.886506)
+:0.075342,gi|rat:0.019008,gi|mouse:0.012854);
+\end{verbatim}
+
+\section{Four: BED, GFF}
+
+\textbf{a.)}
+chr1 72 145 region1 100 + $\rightarrow$ chr1 progname feature 73 145 100 +\\
+chr1 221 342 region2 100 + $\rightarrow$ chr1 progname feature 222 221 100 +\\
+chr1 473 577 region3 100 + $\rightarrow$ chr1 progname feature 474 473 100 +\\
+
+Here progname is the name of the generating program, BED does not specify it.\\
+
+\textbf{b.)}
+chr1 myDB gene 743 1200 . + . ID=gene1 $\rightarrow$ chr1 742 1200 name . +
+chr1 myDB gene 3405 5345 . + . ID=gene2 $\rightarrow$ chr1 3404 5345 name . +
+chr3 myDB mRNA 9143 9778 . + . ID=transcript1 $\rightarrow$ chr1 9142 9778 name . +
+
+\section{Problem Five: Stalling Indices}
+
+Pol II Chip Tissue 2:\\
+We find the median of the gene body to be 1.3. We find the max $\pm$ 100 of the TSS
+to be 1.3 as well.\\
+\begin{align*}
+  \frac{Max}{Median} &= \frac{1.3}{1.3} \approx 1
+\end{align*}
+
+
+We find the median to be 1.4 and the max to be 5.1.\\
+Pol II Chip Tissue 1:\\
+\begin{align*}
+  \frac{Max}{Median} &= \frac{5.1}{1.4} \approx 3.64
+\end{align*}
 
 \end{document}
