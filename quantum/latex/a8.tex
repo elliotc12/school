@@ -1,0 +1,104 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+
+\title{Quantum Mechanics Assignment Eight}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem 1: Two Spin-1 Particle states}
+Here we use a Clebsch-Gordan table and our knowledge of the P interchange operator
+to list the spin states a system of two spin-1 particles could take on, and whether
+they are symmetric or antisymmetric with respect to particle interchange.\\
+
+Two spin particles combine to have a total angular momentum of 0, 1 or 2. We use a CG
+table to list the states, in the format $\ket{J,M_J} = \ket{M_{S1}, M_{S2}}$:\\
+
+\begin{align*}
+  \mbox{Symmetric}\hspace{2cm} &\ket{2,2} = \ket{1,1} = \ket{1,1}\\
+  \mbox{Symmetric}\hspace{2cm}&\ket{2,1} = \frac{1}{\sqrt{2}}\left(\ket{1,0}
+  + \ket{0,1}\right)
+  = \frac{1}{\sqrt{2}}\left(\ket{0,1} + \ket{1,0}\right)\\
+  \mbox{Symmetric}\hspace{2cm} &\ket{2,0} =
+  \frac{1}{\sqrt{2}}\left(\ket{1,-1} + \ket{-1,1}\right) + \sqrt{\frac{2}{3}}\ket{0,0}
+  = \frac{1}{\sqrt{2}}\left(\ket{-1,1} + \ket{1,-1}\right)
+  + \sqrt{\frac{2}{3}}\ket{0,0}\\
+  \mbox{Symmetric}\hspace{2cm} &\ket{2,-1} =
+  \frac{1}{\sqrt{2}}\left(\ket{-1,0} + \ket{0,-1}\right)
+  = \frac{1}{\sqrt{2}}\left(\ket{0,-1} + \ket{-1,0}\right)\\
+  \mbox{Symmetric}\hspace{2cm} &\ket{2,-2} = \ket{-1,-1} = \ket{-1,-1}\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Antisymmetric}\hspace{2cm} &\ket{1,1}
+  = \frac{1}{\sqrt{2}}\left(\ket{1,0} - \ket{0,1}\right)
+  = -\frac{1}{\sqrt{2}}\left(\ket{0,1} - \ket{1,0}\right)\\
+  \mbox{Antisymmetric}\hspace{2cm} &\ket{1,0}
+  = \frac{1}{\sqrt{2}}\left(\ket{1,-1} - \ket{-1,1}\right)
+  = -\frac{1}{\sqrt{2}}\left(\ket{-1,1} - \ket{1,-1}\right)\\
+  \mbox{Antisymmetric}\hspace{2cm} &\ket{1,-1}
+  = \frac{1}{\sqrt{2}}\left(\ket{-1,0} - \ket{0,-1}\right)
+  = -\frac{1}{\sqrt{2}}\left(\ket{0,-1} - \ket{-1,0}\right)\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Symmetric}\hspace{2cm} &\ket{0,0} = \ket{-1,-1} =
+  \frac{1}{\sqrt{3}}\left(\ket{1,-1} - \ket{0,0} \ket{-1,1}\right)
+  = \frac{1}{\sqrt{3}}\left(\ket{-1,1} - \ket{0,0} \ket{1,-1}\right)\\
+\end{align*}
+
+This is a demonstration of how the coupled basis states for 2x spin-1 particles
+obey the Symmetrization Postulate. This is an advantage that the uncoupled basis
+does not share: $\ket{1,-1}$ does not obey the SP, since the first particle is always
+in the $M_S = 1$ state, and so is effectively ``labelled''. This is disallowed
+by QM.\\
+
+An interesting result we can glean from this is that two fermions with
+spin-1 (eg protons) will always go to the F=1 state when they have a symmetric
+wave function (ie they are in the ground state), since all wavefunctions must be
+antisymmetric for fermions. This is a weird case that is not intuitive - why is
+there such an arbitrary set of rules on what the spin can and cannot be?\\
+
+\end{document}
