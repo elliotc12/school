@@ -124,8 +124,8 @@ by Clustalw and Phyml.
   \centering
   \includegraphics[width=0.45\textwidth]{h3-clustalw.png}
   \includegraphics[width=0.45\textwidth]{h3-phyml.png}
-  \caption{ClustalW tree on left for H3, Phyml tree on right. 332-Arabidopsis, 156-human, 688-zebrafish,
-  387-mouse, 787-drosophila melanogaster, 327-tobacco.}
+  \caption{ClustalW tree on left for H3, Phyml tree on right. 332-Arabidopsis,
+    156-human, 688-zebrafish,387-mouse, 787-drosophila melanogaster, 327-tobacco.}
 \end{figure}
 
 Phyml Tree:
@@ -158,9 +158,12 @@ groups them without a threshold.\\
   \caption{OOPS on left, ANR on right.}
 \end{figure}
 
-These two found motifs look almost identical. This suggests that there is only one
+These two found motifs in Figure 2 look almost identical. This suggests that there is only one
 main motif in the sequences, so that one-occurence-per-sequence and any-number-of-occurrences
-both finds the same number: one.\\
+both finds the same number: one. If there were more motifs that met the motifness-threshold,
+they would be found by ANR but not OOPS. The fact that there is only one main motif is plausible:
+there is one active site on the coded protein, the rest of the protein is free to mutate to meet
+the species' needs.\\
 
 \section{Problem Three: More Trees}
 
@@ -192,32 +195,33 @@ PhyML Newick:
 
 \section{Four: BED, GFF}
 
-\textbf{a.)}
+\textbf{a.)}\\
 chr1 72 145 region1 100 + $\rightarrow$ chr1 progname feature 73 145 100 +\\
-chr1 221 342 region2 100 + $\rightarrow$ chr1 progname feature 222 221 100 +\\
-chr1 473 577 region3 100 + $\rightarrow$ chr1 progname feature 474 473 100 +\\
+chr1 221 342 region2 100 + $\rightarrow$ chr1 progname feature 222 342 100 +\\
+chr1 473 577 region3 100 + $\rightarrow$ chr1 progname feature 474 577 100 +\\
 
-Here progname is the name of the generating program, BED does not specify it.\\
+Here progname, feature are the names of the generating program and feature,
+as BED does not specify them.\\
 
-\textbf{b.)}
-chr1 myDB gene 743 1200 . + . ID=gene1 $\rightarrow$ chr1 742 1200 name . +
-chr1 myDB gene 3405 5345 . + . ID=gene2 $\rightarrow$ chr1 3404 5345 name . +
-chr3 myDB mRNA 9143 9778 . + . ID=transcript1 $\rightarrow$ chr1 9142 9778 name . +
+\textbf{b.)}\\
+chr1 myDB gene 743 1200 . + . ID=gene1 $\rightarrow$ chr1 742 1200 name . +\\
+chr1 myDB gene 3405 5345 . + . ID=gene2 $\rightarrow$ chr1 3404 5345 name . +\\
+chr3 myDB mRNA 9143 9778 . + . ID=transcript1 $\rightarrow$ chr1 9142 9778 name . +\\
 
 \section{Problem Five: Stalling Indices}
 
-Pol II Chip Tissue 2:\\
-We find the median of the gene body to be 1.3. We find the max $\pm$ 100 of the TSS
-to be 1.3 as well.\\
+\textbf{Pol II Chip Tissue 2:}\\
+We find the median of the gene body {1.1, 1.1, 1.1, 1.5, 1.7} to be 1.1.
+We find the max $\pm$ 100 of the TSS to be 1.3 by inspection.\\
 \begin{align*}
-  \frac{Max}{Median} &= \frac{1.3}{1.3} \approx 1
+  SI = \frac{Max}{Median} &= \frac{1.3}{1.1} \approx 1.18
 \end{align*}
 
-
-We find the median to be 1.4 and the max to be 5.1.\\
-Pol II Chip Tissue 1:\\
+\textbf{Pol II Chip Tissue 1:}\\
+We find the median of {1.3, 1.3, 1.3, 1.5, 1.5} to be 1.3 and the max within 100pm of
+the TSS to be 5.1 by inspection.\\
 \begin{align*}
-  \frac{Max}{Median} &= \frac{5.1}{1.4} \approx 3.64
+  SI = \frac{Max}{Median} &= \frac{5.1}{1.3} \approx 3.92
 \end{align*}
 
 \end{document}
