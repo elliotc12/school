@@ -101,4 +101,32 @@ wave function (ie they are in the ground state), since all wavefunctions must be
 antisymmetric for fermions. This is a weird case that is not intuitive - why is
 there such an arbitrary set of rules on what the spin can and cannot be?\\
 
+\section{Problem 13.7: Noninteracting particles in a HO potential}
+Here we find the interparticle spacing for three types of systems: a distinguishable,
+fermonic and bosonic pair of particles in a QHO potential where one particle is in state $n$
+and the other in state $k$. We construct our states as follows, noting that fermions have AS
+descriptions, bosons have S descriptions and distinguishable particles have neither:
+
+\begin{align*}
+  \mbox{Distinguishable}&\hspace{1cm} \ket{\psi} = \ket{n}_1\ket{k}_2\\
+  \mbox{Fermions}&\hspace{1cm} \ket{\psi}
+  = \frac{1}{\sqrt{2}}\left(\ket{n}_1\ket{k}_2 - \ket{k}_1\ket{n}_2\right)\\
+  \mbox{Bosons}&\hspace{1cm} \ket{\psi}
+  = \frac{1}{\sqrt{2}}\left(\ket{n}_1\ket{k}_2 + \ket{k}_1\ket{n}_2\right)\\
+\end{align*}
+
+\textbf{a.) Distinguishable}
+
+\begin{align*}
+  \braket{(x_1-x_2)^2} &= \bra{n}_1\bra{k}_2(x_1-x_2)^2\ket{n}_1\ket{k}_2\\
+  &= \bra{n}_1\bra{k}_2(x_1^2 + x_2^2 - 2x_1x_2)\ket{n}_1\ket{k}_2\\
+  &= \bra{n}_1\bra{k}_2x_1^2\ket{n}_1\ket{k}_2 +
+  \bra{n}_1\bra{k}_2x_2^2\ket{n}_1\ket{k}_2 - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \bra{n}_1x_1^2\ket{n}_1\bra{k}_2\ket{k}_2 +
+  \bra{n}_1\ket{n}_1\bra{k}_2x_2^2\ket{k}_2 - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \bra{n}_1x_1^2\ket{n}_1 +
+  \bra{k}_2x_2^2\ket{k}_2 - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  now look up the first two terms and turn the third into an integral\\
+\end{align*}
+
 \end{document}
