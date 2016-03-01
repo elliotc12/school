@@ -101,6 +101,9 @@ wave function (ie they are in the ground state), since all wavefunctions must be
 antisymmetric for fermions. This is a weird case that is not intuitive - why is
 there such an arbitrary set of rules on what the spin can and cannot be?\\
 
+\section{Problem 2: Neutron Star}
+Neutron stars are celestial objects made up almost exclusively of neutrons, or spin-1/2 fermions.\\
+
 \section{Problem 13.7: Noninteracting particles in a HO potential}
 Here we find the interparticle spacing for three types of systems: a distinguishable,
 fermonic and bosonic pair of particles in a QHO potential where one particle is in state $n$
@@ -124,9 +127,76 @@ descriptions, bosons have S descriptions and distinguishable particles have neit
   \bra{n}_1\bra{k}_2x_2^2\ket{n}_1\ket{k}_2 - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
   &= \bra{n}_1x_1^2\ket{n}_1\bra{k}_2\ket{k}_2 +
   \bra{n}_1\ket{n}_1\bra{k}_2x_2^2\ket{k}_2 - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
-  &= \bra{n}_1x_1^2\ket{n}_1 +
-  \bra{k}_2x_2^2\ket{k}_2 - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
-  now look up the first two terms and turn the third into an integral\\
+  &= \bra{n}_1x_1^2\ket{n}_1 + \bra{k}_2x_2^2\ket{k}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\bra{n}_1
+  \left(a^\dagger a^\dagger + aa + aa^\dagger + a^\dagger a\right)\ket{n}_1
+  + \frac{\hbar}{2m\omega}\bra{k}_2
+  \left(a^\dagger a^\dagger + aa + aa^\dagger + a^\dagger a\right)\ket{k}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\bra{n}_1\left(aa^\dagger + a^\dagger a\right)\ket{n}_1
+  + \frac{\hbar}{2m\omega}\bra{k}_2\left(aa^\dagger + a^\dagger a\right)\ket{k}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\left(2n + 2k + 2\right)
+  - \frac{2\hbar}{2m\omega}\bra{n}_1\bra{k}_2
+  \left(a_1+a_1^\dagger\right)\left(a_2+a_2^\dagger\right)\ket{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\left(2n + 2k + 2\right)
+  - \frac{2\hbar}{2m\omega}\bra{n}_1\bra{k}_2
+  \left(a_1a_2 + a_1^\dagger a_2^\dagger + a_1a_2^\dagger + a_2a_1^\dagger\right)\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\left(2n + 2k + 2\right)
+  - \frac{2\hbar}{2m\omega}\bra{n}_1\bra{k}_2
+  \left(a_1a_2 + a_1^\dagger a_2^\dagger + a_1a_2^\dagger + a_2a_1^\dagger\right)\bra{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\left(2n + 2k + 2\right)\\
+  &- \frac{2\hbar}{2m\omega}
+  \left(\bra{n}_1a_1\ket{n}_1\ket{k}_2a_2\ket{k}_2
+  + \bra{n}_1a_1^\dagger\ket{n}_1\bra{k}_2a_2^\dagger\ket{k}_2
+  + \bra{n}_1a_1\ket{n}_1\bra{k}_2a_2^\dagger\ket{k}_2
+  + \bra{k}_2a_2\ket{k}_2\bra{n}_1a_1^\dagger\ket{n}_1\right)\\
+  &= \frac{\hbar}{m\omega}(2n+2k+2)\\
 \end{align*}
+
+\textbf{b.) Boson}
+
+\begin{align*}
+  \braket{(x_1-x_2)^2} &=
+  \frac{1}{2}\left(\bra{n}_1\bra{k}_2 + \bra{k}_1\bra{n}_2\right)
+  \left(x_1^2 + x_2^2 - 2x_1x_2\right)
+  \left(\ket{n}_1\ket{k}_2 + \ket{k}_1\ket{n}_2\right)\\
+  &= \frac{1}{2}\left(
+  \bra{n}_1x_1^2\ket{n}_1 + \bra{k}_2x_2^2\ket{k}_2
+  + \bra{k}_1x_1^2\ket{k}_1 + \bra{n}_2x_2^2\ket{n}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2 - 2\bra{n}_2\bra{k}_1x_1x_2\ket{n}_2\ket{k}_1\right)\\
+  &= \frac{1}{2}\left(4n + 4k + 4\right)
+  - \bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2 - \bra{n}_2\bra{k}_1x_1x_2\ket{n}_2\ket{k}_1\\
+  &= \frac{\hbar}{2m\omega}\left(4n + 4k + 4\right)\\
+\end{align*}
+
+\textbf{c.) Fermion}
+
+\begin{align*}
+  \braket{(x_1-x_2)^2} &=
+  \frac{1}{2}\left(\bra{n}_1\bra{k}_2 - \bra{k}_1\bra{n}_2\right)
+  \left(x_1^2 + x_2^2 - 2x_1x_2\right)
+  \left(\ket{n}_1\ket{k}_2 - \ket{k}_1\ket{n}_2\right)\\
+  &= \frac{1}{2}\left(
+  \bra{n}_1x_1^2\ket{n}_1 + \bra{k}_2x_2^2\ket{k}_2
+  - \bra{k}_1x_1^2\ket{k}_1 - \bra{n}_2x_2^2\ket{n}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2 + 2\bra{n}_2\bra{k}_1x_1x_2\ket{n}_2\ket{k}_1\right)\\
+  &= \frac{\hbar}{2m\omega}\frac{1}{2}\left(2n+1 + 2k+1 - 2n-1 - 2k-1 - 0\right)\\
+  &= 0\\
+\end{align*}
+
+This is a really interesting problem that demonstrates how systems that are identical save
+for their symmetry rules can behave totally differently. The boson system has twice the expectation
+value of the distinguishable particle system, and the fermion system has zero expectation value
+for particle distance. This is a very unintuitive result, since it predicts that on average the
+two particles are on top of each other.\\
+
+\section{Problem 4: Three-particle system}
+In this problem we practice writing the wave functions for three-particle systems of particles
+with different symmetry rules:\\
+
+\section{Problem 5: Zeeman Effect}
+
 
 \end{document}
