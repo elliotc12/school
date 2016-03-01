@@ -197,6 +197,57 @@ In this problem we practice writing the wave functions for three-particle system
 with different symmetry rules:\\
 
 \section{Problem 5: Zeeman Effect}
+When doing Zeeman Effect calculations and deciding whether the Zeeman corrections should go in the
+first-order Hamiltonian correction or be put in the unperturbed Hamiltonian, a ``strong'' B-field
+is one that is too big to be a first-order correction. For the n=2 state of Hydrogen, the
+first-order fine structure corrections have a size of:
 
+\begin{equation*}
+  E_{fs}^{(1)}
+  = -\frac{1}{2}\alpha^4mc^2\frac{1}{2^3}\left(\frac{1}{j+\frac{1}{2}}-\frac{3}{8}\right)\\
+  \approx -\frac{1}{16}\alpha^4mc^2\\
+\end{equation*}
+
+We say that Zeeman corrections of this size and larger should be considered due to ``strong''
+magnetic fields. The energy perturbation due to the B-field is given by:\\
+
+\begin{equation*}
+  \Delta E_{Z} = \frac{\mu_B B}{\hbar}\left(g_\ell L_z + g_e S_z\right)
+  \approx \frac{\mu_B B}{\hbar}\\
+\end{equation*}
+
+We equate these expressions to find the smallest ``strong'' B-field:\\
+
+\begin{align*}
+  B &\approx \frac{-\hbar}{16mu_B}\alpha^4mc^2
+  = \frac{-6.5*10^{-16}}{16*6*10^{-5}}*7^4*10^{-12}*5*10^5\\
+  \approx 8*10^{-26}T\\
+\end{align*}
+
+We now find the B-field which perturbes the H atom enough to equate the energies of the 2p and 3d
+states:\\
+
+\begin{align*}
+  E_{2p} + \Delta E_{Zeeman, 2p} + E_{fs}^{(1)} &= E_{3d} + \Delta E_{Zeeman, 3d} + E_{fs}^{(1)}\\
+  \frac{-13.6eV}{4} + \mu_BB(m_\ell+2m_s)
+  + \frac{1}{2}\alpha^4mc^2\left(\frac{3}{4n^3}
+  -\frac{\ell(\ell+1)-m_\ell m_s}{n^3\ell(\ell+\frac{1}{2})(\ell+1)}\right)
+  &=\\ \frac{-13.6eV}{8} + \mu_BB(m_\ell+2m_s) + \frac{1}{2}\alpha^4mc^2\left(\frac{3}{4n^3}
+  -\frac{\ell(\ell+1)-m_\ell m_s}{n^3\ell(\ell+\frac{1}{2})(\ell+1)}\right)\\
+  \frac{-13.6eV}{4} + 2\mu_BB
+  + \alpha^4mc^2\left(\frac{3}{64}
+  -\frac{2-\frac{1}{2}}{24}\right)
+  &= \frac{-13.6eV}{8} + -3\mu_BB + \frac{1}{2}\alpha^4mc^2\left(\frac{3}{108}
+  -\frac{6+1}{405}\right)\\
+  \frac{13.6eV}{4} + 5\mu_BB
+  &= \alpha^4mc^2
+  \left(\frac{3}{216} - \frac{7}{405} - \frac{3}{64} + \frac{3}{48}\right)\\
+  B &= \frac{\alpha^4mc^2
+    \left(\frac{3}{216} - \frac{7}{405} - \frac{3}{64} + \frac{3}{48}\right) - \frac{13.6eV}{4}}{5\mu_B}\\
+  &= \frac{\frac{317\alpha^4mc^2}{25920} - \frac{13.6eV}{4}}{5\mu_B}\\
+  &\approx \frac{0.68eV}{5.7*10^{-5}eV/T} = 10^4 T\\
+\end{align*}
+
+This is a huge magnetic field!\\
 
 \end{document}
