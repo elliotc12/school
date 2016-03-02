@@ -171,7 +171,7 @@ descriptions, bosons have S descriptions and distinguishable particles have neit
   + \bra{n}_1a_1^\dagger\ket{n}_1\bra{k}_2a_2^\dagger\ket{k}_2
   + \bra{n}_1a_1\ket{n}_1\bra{k}_2a_2^\dagger\ket{k}_2
   + \bra{k}_2a_2\ket{k}_2\bra{n}_1a_1^\dagger\ket{n}_1\right)\\
-  &= \frac{\hbar}{m\omega}(2n+2k+2)\\
+  &= \frac{\hbar}{m\omega}(n+k+1)\\
 \end{align*}
 
 \textbf{b.) Boson}
@@ -187,7 +187,8 @@ descriptions, bosons have S descriptions and distinguishable particles have neit
   - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2 - 2\bra{n}_2\bra{k}_1x_1x_2\ket{n}_2\ket{k}_1\right)\\
   &= \frac{1}{2}\left(4n + 4k + 4\right)
   - \bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2 - \bra{n}_2\bra{k}_1x_1x_2\ket{n}_2\ket{k}_1\\
-  &= \frac{\hbar}{2m\omega}\left(4n + 4k + 4\right)\\
+  &= \frac{\hbar}{4m\omega}\left(4n + 4k + 4\right)\\
+  &= \frac{\hbar}{m\omega}\left(n + k + 1\right)\\
 \end{align*}
 
 \textbf{c.) Fermion}
@@ -201,9 +202,11 @@ descriptions, bosons have S descriptions and distinguishable particles have neit
   \bra{n}_1x_1^2\ket{n}_1 + \bra{k}_2x_2^2\ket{k}_2
   - \bra{k}_1x_1^2\ket{k}_1 - \bra{n}_2x_2^2\ket{n}_2
   - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2 + 2\bra{n}_2\bra{k}_1x_1x_2\ket{n}_2\ket{k}_1\right)\\
-  &= \frac{\hbar}{2m\omega}\frac{1}{2}\left(2n+1 + 2k+1 - 2n-1 - 2k-1 - 0\right)\\
+  &= \frac{\hbar}{4m\omega}\left(2n+1 + 2k+1 - 2n-1 - 2k-1 - 0\right)\\
   &= 0\\
 \end{align*}
+
+Note: These solutions assume that n and k are not two levels separate of each other.\\
 
 This is a really interesting problem that demonstrates how systems that are identical save
 for their symmetry rules can behave totally differently. The boson system has twice the expectation
