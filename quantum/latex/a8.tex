@@ -102,7 +102,26 @@ antisymmetric for fermions. This is a weird case that is not intuitive - why is
 there such an arbitrary set of rules on what the spin can and cannot be?\\
 
 \section{Problem 2: Neutron Star}
-Neutron stars are celestial objects made up almost exclusively of neutrons, or spin-1/2 fermions.\\
+Neutron stars are celestial objects made up almost exclusively of neutrons, or spin-1/2 fermions.
+They are incredibly massive, and without the Pauli Exclusion Principle would overcome the
+inter-particle repulsions and collapse into a black hole. However, because of the PEP, no two
+particles in a system can take on the same quantum state. I don't know the quantum numbers of
+a neutron in a system like this, but I do know that no two neutrons in the system are allowed to
+have the same spacial wave function, because this would violate the PEP. This requirement for each
+particle to have a different spacial wave function translates to the particles needing to be in
+different spaces, and hence not collapsing into the center and forming a black hole. Thus there
+is a ``quantum force'' which opposes gravity and keeps the particles stable.\\
+
+This is a really weird thing to think about. It is odd that the entire star is treated as a single
+system, meaning each neutron must have different quantum numbers, since this translates to an
+immense number of numbers. It is odd that the PEP manifests itself as a force which opposes gravity.
+\\
+
+Another rival explanation is that, due to the Heisenberg Uncertainty Principle, the position of
+each particle is well known due to tight packing, so the momentum uncertainty must be very large.
+This translates to the particles having a large range of momenta. This momenta could possibly be
+the means by which the particles oppose the gravitational force, since the ``quantum force''
+explanation seems weird to me.\\
 
 \section{Problem 13.7: Noninteracting particles in a HO potential}
 Here we find the interparticle spacing for three types of systems: a distinguishable,
@@ -194,7 +213,144 @@ two particles are on top of each other.\\
 
 \section{Problem 4: Three-particle system}
 In this problem we practice writing the wave functions for three-particle systems of particles
-with different symmetry rules:\\
+with different symmetry rules. Here A, B and C represent spacial states and $S_A, S_B$ and $S_C$ are
+spin states. Particles 1, 2 and 3 are the three particles in the system.\\
+
+\textbf{Distinguishable Particles}
+
+The distinguishable particle case is simple. Because we are allowed to label particles, we say that
+each particle has its own spacial and spin states A, B and C. There is no need for us to make our
+wave function have equal probabilities of measuring 1, 2 and 3 in any state, we are allowed to say
+particle 1 is in state A:\\
+
+\begin{align*}
+  \Psi_D &= \left(\Psi_1^A\Psi_2^B\Psi_3^C\right)\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3\\
+\end{align*}
+
+\textbf{Bosons and Fermions}
+
+The calculation for the boson and fermion states is more difficult. Our wave functions must reflect
+that measuring a particle in state A cannot tell us whether this particle is particle 1, 2 or 3. To
+achieve this we sum all the possible combinations of states to create a completely ambiguous
+superposition state. This is the symmetric state.\\
+
+\begin{align*}
+  \Psi^{S} &=
+  \Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B\\
+  &+ \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^B\Psi_2^C\Psi_3^A\\
+  &+ \Psi_1^C\Psi_2^A\Psi_3^B + \Psi_1^C\Psi_2^B\Psi_3^A\\
+  \ket{S}^{S} &=
+  \ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3\\
+  &+ \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3\\
+  &+ \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3 + \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\\
+\end{align*}
+
+We then use a Slater determinant to construct the antisymmetric spacial and spin states:\\
+
+\begin{align*}
+  \Psi^{A} &= \det
+  \begin{vmatrix}
+    \Psi_1^A & \Psi_2^A & \Psi_3^A\\
+    \Psi_1^B & \Psi_2^B & \Psi_3^B\\
+    \Psi_1^C & \Psi_2^C & \Psi_3^C\\
+  \end{vmatrix}\\
+  &= \Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B\\
+  &- \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^C\Psi_2^A\Psi_3^B\\
+  &+ \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\\
+  \ket{S}^A &= \det
+  \begin{vmatrix}
+    \ket{S_A}_1^A & \ket{S_A}_2 & \ket{S_A}_3\\
+    \ket{S_B}_1^B & \ket{S_B}_2 & \ket{S_B}_3\\
+    \ket{S_C}_1^C & \ket{S_C}_2 & \ket{S_C}_3\\
+  \end{vmatrix}\\
+  &= \ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3\\
+  &- \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3\\
+  &+ \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3 - \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\\
+\end{align*}
+
+To create our boson wave functions, we take any combination of individual wave functions that result
+in an overall symmetric wave function:\\
+
+\begin{align*}
+  \Psi_B^{SS} &= \Psi_B^S\ket{S}^S\\
+  &= \left(\Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B
+  + \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^B\Psi_2^C\Psi_3^A
+  + \Psi_1^C\Psi_2^A\Psi_3^B + \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
+  &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
+  + \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3
+  + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3 + \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\right)
+\end{align*}
+
+\begin{align*}
+  \Psi_B^{AA} &= \Psi_B^A\ket{S}^A\\
+  &= \left(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B
+  - \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^C\Psi_2^A\Psi_3^B
+  + \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
+  &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
+  - \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3
+  + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3 - \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\right)\\
+\end{align*}
+
+To make our fermion states, we take all the possible antisymmetric overall wavefunctions:\\
+
+\begin{align*}
+  \Psi_F^{AS} &= \Psi^A\ket{S}^S\\
+  &= \left(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B
+  - \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^C\Psi_2^A\Psi_3^B
+  + \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
+  &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
+  + \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3
+  + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3 + \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\right)\\
+\end{align*}
+
+\begin{align*}
+  \Psi_F^{SA} &= \Psi^S\ket{S}^A\\
+  &= \left(\Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B
+  + \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^B\Psi_2^C\Psi_3^A
+  + \Psi_1^C\Psi_2^A\Psi_3^B + \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
+  &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
+  - \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3
+  + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3 - \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\right)\\
+\end{align*}
+
+\textbf{Many-electron system}
+To describe a many-electron system, we use the following sets:\\
+
+\begin{align*}
+  A_{spacial} &= [\Psi^A, \Psi^B, ...]\\
+  A_{spin} &= [\ket{S_A}, \ket{S_B}, ...]\\
+\end{align*}
+
+We also use function P(q), which returns all possible combinations of the elements of set q. Our
+many-electron system is then represented by:\\
+
+\begin{align*}
+  \Psi_F^{AS} &= \Psi^A\ket{S}^S\\
+  &= \left(\sum_p^{P(A_{spacial})}\prod_{i=0}^N p(i)_i\right)\det
+  \begin{vmatrix}
+    \ket{S_A}_1 & \ket{S_A}_2 & ... & \ket{S_A}_N\\
+    \ket{S_B}_1 & \ket{S_B}_2 & ... & \ket{S_B}_N\\
+    \vdots & \vdots & \vdots & \vdots\\
+    \ket{S_N}_1 & \ket{S_N}_2 & ... & \ket{S_N}_N\\
+  \end{vmatrix}
+\end{align*}
+
+\begin{align*}
+  \Psi_F^{SA} &= \Psi^S\ket{S}^A\\
+  &= \det
+  \begin{vmatrix}
+    \Psi^A_1 & \Psi^A_2 & ... & \Psi^A_N\\
+    \Psi^B_1 & \Psi^B_2 & ... & \Psi^B_N\\
+    \vdots & \vdots & \vdots & \vdots\\
+    \Psi^N_1 & \Psi^N_2 & ... & \Psi^N_N\\
+  \end{vmatrix}
+  \left(\sum_p^{P(A_{spin})}\prod_{i=0}^N p(i)_i\right)
+\end{align*}
+
+This is a cool problem which made me think about how to generalize wave functions given the
+Symmetrization Principle. Using Slater determinants was really helpful here, I'm not sure I could
+have done the problem without them. My solution for representing many-electron systems is a bit
+impractical, I'm interested in if and how such systems actually are represented.\\
 
 \section{Problem 5: Zeeman Effect}
 When doing Zeeman Effect calculations and deciding whether the Zeeman corrections should go in the
@@ -248,6 +404,10 @@ states:\\
   &\approx \frac{0.68eV}{5.7*10^{-5}eV/T} = 10^4 T\\
 \end{align*}
 
-This is a huge magnetic field!\\
+This is a huge magnetic field! I'm not entirely sure of it, but perhaps a very strong field is
+necessary to split the orbitals to the level that they agree. It's important to understand when
+the Zeeman effect can be treated as a perturbation and when it has to be actually included in
+the original Hamiltonian. I said that whenever the Zeeman term is of a similar magnitude to the
+fine structure correction, it is too big to include as a perturbation.\\
 
 \end{document}
