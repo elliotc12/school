@@ -1,0 +1,97 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+
+\title{Quantum Mechanics Assignment Nine}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One: Gaussian Perturbation of Infinite Square Well}
+Here we deal with an object in an infinite square well subject to a perturbation $V_0x^2e^{-t\tau}$.
+The particle begins at $t=0$ in the ground state $E_1$. We wish to find the probability of a
+transition to $E_2$ as a function of time $t$. To do this, we first calculate the perturbed
+state coefficient $c_2(t)$:
+
+\begin{align*}
+  c_2(t) &= \frac{1}{i\hbar}\int_0^t\bra{2}H'\ket{1}e^{i(E_2-E_1)t'/\hbar}dt'\\
+  &= \frac{2}{i\hbar L}\int_0^t
+  \left(\int_0^L\sin\left(\frac{2\pi x}{L}\right)
+  V_0x^2e^{-t/\tau}\sin\left(\frac{\pi x}{L}\right)dx\right)
+  e^{\frac{i\hbar\pi^2(2^2-1^2)}{2mL^2}t}dt'\\
+  &= \frac{2V_0}{i\hbar L}\int_0^t
+  \left(\int_0^L\sin\left(\frac{2\pi x}{L}\right)
+  x^2\sin\left(\frac{\pi x}{L}\right)dx\right)
+  e^{-t/\tau}e^{\frac{i3\hbar\pi^2}{2mL^2}t}dt'\\
+  &= \frac{2V_0}{i\hbar L}\int_0^t\frac{-8L^3}{\pi^2}e^{-t/\tau}e^{\frac{i3\hbar\pi^2}{2mL^2}t}dt'\\
+  &= \frac{-16V_0L^2}{i\hbar\pi^2}
+  \int_0^te^{\left(\frac{i3\hbar\pi^2}{2mL^2} - \frac{1}{\tau}\right)t}dt'\\
+  &= i\frac{16V_0L^2}{\hbar\pi^2}\left(\frac{i3\hbar\pi^2}{2mL^2} - \frac{1}{\tau}\right)^{-1}
+  e^{\frac{i3\hbar\pi^2}{2mL^2}t}e^{-\frac{t}{\tau}}\\
+\end{align*}
+
+We then find the probability of measurement:
+
+\begin{align*}
+  P_{1\rightarrow2} &= |c_2(t)|^2\\
+  &= \left(\frac{16V_0L^2}{\hbar\pi^2}\right)^2
+  \left(\frac{i3\hbar\pi^2}{2mL^2} - \frac{1}{\tau}\right)^{-2}
+  e^{i\frac{6\hbar\pi^2}{2mL^2}t}e^{-2\frac{t}{\tau}}\\
+\end{align*}
+
+Because
+
+\begin{align*}
+  \lim_{t\rightarrow\infty} P_{1\rightarrow2}(t) = 0\\
+\end{align*}
+
+we can say that it becomes less and less likely for the system to be measured with energy
+$E_2$ as time goes on.\\
+
+This was a cool introduction to applying time-dependent perturbation theory equations to solving
+problems. The answer is intuitive. The perturbation decays exponentially, so at large times it
+should behave exactly like the unperturbed infinite square well and stay in the ground state with
+100\% probability.\\
+
+\end{document}

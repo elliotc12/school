@@ -1,4 +1,4 @@
-default: a8
+default: a9
 
 a1: latex/a1.tex
 	cd latex && xelatex a1.tex && mv a1.pdf ..
