@@ -243,9 +243,9 @@ superposition state. This is the symmetric state.\\
   &+ \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^B\Psi_2^C\Psi_3^A\\
   &+ \Psi_1^C\Psi_2^A\Psi_3^B + \Psi_1^C\Psi_2^B\Psi_3^A\\
   \ket{S}^{S} &=
-  \ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3\\
+  \frac{1}{\sqrt{6}}\Bigg(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3\\
   &+ \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3\\
-  &+ \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3 + \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\\
+  &+ \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3 + \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\Bigg)\\
 \end{align*}
 
 We then use a Slater determinant to construct the antisymmetric spacial and spin states:\\
@@ -257,18 +257,18 @@ We then use a Slater determinant to construct the antisymmetric spacial and spin
     \Psi_1^B & \Psi_2^B & \Psi_3^B\\
     \Psi_1^C & \Psi_2^C & \Psi_3^C\\
   \end{vmatrix}\\
-  &= \Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B\\
+  &= \frac{1}{\sqrt{6}}\Bigg(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B\\
   &- \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^C\Psi_2^A\Psi_3^B\\
-  &+ \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\\
+  &+ \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\Bigg)\\
   \ket{S}^A &= \det
   \begin{vmatrix}
     \ket{S_A}_1^A & \ket{S_A}_2 & \ket{S_A}_3\\
     \ket{S_B}_1^B & \ket{S_B}_2 & \ket{S_B}_3\\
     \ket{S_C}_1^C & \ket{S_C}_2 & \ket{S_C}_3\\
   \end{vmatrix}\\
-  &= \ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3\\
+  &= \frac{1}{\sqrt{6}}\Bigg(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3\\
   &- \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3\\
-  &+ \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3 - \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\\
+  &+ \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3 - \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\Bigg)\\
 \end{align*}
 
 To create our boson wave functions, we take any combination of individual wave functions that result
@@ -276,7 +276,7 @@ in an overall symmetric wave function:\\
 
 \begin{align*}
   \Psi_B^{SS} &= \Psi_B^S\ket{S}^S\\
-  &= \left(\Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B
+  &= \frac{1}{6}\left(\Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B
   + \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^B\Psi_2^C\Psi_3^A
   + \Psi_1^C\Psi_2^A\Psi_3^B + \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
   &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
@@ -286,7 +286,7 @@ in an overall symmetric wave function:\\
 
 \begin{align*}
   \Psi_B^{AA} &= \Psi_B^A\ket{S}^A\\
-  &= \left(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B
+  &= \frac{1}{6}\left(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B
   - \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^C\Psi_2^A\Psi_3^B
   + \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
   &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
@@ -298,7 +298,7 @@ To make our fermion states, we take all the possible antisymmetric overall wavef
 
 \begin{align*}
   \Psi_F^{AS} &= \Psi^A\ket{S}^S\\
-  &= \left(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B
+  &= \frac{1}{6}\left(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B
   - \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^C\Psi_2^A\Psi_3^B
   + \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
   &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
@@ -308,7 +308,7 @@ To make our fermion states, we take all the possible antisymmetric overall wavef
 
 \begin{align*}
   \Psi_F^{SA} &= \Psi^S\ket{S}^A\\
-  &= \left(\Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B
+  &= \frac{1}{6}\left(\Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B
   + \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^B\Psi_2^C\Psi_3^A
   + \Psi_1^C\Psi_2^A\Psi_3^B + \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
   &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
@@ -329,7 +329,7 @@ many-electron system is then represented by:\\
 
 \begin{align*}
   \Psi_F^{AS} &= \Psi^A\ket{S}^S\\
-  &= \left(\sum_p^{P(A_{spacial})}\prod_{i=0}^N p(i)_i\right)\det
+  &= \frac{1}{\sqrt{N!}}\left(\sum_p^{P(A_{spacial})}\prod_{i=0}^N p(i)_i\right)\det
   \begin{vmatrix}
     \ket{S_A}_1 & \ket{S_A}_2 & ... & \ket{S_A}_N\\
     \ket{S_B}_1 & \ket{S_B}_2 & ... & \ket{S_B}_N\\
@@ -340,7 +340,7 @@ many-electron system is then represented by:\\
 
 \begin{align*}
   \Psi_F^{SA} &= \Psi^S\ket{S}^A\\
-  &= \det
+  &= \frac{1}{\sqrt{N!}}\det
   \begin{vmatrix}
     \Psi^A_1 & \Psi^A_2 & ... & \Psi^A_N\\
     \Psi^B_1 & \Psi^B_2 & ... & \Psi^B_N\\
@@ -380,7 +380,7 @@ We equate these expressions to find the smallest ``strong'' B-field:\\
 \begin{align*}
   B &\approx \frac{-\hbar}{16mu_B}\alpha^4mc^2
   = \frac{-6.5*10^{-16}}{16*6*10^{-5}}*7^4*10^{-12}*5*10^5\\
-  \approx 8*10^{-26}T\\
+  \approx 10^{-15}T\\
 \end{align*}
 
 We now find the B-field which perturbes the H atom enough to equate the energies of the 2p and 3d
@@ -398,13 +398,13 @@ states:\\
   -\frac{2-\frac{1}{2}}{24}\right)
   &= \frac{-13.6eV}{8} + -3\mu_BB + \frac{1}{2}\alpha^4mc^2\left(\frac{3}{108}
   -\frac{6+1}{405}\right)\\
-  \frac{13.6eV}{4} + 5\mu_BB
+  \frac{-13.6eV}{8} + 5\mu_BB
   &= \alpha^4mc^2
   \left(\frac{3}{216} - \frac{7}{405} - \frac{3}{64} + \frac{3}{48}\right)\\
   B &= \frac{\alpha^4mc^2
-    \left(\frac{3}{216} - \frac{7}{405} - \frac{3}{64} + \frac{3}{48}\right) - \frac{13.6eV}{4}}{5\mu_B}\\
-  &= \frac{\frac{317\alpha^4mc^2}{25920} - \frac{13.6eV}{4}}{5\mu_B}\\
-  &\approx \frac{0.68eV}{5.7*10^{-5}eV/T} = 10^4 T\\
+    \left(\frac{3}{216} - \frac{7}{405} - \frac{3}{64} + \frac{3}{48}\right) + \frac{13.6eV}{8}}{5\mu_B}\\
+  &= \frac{\frac{317\alpha^4mc^2}{25920} + \frac{13.6eV}{8}}{5\mu_B}\\
+  &\approx \frac{0.68eV}{5.7*10^{-5}eV/T} \approx 5880 T\\
 \end{align*}
 
 This is a huge magnetic field! I'm not entirely sure of it, but perhaps a very strong field is
