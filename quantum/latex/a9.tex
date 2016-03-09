@@ -94,4 +94,43 @@ problems. The answer is intuitive. The perturbation decays exponentially, so at 
 should behave exactly like the unperturbed infinite square well and stay in the ground state with
 100\% probability.\\
 
+\section{Problem Two: Cubed Perturbation}
+Here we deal with a time-dependent perturbation $H'(x,t) = Ax^3e^{-\gamma t}$
+of a harmonic oscillator. We wish to find the probability of transitioning from the ground
+state after a long time.\\
+
+\textbf{a.)} First we find the probability of transitioning, using energies given by the unperturbed
+harmonic oscillator:
+
+\begin{align*}
+  P_{i\rightarrow f}(t)
+  &= \frac{1}{\hbar^2}\left|\int_0^t\bra{f}H'(t')\ket{0}e^{i(E_f-E_0)t/\hbar}dt'\right|^2\\
+  &= \frac{1}{\hbar^2}\left|\int_0^t
+  \left(\int_{-\infty}^\infty Ax^3e^{-\gamma t}dx\right)e^{if\omega t}dt'\right|^2\\
+  &= \frac{A}{\hbar^2}\left|\int_0^t\bra{f}x^3\ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+  &= \frac{A^2}{\hbar^2}\left|\left(\frac{\hbar}{2m\omega}\right)^{3/2}
+  \int_0^t\bra{f}\left(a^\dagger+a\right)^3\ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+  &= \frac{A^2\hbar}{8m^3\omega^3}
+  \left|\int_0^t\bra{f}
+  \left(a^\dagger a^\dagger a^\dagger + a^\dagger a^\dagger a + a^\dagger aa^\dagger
+  + aa^\dagger a^\dagger + aaa^\dagger + aa^\dagger a + a^\dagger aa + aaa\right)
+  \ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+\end{align*}
+
+From this we can see that the only possible values of $\ket{f}$ are $\ket{1}$ and $\ket{3}$. We
+solve for their transition probabilities:
+
+\begin{align*}
+  P_{0\rightarrow 1}(t) &= \frac{A^2\hbar}{8m^3\omega^3}
+  \left|\int_0^t\bra{1}\left(a^\dagger aa^\dagger + aa^\dagger a^\dagger\right)
+  \ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+  &= \frac{A^2\hbar}{8m^3\omega^3}\left|\int_0^t3e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+\end{align*}
+
+\begin{align*}
+  P_{0\rightarrow 3}(t) &= \frac{A^2\hbar}{8m^3\omega^3}
+  \left|\int_0^t\bra{3}a^\dagger a^\dagger a^\dagger\ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+  &= \frac{A^2\hbar}{8m^3\omega^3}\left|\int_0^t\sqrt{6}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+\end{align*}
+
 \end{document}
