@@ -59,7 +59,7 @@ We put the 5' and 3' microRNA sequences into a fasta file and use the command
 
 \section{Problem two: Inter-species RNA duplexes}
 We put the 5' human RNA sequences and the 3' Drosophila sequence into a fasta file
-and recomputed the duplex energies in the same way as in Problem One:
+and recomputed the duplex energies in the same way as in Problem One:\\
 \textbf{dme-let-7: } $\Delta G = -20.4$\\
 \textbf{dme-mir-9a: } $\Delta G = -17.3$\\
 \textbf{dme-mir-100: } $\Delta G = -16.5$\\
@@ -69,8 +69,8 @@ is to be expected because DNA sequences drift over time, and divergences from th
 original sequence are more likely to increase the duplex energy than decrease it.\\
 
 \section{Problem three: RNA structure commands}
-\textbf{a.)} \texttt{cat hsa-mir-100.fa | RNAduplex -T 26}\\
-\textbf{b.)} \texttt{ HOW YOU DO DIS??????????????????????}\\
+\textbf{a.)} \texttt{cat duplex.fasta | RNAduplex -T 26}\\
+\textbf{b.)} \texttt{cat hotair.fasta | RNAfold -T 35}\\
 
 \section{Problem four: }
 Here we take a normal RNA sequence and compute its energy by using RNAduplex on it with
@@ -106,5 +106,50 @@ index, using the mouseGenes.gtf annotation file:\\
   -G mouseGenes.gtf mm10 reads\_rep1.fastq}
 
 \section{Problem seven: Cuffdiff}
+RPKM stands for \textbf{Reads per Kilobase} of gene per length per \textbf{Million}.
+This is basically taking the number of reads mapped to a gene over the total number
+of reads, which is the ``activity'' of that gene. This number then needs to be corrected
+for the length of the transcript, so we divide by the transcript length.\\
+
+FPKM stands for \textbf{Fragments per Kilobase} of gene per length per \textbf{Million}.
+This is the exact same as RPKM, except fragments of cDNA are used instead of just reads.
+Fragments are better because they take into account things like paired-end effects.\\
+
+\section{Problem eight: Cuffdiff options}
+
+\textbf{a.)} The \texttt{-L/--labels} option can be used to specify the labels used
+in the \texttt{cuffdiff} output. This is a comma-separated lsit if multiple labels
+are to be used.\\
+
+\textbf{b.)} \texttt{cuffdiff} finds expression levels for transcripts, it doesn't create
+a map of transcripts, or transcriptome. \texttt{cufflinks} is the tool to create a
+transcriptome assembly.\\
+
+\section{Problem nine: Intersection vs Union}
+Here we use the tutorial described in Trapnell 2013 to compute the log fold-change.\\
+
+To compute via the union method, we just count the number of hits over the union of
+the exons. We find that there are 25 hits for both Condition A and Condition B, so:
+
+\begin{align*}
+  \log_2\left(\frac{25}{25}\right) &= 0\\
+\end{align*}
+
+To find via the intersection method, we do the same with the intersection of the two
+exons and find there are 19 hits for both Condition A and Condition B, so:
+
+\begin{align*}
+  \log_2\left(\frac{19}{19}\right) &= 0\\
+\end{align*}
+
+Finally to find the true expression, we count the hits for each exon they belong to
+and divide by the exon's length:
+
+\begin{align*}
+  \log_2\left(\frac{\frac{14}{3L}+\frac{11}{2L}}{\frac{15}{3L}+\frac{9}{2L}}\right)
+  &= \log_2\left(\frac{\frac{28+33}{6L}}{\frac{30+27}{6L}}\right)\\
+  &= \log_2\left(\frac{61}{57}\right)\\
+  &= 0.098\\
+\end{align*}
 
 \end{document}
