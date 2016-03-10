@@ -133,4 +133,41 @@ solve for their transition probabilities:
   &= \frac{A^2\hbar}{8m^3\omega^3}\left|\int_0^t\sqrt{6}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
 \end{align*}
 
+\section{Problem three: p-state transitions}
+Here we use McIntyre (14.84) to find which quantum states can be reached from the p-state.
+From 14.84 we grab the following statement:\\
+
+\begin{align*}
+  \sqrt{\frac{3(2\ell_i+1)}{4\pi(2\ell_f+1)}}\bra{\ell_i,1,m_i,m}\ket{\ell_f,m_f}
+  \bra{\ell_i,1,0,0}\ket{\ell_f,0}\\
+\end{align*}
+
+We then plug in values for $\ell_i$ and find the CB coefficients that lead to nonzero
+values for this expression.\\
+
+By looking at the CB table, we can see that for the $m_1=0,m_2=0$ RHS braket, the only
+possible coupled basis J values are 0,2. This means that $\ell_f=0,2$, so by this we
+can see that $\ell_i\neq\ell_f$. This is the only selection rule imposed by the RHS
+braket, so we ignore it and look instead at the left braket:\\
+
+\begin{align*}
+  \bra{1,1,1,1}\ket{\ell_f,m_f}  \rightarrow\bra{\ell_f,m_f}=\braket{2,2}\\
+  \bra{1,1,1,0}\ket{\ell_f,m_f}  \rightarrow\bra{\ell_f,m_f}=\braket{2,1}\\
+  \bra{1,1,1,-1}\ket{\ell_f,m_f} \rightarrow\bra{\ell_f,m_f}=\braket{2,0},\braket{0,0}\\
+  \bra{1,1,0,1}\ket{\ell_f,m_f}  \rightarrow\bra{\ell_f,m_f}=\braket{2,1}\\
+  \bra{1,1,0,0}\ket{\ell_f,m_f}  \rightarrow\bra{\ell_f,m_f}=\braket{2,0},\braket{0,0}\\
+  \bra{1,1,0,-1}\ket{\ell_f,m_f} \rightarrow\bra{\ell_f,m_f}=\braket{2,-1}\\
+  \bra{1,1,-1,1}\ket{\ell_f,m_f} \rightarrow\bra{\ell_f,m_f}=\braket{2,0},\braket{0,0}\\
+  \bra{1,1,-1,0}\ket{\ell_f,m_f} \rightarrow\bra{\ell_f,m_f}=\braket{2,-1}\\
+  \bra{1,1,-1,-1}\ket{\ell_f,m_f}\rightarrow\bra{\ell_f,m_f}=\braket{2,-2}\\
+\end{align*}
+
+From this we can see that the allowed transitions from the p-state are either to the s state
+or any of the d-state orbitals.\\
+
+This was a weird problem. It is odd that you can treat the final electron state as
+represented in the coupled basis and the original state in the uncoupled basis and get
+meaningful results. This is really cool, but an odd usage of the CB table.\\
+
+
 \end{document}
