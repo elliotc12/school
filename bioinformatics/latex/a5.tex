@@ -1,0 +1,121 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+\allowdisplaybreaks
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Bioinformatics Assignment 3}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One: Sequence Complexity}
+We use the Wooton-Federhen complexity score to quantify the complexity of four nucleotide sequences.
+The formula is this:
+
+\begin{align*}
+  C_{wf} &= \frac{1}{N}\log_4\left(\frac{N!}{n_A!n_C!n_T!n_G!}\right)\\
+\end{align*}
+
+Complexity Scores:
+\begin{align*}
+  &ATATATATATATATATATAT: N=20, n_A=10, n_T=10 \rightarrow C_{wf}
+  = \frac{1}{20}\log_4\left(\frac{20!}{10!10!}\right) = 0.43\\
+  &GCGCGCGCGCGCGCGCGCGC: N=20, n_G=10, n_C=10 \rightarrow C_{wf}
+  = \frac{1}{20}\log_4\left(\frac{20!}{10!10!}\right) = 0.43\\
+  &ACGTACGTACGTACGTACGT: N=20, n_A=5, n_T=5 n_G=5, n_C=5 \rightarrow C_{wf}
+  = \frac{1}{20}\log_4\left(\frac{20!}{5!5!5!5!}\right) = 0.83\\
+  &AAAAAAAAAAAAAAAAAAAA: N=20, n_A=20 \rightarrow C_{wf}
+  = \frac{1}{20}\log_4\left(\frac{20!}{20!}\right) = 0\\
+\end{align*}
+
+These results are as we expect. The first two sequences are medium complexity, and the one with
+an even distribution of the four nucleotides is the highest complexity.\\
+
+\section{Problem Two: }
+Here we use the Benjamini-Hochberg procedure for an FDR of 0.01. First, we rank the p-values
+ascendingly:
+
+\begin{align*}
+  &p_1 \leq p_7 \leq p_2 \leq p_3 \leq p_4 \leq p_5 \leq p_6 \leq p_{10} \leq p_8 \leq p_9\\
+  &1\hspace{0.65cm}2\hspace{0.65cm}3\hspace{0.65cm}4\hspace{0.65cm}5\hspace{0.65cm}6\hspace{0.65cm}
+  7\hspace{0.65cm}8\hspace{0.65cm}9\hspace{0.65cm}10\\
+\end{align*}
+
+We find the maximum significant rank through:
+
+\begin{align*}
+  \frac{p_{r*}N}{r*} \leq FDR\\
+  \frac{p_{r*}}{r*} \leq 0.001\\
+\end{align*}
+
+we find that the $p_1$ and $p_7$ are the only p-values that make this cut, so they are the only
+ones we consider significant.\\
+
+\section{Problem 3: }
+Do this last
+
+\section{Problem 4: Phylogenetic Tree NN interchange}
+Here we use the NNI procedure to come up with new ways of representing the following tree:
+
+\begin{verbatim}
+A    B
+I----I
+C    D
+\end{verbatim}
+
+For any four-subtree tree, there are only two ways it can be rearranged. These are the only
+two possible rearrangements:
+
+\begin{verbatim}
+A    C        A    C
+I----I  and   I----I
+B    D        D    B
+\end{verbatim}
+
+Each tree can be simplified to a pairing between A and one of the other three subtrees, since
+you only need one pair to define a tree of size 4. There are three possible pairs involving A,
+so three possible trees.\\
+
+\section{Problem Six: ChipSeq}
+
+\end{document}
