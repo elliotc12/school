@@ -88,11 +88,42 @@ We find the maximum significant rank through:
   \frac{p_{r*}}{r*} \leq 0.001\\
 \end{align*}
 
+\begin{align*}
+  \frac{0.001 * 10}{1} \leq \frac{0.001 * 10}{2} \leq \frac{0.005 * 10}{3} \leq
+  \frac{0.01 * 10}{4} \leq \frac{0.01 * 10}{5} \leq \frac{0.05 * 10}{6} \leq
+  \frac{0.02 * 10}{7} \le \frac{0.03 * 10}{8} \leq \frac{0.2 * 10}{9} \leq
+  \frac{0.5 * 10}{10}\\
+\end{align*}
+
+\begin{align*}
+  0.01 - 0.005 - \frac{0.0}5{3} \leq
+  \frac{0.01 * 10}{4} \leq \frac{0.01 * 10}{5} \leq \frac{0.05 * 10}{6} \leq
+  \frac{0.02 * 10}{7} \le \frac{0.03 * 10}{8} \leq \frac{0.2 * 10}{9} \leq
+  \frac{0.5 * 10}{10}\\
+\end{align*}
+
 we find that the $p_1$ and $p_7$ are the only p-values that make this cut, so they are the only
 ones we consider significant.\\
 
 \section{Problem 3: }
-Do this last
+We download the sonic hedgehog gene and run \texttt{hmmscan} to find the location of likely domains.
+We use Pfam database human domains from Lab 9 to do this. When we run \texttt{hmmscan} we get
+the following (trimmed) results:
+
+\begin{verbatim}
+#                                      -------------- this domain ---
+# target name        accession   tlen  i-Evalue  score  bias   description of target
+#------------------- ---------- -----  -------- ------ ----- -----------------------
+HH_signal            PF01085.15   161   2.7e-85  283.8   0.0   Hedgehog amino-terminal
+Hint                 PF01079.17   214   7.8e-72  241.1   0.0   Hint module
+Peptidase_M15_3      PF08291.8    111     0.001   19.0   0.0   Peptidase M15
+Hint_2               PF13403.3    143         3    8.0   0.0   Hint domain
+\end{verbatim}
+
+Here we see the top two domains, the ``Hedgehog amino-terminal'' and ``Hint module'' have
+pretty small E-values compared to the other two. The tlens are similar for all of these
+domains, so we can compare their E-values and say the top two domains are significant and
+the bottom two aren't.\\
 
 \section{Problem 4: Phylogenetic Tree NN interchange}
 Here we use the NNI procedure to come up with new ways of representing the following tree:
@@ -116,6 +147,32 @@ Each tree can be simplified to a pairing between A and one of the other three su
 you only need one pair to define a tree of size 4. There are three possible pairs involving A,
 so three possible trees.\\
 
-\section{Problem Six: ChipSeq}
+\section{Problem Five: jnet domains}
+Here we use the \texttt{jnet} program to find the predicted secondary structure of human
+beta-defensin-1 sequence. Here are the results:\\
 
+\begin{verbatim}
+ RES	: MRTSYLLLFTLCLLLSEMASGGNFLTGLGHRSDHYNCVSSGGQCLYSACPIFTKIQGTCYRGKAK
+ ALIGN	: ---HHHHHHHHHHHHHHHH----EEE---------EEE-----EE-E----EEEE----------
+ CONF	: 83146888899999876405884010246668753030587632101255231211200023322
+ FINAL	: ---HHHHHHHHHHHHHHHH----EEE---------EEE-----EEEE----EEEE----------
+\end{verbatim}
+
+Here we see there is likely a large alpha-helix (H) near the N-terminus and 4
+beta-sheets evenly spaced throughout.\\
+
+This compares pretty well to the RCSB structure prediction, which predicts an
+alpha-helix near the N-term and three alpha-helices evenly spaced through the
+protein.\\
+
+\section{Problem Six: ChIPSeq}
+To find the p-value of the ChIPSeq peak we are given, we use the following formula:\\
+
+\begin{align*}
+  \mbox{p-val} &= 1 - F(N_{ChIP}-1,N_{ChIP}+N_{cont}, 0.5)\\
+  \mbox{p-val} &= 1 - F(46, 65, 0.5)\\
+  &= 0.000211 = 2.1*10^{-4}\\
+\end{align*}
+
+This is a fairly small p-value, which means this is likely a legitimate peak.\\
 \end{document}
