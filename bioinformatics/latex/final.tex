@@ -1,0 +1,218 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+\allowdisplaybreaks
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Bioinformatics Final}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem one: Explaining difference}
+\textbf{Smith-Waterman vs Needleman-Wunsch}
+Needleman-Wunsch is  global alignment algorithm that allows negative
+values in its dynamic programming table and always has path traceback
+begin at the bottom-right square of the table.\\
+
+Smith-Waterman is a local alignment algorithm that doesn't allow negative
+values in its dynamic programming tbale and allows the path traceback to
+begin at the highest-scoring square, not necessarily the bottom-right one.\\
+
+\textbf{Paralogs vs Orthologs}
+Paralogs: Two genes which come from the same ancestral gene via gene duplication.
+Usually in the same species.\\
+
+Orthologs: Two genes which come from the same ancestral gene via speciation.
+Therefore in different species.\\
+
+\textbf{RefSeq vs GenBank}
+GenBank is a very large database with redundant entries that seeks to have
+the most entries possible. It is not curated, and has tons of information. Contains
+most of the world's known DNA and RNA sequences.\\
+
+RefSeq is also a large (but less large) database which is curated. It doesn't have
+redundant entries, and the entries have a threshold they must meet. Entries for DNA
+and protein link together nicely.\\
+
+\textbf{E vs P values}
+These are in reference to the BLAST program.\\
+
+The P-value is the probability of a BLAST alignment randomly having a score equal to
+or greater than the given score. The lower the better.\\
+
+The E-value is the expected number of hits at the current score due to chance. It is
+related to the P-value via an exponential.\\
+
+\section{Problem two: Alignment Scores}
+\textbf{A.}
+Number of matching aligned BP: 21\\
+Number of nonmatching aligned BP: 2\\
+Number of gaps: 6\\
+
+Score: 21 - 2 - 6 = 13\\
+
+\textbf{B.}
+Number of matching aligned BP: 12\\
+Number of nonmatching aligned BP: 4\\
+Number of gaps: 2\\
+
+Score: 12 - 2*4 - 2*2 = 0\\
+
+\section{Problem three: BLOSUM matrix}
+Here we calculate BLOSUM matrix elements for an alignment with
+\textbf{4Cs, 5Vs, 2Ms}.\\
+
+\begin{align*}
+  f_{CC} &= \begin{pmatrix} n_C\\ 2\\ \end{pmatrix} = 6\\
+  f_{VV} &= \begin{pmatrix} n_V\\ 2\\ \end{pmatrix} = 10\\
+  f_{MM} &= \begin{pmatrix} n_M\\ 2\\ \end{pmatrix} = 1\\
+  f_{CV} &= n_C \times n_V = 20\\
+  f_{CM} &= n_C \times n_M = 8\\
+  f_{VM} &= n_V \times n_M = 10\\
+  q_{CC} &= \frac{f_{CC}}{f_{CC} + f_{VV} + f_{MM} + f_{CV} + f_{CM} + f_{VM}}
+  = \frac{6}{55} = 0.1\\
+  q_{VV} &= \frac{f_{VV}}{f_{CC} + f_{VV} + f_{MM} + f_{CV} + f_{CM} + f_{VM}}
+  = \frac{10}{55} = 0.18\\
+  q_{MM} &= \frac{f_{MM}}{f_{CC} + f_{VV} + f_{MM} + f_{CV} + f_{CM} + f_{VM}}
+  = \frac{1}{55} = 0.018\\
+  q_{CV} &= \frac{f_{CV}}{f_{CC} + f_{VV} + f_{MM} + f_{CV} + f_{CM} + f_{VM}}
+  = \frac{20}{55} = 0.36\\
+  q_{CM} &= \frac{f_{CM}}{f_{CC} + f_{VV} + f_{MM} + f_{CV} + f_{CM} + f_{VM}}
+  = \frac{8}{55} = 0.145\\
+  q_{VM} &= \frac{f_{VM}}{f_{CC} + f_{VV} + f_{MM} + f_{CV} + f_{CM} + f_{VM}}
+  = \frac{10}{55} = 0.18\\
+  p_C &= q_{CC} + \frac{1}{2}\left(q_{CV} + q_{CM}\right) = 0.35\\
+  p_V &= q_{VV} + \frac{1}{2}\left(q_{VC} + q_{VM}\right) = 0.37\\
+  p_M &= q_{MM} + \frac{1}{2}\left(q_{MC} + q_{MV}\right) = 0.18\\
+\end{align*}
+
+I might have made a mistake in my calculations here since the final probabilities
+don't add up to one. My theory should be good though. I'll come back if I have time.\\
+
+\section{Problem four: BLAST stats}
+\textbf{A.)}
+n = 200\\
+m = $10^9$\\
+E = 0.1\\
+
+\begin{align*}
+  S' &= -\log_2\left(\frac{E}{nm}\right)\\
+  &= -\log_2\left(\frac{0.1}{200*10^9}\right)\\
+  &= 40.8\\
+\end{align*}
+
+\textbf{B.)}
+\begin{align*}
+  P &= 1 - e^{-E}\\
+  &= 1 - e^{-0.1}\\
+  &= 0.095\\
+\end{align*}
+
+\section{Problem five: Duplex energy}
+We put the 5’ and 3’ microRNA sequences into a fasta file and use the
+command RNAduplex to find their duplex energies. Example command:
+cat duplex.fa | RNAduplex\\
+
+\begin{align*}
+  \mbox{hsa-mir-17}&: -22.7\\
+  \mbox{hsa-mir-17}&: -18.5\\
+  \mbox{hsa-mir-17}&: -21.9\\
+\end{align*}
+
+\section{Problem six: BH correction}
+First we rank the values:
+
+\begin{align*}
+  p_1, p_7, p_2, p_3, p_5, p_4, p_6, p_{10}, p_8, p_9\\
+\end{alig*}
+
+Maximum PrN/r under FDR of 0.05: p6, so everything below that is good.\\
+
+
+\section{Problem seven: }
+
+\section{Problem eight: MEME}
+\textbf{A.)}meme family.fasta -protein -mod zoops -minw 12\\
+\textbf{A.)}meme proteins.fasta -dna -mod anr -nmotifs 3 -minw 10 -maxw 20 --minites 5\\
+
+
+\section{Problem nine: RNA structure}
+\textbf{A.)} Using the command cat finalRNA.fa | RNAfold -T 27, we get a free energy
+of -20.38.\\
+
+\textbf{B.)}I counted a total of 47 BP in the sequence. Of this, 30 are involved
+in bonds in the predicted secondary structure, leaving 17 unpaired nucleotides.\\
+
+\section{Problem 10: BLAST formatDB tasks}
+\textbf{A.)} formatdb -p T -t ``Protein Database'' -n ProteinDB\\
+\textbf{B.)} blastall -p blastn -i transcripts.fa -d ProteinDB -g 5 -E 1\\
+-o transcripts.txt
+
+\section{Problem 11: Matching}
+\textbf{A.)} Small RNA-Seq\\
+\textbf{B.)} RNA-Seq\\
+\textbf{C.)} ChIP-Seq\\
+\textbf{D.)} Gro-Seq\\
+\textbf{E.)} Pol-II ChIP-Seq\\
+
+\section{Problem 12: More matchign}
+\textbf{A.)} MEME \\
+\textbf{B.)} cuffdiff\\
+\textbf{C.)} BLAST\\
+\textbf{D.)} TopHat\\
+\textbf{E.)} MACS\\
+\textbf{F.)} Trinity\\
+\textbf{G.)} cufflinks\\
+
+\section{Problem 13: Complexity}
+\begin{align*}
+  \frac{1}{10}\log_4\left(\frac{10!}{10!}\right) &= 0\\
+  \frac{1}{10}\log_4\left(\frac{10!}{5!*5!}\right) &= 0.398\\
+\end{align*}
+
+\section{Problem 14: transcriptoin}
+I did the program on another computer so I can't paste it in here. I followed
+exactly the program outlined in Section 1.2.2. I got: MGIYL* as my protein.\\
+
+
+\end{document}

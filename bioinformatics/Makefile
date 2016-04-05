@@ -1,4 +1,4 @@
-default: a4
+default: final
 
 a1: latex/a1.tex
 	cd latex && xelatex a1.tex && mv a1.pdf ..
@@ -14,3 +14,6 @@ midterm: latex/midterm.tex
 
 a4: latex/a4.tex
 	cd latex && xelatex a4.tex && mv a4.pdf ..
+
+final: latex/final.tex
+	cd latex && xelatex final.tex && mv final.pdf ..

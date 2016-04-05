@@ -169,5 +169,34 @@ This was a weird problem. It is odd that you can treat the final electron state 
 represented in the coupled basis and the original state in the uncoupled basis and get
 meaningful results. This is really cool, but an odd usage of the CB table.\\
 
+\section{Problem four: d-state transition}
+Here we are given a particular quantum state, $n=4,\ell=3,m_\ell=3$, and asked to find
+the possible transitions that can be made from this state. We use the basic selection
+rules to answer this question: $\Delta \ell = \pm 1$ and $\Delta m_\ell = 0$.\\
+
+By applying these we see that the following state can be transitioned to:\\
+
+\begin{align*}
+  \ket{n, \ell_f,m_{\ell f}} \rightarrow
+  &\ket{3, 2, 2}\hspace{1cm}\sigma^-\mbox{ transition}\\
+\end{align*}
+
+From this state we can transition to:\\
+
+\begin{align*}
+  \ket{3, 2, 2}\rightarrow
+  \ket{2, 1, 1}\hspace{1cm}\sigma^-\mbox{ transition}\\
+\end{align*}
+
+And then
+
+\begin{align*}
+  \ket{2, 1, 1}\rightarrow
+  \ket{1, 0, 0}\hspace{1cm}\sigma^-\mbox{ transition}\\
+\end{align*}
+
+So we will always be decreasing our z-momentum, so all of our light has $\sigma^-$
+polarization. It is interesting that after such complicated arguments we get such
+simple selection rules for quantum state transitions.\\
 
 \end{document}
