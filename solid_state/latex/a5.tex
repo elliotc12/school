@@ -1,0 +1,255 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Quantum Mechanics Assignment Five}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{1: Effect of E-field on H spectrum}
+Here we examine how a perturbing electric field influences the n=2 to n=1 transition for
+the Hydrogen atom.\\
+
+\textbf{a.)} First we find the unperturbed transition energy:\\
+
+\begin{align*}
+  E_2 - E_1 &= -13.6 \mbox{eV} \left(\frac{1}{2^2} - \frac{1}{1^2}\right) = 10.2 \mbox{eV}\\
+\end{align*}
+
+\textbf{b.)} Now we apply a 0.5 V/m electric field and see how the spectrum changes. The Stark
+Effect tells us that the energy levels will be perturbed by either zero or
+$\pm3e\epsilon a_0$, which for this electric field would be $\pm 7.94*10^{-2}eV$. This comes out
+to be a change of roughly $0.77$ percent, which is a fairly small value.\\
+
+The perturbation due to the electric field can be interpreted as the energy change of the
+electric dipole moment interacting with the applied field. Some of the n=2 states are radially
+symmetric, and so have no electric dipole to alter the energy. However certain combinations of
+orbitals (ie $\bra{200}+\bra{210}$) do have a bias to part of the electron, and so do have an
+energy change.\\
+
+\section{11.2: Proving raising / lowering operators}
+Here we show that the raising and lowering operators for angular momentum behave similarly
+to the QHO raising and lowering operators.\\
+
+First, we must show that the operators raise and lower the z-component momentum measurement
+by one unit:\\
+
+\begin{align*}
+  J_z(J_+\ket{j,m_j}) &= (\hbar J_+ + J_+J_z)\ket{j,m_j}\\
+  &= \hbar J_+\ket{j,m_j} + m_j \hbar J_+\ket{j,m_j}\\
+  J_z(J_+\ket{j,m_j}) &= (m_j+1)\hbar(J_z\ket{j,m_j})
+  \hspace{2cm}\mbox{J+ raises energy by $\hbar$}\\
+\end{align*}
+
+\begin{align*}
+  J_z(J_-\ket{j,m_j}) &= (-\hbar J_- + J_-J_z)\ket{j,m_j}\\
+  &= \hbar J_-\ket{j,m_j} + m_j \hbar J_-\ket{j,m_j}\\
+  J_z(J_-\ket{j,m_j}) &= (m_j-1)\hbar(J_z\ket{j,m_j})
+  \hspace{2cm}\mbox{J- lowers energy by $\hbar$}\\
+\end{align*}
+
+This shows that the operation of $J_\pm$ on a state before the operation of $J_z$ effectively
+raises or lowers the measurement of that state by $\hbar$. We now need to find the relationship
+between $J_\pm\ket{j,m_j}$ and $\ket{j,m_j\pm1}$.\\
+
+\begin{align*}
+  |J_+\ket{j,m_j}|^2 &= c^2\\
+  &= \bra{j,m_j}J_-J_+\ket{j,m_j}\\
+  &= \bra{j,m_j}(J_x-iJ_y)(J_x+iJ_y)\ket{j,m_j}\\
+  &= \bra{j,m_j}J_xJ_x + J_yJ_y + i[J_x,J_y]\ket{j,m_j}\\
+  &= \bra{j,m_j}J^2 - J_zJ_z + i[J_x,J_y]\ket{j,m_j}\\
+  &= \bra{j,m_j}J^2 - J_zJ_z - \hbar J_z\ket{j,m_j}\\
+  &= j(j+1)\hbar - m_j^2\hbar^2 - m_j\hbar^2\\
+  &= \hbar^2\left(j(j+1)\hbar - m_j(m_j + 1)\right)\\
+  &\rightarrow J_+\ket{j,m_j} = \hbar\sqrt{j(j+1) - m_j(m_j+1)}\ket{j,m_j+1}\\
+\end{align*}
+
+\begin{align*}
+  |J_-\ket{j,m_j}|^2 &= c^2\\
+  &= \bra{j,m_j}J_+J_-\ket{j,m_j}\\
+  &= \bra{j,m_j}(J_x+iJ_y)(J_x-iJ_y)\ket{j,m_j}\\
+  &= \bra{j,m_j}J_xJ_x + J_yJ_y - i[J_x,J_y]\ket{j,m_j}\\
+  &= \bra{j,m_j}J^2 - J_zJ_z - i[J_x,J_y]\ket{j,m_j}\\
+  &= \bra{j,m_j}J^2 - J_zJ_z + \hbar J_z\ket{j,m_j}\\
+  &= j(j+1)\hbar^2 - m_j^2\hbar^2 + m_j\hbar&2\\
+  &= \hbar^2\left(j(j+1) - m_j(m_j-1)\right)\\
+  &\rightarrow J_-\ket{j,m_j} = \hbar\sqrt{j(j+1) - m_j(m_j-1)}\ket{j,m_j-1}\\
+\end{align*}
+
+We've just shown that the angular momentum ladder operators behave the same way the quantum
+harmonic oscillator operators do. This is powerful, since it will allow us to simplify math
+later on. It is important to note that the raising and lowering operators only act on the
+Z-component of spin, and that they have two termination conditions: at the minimum and
+maximum Z-component.\\
+
+\textit{Inspired by Jared Cayton}\\
+
+\section{11.7: $\vec{S} \cdot \vec{I}$ simplified}
+
+Here we show how using angular momentum ladder operators can simplify the dot product
+$\vec{S} \cdot \vec{I}$:\\
+
+\begin{align*}
+  \vec{S} \cdot \vec{I} &= \hat{S}_x\hat{I}_x + \hat{S}_y\hat{I}_y + \hat{S}_z\hat{I}_z\\
+  &= \frac{1}{2}\left(\hat{S}_x\hat{I}_x -i\hat{S}_x\hat{I}_y + i\hat{S}_y\hat{I}_x
+  + \hat{S}_y\hat{I}_y + \hat{S}_x\hat{I}_x + i\hat{S}_x\hat{I}_y
+  + -i\hat{S}_y\hat{I}_x\hat{S}_y\hat{I}_y\right)
+  + \hat{S}_z\hat{I}_z\\
+  &= \frac{1}{2}\left(\hat{S}_+\hat{I}_- + \hat{S}_-\hat{I}_+\right) + \hat{S}_z\hat{I}_z\\
+\end{align*}
+
+This is a useful math trick with no physical meaning! Multiplying raising and lowering operators
+together has no physical significance, let alone operators for different particles. Nevertheless
+this will probably come in handy later.\\
+
+\section{11.8: Hyperfine Hamiltonian}
+Here we use ladder operators to find the hyperfine Hamiltonian for the Hydrogen atom:\\
+
+\begin{align*}
+  H_{hf}' &=
+  \begin{pmatrix}
+    \bra{++}H_{hf}'\ket{++} &
+    \bra{++}H_{hf}'\ket{+-} &
+    \bra{++}H_{hf}'\ket{-+} &
+    \bra{++}H_{hf}'\ket{--} &\\
+    \bra{+-}H_{hf}'\ket{++} &
+    \bra{+-}H_{hf}'\ket{+-} &
+    \bra{+-}H_{hf}'\ket{-+} &
+    \bra{+-}H_{hf}'\ket{--} &\\
+    \bra{-+}H_{hf}'\ket{++} &
+    \bra{-+}H_{hf}'\ket{+-} &
+    \bra{-+}H_{hf}'\ket{-+} &
+    \bra{-+}H_{hf}'\ket{--} &\\
+    \bra{--}H_{hf}'\ket{++} &
+    \bra{--}H_{hf}'\ket{+-} &
+    \bra{--}H_{hf}'\ket{-+} &
+    \bra{--}H_{hf}'\ket{--} &\\
+  \end{pmatrix}\\
+  &=
+  \frac{A}{\hbar^2}
+  \begin{pmatrix}
+    \bra{++}\vec{S}\cdot\vec{I}\ket{++} &
+    \bra{++}\vec{S}\cdot\vec{I}\ket{+-} &
+    \bra{++}\vec{S}\cdot\vec{I}\ket{-+} &
+    \bra{++}\vec{S}\cdot\vec{I}\ket{--} &\\
+    \bra{+-}\vec{S}\cdot\vec{I}\ket{++} &
+    \bra{+-}\vec{S}\cdot\vec{I}\ket{+-} &
+    \bra{+-}\vec{S}\cdot\vec{I}\ket{-+} &
+    \bra{+-}\vec{S}\cdot\vec{I}\ket{--} &\\
+    \bra{-+}\vec{S}\cdot\vec{I}\ket{++} &
+    \bra{-+}\vec{S}\cdot\vec{I}\ket{+-} &
+    \bra{-+}\vec{S}\cdot\vec{I}\ket{-+} &
+    \bra{-+}\vec{S}\cdot\vec{I}\ket{--} &\\
+    \bra{--}\vec{S}\cdot\vec{I}\ket{++} &
+    \bra{--}\vec{S}\cdot\vec{I}\ket{+-} &
+    \bra{--}\vec{S}\cdot\vec{I}\ket{-+} &
+    \bra{--}\vec{S}\cdot\vec{I}\ket{--} &\\
+  \end{pmatrix}\\
+   = & \frac{A}{\hbar^2}
+  \begin{pmatrix}
+    \frac{\hbar^2}{4}&
+    \bra{++}\frac{1}{2}S_-I_+\ket{+-}&
+    \bra{++}\frac{1}{2}S_+I_-\ket{-+}&
+    0&\\
+    0&
+    \bra{+-}\frac{1}{2}S_-I_+\ket{+-} - \frac{\hbar^2}{4}&
+    \bra{+-}\frac{1}{2}S_+I_-\ket{-+}&
+    0&\\
+    0&
+    \bra{-+}\frac{1}{2}S_-I_+\ket{+-}&
+    \bra{-+}\frac{1}{2}S_+I_-\ket{-+} - \frac{\hbar^2}{4}&
+    0&\\
+    0&
+    \bra{--}\frac{1}{2}S_-I_+\ket{+-}&
+    \bra{--}\frac{1}{2}S_+I_-\ket{-+}&
+    \frac{\hbar^2}{4} &\\
+  \end{pmatrix}\\
+  = & \frac{A}{\hbar^2}
+  \begin{pmatrix}
+    \frac{\hbar^2}{4}&
+    0&
+    0&
+    0&\\
+    0&
+    -\frac{\hbar^2}{4}&
+    \frac{2\hbar^2}{4}&
+    0&\\
+    0&
+    \frac{2\hbar^2}{4}&
+    -\frac{\hbar^2}{4}&
+    0&\\
+    0&
+    0&
+    0&
+    \frac{\hbar^2}{4} &\\
+  \end{pmatrix}\\
+  = & \frac{A}{4}
+  \begin{pmatrix}
+    1&
+    0&
+    0&
+    0&\\
+    0&
+    -1&
+    2&
+    0&\\
+    0&
+    2&
+    -1&
+    0&\\
+    0&
+    0&
+    0&
+    1&\\
+  \end{pmatrix}\\
+\end{align*}
+
+We have succesfully shown how expanding the angular momentum dot product and using ladder
+operators allows each element in our perturbation Hamiltonian to be solved for. Our end
+product is a nondiagonal matrix with first and second-order corrections. Unfortunately our
+original energies are degenerate, as this is the n=2 state. Thus we must diagonalize this
+matrix to get a new diagonal perturbation matrix representing the changes to our original
+system.\\
+
+\end{document}

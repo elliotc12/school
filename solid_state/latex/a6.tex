@@ -1,0 +1,257 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Quantum Mechanics Assignment Six}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{11.12: Spin-1, Spin-$\frac{1}{2}$}
+This system is made up of two particles, one with spin-1 and the other with spin-$\frac{1}{2}$.\\
+
+\textbf{a.)} The total states possible for the system are:\\
+
+\begin{align*}
+  \ket{1,\frac{1}{2},-\hbar,-\frac{\hbar}{2}}\\
+  \ket{1,\frac{1}{2},0,-\frac{\hbar}{2}}\\
+  \ket{1,\frac{1}{2},\hbar,-\frac{\hbar}{2}}\\
+  \ket{1,\frac{1}{2},-\hbar,\frac{\hbar}{2}}\\
+  \ket{1,\frac{1}{2},0,\frac{\hbar}{2}}\\
+  \ket{1,\frac{1}{2},\hbar,\frac{\hbar}{2}}\\
+\end{align*}
+
+\textbf{b.)} The highest z-projection of these states, the stretched state, is
+$\ket{1,\frac{1}{2},\hbar,\frac{\hbar}{2}}$.\\
+
+\textbf{c.)} Here we just solve for the coupled state wavefunctions using raising
+and lowering operators:\\
+
+\begin{align*}
+  \ket{\frac{3}{2},\frac{3}{2}} &= \ket{1,\frac{1}{2},1,\frac{1}{2}}\\
+  S_-\ket{\frac{3}{2},\frac{3}{2}} &= \left(S_{1-}+S_{2-}\right)\ket{1,\frac{1}{2},1,\frac{1}{2}}\\
+  \sqrt{3}\hbar\ket{\frac{3}{2},\frac{1}{2}} &= \sqrt{2}\hbar\ket{1,\frac{1}{2},0,\frac{1}{2}} + \hbar\ket{1,\frac{1}{2},1,-\frac{1}{2}}\\
+  \ket{\frac{3}{2},\frac{1}{2}} &= \sqrt{\frac{2}{3}}\ket{1,\frac{1}{2},0,\frac{1}{2}} + \frac{1}{\sqrt{3}}\ket{1,\frac{1}{2},1,-\frac{1}{2}}\\
+\end{align*}
+
+\begin{align*}
+  S_-\ket{\frac{3}{2},\frac{1}{2}} &=
+  \left(S_{1-}+S_{2-}\right)\sqrt{\frac{2}{3}}\ket{1,\frac{1}{2},0,\frac{1}{2}} + \frac{1}{\sqrt{3}}\ket{1,\frac{1}{2},1,-\frac{1}{2}}\\
+  \sqrt{2}\hbar{\frac{3}{2},\frac{1}{2}} &= \frac{2\hbar}{\sqrt{3}}\ket{1,1/2,-1,1/2}
+  + \frac{\sqrt{2}\hbar}{\sqrt{3}}\ket{1,1/2,0,-1/2} + \frac{\hbar\sqrt{2}}{\sqrt{3}}\ket{1,1/2,0,-1/2}\\
+  \ket{3/2,-1/2} &= \frac{1}{\sqrt{3}}\ket{1,1/2,-1,1/2} + \sqrt{\frac{2}{3}}\ket{1,1/2,0,-1/2}\\
+\end{align*}
+
+\begin{align*}
+  S_-\ket{3/2,-1/2} &= \left(S_{1-}+S_{2-}\right)\left(\frac{1}{\sqrt{3}}\ket{1,1/2,-1,1/2} + \sqrt{\frac{2}{3}}\ket{1,1/2,0,-1/2}\right)\\
+  \ket{3/2,-3/2} &= \ket{1,1/2,-1,-1/2}\\
+\end{align*}
+
+We then use the method described on pg 371 of McIntyre to find the 1/2-states: creating a linear equation and solving it.\\
+
+\begin{align*}
+  \ket{1/2,1/2} &= A\ket{1,1/2,0,1/2} + B\ket{1,1/2,1,-1/2} + C\ket{1,1/2,-1,1/2}\\
+  \bra{3/2,1/2}\bra{1/2,1/2} = 0 \rightarrow c = 0\\
+  \bra{3/2,1/2}\ket{1/2,1/2} = 0 \rightarrow a\sqrt{\frac{2}{3}} + b\sqrt{\frac{1}{3}} \rightarrow -\frac{b}{\sqrt{2}} = a\\
+  3a^2 = 1 \rightarrow a = \frac{1}{\sqrt{3}}\\
+  \ket{1/2,1/2} = -\frac{1}{\sqrt{3}}\ket{1,1/2,0,-1/2} + \sqrt{\frac{2}{3}}\ket{1,1/2,1,-1/2}\\
+\end{align*}
+
+\begin{align*}
+  S_-\ket{1/2,1/2} &= \left(S_{1-}+S_{2-}\right)\left(-\frac{1}{\sqrt{3}}\ket{1,1/2,0,-1/2} + \sqrt{\frac{2}{3}}\ket{1,1/2,1,-1/2}\right)\\
+  \ket{1/2,-1/2} = \frac{1}{\sqrt{3}}\ket{1,1/2,0,-1/2} - \sqrt{\frac{2}{3}}\ket{1,1/2,-1,1/2}\\
+\end{align*}
+
+We then construct a Clebsch-Gordan matrix out of our states: (sorry for the bad formatting,
+the formatting is identical to that found in table 11.3 in McIntyre)
+
+\begin{align*}
+  \begin{pmatrix}
+    1 & 0 & 0 & 0\\
+    0 & \frac{1}{\sqrt{3}} & 0 & 0\\
+    0 & \frac{\sqrt{2}}{\sqrt{3}} & 0 & 0\\
+    0 & 0 & \frac{\sqrt{2}}{\sqrt{3}} & 0\\
+    0 & 0 & \frac{1}{\sqrt{3}} & 0\\
+    0 & 0 & 0 & 1\\
+  \end{pmatrix}
+\end{align*}
+
+
+
+
+
+
+
+\section{11.15: Coupled / Uncoupled bases}
+This system consists of two particles, one spin-$\frac{3}{2}$ and the other
+spin-$\frac{1}{2}$.\\
+
+\textbf{a.)} First we list all the possible states this system can take on:
+
+\begin{align*}
+  \ket{\frac{3}{2},\frac{1}{2},\frac{3\hbar}{2},\frac{\hbar}{2}}\hspace{1cm}&
+  \ket{\frac{3}{2},\frac{1}{2},\frac{1\hbar}{2},\frac{\hbar}{2}}\\
+  \ket{\frac{3}{2},\frac{1}{2},\frac{-1\hbar}{2},\frac{\hbar}{2}}\hspace{1cm}&
+  \ket{\frac{3}{2},\frac{1}{2},\frac{-3\hbar}{2},\frac{\hbar}{2}}\\
+  \ket{\frac{3}{2},\frac{1}{2},\frac{3\hbar}{2},\frac{-\hbar}{2}}\hspace{1cm}&
+  \ket{\frac{3}{2},\frac{1}{2},\frac{1\hbar}{2},\frac{-\hbar}{2}}\\
+  \ket{\frac{3}{2},\frac{1}{2},\frac{-1\hbar}{2},\frac{-\hbar}{2}}\hspace{1cm}&
+  \ket{\frac{3}{2},\frac{1}{2},\frac{-3\hbar}{2},\frac{-\hbar}{2}}\\
+\end{align*}
+
+\textbf{b.)} J can take on two values: $J = j_1 \pm j_2 = 2, 1$. $J=2$ corresponds to
+$M = -2, -1, 0, 1, 2$, while $J=1$ corresponds to $M=-1, 0, 1$.\\
+
+\textbf{c.)} Here we enumerate all the possible combinations of S and M:
+
+\begin{align*}
+  \ket{2,-2}, \ket{2,-1}, \ket{2,0}&, \ket{2,1}, \ket{2,2}\\
+  \ket{1,-1}, \ket{1,0}&, \ket{1,-1}\\
+\end{align*}
+
+\textbf{d.)} Then we use a Clebsch-Gordan table to find how the coupled basis states
+relate to the uncoupled basis:
+
+\begin{align*}
+  \ket{2,-2} &= \ket{\frac{3}{2},\frac{1}{2},-\frac{3}{2}, -\frac{1}{2}}\\
+  \ket{2,-1} &=
+  \frac{\sqrt{3}}{2}\ket{\frac{3}{2},\frac{1}{2},-\frac{1}{2},-\frac{1}{2}}
+  + \frac{1}{2}\ket{\frac{3}{2},\frac{1}{2},-\frac{3}{2},\frac{1}{2}}\\
+  \ket{2,0} &=
+  \frac{1}{\sqrt{2}}\ket{\frac{3}{2},\frac{1}{2},\frac{1}{2},-\frac{1}{2}}
+  + \frac{1}{\sqrt{2}}\ket{\frac{3}{2},\frac{1}{2},-\frac{1}{2},\frac{1}{2}}\\
+  \ket{2,1} &=
+  \frac{1}{2}\ket{\frac{3}{2},\frac{1}{2},\frac{3}{2},-\frac{1}{2}}
+  + \frac{\sqrt{3}}{2}\ket{\frac{3}{2},\frac{1}{2},\frac{1}{2},\frac{1}{2}}
+  \ket{2,2} &= \ket{\frac{3}{2},\frac{1}{2},\frac{3}{2},\frac{1}{2}}\\
+  \ket{1,-1} &=
+  \frac{1}{2}\ket{\frac{3}{2},\frac{1}{2},-\frac{1}{2},-\frac{1}{2}}
+  + -\frac{\sqrt{3}}{2}\ket{\frac{3}{2},\frac{1}{2},-\frac{3}{2},\frac{1}{2}}\\
+  \ket{1,0} &=
+  \frac{1}{\sqrt{2}}\ket{\frac{3}{2},\frac{1}{2},\frac{1}{2},-\frac{1}{2}}
+    - \frac{1}{\sqrt{2}}\ket{\frac{3}{2},\frac{1}{2},-\frac{1}{2},\frac{1}{2}}\\
+  \ket{1,-1} &=
+  \frac{\sqrt{3}}{2}\ket{\frac{3}{2},\frac{1}{2},\frac{3}{2},-\frac{1}{2}}
+  - \frac{1}{2} \ket{\frac{3}{2},\frac{1}{2},\frac{1}{2},\frac{1}{2}}\\
+\end{align*}
+
+This was a neat problem that showed how easy it is to related the coupled and
+uncoupled states when one is given a CG table.\\
+
+\section{11.16: Hyperfine Deuterium}
+We can either add or subtract the electron spin: $\frac{1}{2}$ from the nuclear
+spin: 1. Thus we get total system angular momenta of either $\frac{3}{2}$ or
+$\frac{1}{2}$. The former momentum supports 4 z-measurement states, while the latter
+supports 2. This means we will be dealing with a 6x6 matrix in our calculations.\\
+
+We use the definition $F = \left(S+I\right)^2$ to create an expression for $S\cdot I$:
+$S\cdot I = \frac{1}{2}\left(F^2 - S^2 - I^2\right)$. Our calculation of the
+perturbation energies then becomes a simple matter of coming up with the matrices for
+$F^2, S^2$ and $I^2$:\\
+
+\begin{align*}
+  H'_{hf} &= \frac{A}{\hbar^2}S\cdot I\\
+  S\cdot I &= \frac{1}{2}\left(F^2 - S^2 - I^2\right)\\
+  &=
+  \frac{\hbar^2}{2}
+  \begin{pmatrix}
+    \frac{15}{4} & 0 & 0 & 0 & 0 & 0\\
+    0 & \frac{15}{4} & 0 & 0 & 0 & 0\\
+    0 & 0 & \frac{15}{4} & 0 & 0 & 0\\
+    0 & 0 & 0 & \frac{15}{4} & 0 & 0\\
+    0 & 0 & 0 & 0 & \frac{3}{2} & 0\\
+    0 & 0 & 0 & 0 & 0 & \frac{3}{2}\\
+  \end{pmatrix}
+  -
+  \frac{\hbar^2}{2}
+  \begin{pmatrix}
+    \frac{3}{2} & 0 & 0 & 0 & 0 & 0\\
+    0 & \frac{3}{2} & 0 & 0 & 0 & 0\\
+    0 & 0 & \frac{3}{2} & 0 & 0 & 0\\
+    0 & 0 & 0 & \frac{3}{2} & 0 & 0\\
+    0 & 0 & 0 & 0 & \frac{3}{2} & 0\\
+    0 & 0 & 0 & 0 & 0 & \frac{3}{2}\\
+  \end{pmatrix}
+  -
+  \frac{\hbar^2}{2}
+  \begin{pmatrix}
+    2 & 0 & 0 & 0 & 0 & 0\\
+    0 & 2 & 0 & 0 & 0 & 0\\
+    0 & 0 & 2 & 0 & 0 & 0\\
+    0 & 0 & 0 & 2 & 0 & 0\\
+    0 & 0 & 0 & 0 & 2 & 0\\
+    0 & 0 & 0 & 0 & 0 & 2\\
+  \end{pmatrix}\\
+  &= \frac{\hbar^2}{2}
+  \begin{pmatrix}
+    \frac{1}{4} & 0 & 0 & 0 & 0 & 0\\
+    0 & \frac{1}{4} & 0 & 0 & 0 & 0\\
+    0 & 0 & \frac{1}{4} & 0 & 0 & 0\\
+    0 & 0 & 0 & \frac{1}{4} & 0 & 0\\
+    0 & 0 & 0 & 0 & -\frac{11}{4} & 0\\
+    0 & 0 & 0 & 0 & 0 & -\frac{11}{4}\\
+  \end{pmatrix}\\
+  H'_{hf} &= \frac{A}{2}
+  \begin{pmatrix}
+    \frac{1}{4} & 0 & 0 & 0 & 0 & 0\\
+    0 & \frac{1}{4} & 0 & 0 & 0 & 0\\
+    0 & 0 & \frac{1}{4} & 0 & 0 & 0\\
+    0 & 0 & 0 & \frac{1}{4} & 0 & 0\\
+    0 & 0 & 0 & 0 & -\frac{11}{4} & 0\\
+    0 & 0 & 0 & 0 & 0 & -\frac{11}{4}\\
+  \end{pmatrix}\\
+\end{align*}
+
+Where the above matrices are indexed as:
+$\ket{\frac{3}{2}, \frac{3}{2}},\ket{\frac{3}{2}, \frac{1}{2}},
+\ket{\frac{3}{2}, -\frac{1}{2}},\ket{\frac{3}{2}, -\frac{3}{2}},
+\ket{\frac{1}{2}, \frac{1}{2}},\ket{\frac{1}{2}, -\frac{1}{2}}$. This corresponds
+to energies of $\frac{A}{16}$ and $\frac{-11}{4}A$. The first energy has a
+degeneracy of five and the latter has a degeneracy of two. This is interestingly
+different from the hydrogen atom, since the neutron is contributing to the nuclear
+spin! Though we see that the nucleus-electron spin coupling only splits the energies
+in two.\\
+
+\vspace{5cm}
+
+\end{document}
