@@ -1,0 +1,173 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+
+\title{Quantum Mechanics Assignment Nine}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One: Gaussian Perturbation of Infinite Square Well}
+Here we deal with an object in an infinite square well subject to a perturbation $V_0x^2e^{-t\tau}$.
+The particle begins at $t=0$ in the ground state $E_1$. We wish to find the probability of a
+transition to $E_2$ as a function of time $t$. To do this, we first calculate the perturbed
+state coefficient $c_2(t)$:
+
+\begin{align*}
+  c_2(t) &= \frac{1}{i\hbar}\int_0^t\bra{2}H'\ket{1}e^{i(E_2-E_1)t'/\hbar}dt'\\
+  &= \frac{2}{i\hbar L}\int_0^t
+  \left(\int_0^L\sin\left(\frac{2\pi x}{L}\right)
+  V_0x^2e^{-t/\tau}\sin\left(\frac{\pi x}{L}\right)dx\right)
+  e^{\frac{i\hbar\pi^2(2^2-1^2)}{2mL^2}t}dt'\\
+  &= \frac{2V_0}{i\hbar L}\int_0^t
+  \left(\int_0^L\sin\left(\frac{2\pi x}{L}\right)
+  x^2\sin\left(\frac{\pi x}{L}\right)dx\right)
+  e^{-t/\tau}e^{\frac{i3\hbar\pi^2}{2mL^2}t}dt'\\
+  &= \frac{2V_0}{i\hbar L}\int_0^t\frac{-8L^3}{\pi^2}e^{-t/\tau}e^{\frac{i3\hbar\pi^2}{2mL^2}t}dt'\\
+  &= \frac{-16V_0L^2}{i\hbar\pi^2}
+  \int_0^te^{\left(\frac{i3\hbar\pi^2}{2mL^2} - \frac{1}{\tau}\right)t}dt'\\
+  &= i\frac{16V_0L^2}{\hbar\pi^2}\left(\frac{i3\hbar\pi^2}{2mL^2} - \frac{1}{\tau}\right)^{-1}
+  e^{\frac{i3\hbar\pi^2}{2mL^2}t}e^{-\frac{t}{\tau}}\\
+\end{align*}
+
+We then find the probability of measurement:
+
+\begin{align*}
+  P_{1\rightarrow2} &= |c_2(t)|^2\\
+  &= \left(\frac{16V_0L^2}{\hbar\pi^2}\right)^2
+  \left(\frac{i3\hbar\pi^2}{2mL^2} - \frac{1}{\tau}\right)^{-2}
+  e^{i\frac{6\hbar\pi^2}{2mL^2}t}e^{-2\frac{t}{\tau}}\\
+\end{align*}
+
+Because
+
+\begin{align*}
+  \lim_{t\rightarrow\infty} P_{1\rightarrow2}(t) = 0\\
+\end{align*}
+
+we can say that it becomes less and less likely for the system to be measured with energy
+$E_2$ as time goes on.\\
+
+This was a cool introduction to applying time-dependent perturbation theory equations to solving
+problems. The answer is intuitive. The perturbation decays exponentially, so at large times it
+should behave exactly like the unperturbed infinite square well and stay in the ground state with
+100\% probability.\\
+
+\section{Problem Two: Cubed Perturbation}
+Here we deal with a time-dependent perturbation $H'(x,t) = Ax^3e^{-\gamma t}$
+of a harmonic oscillator. We wish to find the probability of transitioning from the ground
+state after a long time.\\
+
+\textbf{a.)} First we find the probability of transitioning, using energies given by the unperturbed
+harmonic oscillator:
+
+\begin{align*}
+  P_{i\rightarrow f}(t)
+  &= \frac{1}{\hbar^2}\left|\int_0^t\bra{f}H'(t')\ket{0}e^{i(E_f-E_0)t/\hbar}dt'\right|^2\\
+  &= \frac{1}{\hbar^2}\left|\int_0^t
+  \left(\int_{-\infty}^\infty Ax^3e^{-\gamma t}dx\right)e^{if\omega t}dt'\right|^2\\
+  &= \frac{A}{\hbar^2}\left|\int_0^t\bra{f}x^3\ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+  &= \frac{A^2}{\hbar^2}\left|\left(\frac{\hbar}{2m\omega}\right)^{3/2}
+  \int_0^t\bra{f}\left(a^\dagger+a\right)^3\ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+  &= \frac{A^2\hbar}{8m^3\omega^3}
+  \left|\int_0^t\bra{f}
+  \left(a^\dagger a^\dagger a^\dagger + a^\dagger a^\dagger a + a^\dagger aa^\dagger
+  + aa^\dagger a^\dagger + aaa^\dagger + aa^\dagger a + a^\dagger aa + aaa\right)
+  \ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+\end{align*}
+
+From this we can see that the only possible values of $\ket{f}$ are $\ket{1}$ and $\ket{3}$. We
+solve for their transition probabilities:
+
+\begin{align*}
+  P_{0\rightarrow 1}(t) &= \frac{A^2\hbar}{8m^3\omega^3}
+  \left|\int_0^t\bra{1}\left(a^\dagger aa^\dagger + aa^\dagger a^\dagger\right)
+  \ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+  &= \frac{A^2\hbar}{8m^3\omega^3}\left|\int_0^t3e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+\end{align*}
+
+\begin{align*}
+  P_{0\rightarrow 3}(t) &= \frac{A^2\hbar}{8m^3\omega^3}
+  \left|\int_0^t\bra{3}a^\dagger a^\dagger a^\dagger\ket{0}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+  &= \frac{A^2\hbar}{8m^3\omega^3}\left|\int_0^t\sqrt{6}e^{-\gamma t}e^{if\omega t}dt'\right|^2\\
+\end{align*}
+
+\section{Problem three: p-state transitions}
+Here we use McIntyre (14.84) to find which quantum states can be reached from the p-state.
+From 14.84 we grab the following statement:\\
+
+\begin{align*}
+  \sqrt{\frac{3(2\ell_i+1)}{4\pi(2\ell_f+1)}}\bra{\ell_i,1,m_i,m}\ket{\ell_f,m_f}
+  \bra{\ell_i,1,0,0}\ket{\ell_f,0}\\
+\end{align*}
+
+We then plug in values for $\ell_i$ and find the CB coefficients that lead to nonzero
+values for this expression.\\
+
+By looking at the CB table, we can see that for the $m_1=0,m_2=0$ RHS braket, the only
+possible coupled basis J values are 0,2. This means that $\ell_f=0,2$, so by this we
+can see that $\ell_i\neq\ell_f$. This is the only selection rule imposed by the RHS
+braket, so we ignore it and look instead at the left braket:\\
+
+\begin{align*}
+  \bra{1,1,1,1}\ket{\ell_f,m_f}  \rightarrow\bra{\ell_f,m_f}=\braket{2,2}\\
+  \bra{1,1,1,0}\ket{\ell_f,m_f}  \rightarrow\bra{\ell_f,m_f}=\braket{2,1}\\
+  \bra{1,1,1,-1}\ket{\ell_f,m_f} \rightarrow\bra{\ell_f,m_f}=\braket{2,0},\braket{0,0}\\
+  \bra{1,1,0,1}\ket{\ell_f,m_f}  \rightarrow\bra{\ell_f,m_f}=\braket{2,1}\\
+  \bra{1,1,0,0}\ket{\ell_f,m_f}  \rightarrow\bra{\ell_f,m_f}=\braket{2,0},\braket{0,0}\\
+  \bra{1,1,0,-1}\ket{\ell_f,m_f} \rightarrow\bra{\ell_f,m_f}=\braket{2,-1}\\
+  \bra{1,1,-1,1}\ket{\ell_f,m_f} \rightarrow\bra{\ell_f,m_f}=\braket{2,0},\braket{0,0}\\
+  \bra{1,1,-1,0}\ket{\ell_f,m_f} \rightarrow\bra{\ell_f,m_f}=\braket{2,-1}\\
+  \bra{1,1,-1,-1}\ket{\ell_f,m_f}\rightarrow\bra{\ell_f,m_f}=\braket{2,-2}\\
+\end{align*}
+
+From this we can see that the allowed transitions from the p-state are either to the s state
+or any of the d-state orbitals.\\
+
+This was a weird problem. It is odd that you can treat the final electron state as
+represented in the coupled basis and the original state in the uncoupled basis and get
+meaningful results. This is really cool, but an odd usage of the CB table.\\
+
+
+\end{document}

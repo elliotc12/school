@@ -1,0 +1,416 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{marvosym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{braket}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+
+\title{Quantum Mechanics Assignment Eight}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem 1: Two Spin-1 Particle states}
+Here we use a Clebsch-Gordan table and our knowledge of the P interchange operator
+to list the spin states a system of two spin-1 particles could take on, and whether
+they are symmetric or antisymmetric with respect to particle interchange.\\
+
+Two spin particles combine to have a total angular momentum of 0, 1 or 2. We use a CG
+table to list the states, in the format $\ket{J,M_J} = \ket{M_{S1}, M_{S2}}$:\\
+
+\begin{align*}
+  \mbox{Symmetric}\hspace{2cm} &\ket{2,2} = \ket{1,1} = \ket{1,1}\\
+  \mbox{Symmetric}\hspace{2cm}&\ket{2,1} = \frac{1}{\sqrt{2}}\left(\ket{1,0}
+  + \ket{0,1}\right)
+  = \frac{1}{\sqrt{2}}\left(\ket{0,1} + \ket{1,0}\right)\\
+  \mbox{Symmetric}\hspace{2cm} &\ket{2,0} =
+  \frac{1}{\sqrt{2}}\left(\ket{1,-1} + \ket{-1,1}\right) + \sqrt{\frac{2}{3}}\ket{0,0}
+  = \frac{1}{\sqrt{2}}\left(\ket{-1,1} + \ket{1,-1}\right)
+  + \sqrt{\frac{2}{3}}\ket{0,0}\\
+  \mbox{Symmetric}\hspace{2cm} &\ket{2,-1} =
+  \frac{1}{\sqrt{2}}\left(\ket{-1,0} + \ket{0,-1}\right)
+  = \frac{1}{\sqrt{2}}\left(\ket{0,-1} + \ket{-1,0}\right)\\
+  \mbox{Symmetric}\hspace{2cm} &\ket{2,-2} = \ket{-1,-1} = \ket{-1,-1}\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Antisymmetric}\hspace{2cm} &\ket{1,1}
+  = \frac{1}{\sqrt{2}}\left(\ket{1,0} - \ket{0,1}\right)
+  = -\frac{1}{\sqrt{2}}\left(\ket{0,1} - \ket{1,0}\right)\\
+  \mbox{Antisymmetric}\hspace{2cm} &\ket{1,0}
+  = \frac{1}{\sqrt{2}}\left(\ket{1,-1} - \ket{-1,1}\right)
+  = -\frac{1}{\sqrt{2}}\left(\ket{-1,1} - \ket{1,-1}\right)\\
+  \mbox{Antisymmetric}\hspace{2cm} &\ket{1,-1}
+  = \frac{1}{\sqrt{2}}\left(\ket{-1,0} - \ket{0,-1}\right)
+  = -\frac{1}{\sqrt{2}}\left(\ket{0,-1} - \ket{-1,0}\right)\\
+\end{align*}
+
+\begin{align*}
+  \mbox{Symmetric}\hspace{2cm} &\ket{0,0} = \ket{-1,-1} =
+  \frac{1}{\sqrt{3}}\left(\ket{1,-1} - \ket{0,0} \ket{-1,1}\right)
+  = \frac{1}{\sqrt{3}}\left(\ket{-1,1} - \ket{0,0} \ket{1,-1}\right)\\
+\end{align*}
+
+This is a demonstration of how the coupled basis states for 2x spin-1 particles
+obey the Symmetrization Postulate. This is an advantage that the uncoupled basis
+does not share: $\ket{1,-1}$ does not obey the SP, since the first particle is always
+in the $M_S = 1$ state, and so is effectively ``labelled''. This is disallowed
+by QM.\\
+
+An interesting result we can glean from this is that two fermions with
+spin-1 (eg protons) will always go to the F=1 state when they have a symmetric
+wave function (ie they are in the ground state), since all wavefunctions must be
+antisymmetric for fermions. This is a weird case that is not intuitive - why is
+there such an arbitrary set of rules on what the spin can and cannot be?\\
+
+\section{Problem 2: Neutron Star}
+Neutron stars are celestial objects made up almost exclusively of neutrons, or spin-1/2 fermions.
+They are incredibly massive, and without the Pauli Exclusion Principle would overcome the
+inter-particle repulsions and collapse into a black hole. However, because of the PEP, no two
+particles in a system can take on the same quantum state. I don't know the quantum numbers of
+a neutron in a system like this, but I do know that no two neutrons in the system are allowed to
+have the same spacial wave function, because this would violate the PEP. This requirement for each
+particle to have a different spacial wave function translates to the particles needing to be in
+different spaces, and hence not collapsing into the center and forming a black hole. Thus there
+is a ``quantum force'' which opposes gravity and keeps the particles stable.\\
+
+This is a really weird thing to think about. It is odd that the entire star is treated as a single
+system, meaning each neutron must have different quantum numbers, since this translates to an
+immense number of numbers. It is odd that the PEP manifests itself as a force which opposes gravity.
+\\
+
+Another rival explanation is that, due to the Heisenberg Uncertainty Principle, the position of
+each particle is well known due to tight packing, so the momentum uncertainty must be very large.
+This translates to the particles having a large range of momenta. This momenta could possibly be
+the means by which the particles oppose the gravitational force, since the ``quantum force''
+explanation seems weird to me.\\
+
+\section{Problem 13.7: Noninteracting particles in a HO potential}
+Here we find the interparticle spacing for three types of systems: a distinguishable,
+fermonic and bosonic pair of particles in a QHO potential where one particle is in state $n$
+and the other in state $k$. We construct our states as follows, noting that fermions have AS
+descriptions, bosons have S descriptions and distinguishable particles have neither:
+
+\begin{align*}
+  \mbox{Distinguishable}&\hspace{1cm} \ket{\psi} = \ket{n}_1\ket{k}_2\\
+  \mbox{Fermions}&\hspace{1cm} \ket{\psi}
+  = \frac{1}{\sqrt{2}}\left(\ket{n}_1\ket{k}_2 - \ket{k}_1\ket{n}_2\right)\\
+  \mbox{Bosons}&\hspace{1cm} \ket{\psi}
+  = \frac{1}{\sqrt{2}}\left(\ket{n}_1\ket{k}_2 + \ket{k}_1\ket{n}_2\right)\\
+\end{align*}
+
+\textbf{a.) Distinguishable}
+
+\begin{align*}
+  \braket{(x_1-x_2)^2} &= \bra{n}_1\bra{k}_2(x_1-x_2)^2\ket{n}_1\ket{k}_2\\
+  &= \bra{n}_1\bra{k}_2(x_1^2 + x_2^2 - 2x_1x_2)\ket{n}_1\ket{k}_2\\
+  &= \bra{n}_1\bra{k}_2x_1^2\ket{n}_1\ket{k}_2 +
+  \bra{n}_1\bra{k}_2x_2^2\ket{n}_1\ket{k}_2 - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \bra{n}_1x_1^2\ket{n}_1\bra{k}_2\ket{k}_2 +
+  \bra{n}_1\ket{n}_1\bra{k}_2x_2^2\ket{k}_2 - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \bra{n}_1x_1^2\ket{n}_1 + \bra{k}_2x_2^2\ket{k}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\bra{n}_1
+  \left(a^\dagger a^\dagger + aa + aa^\dagger + a^\dagger a\right)\ket{n}_1
+  + \frac{\hbar}{2m\omega}\bra{k}_2
+  \left(a^\dagger a^\dagger + aa + aa^\dagger + a^\dagger a\right)\ket{k}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\bra{n}_1\left(aa^\dagger + a^\dagger a\right)\ket{n}_1
+  + \frac{\hbar}{2m\omega}\bra{k}_2\left(aa^\dagger + a^\dagger a\right)\ket{k}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\left(2n + 2k + 2\right)
+  - \frac{2\hbar}{2m\omega}\bra{n}_1\bra{k}_2
+  \left(a_1+a_1^\dagger\right)\left(a_2+a_2^\dagger\right)\ket{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\left(2n + 2k + 2\right)
+  - \frac{2\hbar}{2m\omega}\bra{n}_1\bra{k}_2
+  \left(a_1a_2 + a_1^\dagger a_2^\dagger + a_1a_2^\dagger + a_2a_1^\dagger\right)\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\left(2n + 2k + 2\right)
+  - \frac{2\hbar}{2m\omega}\bra{n}_1\bra{k}_2
+  \left(a_1a_2 + a_1^\dagger a_2^\dagger + a_1a_2^\dagger + a_2a_1^\dagger\right)\bra{n}_1\ket{k}_2\\
+  &= \frac{\hbar}{2m\omega}\left(2n + 2k + 2\right)\\
+  &- \frac{2\hbar}{2m\omega}
+  \left(\bra{n}_1a_1\ket{n}_1\ket{k}_2a_2\ket{k}_2
+  + \bra{n}_1a_1^\dagger\ket{n}_1\bra{k}_2a_2^\dagger\ket{k}_2
+  + \bra{n}_1a_1\ket{n}_1\bra{k}_2a_2^\dagger\ket{k}_2
+  + \bra{k}_2a_2\ket{k}_2\bra{n}_1a_1^\dagger\ket{n}_1\right)\\
+  &= \frac{\hbar}{m\omega}(n+k+1)\\
+\end{align*}
+
+\textbf{b.) Boson}
+
+\begin{align*}
+  \braket{(x_1-x_2)^2} &=
+  \frac{1}{2}\left(\bra{n}_1\bra{k}_2 + \bra{k}_1\bra{n}_2\right)
+  \left(x_1^2 + x_2^2 - 2x_1x_2\right)
+  \left(\ket{n}_1\ket{k}_2 + \ket{k}_1\ket{n}_2\right)\\
+  &= \frac{1}{2}\left(
+  \bra{n}_1x_1^2\ket{n}_1 + \bra{k}_2x_2^2\ket{k}_2
+  + \bra{k}_1x_1^2\ket{k}_1 + \bra{n}_2x_2^2\ket{n}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2 - 2\bra{n}_2\bra{k}_1x_1x_2\ket{n}_2\ket{k}_1\right)\\
+  &= \frac{1}{2}\left(4n + 4k + 4\right)
+  - \bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2 - \bra{n}_2\bra{k}_1x_1x_2\ket{n}_2\ket{k}_1\\
+  &= \frac{\hbar}{4m\omega}\left(4n + 4k + 4\right)\\
+  &= \frac{\hbar}{m\omega}\left(n + k + 1\right)\\
+\end{align*}
+
+\textbf{c.) Fermion}
+
+\begin{align*}
+  \braket{(x_1-x_2)^2} &=
+  \frac{1}{2}\left(\bra{n}_1\bra{k}_2 - \bra{k}_1\bra{n}_2\right)
+  \left(x_1^2 + x_2^2 - 2x_1x_2\right)
+  \left(\ket{n}_1\ket{k}_2 - \ket{k}_1\ket{n}_2\right)\\
+  &= \frac{1}{2}\left(
+  \bra{n}_1x_1^2\ket{n}_1 + \bra{k}_2x_2^2\ket{k}_2
+  - \bra{k}_1x_1^2\ket{k}_1 - \bra{n}_2x_2^2\ket{n}_2
+  - 2\bra{n}_1\bra{k}_2x_1x_2\ket{n}_1\ket{k}_2 + 2\bra{n}_2\bra{k}_1x_1x_2\ket{n}_2\ket{k}_1\right)\\
+  &= \frac{\hbar}{4m\omega}\left(2n+1 + 2k+1 - 2n-1 - 2k-1 - 0\right)\\
+  &= 0\\
+\end{align*}
+
+Note: These solutions assume that n and k are not two levels separate of each other.\\
+
+This is a really interesting problem that demonstrates how systems that are identical save
+for their symmetry rules can behave totally differently. The boson system has twice the expectation
+value of the distinguishable particle system, and the fermion system has zero expectation value
+for particle distance. This is a very unintuitive result, since it predicts that on average the
+two particles are on top of each other.\\
+
+\section{Problem 4: Three-particle system}
+In this problem we practice writing the wave functions for three-particle systems of particles
+with different symmetry rules. Here A, B and C represent spacial states and $S_A, S_B$ and $S_C$ are
+spin states. Particles 1, 2 and 3 are the three particles in the system.\\
+
+\textbf{Distinguishable Particles}
+
+The distinguishable particle case is simple. Because we are allowed to label particles, we say that
+each particle has its own spacial and spin states A, B and C. There is no need for us to make our
+wave function have equal probabilities of measuring 1, 2 and 3 in any state, we are allowed to say
+particle 1 is in state A:\\
+
+\begin{align*}
+  \Psi_D &= \left(\Psi_1^A\Psi_2^B\Psi_3^C\right)\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3\\
+\end{align*}
+
+\textbf{Bosons and Fermions}
+
+The calculation for the boson and fermion states is more difficult. Our wave functions must reflect
+that measuring a particle in state A cannot tell us whether this particle is particle 1, 2 or 3. To
+achieve this we sum all the possible combinations of states to create a completely ambiguous
+superposition state. This is the symmetric state.\\
+
+\begin{align*}
+  \Psi^{S} &=
+  \Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B\\
+  &+ \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^B\Psi_2^C\Psi_3^A\\
+  &+ \Psi_1^C\Psi_2^A\Psi_3^B + \Psi_1^C\Psi_2^B\Psi_3^A\\
+  \ket{S}^{S} &=
+  \frac{1}{\sqrt{6}}\Bigg(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3\\
+  &+ \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3\\
+  &+ \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3 + \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\Bigg)\\
+\end{align*}
+
+We then use a Slater determinant to construct the antisymmetric spacial and spin states:\\
+
+\begin{align*}
+  \Psi^{A} &= \det
+  \begin{vmatrix}
+    \Psi_1^A & \Psi_2^A & \Psi_3^A\\
+    \Psi_1^B & \Psi_2^B & \Psi_3^B\\
+    \Psi_1^C & \Psi_2^C & \Psi_3^C\\
+  \end{vmatrix}\\
+  &= \frac{1}{\sqrt{6}}\Bigg(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B\\
+  &- \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^C\Psi_2^A\Psi_3^B\\
+  &+ \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\Bigg)\\
+  \ket{S}^A &= \det
+  \begin{vmatrix}
+    \ket{S_A}_1^A & \ket{S_A}_2 & \ket{S_A}_3\\
+    \ket{S_B}_1^B & \ket{S_B}_2 & \ket{S_B}_3\\
+    \ket{S_C}_1^C & \ket{S_C}_2 & \ket{S_C}_3\\
+  \end{vmatrix}\\
+  &= \frac{1}{\sqrt{6}}\Bigg(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3\\
+  &- \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3\\
+  &+ \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3 - \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\Bigg)\\
+\end{align*}
+
+To create our boson wave functions, we take any combination of individual wave functions that result
+in an overall symmetric wave function:\\
+
+\begin{align*}
+  \Psi_B^{SS} &= \Psi_B^S\ket{S}^S\\
+  &= \frac{1}{6}\left(\Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B
+  + \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^B\Psi_2^C\Psi_3^A
+  + \Psi_1^C\Psi_2^A\Psi_3^B + \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
+  &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
+  + \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3
+  + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3 + \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\right)
+\end{align*}
+
+\begin{align*}
+  \Psi_B^{AA} &= \Psi_B^A\ket{S}^A\\
+  &= \frac{1}{6}\left(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B
+  - \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^C\Psi_2^A\Psi_3^B
+  + \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
+  &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
+  - \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3
+  + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3 - \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\right)\\
+\end{align*}
+
+To make our fermion states, we take all the possible antisymmetric overall wavefunctions:\\
+
+\begin{align*}
+  \Psi_F^{AS} &= \Psi^A\ket{S}^S\\
+  &= \frac{1}{6}\left(\Psi_1^A\Psi_2^B\Psi_3^C - \Psi_1^A\Psi_2^C\Psi_3^B
+  - \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^C\Psi_2^A\Psi_3^B
+  + \Psi_1^B\Psi_2^C\Psi_3^A - \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
+  &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 + \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
+  + \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3
+  + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3 + \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\right)\\
+\end{align*}
+
+\begin{align*}
+  \Psi_F^{SA} &= \Psi^S\ket{S}^A\\
+  &= \frac{1}{6}\left(\Psi_1^A\Psi_2^B\Psi_3^C + \Psi_1^A\Psi_2^C\Psi_3^B
+  + \Psi_1^B\Psi_2^A\Psi_3^C + \Psi_1^B\Psi_2^C\Psi_3^A
+  + \Psi_1^C\Psi_2^A\Psi_3^B + \Psi_1^C\Psi_2^B\Psi_3^A\right)\\
+  &\left(\ket{S_A}_1\ket{S_B}_2\ket{S_C}_3 - \ket{S_A}_1\ket{S_C}_2\ket{S_B}_3
+  - \ket{S_B}_1\ket{S_A}_2\ket{S_C}_3 + \ket{S_C}_1\ket{S_A}_2\ket{S_B}_3
+  + \ket{S_B}_1\ket{S_C}_2\ket{S_A}_3 - \ket{S_C}_1\ket{S_B}_2\ket{S_A}_3\right)\\
+\end{align*}
+
+\textbf{Many-electron system}
+To describe a many-electron system, we use the following sets:\\
+
+\begin{align*}
+  A_{spacial} &= [\Psi^A, \Psi^B, ...]\\
+  A_{spin} &= [\ket{S_A}, \ket{S_B}, ...]\\
+\end{align*}
+
+We also use function P(q), which returns all possible combinations of the elements of set q. Our
+many-electron system is then represented by:\\
+
+\begin{align*}
+  \Psi_F^{AS} &= \Psi^A\ket{S}^S\\
+  &= \frac{1}{\sqrt{N!}}\left(\sum_p^{P(A_{spacial})}\prod_{i=0}^N p(i)_i\right)\det
+  \begin{vmatrix}
+    \ket{S_A}_1 & \ket{S_A}_2 & ... & \ket{S_A}_N\\
+    \ket{S_B}_1 & \ket{S_B}_2 & ... & \ket{S_B}_N\\
+    \vdots & \vdots & \vdots & \vdots\\
+    \ket{S_N}_1 & \ket{S_N}_2 & ... & \ket{S_N}_N\\
+  \end{vmatrix}
+\end{align*}
+
+\begin{align*}
+  \Psi_F^{SA} &= \Psi^S\ket{S}^A\\
+  &= \frac{1}{\sqrt{N!}}\det
+  \begin{vmatrix}
+    \Psi^A_1 & \Psi^A_2 & ... & \Psi^A_N\\
+    \Psi^B_1 & \Psi^B_2 & ... & \Psi^B_N\\
+    \vdots & \vdots & \vdots & \vdots\\
+    \Psi^N_1 & \Psi^N_2 & ... & \Psi^N_N\\
+  \end{vmatrix}
+  \left(\sum_p^{P(A_{spin})}\prod_{i=0}^N p(i)_i\right)
+\end{align*}
+
+This is a cool problem which made me think about how to generalize wave functions given the
+Symmetrization Principle. Using Slater determinants was really helpful here, I'm not sure I could
+have done the problem without them. My solution for representing many-electron systems is a bit
+impractical, I'm interested in if and how such systems actually are represented.\\
+
+\section{Problem 5: Zeeman Effect}
+When doing Zeeman Effect calculations and deciding whether the Zeeman corrections should go in the
+first-order Hamiltonian correction or be put in the unperturbed Hamiltonian, a ``strong'' B-field
+is one that is too big to be a first-order correction. For the n=2 state of Hydrogen, the
+first-order fine structure corrections have a size of:
+
+\begin{equation*}
+  E_{fs}^{(1)}
+  = -\frac{1}{2}\alpha^4mc^2\frac{1}{2^3}\left(\frac{1}{j+\frac{1}{2}}-\frac{3}{8}\right)\\
+  \approx -\frac{1}{16}\alpha^4mc^2\\
+\end{equation*}
+
+We say that Zeeman corrections of this size and larger should be considered due to ``strong''
+magnetic fields. The energy perturbation due to the B-field is given by:\\
+
+\begin{equation*}
+  \Delta E_{Z} = \frac{\mu_B B}{\hbar}\left(g_\ell L_z + g_e S_z\right)
+  \approx \frac{\mu_B B}{\hbar}\\
+\end{equation*}
+
+We equate these expressions to find the smallest ``strong'' B-field:\\
+
+\begin{align*}
+  B &\approx \frac{-\hbar}{16mu_B}\alpha^4mc^2
+  = \frac{-6.5*10^{-16}}{16*6*10^{-5}}*7^4*10^{-12}*5*10^5\\
+  \approx 10^{-15}T\\
+\end{align*}
+
+We now find the B-field which perturbes the H atom enough to equate the energies of the 2p and 3d
+states:\\
+
+\begin{align*}
+  E_{2p} + \Delta E_{Zeeman, 2p} + E_{fs}^{(1)} &= E_{3d} + \Delta E_{Zeeman, 3d} + E_{fs}^{(1)}\\
+  \frac{-13.6eV}{4} + \mu_BB(m_\ell+2m_s)
+  + \frac{1}{2}\alpha^4mc^2\left(\frac{3}{4n^3}
+  -\frac{\ell(\ell+1)-m_\ell m_s}{n^3\ell(\ell+\frac{1}{2})(\ell+1)}\right)
+  &=\\ \frac{-13.6eV}{8} + \mu_BB(m_\ell+2m_s) + \frac{1}{2}\alpha^4mc^2\left(\frac{3}{4n^3}
+  -\frac{\ell(\ell+1)-m_\ell m_s}{n^3\ell(\ell+\frac{1}{2})(\ell+1)}\right)\\
+  \frac{-13.6eV}{4} + 2\mu_BB
+  + \alpha^4mc^2\left(\frac{3}{64}
+  -\frac{2-\frac{1}{2}}{24}\right)
+  &= \frac{-13.6eV}{8} + -3\mu_BB + \frac{1}{2}\alpha^4mc^2\left(\frac{3}{108}
+  -\frac{6+1}{405}\right)\\
+  \frac{-13.6eV}{8} + 5\mu_BB
+  &= \alpha^4mc^2
+  \left(\frac{3}{216} - \frac{7}{405} - \frac{3}{64} + \frac{3}{48}\right)\\
+  B &= \frac{\alpha^4mc^2
+    \left(\frac{3}{216} - \frac{7}{405} - \frac{3}{64} + \frac{3}{48}\right) + \frac{13.6eV}{8}}{5\mu_B}\\
+  &= \frac{\frac{317\alpha^4mc^2}{25920} + \frac{13.6eV}{8}}{5\mu_B}\\
+  &\approx \frac{0.68eV}{5.7*10^{-5}eV/T} \approx 5880 T\\
+\end{align*}
+
+This is a huge magnetic field! I'm not entirely sure of it, but perhaps a very strong field is
+necessary to split the orbitals to the level that they agree. It's important to understand when
+the Zeeman effect can be treated as a perturbation and when it has to be actually included in
+the original Hamiltonian. I said that whenever the Zeeman term is of a similar magnitude to the
+fine structure correction, it is too big to include as a perturbation.\\
+
+\end{document}
