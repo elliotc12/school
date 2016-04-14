@@ -1,0 +1,77 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{marvosym} % Required for symbols in the colored box
+\usepackage{ifsym} % Required for symbols in the colored box
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+\allowdisplaybreaks
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Statistical Mechanics Assignment One}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One: Adiabatic Ideal Gas}
+\textbf{a.)}
+First we calculate the final temperature of the gas, given $V_i, V_f$ and $T_i$:
+
+\begin{align*}
+  P_iV_i^\gamma &= nRT_iV_i^{\gamma-1}\\
+  nRT_iV_i^{\gamma-1} &= nRT_fV_f^{\gamma-1}\\
+  T_f &= T_i\left(\frac{V_i}{V_f}\right)^{\gamma-1}
+\end{align*}
+
+\textbf{b.)}
+If $dS=0$, then $dQ/T=0$ and so $dU = -pdV$. We use this as another route for finding $T_f$ in
+terms of $V_i, V_f$ and $T_i$:
+
+\begin{align*}
+  dU &= -pdV = C_vdT\\
+  -\frac{RT}{V}dV &= C_vdT \hspace{2cm}\mbox{Molar specific heat, so n=1}\\
+  -R\int_{V_i}^{V_f}\frac{1}{V}dV &= C_v\int_{T_i}^{T_f}\frac{1}{T}dT\\
+  -R\ln\left(\frac{V_f}{V_i}\right) &= C_v\ln\left(\frac{T_f}{T_i}\right)\\
+  -\frac{C_p-C_v}{C_v}\ln\left(\frac{V_f}{V_i}\right) &= \ln\left(\frac{T_f}{T_i}\right)\\
+  \ln\left(\frac{V_f}{V_i}\right)^{1-\gamma} &= \ln\left(\frac{T_f}{T_i}\right)\\
+  \left(\frac{V_f}{V_i}\right)^{1-\gamma} &= \frac{T_f}{T_i}\\
+  T_f &= T_i\left(\frac{V_f}{V_i}\right)^{1-\gamma} = T_i\left(\frac{V_i}{V_f}\right)^{\gamma-1}\\
+\end{align*}
+
+\end{document}
