@@ -3,6 +3,7 @@
 \usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
 
 \usepackage{marvosym} % Required for symbols in the colored box
+\usepackage{ifsym} % Required for symbols in the colored box
 
 \usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
 
@@ -23,7 +24,6 @@
 
 \usepackage{fancyhdr}
 \usepackage{amsmath}
-\usepackage{physics}
 \usepackage{amssymb}
 \pagestyle{fancy}
 \fancyhf{}
@@ -39,7 +39,7 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Quantum Mechanics Assignment Two}
+\title{Solid State Assignment Two}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -47,302 +47,70 @@
 
 \maketitle{}
 
-\section{9.4: Forbidden region probability for QHO}
-For this problem we want to calculate the probability of measuring a QHO ground-state object outside
-of the classically allowed region. We do this by calculating the turning points of a classical HO,
-ie finding the x-values where energy equals potential, and then integrating $\psi^*\psi$ over the
-forbidden region to find the chance of forbidden observation.\\
+\section{Problem 2: O-C-O Anti/Bonding energies}
+This problem asks us to come up with the anti/bonding energies for an O-C-O molecule, given its
+on-site and hopping energies.\\
 
-We first find the turning point for the ground state $n=0$:
-\begin{align*}
-  V_{HO} &= E_0\\
-  \frac{1}{2}m\omega^2x^2 &= \hbar\omega\left(0+\frac{1}{2}\right)\\
-  x_0 &= \sqrt{\frac{\hbar}{m\omega}}\\
-\end{align*}
-
-We then find the probability of finding the particle in this region:
+First we construct the Hamiltonian for this system, using the rules defined in the problem:\\
 
 \begin{align*}
-  P_{forb} &= \int_{\infty}^{-x_0} \psi_0^*\psi_0 dx + \int_{x_0}^{\infty} \psi_0^*\psi_0 dx\\
-  &= 2\int_{x_0}^{\infty} \sqrt{\frac{m\omega}{\pi\hbar}}e^{-m\omega x^2 / \hbar} dx\\
-  &= 0.16\\
+  H &=
+  \begin{pmatrix}
+    E_O & \beta & 0\\
+    \beta & E_C & \beta\\
+    0 & \beta & E_O\\
+  \end{pmatrix}
 \end{align*}
 
-Thus we see that there is a small chance of finding the particle in the classically
-forbidden region, which is expected for the ground state of the QHO. To do the
-calculation we exploit the fact that even functions can be integrated on only one
-side of the y-axis and doubled to get the total integral answer.\\
-
-\section{9.9: QHO expectation values via integration, operator method}
-In this problem we use both wave function integration and the operator method to find the
-expectation values of various observables: x, p, $x^2$, $p^2$.
-
-\textbf{a.) Ground state wave function calculations}
-\begin{align*}
-  <x> &= \int_{-\infty}^{\infty} \psi^*x\psi dx\\
-  &= \int_{-\infty}^{\infty} \sqrt{\frac{m\omega}{\pi\hbar}}e^{-m\omega x^2 / \hbar}x dx = 0\\
-\end{align*}
-We don't need to perform the $<x>$ integral because it involves integrating an odd function over
-an even domain, which always results in zero. This is to be expected, because the wave ground-state
-wave function is symmetric across zero.\\
+We then find the eigenvalues of this equation:\\
 
 \begin{align*}
-  <p> &= \int_{-\infty}^{\infty} \psi^* -i\hbar \frac{d}{dx}\psi dx\\
-  &= \int_{-\infty}^{\infty}
-  -i\sqrt{\frac{m\omega}{\pi\hbar}}(-m\omega x)e^{\frac{-m\omega x^2}{2\hbar}}dx = 0\\
-\end{align*}
-This integral is zero since we are again integrating an odd function over an even domain. This
-makes sense because, since the spacial distribution of the wave function is equal on both sides
-of the x-axis, the velocities (and hence momenta) should be equal as well.\\
-
-\begin{align*}
-  <x^2> &= \int_{-\infty}^{\infty} \psi^*x^2\psi dx\\
-  &= \int_{-\infty}^{\infty} \sqrt{\frac{m\omega}{\pi\hbar}}e^{-m\omega x^2 / \hbar}x^2 dx\\
-  &= 2\sqrt{\frac{m\omega}{\pi\hbar}}\int_{0}^{\infty} e^{-m\omega x^2 / \hbar}x^2 dx\\
-  &= 2\sqrt{\frac{m\omega}{\pi\hbar}} *
-  \frac{\sqrt{\pi}}{4(\frac{m\omega}{\hbar})^{3/2}} \hspace{2cm}\mbox{Wolfram}\\
-  &= \frac{\hbar}{2m\omega}\\
-\end{align*}
-Here we exploit the fact that integrating an even function over an even domain is equivalent to
-doubling the integral of the function over half the domain. The answer makes sense, since increasing
-$m\omega$ corresponds to making the quadratic potential steeper, hence making the wave function
-tighter.\\
-
-\begin{align*}
-  <p^2> &= \int_{-\infty}^{\infty} \psi^* \left(-\hbar^2 \frac{d^2}{dx^2}\right)\psi dx\\
-  &= \sqrt{\frac{m\omega}{\pi\hbar}}\int_{-\infty}^{\infty} -\hbar^2e^{\frac{-m\omega x^2}{\hbar}}
-  \left(\frac{m^2\omega^2x^2}{\hbar^2} - \frac{m\omega}{\hbar}\right)dx\\
-  &= -\hbar^2\sqrt{\frac{m\omega}{\pi\hbar}}\left(
-  \int_{-\infty}^{\infty} e^{\frac{-m\omega x^2}{\hbar}}\frac{m^2\omega^2x^2}{\hbar^2}dx -
-  \int_{-\infty}^{\infty} e^{\frac{-m\omega x^2}{\hbar}}\frac{m\omega}{\hbar}\right)dx\\
-  &= -\hbar^2\sqrt{\frac{m\omega}{\pi\hbar}}
-  \left(\frac{1}{2}\sqrt{\frac{m\pi\omega}{\hbar}} -
-  \sqrt{\frac{m\pi\omega}{\hbar}}\right) \hspace{2cm}\mbox{Wolfram}\\
-  &= \frac{\hbar m\omega}{2}\\
-\end{align*}
-This answer is intuitive, since increasing mass as well as oscillatory speed should both increase
-the expected momentum.
-
-\textbf{b.) Any-state operator method calculations}
-Here we define the position and momentum operators in terms of the raising and lowering operators:
-\begin{align*}
-  \hat{x} &= \sqrt{\frac{\hbar}{2m\omega}}\left(a + a^\dagger\right)\\
-  \hat{p} &= i\sqrt{\frac{m\omega\hbar}{2}}\left(a^\dagger - a\right)\\
-\end{align*}
-We then solve for the various expectation values using these definitions:
-
-\begin{align*}
-  <x> &= \bra{n}x\ket{n}\\
-  &= \sqrt{\frac{\hbar}{2m\omega}}\bra{n}\left(a + a^\dagger\right)\ket{n}\\
-  &= \sqrt{\frac{\hbar}{2m\omega}}
-  \left(\sqrt{n}\bra{n}\ket{n-1} + \sqrt{n+1}\bra{n}\ket{n+1}\right) = 0\\
-\end{align*}
-This answer indicates that all pure QHO wave functions are centered around zero. This makes
-sense since the QHO wave functions are all made up of either even or odd functions. When squared,
-as is done when finding the probability, the equation becomes entirely even, meaning it is
-symmetric across the y-axis. From this we can see that all QHO wave functions have an expectation
-value of zero for x-measurement.
-
-\begin{align*}
-  <p> &= \bra{n}\hat{p}\ket{n}\\
-  &= i\sqrt{\frac{m\hbar\omega}{2}}\bra{n}\left(a^\dagger-a\right)\ket{n}\\
-  &= i\sqrt{\frac{m\hbar\omega}{2}}
-  \left(\sqrt{n+1}\bra{n}\ket{n+1} - \sqrt{n}\bra{n}\ket{n-1}\right) = 0\\
-\end{align*}
-This is an interesting result. It is intuitive that any wave function should have an expectation of
-zero for momentum, else the wave function would move through space due to a nonzero average
-velocity.
-
-\begin{align*}
-  <x^2> &= \bra{n}x^2\ket{n}\\
-  &= \frac{\hbar}{2m\omega}\bra{n}\left(a + a^\dagger\right)\left(a + a^\dagger\right)\ket{n}\\
-  &= \frac{\hbar}{2m\omega}\bra{n}
-  \left(aa + aa^\dagger + a^\dagger a + a^\dagger a^\dagger\right)\ket{n}\\
-  &= \frac{\hbar}{2m\omega}
-  \left(aa + aa^\dagger + a^\dagger a + a^\dagger a^\dagger\right)\ket{n}\\
-  &= \frac{\hbar}{2m\omega} \left(\sqrt{n-1}\sqrt{n-2}\bra{n}\ket{n-2} + (n+1)\bra{n}\ket{n} +
-  (n)\bra{n}\ket{n} + \sqrt{n+1}\sqrt{n+2}\bra{n}\ket{n+2}\right)\\
-  &= \frac{\hbar}{2m\omega} \left(2n+1\right)\\
-\end{align*}
-This is an interesting result which indicates that for each extra rung on the ladder, the
-expectation of the squared position increases linearly, meaning the expectation of the magnitude
-of x increases as $\sqrt{n}$. This makes sense, since increasing energy levels have less and less
-room to expand in the quadratic potential well. The $n=0$ state corresponds to the wave function
-solution for the ground state found above.\\
-
-\begin{align*}
-  <p^2> &= \bra{n}p^2\ket{n}\\
-  &= -\frac{m\hbar\omega}{2}\bra{n}\left(a^\dagger-a\right)\left(a^\dagger-a\right)\ket{n}\\
-  &= -\frac{m\hbar\omega}{2}\bra{n}
-  \left(a^\dagger a^\dagger - a^\dagger a - aa^\dagger + aa\right)\ket{n}\\
-  &= -\frac{m\hbar\omega}{2}\bra{n}\left(\sqrt{n-1}\sqrt{n-2}\bra{n}\ket{n-2}
-  - (n)\bra{n}\ket{n} - (n+1)\bra{n}\ket{n} + \sqrt{n+1}\sqrt{n+2}\bra{n}\ket{n+2}\right)\\
-  &= \frac{\hbar m\omega}{2}\left(2n + 1\right)
-\end{align*}
-This result is similar to the above one for $x^2$ with different units. It is still a $\sqrt{n}$
-relationship for momentum, which makes sense.\\
-
-\textbf{c.) Uncertainty principle}\\
-Since the above two cases agree with each other, we check that the more general case of part
-\textbf{b.} agrees with the uncertainty principle.
-
-\begin{align*}
-  \Delta x &= \sqrt{<x^2>-<x>^2}\\
-  &= \sqrt{\frac{\hbar}{2m\omega} \left(2n+1\right)}\\
-  \Delta p &= \sqrt{<p^2>-<p>^2}\\
-  &= \sqrt{\frac{\hbar m\omega}{2}\left(2n + 1\right)}\\
-  \Delta x \Delta p &= \sqrt{\frac{\hbar}{2m\omega} \left(2n+1\right)}
-  \sqrt{\frac{\hbar m\omega}{2}\left(2n + 1\right)}\\
-  &= \frac{\hbar}{2}(2n+1)\\
-\end{align*}
-This is an interesting result which indicates that uncertainty increases as the pure wave function
-gets more energetic. Ground state is the state with maximum certainty. The higher states get
-progressively more uncertain, which makes sense since both the velocity and the well get larger
-for higher states.\\
-
-\section{9.14: Unknown QHO wavefunction}
-We are given the wave function $\psi(x,0) = A\left[1 - 3\sqrt{\frac{m\omega}{\hbar}}x +
-  2\frac{m\omega}{\hbar}x^2\right]$. Because its highest-order polynomial term is $x^2$, we know
-that it must be made up of the $n = 0, 1, 2$ energy states. We now figure out the coefficients for
-each:
-
-\begin{align*}
-  c_0 &= \int_{-\infty}^{\infty} \phi_0^*\psi dx\\
-  &= A\int_{-\infty}^{\infty} \left(\frac{m\omega}{\pi\hbar}\right)^{1/2}e^{-m\omega x^2/\hbar}
-  \left(1 - 3\sqrt{\frac{m\omega}{\hbar}}x +
-  2\frac{m\omega}{\hbar}x^2\right)e^{-m\omega x^2/(2\hbar)}dx\\
-  &= 2A\\
-  c_1 &= A\int_{-\infty}^{\infty} \frac{2\sqrt{\frac{m\omega}{\hbar}x}}{\sqrt{2}}
-    \left(\frac{m\omega}{\pi\hbar}\right)^{1/2} \left(1 - 3\sqrt{\frac{m\omega}{\hbar}}x +
-    2\frac{m\omega}{\hbar}x^2\right)e^{-m\omega x^2/\hbar}dx\\
- &= -\frac{3}{\sqrt{2}}A\\
- c_2 &= A\int_{-\infty}^{\infty} \frac{\frac{4m\omega}{\hbar}x^2 - 2}{\sqrt{8}}
-    \left(\frac{m\omega}{\pi\hbar}\right)^{1/2} \left(1 - 3\sqrt{\frac{m\omega}{\hbar}}x +
-    2\frac{m\omega}{\hbar}x^2\right)e^{-m\omega x^2/\hbar}dx\\
- &= \sqrt{2}A\\
+  det(H) &=
+  det\begin{bmatrix}
+    E_O-\lambda & \beta & 0\\
+    \beta & E_C-\lambda & \beta\\
+    0 & \beta & E_O-\lambda\\
+  \end{bmatrix}\\
+  \mbox{Mathematica} \rightarrow
+  &= E_O, \frac{1}{2}\left(\pm\sqrt{8\beta^2 + E_c^2 - 2E_cE_O + E_O^2} + E_c + E_O\right)\\
 \end{align*}
 
-From this we can see that $\psi(x,0) = \left(\frac{2\sqrt{2}}{\sqrt{21}}\ket{0}
-+ \frac{-3}{\sqrt{21}}\ket{1} + \frac{sqrt{2}}{\sqrt{21}}\ket{2}\right)$. It is then easy to compute
-the expectation value: \\
+This is an interesting result. As expected, there are three eigenvalues for a 3x3 matrix. One
+corresponds to the original atomic oxygen energy level, which seems odd. This seems to be saying
+that the oxygen atomic orbitals are retained in some way in the final molecule. The bonding
+(lower energy) orbital has energy
+$\frac{1}{2}\left(-\sqrt{8\beta^2 + E_c^2 - 2E_cE_O + E_O^2} + E_c + E_O\right)$, while the
+antibonding (higher energy) orbital has
+$\frac{1}{2}\left(\sqrt{8\beta^2 + E_c^2 - 2E_cE_O + E_O^2} + E_c + E_O\right)$.
 
-\begin{align*}
-  <E> &= \sum \hbar\omega\left(n+\frac{1}{2}\right)|c_n|^2\\
-  &= \frac{2 + \frac{27}{4} + 5}{\frac{21}{2}} = 1.3\hbar\omega\\
-\end{align*}
+\section{Problem Three: Types of Bonds}
+Here we discuss different types of bonds and what they're made up of.\\
 
-\section{9.13: Half-QHO well}
-(Inspired by http://www.physicspages.com/2012/08/18/half-harmonic-oscillator/)
+\textbf{sigma between $p_z$ orbitals: } Here two $p_z$ orbitals subtract from
+each other (bonding) or add (antibonding) on the bonding axis to form new orbitals.\\
+\vspace{3cm}
 
-This system is identical to the 1D QHO, except all positive x values have infinite
-potential. So the system is a mixture of the infinite well and SHO potentials. We
-thus expect the wave function to have characteristics of both systems. For positive
-x values we expect the wave function to be zero, as it is in the infinite well.
-Because the negative x-values have a potential identical to QHO, we expect the wave
-function to be identical as well. So our total wave function is a Hermite/Gaussian
-for negative x values and zero for positive x values.\\
+\textbf{pi between $p_z$ orbitals: } Here two $p_z$ orbitals add to each other (bonding)
+or subtract (antibonding) perpendicular to the bonding axis to form new orbitals.\\
+\vspace{3cm}
 
-However, we're not done. We notice that the x=0 boundary condition is not obeyed
-for all Hermite/Gaussian wave functions. We require the wave function to be zero
-at x=0, which is only true for odd QHO wave functions. Thus our energy spectrum
-is identical to the QHO spectru, but only for odd values of n:
+\textbf{sigma between $d_{z^2}$ orbitals: } Here two $d_{z^2}$ orbitals subtract from each other
+(bonding) or add (antibonding) on the bonding axis to form new orbitals.\\
+\vspace{3cm}
 
-\begin{align*}
-  E_n &= \left(n + \frac{1}{2}\right)\hbar\omega\hspace{2cm}\mbox{n=1,3,5,...}\\
-\end{align*}
+\textbf{pi between $d_{yz}$ orbitals: } Here two $d_{yz}$ orbitals subtract from each other
+(bonding) or add (antibonding) on the bonding plane such that each of the two lobes
+connect to form new orbitals.\\
+\vspace{3cm}
 
-For this problem we just applied the basic logic that the value of a wave function
-is only based on its current location, not the overall shape of the potential. The
-wave function for a system that is identical to the QHO will have a wave function
-identical to QHO in the similar regions. This is a powerful result.\\
-
-\section{5: 2D QHO}
-(Derivation inspired by
-$\mbox{nyu.edu/classes/tuckerman/adv.chem/lectures/lecture\_18/node6.html)}$\\
-To take the QHO to two dimensions, we use the following Hamiltonian:
-
-\begin{align*}
-  H &= \frac{\hat{p}_x^2}{2m} + \frac{\hat{p}_y^2}{2m}
-  + \frac{1}{2}m\omega^2\left(x^2+y^2\right)\\
-\end{align*}
-
-We notice that none of the cartesian terms in this Hamiltonian are coupled, so
-our energy eigenvalue equation then takes the form:
-
-\begin{align*}
-  H_{xy}X(x)Y(y) &= (E_x + E_y)X(x)Y(y)\\
-\end{align*}
-
-This equation is basically the sum of two uncoupled QHOs. Because of this, we
-can calculate the energy fairly easily:
-
-\begin{align*}
-  E_{xy} &= E_x + E_y = \left(n_x+n_y + 1\right)\hbar\omega\\
-\end{align*}
-
-From this we can see that the system is very degenerate. For the $n^{th}$-highest
-energy level there are $\frac{n}{2}$ possible states that have that energy: for
-the tenth energy level, the possible n-numbers are $1,9$, $2,8$, $3,7$, $4,6$ and
-$5,5$.\\
-
-We can construct the ground level energy state by taking the product of the two
-uncoupled QHOs:
-
-\begin{align*}
-  \psi_0(x,y) &= \left(\frac{m\omega}{\pi\hbar}\right)^{1/4}
-  e^{-m\omega\left(x^2+y^2\right)/2\hbar}\\
-\end{align*}
-
-The ease with which we go from the 1D to 2D harmonic oscillators comes from the fact
-that the x and y coordinates of the oscillator are not coupled. The x and y cross
-sections of the wave can take on any allowed 1D state. It is not intuitive to me
-why this method exactly works. Why are the energies of the x and y components
-just summed together to get total energy, as opposed to being multiplied or
-something? The degeneracy of the system is interesting. Because a sum is used,
-for large energies there are a huge number of ways to configure the system.\\
-
-\section{6: Position, momentum commutator}
-Here we find the value of the position, momentum commutator:
-\begin{align*}
-  [\hat{x}, \hat{p}] &= \hat{x}\hat{p} - \hat{p}\hat{x}\\
-  &= \left(\hat{x}\hat{p}\psi(x) - \hat{p}\hat{x}\psi(x)\right)\frac{1}{\psi(x)}\\
-  &= \left(\hat{x}\left(-i\hbar\frac{d}{dx}\right)\psi(x) - \hat{p}x\psi(x)\right)\frac{1}{\psi(x)}\\
-  &= \left(-i\hbar x \frac{d\psi}{dx} + i\hbar\left(\psi(x)
-  + x\frac{d\psi}{dx}\right)\right)\frac{1}{\psi(x)}\\
-  &= \left(i\hbar\psi(x)\right)\frac{1}{\psi(x)}\\
-  &= i\hbar\\
-\end{align*}
-Here we use the definitions of the position and momentum operators to find the value of their
-commutator. We need to operate on a generic wave function in order to do algebra on the
-operators, since the differential in the momentum operator is meaningless without a function
-to act on. This result is critical, since it is at the heart of the Heisenberg Uncertainty
-Principle: position and momentum don't commute, so they do not share a basis and they are not
-co-measurable. This is the mathematical representation of the popular saying ``you cannot know
-the position and momentum of a particle simultaneously.''
-
-\section{7: Commutator algebra}
-
-\begin{align*}
-  \left[\hat{A},\hat{A}^n\right] &= AA^n - A^nA = A^{n+1} - A^{n+1} = 0\\
-  \left[\hat{A},\hat{B}\right] &= \hat{A}\hat{B} - \hat{B}\hat{A}
-  = -\left(\hat{B}\hat{A} - \hat{A}\hat{B}\right) = -\left[\hat{B},\hat{A}\right]\\
-  \left[\hat{A},c\hat{B}\right] &= \hat{A}c\hat{B} - c\hat{B}\hat{A}
-  = c\left(\hat{A}\hat{B} - \hat{B}\hat{A}\right) = c\left[\hat{A},\hat{B}\right]\\
-  \left[\hat{A},\left(\hat{B}+\hat{C}\right)\right] &= \hat{A}\left(\hat{B} + \hat{C}\right)
-  - \left(\hat{B} + \hat{C}\right)\hat{A} = \hat{A}\hat{B} - \hat{B}\hat{A}
-  + \hat{A}\hat{C} + \hat{C}\hat{A} = \left[\hat{A},\hat{B}\right] + \left[\hat{A},\hat{C}\right]\\
-  \left[\hat{A},\hat{B}\hat{C}\right] &= \hat{A}\hat{B}\hat{C} - \hat{B}\hat{C}\hat{A}
-  = \hat{A}\hat{B}\hat{C} - \hat{B}\hat{A}\hat{C} + \hat{B}\hat{A}\hat{C} - \hat{B}\hat{C}\hat{A}
-  = \left[\hat{A},\hat{B}\right]\hat{C} + \hat{B}\left[\hat{A},\hat{C}\right]\\
-  \left[\hat{A},\left[\hat{B},\hat{C}\right]\right]
-  + \left[\hat{B},\left[\hat{C},\hat{A}\right]\right]
-  &+ \left[\hat{C},\left[\hat{A},\hat{B}\right]\right] =
-  \left[\hat{A},\hat{B}\hat{C} - \hat{C}\hat{B}\right]
-  + \left[\hat{B},\hat{C}\hat{A} - \hat{A}\hat{C}\right]
-  + \left[\hat{C},\hat{A}\hat{B} - \hat{B}\hat{A}\right] = \\
-  &= \hat{A}\hat{B}\hat{C} - \hat{A}\hat{C}\hat{B}
-  + \hat{B}\hat{C}\hat{A} - \hat{B}\hat{A}\hat{C}
-  + \hat{C}\hat{A}\hat{B} - \hat{C}\hat{B}\hat{A}\\
-\end{align*}
-
+\section{Problem Five: Silicon Crystal Structure}
+Silicon forms a face-centered cubic diamond crystal lattice, where the center of each face, in
+addition to each corner, has an atom at it. The length of a side of the cube is $5.431$ \AA
+$= 5.431 * 10^{-10}m$. This is the lattice constant of Silicon crystal. Correspondingly the
+bond lengths in silicon crystal are $5.431$ \AA (between corners) and
+$5.431 * \frac{\sqrt{2}}{2} = 3.84$ \AA.
+\hspace{2cm}
+Silicon is a diamond FCC, so its space group is Fd$\overline{3}$m. This space group is a
+Bravais lattice, meaning a lattice that is generated by adding any integer multiple of one
+of three basis vectors to a starting point to generate an arbitrary member of the lattice.\\
 \end{document}
