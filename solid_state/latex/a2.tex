@@ -103,6 +103,40 @@ or subtract (antibonding) perpendicular to the bonding axis to form new orbitals
 connect to form new orbitals.\\
 \vspace{3cm}
 
+\section{Problem Four: Heteronuclear Diatomic Molecule}
+Here we follow the same process for finding the energies of a multiatomic system that we used
+in problem Two: defining which atomic wave functions overlap on-site and off-site, deciding
+the energies of these overlaps, creating a Hamiltonian and finding the energies of the
+Hamiltonian. We are given that for this heteroatomic system atom A's on-site interaction
+energy is $E_A$ and B's is $E_B$. Similarly B's is $E_B$, and $E_A > E_B$. We then let out
+hopping integral take the value $H_{12} = H_{21} = \beta$. Thus our Hamiltonian is:
+
+\begin{align*}
+  H &=
+  \begin{pmatrix}
+    E_A & \beta\\
+    \beta & E_B\\
+  \end{pmatrix}
+\end{align*}
+
+Our next job is to find the eigenvalues of this matrix:
+
+\begin{align*}
+  \det\begin{pmatrix}
+    E_A-\lambda & \beta\\
+    \beta & E_B-\lambda\\
+  \end{pmatrix}
+  &= 0\\
+  (E_A-\lambda)(E_B-\lambda) - \beta^2 &= 0\\
+  \lambda^2 - \lambda(E_A + E_B )+ E_AE_B - \beta^2 &= 0\\
+  \lambda &= \frac{(E_A + E_B) \pm \sqrt{(E_A + E_B)^2 - 4(E_AE_B - \beta^2)}}{2}\\
+  &= \frac{(E_A + E_B) \pm \sqrt{E_A^2 + E_B^2 - 2E_AE_B + 4\beta^2}}{2}\\
+  &= \frac{(E_A + E_B) \pm \sqrt{(E_A - E_B)^2 + 4\beta^2}}{2}\\
+  &= \frac{(E_A + E_B)}{2} \pm \sqrt{\frac{(E_A - E_B)^2}{4} + \beta^2}\\
+\end{align*}
+
+
+
 \section{Problem Five: Silicon Crystal Structure}
 Silicon forms a face-centered cubic diamond crystal lattice, where the center of each face, in
 addition to each corner, has an atom at it. The length of a side of the cube is $5.431$ \AA
