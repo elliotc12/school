@@ -74,4 +74,35 @@ terms of $V_i, V_f$ and $T_i$:
   T_f &= T_i\left(\frac{V_f}{V_i}\right)^{1-\gamma} = T_i\left(\frac{V_i}{V_f}\right)^{\gamma-1}\\
 \end{align*}
 
+\section{Problem Four: Gas Engine}
+Here we use the ideal gas property $dU = C_v$ to express all changes in internal energy
+as changes in temperature. We also use the adiabatic $PV^\gamma = k$ relation to convert
+between variables during the insulated work-doing steps:\\
+
+We first find the work done:
+\begin{align*}
+  W_{ab} &= -dU \hspace{2cm}\mbox{Q = 0, First law of Thermo}\\
+  &= -C_vdT \hspace{2cm}dU_{ideal} = CvdT\\
+  &= -C_v\left(T_b-T_a\right)\\
+  &= -C_vT_b\left(1-\frac{T_a}{T_b}\right)\\
+  &= -C_vT_b\left(1-\left(\frac{V_2}{V_1}\right)^{\gamma-1}\right)
+             \hspace{2cm}P_aV_2^\gamma = P_bV_1^\gamma \rightarrow
+             \frac{T_a}{T_b} = \left(\frac{V_2}{V_1}\right)^{\gamma-1}\\
+  W_{cd} &= C_vT_c\left(1 - \left(\frac{V_2}{V_1}\right)^{\gamma-1}\right)
+\end{align*}
+
+Then we find the heat added during the heating step:
+
+\begin{align*}
+  dQ_1 &= dU_V = C_v\left(T_c-T_b\right)\\
+\end{align*}
+
+Now we find the efficiency:
+
+\begin{align*}
+  \eta &= \frac{W}{Q_1} = \frac{C_vT_c\left(1 - \left(\frac{V_2}{V_1}\right)^{\gamma-1}\right)
+    - C_vT_b\left(1-\left(\frac{V_2}{V_1}\right)^{\gamma-1}\right)}{C_v\left(T_c-T_b\right)}\\
+  &= 1 - \left(\frac{V_2}{V_1}\right)^{\gamma-1}\\
+\end{align*}
+
 \end{document}
