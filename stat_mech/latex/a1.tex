@@ -74,6 +74,51 @@ terms of $V_i, V_f$ and $T_i$:
   T_f &= T_i\left(\frac{V_f}{V_i}\right)^{1-\gamma} = T_i\left(\frac{V_i}{V_f}\right)^{\gamma-1}\\
 \end{align*}
 
+\section{Problem Two: Sound compression of a liquid}
+We use the following variable scheme: $\Delta x$ is the initial length of our 1D
+liquid. $\epsilon$ is the change in our 1D liquid length due to rarefaction
+on the left side. $\epsilon + \Delta \epsilon$ is the change in length to the right
+side.
+
+\begin{align*}
+  K_S &= -\frac{1}{V}\left(\frac{dV}{dP}\right)_S
+  = \frac{-1}{V}\frac{\Delta V}{\Delta P}& \hspace{2cm}&\mbox{P-P0: displacement from eq pressure}\\
+  &= \frac{-1}{A\Delta x}\frac{A\Delta\epsilon}{P-P_0}& \hspace{2cm}&\mbox{A: Area}\\
+  \Delta P &= -\frac{1}{K_s}\frac{d\epsilon}{dx}\\
+\end{align*}
+
+We then need to find the time derivative of $\epsilon$, which is the force on our
+1D cell, or how fast it is growing. The pressure wave is moving in the negative
+x direction, so the force on the right of the cell is $P_0 + \Delta P$. On the
+left, our cell is being pushed by the normal pressure $P_0$. Thus by Newton's First
+Law we see that:\\
+
+\begin{align*}
+  m\left(\frac{d^2\epsilon}{dt^2}\right) &= P_0A - (P_0+\Delta P)A = -\Delta PA\\
+  \rho A \Delta x \frac{d^2\epsilon}{dt^2} &= -A\frac{dP}{dx}\Delta x\\
+  \rho \frac{d^2\epsilon}{dt^2} &= -\frac{dP}{dx}\\
+  \rho \frac{d^2\epsilon}{dt^2} &= -\frac{d \Delta P}{dx}\\
+  \rho \frac{d^2}{dt^2}\frac{d\epsilon}{dx} &= -\frac{d^2P}{dx^2}\\
+  \rho \frac{d^2}{dt^2}\left(-PK_s\right) &= -\frac{d^2P}{dx^2}\\
+  \rho K_s \frac{d^2P}{dt^2}\left(P\right) &= \frac{d^2P}{dx^2}\\
+  \frac{d^2P}{dt^2} &= \frac{1}{\rho K_s }\frac{d^2P}{dx^2}\\
+\end{align*}
+
+Solution inspired by several people from SPS.\\
+
+\section{Problem Three: Solid $\Delta T, \Delta P$ relation}
+
+\begin{align*}
+  dS &= \left(\frac{dS}{dT}_P\right)dT + \left(\frac{dS}{dP}_T\right)dP = 0\\
+  \left(\frac{dS}{dT}_P\right)dT &= -\left(\frac{dS}{dP}_T\right)dP\\
+  \frac{C_P}{T}dT &= \left(\frac{dV}{dT}_P\right)dP\\
+  \frac{C_P}{T}dT &= V\alpha dP\\
+  \frac{C_P}{TV\alpha} &= -\left(\frac{dP}{dT}_S\right)\\
+  \frac{C_P}{TV\alpha} &= \frac{\Delta P}{\Delta T}\\
+  \Delta T &= \frac{TV\alpha}{C_P} = \frac{\alpha T}{\rho c_p} \hspace{2cm}
+  c_p \mbox{ is the volumetric specific heat}
+\end{align*}
+
 \section{Problem Four: Gas Engine}
 Here we use the ideal gas property $dU = C_v$ to express all changes in internal energy
 as changes in temperature. We also use the adiabatic $PV^\gamma = k$ relation to convert
