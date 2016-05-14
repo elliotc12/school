@@ -135,6 +135,16 @@ Our next job is to find the eigenvalues of this matrix:
   &= \frac{(E_A + E_B)}{2} \pm \sqrt{\frac{(E_A - E_B)^2}{4} + \beta^2}\\
 \end{align*}
 
+This is the energy equation shown in Sutton 2.45. The case using addition is the antibonding (less
+stable) orbital, and the case using subtraction is the more stable bonding orbital. We then plug
+these equations back into our original matrix to find the eigenvectors:\\
+
+\begin{align*}
+  \det\begin{pmatrix}
+    E_A - \frac{(E_A + E_B)}{2} + \sqrt{\frac{(E_A - E_B)^2}{4} + \beta^2} & \beta\\
+    \beta & E_B - \frac{(E_A + E_B)}{2} + \sqrt{\frac{(E_A - E_B)^2}{4} + \beta^2}\\
+  \end{pmatrix}
+\end{align*}
 
 
 \section{Problem Five: Silicon Crystal Structure}
