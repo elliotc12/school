@@ -122,4 +122,98 @@ be the average of $\epsilon_1$ and $\epsilon_2$. Plot:
        {\left(e^{-\epsilon_1/kT} + e^{-\epsilon_2/kT}\right)^2}\\
 \end{align*}
 
+\section{Problem Three: Nuclear Spin Energy}
+For this problem we only consider energies due to the spin-1 nuclei. Nonzero spins
+$\pm \hbar$ have energy $E=\epsilon$ and the zero-spin has energy $E=0$.\\
+
+\textbf{a.)}We first find the total nuclear energy of the system.
+Our first task is to find the single-particle partition function:\\
+
+\begin{align*}
+  z &= \sum e^{-\beta E_i} = e^{-\beta E_{-1}} + e^{-\beta E_0} + e^{-\beta E_1}\\
+  &= 2e^{-\beta\epsilon}+1\\
+\end{align*}
+
+We then plug this into our equation for total system energy, using N as Avogadro's
+Number:\\
+
+\begin{align*}
+  E &= N\sum p_iE_i\\
+  &= N\frac{2\epsilon e^{-\beta\epsilon}}{2e^{-\beta\epsilon} + 1}\\
+\end{align*}
+
+\textbf{b.)}Next, we find the system's entropy, using $z^N$ as the total partition
+function:\\
+
+\begin{align*}
+  S &= -\left(\frac{\partial A}{\partial T}\right)_V =
+  \frac{\partial}{\partial T} k_BT\ln(z^N)\\
+  &= k_BN\ln(Z) + \frac{Nk_BT}{Z}\frac{\partial Z}{\partial T}\\
+  &= k_BN\ln\left(2e^{-\beta\epsilon}+1\right)
+  + \frac{k_BNT}{2e^{-\beta\epsilon}+1}
+  \left(\frac{2\epsilon e^{-\beta\epsilon}}{k_BT^2}\right)\\
+  &= k_BN\ln\left(2e^{-\beta\epsilon}+1\right)
+  + \frac{2N\epsilon e^{-\beta\epsilon}}{T\left(2e^{-\beta\epsilon}+1\right)}\\
+\end{align*}
+
+We then take the limits of this function at low and high T to find extreme
+behavior:
+
+\begin{align*}
+  \lim_{T\rightarrow\infty} k_BN\ln\left(2e^{-\beta\epsilon}+1\right)
+  + \frac{2N\epsilon e^{-\beta\epsilon}}{T\left(2e^{-\beta\epsilon}+1\right)}
+  &= Nk_B\ln\left(3\right) = k_B\ln\left(3^N\right)\\
+  \lim_{T\rightarrow0} k_BN\ln\left(2e^{-\beta\epsilon}+1\right)
+  + \frac{2N\epsilon e^{-\beta\epsilon}}{T\left(2e^{-\beta\epsilon}+1\right)}
+  &= 0\\
+\end{align*}
+
+Both of these results make sense when we use the $S=k_B\ln\left(\omega\right)$
+equation for entropy. At very high temperatures there are $3^N$ possible
+equivalent states the system can take on, and at low temperatures the system will
+have only one possible state: all in the spin-0 configuration, and hence zero
+entropy.\\
+
+\textbf{c.)} At very high temperatures, the denominator of the exponential
+in $p_i = e^{-E_i/kT}/Z$ dwarfs the energy in the numerator, so all probabilities
+are the same, ie all states are equally accessible. This means the single-particle
+partition function is $3$, and hence the system's molar partition function is
+$3^N$, where N is Avogadro's number. Then the entropy is
+$S = k_B\ln\left(3^N\right)$, which is what we calculated for the limit in part b.\\
+
+For very low temperatures, the exponentials in $p_i = e^{-E_i/kT}/Z$ decay to zero,
+so the only nonzero probability is the zero-energy spin-0 state. Thus the only
+reachable state is where all particles are in their ground state, so the entropy
+is $S = k_B\ln\left(1\right) = 0$.\\
+
+\textbf{d.)} We then calculate the constant-volume heat capacity for the
+system:\\
+
+%% \begin{align*}
+%%   C_V = T\left(\frac{\partial S}{\partial T}\right)_T
+%%   &= \frac{-2N\epsilon}{T\left(2e^{-\beta\epsilon}+1\right)}
+%%   + \frac{-2N\epsilon e^{-\beta\epsilon}}{k_BT^2\left(2e^{-\beta\epsilon}+1\right)}
+%%   + \frac{-4N\epsilon^2e^{-2\beta\epsilon}}{k_BT^2\left(2e^{-\beta\epsilon}+1\right)^2}\\
+%%   &= \left(\frac{-2N\epsilon}{T\left(2e^{-\beta\epsilon}+1\right)}\right)\left(1
+%%   + \frac{e^{-\beta\epsilon}}{k_BT}
+%%   + \frac{2\epsilon e^{-2\beta\epsilon}}{k_BT\left(2e^{-\beta\epsilon}+1\right)}\right)
+%% \end{align*}
+
+\begin{align*}
+  U &= \left(\frac{\partial U}{\partial T}\right)_V\\
+  &= \left(\frac{\partial}{\partial T}\right)_V
+  N\frac{2\epsilon e^{-\beta\epsilon}}{2e^{-\beta\epsilon} + 1}\\
+  &= N\frac{2\epsilon^2 e^{-\beta\epsilon}}{k_BT^2\left(2e^{-\beta\epsilon} + 1\right)}
+  + N\frac{4\epsilon^2e^{-2\beta\epsilon}}{k_BT^2(2e^{-\beta\epsilon} + 1)^2}\\
+  &= N\frac{2\epsilon^2 e^{-\beta\epsilon}}{k_BT^2\left(2e^{-\beta\epsilon} + 1\right)}
+  \left(1 + \frac{2e^{-\beta\epsilon}}{2e^{-\beta\epsilon} + 1}\right)\\
+  &= N\frac{2\epsilon^2 e^{-\beta\epsilon}}{k_BT^2\left(2e^{-\beta\epsilon} + 1\right)^2}
+\end{align*}
+
+This is proportional to $T^2$ for very high T. For very high T, this number goes to
+zero due to the T in the denominator and lack of any growing terms anywhere. This is
+what we expect, since eventually heating up a system will not increase its energy
+anymore, since the partition function changes less and less as the system reaches a
+state where all microstates are equally probable.\\
+
 \end{document}
