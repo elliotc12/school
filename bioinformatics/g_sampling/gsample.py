@@ -8,7 +8,7 @@ import random
 
 random.seed()
 
-N = 100
+N = 20
 
 data = np.genfromtxt('seq.txt', dtype='string')
 K = int(data[0])
@@ -93,36 +93,50 @@ for s in seq:
 
 H_bg = -pa*np.log(pa) - pt*np.log(pt) - pg*np.log(pg) - pc*np.log(pc)
 
-j = np.empty([n]).astype(int)
-for i in range(n):
-    j[i] = random.randint(0,l-K)
+scores = []
+motifs = []
+infos  = []
 
-info = []
-
-for x in range(N):
-    guess_motif = []
-    for i in range(n):     # create new weight matrix
-        guess_motif.append(seq[i][j[i]:j[i]+K])
-    W = get_W(guess_motif)
-    H_M = get_HM(guess_motif)
-
-    S0 = np.empty([n])     # get new scores
+for a in range(200):
+    S_best = 0
+    j = np.empty([n]).astype(int)
     for i in range(n):
-        S0[i] = S(guess_motif[i], W)
+        j[i] = random.randint(0,l-K)
 
-    for i, s in enumerate(seq):   # update guess motif by weight matrix
-        for k in range(l-K):
-            if S(s[k], W) < S0[i]:
-                S0[i] = S(s[i], W)
-                j[i] = k
+    info = []
 
-    I = H_bg - sum(H_M)/K
-    print guess_motif
-    print I
-    info.append(I)
-    #print np.sum(S0)
+    for x in range(N):
+        guess_motif = []
+        for i in range(n):     # create new weight matrix
+            guess_motif.append(seq[i][j[i]:j[i]+K])
+            W = get_W(guess_motif)
+            H_M = get_HM(guess_motif)
 
-plt.plot(info)
+        S0 = np.empty([n])     # get new scores
+        for i in range(n):
+            S0[i] = S(guess_motif[i], W)
+
+        for i, s in enumerate(seq):   # update guess motif by weight matrix
+            for k in range(l-K):
+                if S(s[k], W) < S0[i]:
+                    S0[i] = S(s[i], W)
+                    j[i] = k
+
+        I = H_bg - sum(H_M)/K
+        info.append(I)
+        if S_best < np.sum(S0):
+            S_best = np.sum(S0)
+    scores.append(S_best)
+    motifs.append(guess_motif)
+    infos.append(info)
+
+bests = [i for i, j in enumerate(scores) if j==max(scores)]
+
+print bests
+
+for b in bests:
+    plt.plot(infos[b])
+    
 plt.xlabel("Iteration")
 plt.ylabel("Information")
 plt.title("Information content per iteration in Gibb's Sampling")
