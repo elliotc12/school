@@ -4,8 +4,8 @@
 
 \usepackage{graphicx}
 \usepackage{amsmath}
-\usepackage{marvosym} % Required for symbols in the colored box
-\usepackage{ifsym} % Required for symbols in the colored box
+%% \usepackage{marvosym} % Required for symbols in the colored box
+%% \usepackage{ifsym} % Required for symbols in the colored box
 
 \usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
 
@@ -54,12 +54,39 @@
 
 \begin{align*}
   A &= 2xy + 2yz + xz\\
-  V = xyz\\
-  \grad V &= \left(\frac{d}{dx} + \frac{d}{dy} + \frac{d}{dz} \right)xyz = 0\\
-  xy + yz + xz = 0\\
-  A_{max} &= 2xy + 2yz - xy - yz = xy + yz\\
-  
+  2y(x+z) + xz &= A\\
+  y = \frac{\left(A - xz\right)}{2\left(x+z\right)}\\
+  V = xyz = xz\frac{\left(A - xz\right)}{2\left(x+z\right)}\\
+  \frac{dV}{dx} &= 0 = z\frac{\left(A - xz\right)}{2\left(x+z\right)}
+  - xz\frac{z}{2\left(x+z\right)} + xz\frac{\left(A - xz\right)}{\left(x+z\right)^2}\\
+  \frac{2xz^2 - Az}{2\left(x+z\right)} =& xz\frac{\left(A - xz\right)}{\left(x+z\right)^2}\\
 \end{align*}
+
+\textbf{b.)}
+
+\begin{align*}
+  g(x,y,z) &= 2xy + 2yz + xz\\
+  \nabla f &= \lambda \nabla g\\
+  yz &= \lambda(2y+z)\\
+  xz &= \lambda(2x+2z)\\
+  xy &= \lambda(x+2y)\\
+\end{align*}
+
+Then...
+
+\begin{align*}
+  xyz &= x\lambda(2y+z) = 2\lambda xy + \lambda xz\\
+  xyz &= y\lambda(2x+2z)= 2\lambda xy + 2\lambda yz\\
+  xyz &= z\lambda(x+2y) = \lambda xz + 2\lambda yz\\
+  \lambda xz + 2\lambda yz &= 2\lambda xy + 2\lambda yz\\
+  \lambda xz &= 2\lambda xy\\
+  z &= y\\
+  2\lambda xy + 2\lambda y^2 &= 2\lambda xy + \lambda xy\\
+  2\lambda y^2 &= \lambda xy\\
+  y^2 &= xy \rightarrow x = y\\
+  x = y = z\\
+\end{align*}
+
 
 \section{Problem Two: Two-system entropy}
 \textbf{a.)} The probability of two unrelated events occuring is the product of the
@@ -71,6 +98,57 @@ they are ``unrelated'' and so $P_{rs} = P_rP_s$.\\
   S &= -k_B\sum_r \sum_s P_{rs} \ln\left(P_{rs}\right)\\
   &= -k_B\sum_r \sum_s P_rP_s \ln\left(P_rP_s\right)\\
   &= -k_B\sum_r \sum_s P_rP_s\left(\ln P_r + \ln P_s\right)\\
+  &= -k_B\sum_r \sum_s P_rP_s\ln P_r + -k_B\sum_r \sum_s P_rP_s\ln P_s\\
+  &= -k_B\sum_r P_r\ln P_r + -k_B\sum_s P_s\ln P_s
+  \hspace{2cm}\mbox{since }\sum_rP_r = 1\\
+  &= S_1 + S_2\\
+\end{align*}
+
+\section{Problem Three: Two-system probability}
+\textbf{a.)}
+\begin{align*}
+  S - S_0 &= -k_B\sum_rP_r^0\ln P_r^0 + k_B\sum_rP_r\ln P_r\\
+  &= -k_B\sum_rP_r^0\ln P_r^0 + P_r\ln P_r + P_r\ln P_r^0 - P_r\ln P_r^0
+  \hspace{2cm}P_r\ln P_r^0 - P_r\ln P_r^0=0\\
+\end{align*}
+
+We need to get rid of $P_r^0\ln P_r^0 - P_r\ln P_r^0$, so we do some fancy math. By taking
+the logarithm of our probability definition, we see that:
+
+\begin{align*}
+  \ln P_r^0 &= -\beta E_r - \ln Z\\
+  \sum_r P_r\ln P_r^0 &= -\sum_r P_r\beta E_r - \sum_r P_r\ln Z
+  \hspace{2cm}\sum_r P_r=1\\
+  \sum_r P_r\ln P_r^0 &= -\beta E - \ln Z\\
+  -\sum_r P_r\ln P_r^0 &= \beta E + \ln Z\\
+\end{align*}
+
+\begin{align*}
+  \ln P_r^0 &= -\beta E_r - \ln Z\\
+  \sum_r P_r^0\ln P_r^0 &= -\sum_r P_r^0\beta E_r - \sum_r P_r^0\ln Z
+  \hspace{2cm}\sum_r P_r^0=1\\
+  \sum_r P_r^0\ln P_r^0 &= -\beta E - \ln Z\\
+\end{align*}
+
+Combining these two final equations, we see that:
+
+\begin{align*}
+  \sum_r P_r^0\ln P_r^0 - \sum_r P_r\ln P_r^0 = 0\\
+\end{align*}
+
+which is what we wanted to show. We plug this into our original equation:
+
+\begin{align*}
+  S - S_0 &= -k_B\sum_rP_r\ln P_r + P_r\ln P_r^0\\
+  &= -k_B\sum_r P_r \ln\left(\frac{P_r^0}{P_r}\right)\\
+\end{align*}
+
+\textbf{b.)}
+\begin{align*}
+  S - S_0 &= -k_B\sum_r P_r \ln\left(\frac{P_r^0}{P_r}\right)\\
+  S - S_0 &\leq -k_B\sum_r P_r \frac{P_r^0}{P_r} - 1
+  \hspace{2cm}\mbox{By the relation in the problem}\\
+  \sum_r P_r \frac{P_r^0}{P_r} -1 = 0 \rightarrow S \leq S_0\\
 \end{align*}
 
 \end{document}
