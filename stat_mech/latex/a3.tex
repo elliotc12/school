@@ -54,39 +54,61 @@
 
 \begin{align*}
   A &= 2xy + 2yz + xz\\
-  2y(x+z) + xz &= A\\
-  y = \frac{\left(A - xz\right)}{2\left(x+z\right)}\\
-  V = xyz = xz\frac{\left(A - xz\right)}{2\left(x+z\right)}\\
-  \frac{dV}{dx} &= 0 = z\frac{\left(A - xz\right)}{2\left(x+z\right)}
-  - xz\frac{z}{2\left(x+z\right)} + xz\frac{\left(A - xz\right)}{\left(x+z\right)^2}\\
-  \frac{2xz^2 - Az}{2\left(x+z\right)} =& xz\frac{\left(A - xz\right)}{\left(x+z\right)^2}\\
+  A - 2yz &= x(2y + z)\\
+  x &= \frac{A-2yz}{2y+z}\\
+  V &= xyz\\
+  &= yz\frac{A-2yz}{2y+z}\\
+  \frac{dV}{dy} &= z\frac{A-2yz}{y+2z} - yz\frac{2z}{y+2z}
+  - 2yz\frac{A-2yz}{(y+2z)^2} = 0\\
+  (A-2yz)(y+2z) - y(2z)(y+2z) - y(A-2yz) &= 0\\
+  \frac{dV}{dz} &= (A - 2yz)(y+2z) - z(2y)(y+2z) - 2z(A-2yz) = 0\\
+\end{align*}
+
+Subtracting our z derivative from our y derivative, we get that $y = 2z$, which
+is the condition for maximizing velocity given area of this box. Thus:\\
+
+\begin{align*}
+  y &= \frac{\sqrt{A}}{\sqrt{3}}\\
+  z &= \frac{\sqrt{A}}{2\sqrt{3}}\\
+  x &= \frac{\sqrt{A}}{\sqrt{3}}\\
 \end{align*}
 
 \textbf{b.)}
 
 \begin{align*}
-  g(x,y,z) &= 2xy + 2yz + xz\\
+  g(x,y,z) &= xy + 2yz + 2xz\\
   \nabla f &= \lambda \nabla g\\
-  yz &= \lambda(2y+z)\\
-  xz &= \lambda(2x+2z)\\
-  xy &= \lambda(x+2y)\\
+  yz &= \lambda(y+2z)\\
+  xz &= \lambda(x+2z)\\
+  xy &= \lambda(2x+2y)\\
 \end{align*}
 
 Then...
 
 \begin{align*}
-  xyz &= x\lambda(2y+z) = 2\lambda xy + \lambda xz\\
-  xyz &= y\lambda(2x+2z)= 2\lambda xy + 2\lambda yz\\
-  xyz &= z\lambda(x+2y) = \lambda xz + 2\lambda yz\\
-  \lambda xz + 2\lambda yz &= 2\lambda xy + 2\lambda yz\\
-  \lambda xz &= 2\lambda xy\\
-  z &= y\\
-  2\lambda xy + 2\lambda y^2 &= 2\lambda xy + \lambda xy\\
-  2\lambda y^2 &= \lambda xy\\
-  y^2 &= xy \rightarrow x = y\\
-  x = y = z\\
+  xyz &= x\lambda(y+2z) = \lambda xy + 2\lambda xz\\
+  xyz &= y\lambda(x+2z)= \lambda xy + 2\lambda yz\\
+  xyz &= z\lambda(2x+2y) = 2\lambda xz + 2\lambda yz\\
+  3xyz &= \lambda(2xy + 4xz + 4yz) \rightarrow xyz = \frac{3xyz}{2\lambda}\\
 \end{align*}
 
+We then substitute these equations into our yz, xz and xy equations to get:
+
+\begin{align*}
+  1 - \frac{3x}{2\lambda}(y+2z) &= 0\\
+  1 - \frac{3y}{2\lambda}(x+2z) &= 0\\
+  1 - \frac{3z}{2\lambda}(2x+2y) &= 0\\
+\end{align*}
+
+Thus we see that:
+
+\begin{align*}
+  y &= \frac{\sqrt{A}}{\sqrt{3}}\\
+  z &= \frac{\sqrt{A}}{2\sqrt{3}}\\
+  x &= \frac{\sqrt{A}}{\sqrt{3}}\\
+\end{align*}
+
+as desired.\\
 
 \section{Problem Two: Two-system entropy}
 \textbf{a.)} The probability of two unrelated events occuring is the product of the
