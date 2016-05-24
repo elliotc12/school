@@ -103,13 +103,25 @@ energy.\\
 
 \textbf{a.) Linear restoring force}
 \begin{align*}
-  Z &= \frac{2\pikT}{\alpha}\\
-  <E> &= NkT\\
+  Z &= \int_{-\infty}^{\infty}e^{\alpha x^2/2kT} = \frac{2\pi kT}{\alpha}\\
+  <E> &= N\sum E_ip_i = \frac{N\alpha}{2\pi kT}
+  \int_{-\infty}^{\infty}\frac{\alpha x^2}{2}e^{\alpha x^2/2kT}\\
+  &= NkT\\
 \end{align*}
 
 \textbf{b.) Cubic restoring force}
 \begin{align*}
-  stuff
+  Z &= \int_{-\infty}^{\infty}e^{\alpha x^4/4kT}
+  = \frac{1}{2}\left(\frac{\alpha}{4kT}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)\\
+  <E> &= N\sum E_ip_i =
+  2N\left(\frac{\alpha}{4kT}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)^{-1}
+  \int_{-\infty}^{\infty}\frac{\alpha x^4}{4}e^{\alpha x^4/4kT}\\
+  &= \frac{N\alpha}{2}\left(\frac{\alpha}{4kT}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)^{-1}
+  \frac{5}{16}\left(\frac{2kT}{\alpha}\right)\left(\frac{2kT}{\alpha}\right)^{1/4}
+  \Gamma\left(\frac{1}{4}\right)\\
+  &= N\alpha\left(\frac{\alpha}{4kT}\right)^{1/4}
+  \frac{5}{16}\left(\frac{4kT}{\alpha}\right)\left(\frac{4kT}{\alpha}\right)^{1/4}\\
+  &= \frac{5}{4}NkT\\
 \end{align*}
 
 \end{document}
