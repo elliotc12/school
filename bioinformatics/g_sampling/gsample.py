@@ -8,7 +8,8 @@ import random
 
 random.seed()
 
-N = 20
+num_iterations = 20
+num_attempts = 1
 
 data = np.genfromtxt('seq.txt', dtype='string')
 K = int(data[0])
@@ -93,51 +94,77 @@ for s in seq:
 
 H_bg = -pa*np.log(pa) - pt*np.log(pt) - pg*np.log(pg) - pc*np.log(pc)
 
-scores = []
-motifs = []
 infos  = []
+scores = []
+datas = []
 
-for a in range(200):
-    S_best = 0
+for a in range(num_attempts):
     j = np.empty([n]).astype(int)
     for i in range(n):
         j[i] = random.randint(0,l-K)
 
-    info = []
+    iter_infos = [] # scalar of the guess motif's information per iteration
+    iter_scores = [] # n-tuple of each sequence's score per iteration
+    iter_datas = []
 
-    for x in range(N):
+    for x in range(num_iterations):
         guess_motif = []
+        guess_data = []
+        guess_score = [0] * n
+
         for i in range(n):     # create new weight matrix
             guess_motif.append(seq[i][j[i]:j[i]+K])
-            W = get_W(guess_motif)
+            W = get_W(guess_motif) # why not outside the loop?
             H_M = get_HM(guess_motif)
 
-        S0 = np.empty([n])     # get new scores
-        for i in range(n):
-            S0[i] = S(guess_motif[i], W)
+        for i in range(n):      # get new scores
+            guess_score[i] = S(guess_motif[i], W)
+            guess_data.append(str(guess_motif[i]))
+            guess_data.append(str(guess_score[i])[0:3])
+            print str(guess_score[i])[0:3]
+            print guess_data
+        guess_data.append(str(sum(guess_score))[0:3])
+
+        iter_infos.append(H_bg - sum(H_M)/K)
+        iter_scores.append(guess_score)
+        iter_datas.append(guess_data)
+
+        print "guess_score: %s" % guess_score
+        print "iter_scores: %s" % iter_scores
 
         for i, s in enumerate(seq):   # update guess motif by weight matrix
-            for k in range(l-K):
-                if S(s[k], W) < S0[i]:
-                    S0[i] = S(s[i], W)
+            for k in range(l-K): # check if this is right
+                if S(s[k], W) < guess_score[i]:
+                    guess_score[i] = S(s[i], W)
                     j[i] = k
 
-        I = H_bg - sum(H_M)/K
-        info.append(I)
-        if S_best < np.sum(S0):
-            S_best = np.sum(S0)
-    scores.append(S_best)
-    motifs.append(guess_motif)
-    infos.append(info)
+    infos.append(iter_infos)          # log that iteration's scores/infos/data
+    scores.append(iter_scores)
+    datas.append(iter_datas)
 
-bests = [i for i, j in enumerate(scores) if j==max(scores)]
+    print "iter_scores[0]: %s" % iter_scores[0]
 
-print bests
+best_sum_scores = []
 
-for b in bests:
-    plt.plot(infos[b])
-    
-plt.xlabel("Iteration")
-plt.ylabel("Information")
-plt.title("Information content per iteration in Gibb's Sampling")
-plt.show()
+for iterscores in scores:
+    sum_scores = []
+    for iterscore in iterscores:
+        sum_scores.append(sum(iterscore))
+    best_sum_scores.append(max(sum_scores))
+
+best_indices = [i for i, j in enumerate(best_sum_scores) if j==max(best_sum_scores)]
+
+for b in best_indices:
+    plt.figure()
+    info_line, = plt.plot(infos[b], 'r')
+    score_line, = plt.plot([sum(s) for s in scores[b]], 'b')
+    print "Guess progression for iteration #%s:" % str(b)
+    for m in datas[b]:
+        print m
+    print [str(sum(s)) for s in scores[b]]
+    print " "
+    plt.xlabel("Iteration")
+    plt.ylabel("Score")
+    plt.title("Score per iteration in Gibb's Sampling")
+    plt.legend([info_line, score_line], ["Information", "Score"])
+    plt.show()
