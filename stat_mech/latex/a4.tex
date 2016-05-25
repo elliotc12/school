@@ -80,13 +80,24 @@ We then find the energy of the gas:
 
 \begin{align*}
   <E> &= N\sum_{i} \epsilon_i p_i\\
-  &= \frac{N}{Z}int_{-\infty}^{\infty}int_{-\infty}^{\infty}
+  &= \frac{N}{Z}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
   \frac{m(v_x^2+v_y^2)}{2}e^{-m(v_x^2+v_y^2)/2kT} dv_xdv_y\\
   &= \frac{Nm}{2kT\pi}
-  \int_{0}^{\infty}\int_0^{2\pi}\frac{mv_r^2}{2}e^{-mv_r^2/2kT}}v\sin\theta dvd\theta\\
-  &= \frac{Nm}{2kT\pi}
-  \int_{0}^{\infty}\frac{mv_r^2}{2}e^{-mv_r^2/2kT}}v\sin\theta dvd\theta\\
+  \int_{0}^{\infty}\int_0^{2\pi}\frac{mv_r^2}{2}e^{-mv_r^2/2kT}vdv_rd\theta\\
+  &= \frac{Nm^2}{2kT} \int_{0}^{\infty} v_r^3e^{-mv_r^2/2kT}dv\\
+  &= \frac{Nm^2}{2kT}\frac{2k^2T^2}{m^2}\\
+  &= NkT\\
 \end{align*}
+
+\begin{align*}
+  C_v &= \frac{d<E>}{dT} = Nk\\
+\end{align*}
+
+This is the number we expect. Because vector decomposition works on squared velocities and the
+energy of an ideal gas only depends on the squared velocities of its particles, we can separate
+the ideal gas energy into dimensional components and just add them up to get the total energy.
+We found that each dimension has energy $\frac{1}{2}NkT$, so we get double that for our final
+energy.\\
 
 \section{Problem Three: Restoring-force systems}
 
@@ -98,8 +109,7 @@ We then find the energy of the gas:
 
 \textbf{b.) Cubic restoring force}
 \begin{align*}
-  
+  stuff
 \end{align*}
-
 
 \end{document}
