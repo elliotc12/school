@@ -103,10 +103,19 @@ energy.\\
 
 \textbf{a.) Linear restoring force}
 \begin{align*}
-  Z &= \int_{-\infty}^{\infty}e^{\alpha x^2/2kT} = \frac{2\pi kT}{\alpha}\\
-  <E> &= N\sum E_ip_i = \frac{N\alpha}{2\pi kT}
-  \int_{-\infty}^{\infty}\frac{\alpha x^2}{2}e^{\alpha x^2/2kT}\\
-  &= NkT\\
+  Z = \int_0^\infty e^{-\alpha x^2/2kT}dx\\
+  &= \left(\frac{2\pi kT}{\alpha}\right)^{1/2}\\
+  <E>_r &= \frac{N}{Z}\int_0^\infty \frac{\alpha x^2}{2}
+  &= \frac{NkT}{2}\\
+  <E> &= <E>_{ideal} + <E>_r = NkT\\
+\end{align*}
+
+\textbf{b.) Cubic restoring force}
+\begin{align*}
+  Z &= \int_{-\infty}^{\infty}e^{\alpha x^4/4kT}
+  = \frac{1}{2}\left(\frac{4kT}{\alpha}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)\\
+  <E> &= 2N\left(\frac{\alpha}{4kT}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)^{-1}
+  \int_{-\infty}^\infty \frac{\alpha x^4}{4}e^{-\alpha x^4 / 4kT}\\
 \end{align*}
 
 \textbf{b.) Cubic restoring force}
