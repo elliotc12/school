@@ -1,0 +1,34 @@
+Gibbs Sampling Implementation
+
+This project is meant to be a simple illustration that the Gibb's Sampling algorithm
+converges to a local (non-global) maximum when applied to short DNA sequences.
+
+The program currently takes in as input a 'seq.txt' file, formatted as the Kmer
+length K on the first line, then the sequences on all subsequent lines. It
+performs the Gibb's Sampling algorithm on them repeatedly for a small, defined
+number of iterations. Lecture notes were used to implement the algorithm.
+
+The current data set in seq.txt is one of the better sequences I have tried
+in terms of having intersting converging behavior. Usually, with a random
+sequence, the algorithm cannot improve its motif guess past the initial
+random guess, leaving it at that local maxima. This particular data set is very
+AT rich, which leads to a better shot at the global maxima of score due to more
+likelihood of landing on initial conditions "similar" to the true ATATAT motif in
+the set. Current data set, with motif in middle:
+
+ATGCTATACGTATCATATATATGTATATCGTACTATACTAT
+ATCTATGTACATGTATATATATGTACTTAGTAACTTACTAT
+ATGTATACATATGTATATATACTGACTGAATAACTATATAT
+CGATTACTATGTCTATATATATGCATAAATATACGATAGCT
+
+The program currently outputs two plots: one of score over iteration and one of
+information content over iteration. The score plot clearly shows that the global
+maximum is not reliably being reached, because 3/5 of the trials were below
+the 5-trial group's max, let alone the global max. The longer 3 and 4-iteration
+optimization paths are cool and do not show up in more evenly distributed
+nucleotide sequences.
+
+Next steps (not for grading):
+-Show what features of data correlate with GS reliably reaching the true motif
+-In particular, show how uneven nucleotide distributions can cause this
+-Test with a larger number of sequences at once to see if that is better
