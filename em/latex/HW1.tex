@@ -127,6 +127,33 @@ To find the force on the first-quadrant charge, we use Coulomb's Equation:
 
 If expanded, at large r, $\phi$ should look like a quadrupole scaling with $\frac{1}{r^3}$.\\
 
+\section{Problem Two}
+We want to show the following equality is always true:
+
+\begin{align*}
+  \int\rho_1\phi_2d^3\vec{r} &= \int\rho_2\phi_1d^3\vec{r}
+\end{align*}
+
+We first apply the Laplace Equation:
+
+\begin{align*}
+  -\epsilon_0\int\nabla^2\phi_1\phi_2d^3\vec{r} &= -\epsilon_0\int\nabla^2\phi_2\phi_1d^3\vec{r}
+\end{align*}
+
+We then expand this equation into its cartesian representation:
+
+\begin{align*}
+  \int\int\int\sum_{n=x,y,z}\frac{\partial^2}{\partial n^2} (\phi_1) \phi_2 dxdydz &=
+  \int\int\int\sum_{n=x,y,z}\frac{\partial^2}{\partial n^2} (\phi_2) \phi_1 dxdydz
+\end{align*}
+
+We then use Integration by Parts:
+
+\begin{align*}
+  \int\int\int\sum_{n=x,y,z}\left(\frac{d}{dn}\phi_1\phi_2\Big|_{-\infty}^{\infty} - \int\frac{\partial}{\partial n}\phi_1\frac{\partial}{\partial n}\phi_2dn \right) dxdydz &=
+  \int\int\int\sum_{n=x,y,z}\left(\frac{d}{dn}\phi_2\phi_1\Big|_{-\infty}^{\infty} - \int\frac{\partial}{\partial n}\phi_2\frac{\partial}{\partial n}\phi_1dn \right) dxdydz
+\end{align*}
+
 \section{Problem Three}
 The solution to the full sphere in an external field $E_0$ was shown in class to be:
 
