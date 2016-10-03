@@ -60,6 +60,33 @@ Here we are solving for the behavior of a fairly simple thermodynamic system.\\
   &= \frac{2\nu RT\bar{p}}{(1+b)\nu RT} = \frac{2\bar{p}}{1+b}\\
 \end{align*}
 
+\textbf{b.) Different gas entropies}
+To find the entropies if the gases are different, we use the entropy equation to find
+the final and initial entropies:
+
+\begin{align*}
+  \Delta S &= S_f - S_i\\
+  &= S_{fl} + S_{fr} - S_{il} - S_{ir}\\
+  &= -Nk\left(\ln V + \frac{3}{2}\ln T + C_1\right)
+  + -Nk\left(\ln Vb + \frac{3}{2}\ln T + C_2\right)\\
+  &+ Nk\left(\ln V(b+1) + \frac{3}{2}\ln T + C_1\right)
+  + Nk\left(\ln V(b+1) + \frac{3}{2}\ln T + C_2\right)\\
+  &= Nk\ln\frac{(b+1)^2}{b}
+\end{align*}
+
+\textbf{c.) Identical gas entropies}
+The only difference here is the gas becomes one, because the particles are identical. We
+also need to use the molar volume:
+
+\begin{align*}
+  \Delta S &= S_f - S_i\\
+  &= S_{fl} + S_{fr} - S_{il} - S_{ir}\\
+  &= -Nk\left(\ln V + \frac{3}{2}\ln T + C\right)
+  + -Nk\left(\ln Vb + \frac{3}{2}\ln T + C\right)\\
+  &+ Nk\left(2\ln V(b+1) + 2\frac{3}{2}\ln T + C\right)\\
+  &= Nk\ln\frac{(b+1)^2}{b}\\
+\end{align*}
+
 \section{Problem Two: Two-Dimensional Gas}
 To tackle this problem, we start by finding the 1-D ideal gas partition function, use it to get the
 2-D partition function, use this new partition function to find the energy, then use the energy
@@ -106,31 +133,21 @@ energy.\\
   Z = \int_0^\infty e^{-\alpha x^2/2kT}dx\\
   &= \left(\frac{2\pi kT}{\alpha}\right)^{1/2}\\
   <E>_r &= \frac{N}{Z}\int_0^\infty \frac{\alpha x^2}{2}
-  &= \frac{NkT}{2}\\
+  = \frac{NkT}{2}\\
   <E> &= <E>_{ideal} + <E>_r = NkT\\
+ \rightarrow C_v &= Nk
 \end{align*}
 
 \textbf{b.) Cubic restoring force}
 \begin{align*}
-  Z &= \int_{-\infty}^{\infty}e^{\alpha x^4/4kT}
+  Z &= \left(\frac{2\pi kT}{m}\right)^{3/2}\int_{-\infty}^{\infty}e^{\alpha x^4/4kT}
   = \frac{1}{2}\left(\frac{4kT}{\alpha}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)\\
-  <E> &= 2N\left(\frac{\alpha}{4kT}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)^{-1}
-  \int_{-\infty}^\infty \frac{\alpha x^4}{4}e^{-\alpha x^4 / 4kT}\\
-\end{align*}
-
-\textbf{b.) Cubic restoring force}
-\begin{align*}
-  Z &= \int_{-\infty}^{\infty}e^{\alpha x^4/4kT}
-  = \frac{1}{2}\left(\frac{\alpha}{4kT}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)\\
-  <E> &= N\sum E_ip_i =
-  2N\left(\frac{\alpha}{4kT}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)^{-1}
-  \int_{-\infty}^{\infty}\frac{\alpha x^4}{4}e^{\alpha x^4/4kT}\\
-  &= \frac{N\alpha}{2}\left(\frac{\alpha}{4kT}\right)^{1/4}\Gamma\left(\frac{1}{4}\right)^{-1}
-  \frac{5}{16}\left(\frac{2kT}{\alpha}\right)\left(\frac{2kT}{\alpha}\right)^{1/4}
-  \Gamma\left(\frac{1}{4}\right)\\
-  &= N\alpha\left(\frac{\alpha}{4kT}\right)^{1/4}
-  \frac{5}{16}\left(\frac{4kT}{\alpha}\right)\left(\frac{4kT}{\alpha}\right)^{1/4}\\
-  &= \frac{5}{4}NkT\\
+  <E> &= -\frac{d\ln(Z^N)}{d\beta}\\
+  &= \left(\frac{\beta m}{2\pi}\right)^{3/2}2\left(\frac{\alpha\beta}{4}\right)^{1/4}
+  \Gamma\left(\frac{1}{4}\right)\frac{1}{2}\left(\frac{2\pi}{m}\right)^{3/2}
+  \left(\frac{4}{\alpha}\right)^{1/4}\frac{-6}{4}\beta^{-11/4}\Gamma\left(\frac{1}{4}\right)^{-1}\\
+  &= \frac{3N}{4}kT\\
+  \rightarrow C_v &= \frac{3N}{4}k
 \end{align*}
 
 \end{document}
