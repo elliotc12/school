@@ -1,0 +1,97 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{PH651 Assignment Four}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\newcommand{\bra}[1]{\big<#1\big|}
+\newcommand{\ket}[1]{\big|#1\big>}
+\newcommand{\braket}[2]{\big<#1\big|#2\big>}
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One}
+
+\textbf{B.)}
+(With help from Wolfram Alpha)
+
+\begin{align*}
+  A\phi(x) = 0 \rightarrow& \phi(x) \propto e^{-\frac{\ln(x^2+1)}{2}}\\
+  \braket{\phi(x)}{\phi(x)} &= \pi\\
+  \rightarrow \phi(x) &= \frac{1}{\sqrt{\pi}} e^{-\frac{\ln(x^2+1)}{2}}\\
+\end{align*}
+
+\textbf{C.)}
+(With help from Wolfram Alpha)
+
+\begin{align*}
+  \int_{-1}^{1} \phi^*(x)\phi(x)dx &= \int_{-1}^{1} \frac{1}{\pi} e^{-\ln(x^2+1)}dx = \frac{\sqrt{2}}{2}\\
+\end{align*}
+
+\section{Problem Two}
+\textbf{A.)}\\
+
+\begin{align*}
+  Tr(ABC) &= \sum_a \bra{\phi_a}ABC\ket{\phi_a}\\
+  &= \sum_a \bra{\phi_a} \left(\sum_{i,j} A_{ij}\ket{\phi_i}\bra{\phi_j}\right)
+  \left(\sum_{k,l} B_{kl}\ket{\phi_k}\bra{\phi_l}\right)
+  \left(\sum_{m,n} C_{mn}\ket{\phi_m}\bra{\phi_n}\right)\ket{\phi_a}\\
+  &= \sum_a \sum_{ij} \sum_{kl} \sum_{mn} A_{ij}B_{kl}C_{mn} \delta_{ai} \delta_{jk} \delta_{lm} \delta_{na}\\
+  &= \sum_{abc} A_{ab}B_{bc}C_{ca}\\
+  &= \sum_{xyz} C_{xy}A_{yz}B_{zx}\\
+  &= \sum_{xyz} \bra{\phi_x}C\ket{\phi_y}\bra{\phi_y}A\ket{\phi_z}\bra{\phi_z}B\ket{\phi_x}\\
+  &= \sum_{x} \bra{\phi_x}C\left(\sum_y\ket{\phi_y}\bra{\phi_y}\right)A\left(\sum_z\ket{\phi_z}\bra{\phi_z}\right)B\ket{\phi_x}\\
+  &= \sum_{x} \bra{\phi_x}CIAIB\ket{\phi_x} = \sum_x \bra{\phi_x}CAB\ket{\phi_x}\\
+  &= Tr(CAB)\\
+\end{align*}
+
+\textbf{B.)}
+\begin{align*}
+  Tr(\ket{\phi}\bra{\psi}) &= \sum_n \braket{\phi_n}{\psi}\braket{\phi}{\phi_n}\\
+  &= \left(\sum_n \braket{\psi}{\phi_n}\braket{\phi_n}{\phi}\right)^*\\
+  &= \left(\bra{\psi}\sum_n\ket{\phi_n}\braket{\phi_n}{\phi}\right)^*\\
+  &= \braket{\psi}{\phi}^* = \braket{\phi}{\psi}
+\end{align*}
+
+\end{document}
