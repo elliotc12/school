@@ -39,7 +39,7 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{PH651 Assignment Four}
+\title{PH651 Assignment Five}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -51,47 +51,116 @@
 
 \maketitle{}
 
-\section{Problem One}
-
-\textbf{B.)}
-(With help from Wolfram Alpha)
-
 \begin{align*}
-  A\phi(x) = 0 \rightarrow& \phi(x) \propto e^{-\frac{\ln(x^2+1)}{2}}\\
-  \braket{\phi(x)}{\phi(x)} &= \pi\\
-  \rightarrow \phi(x) &= \frac{1}{\sqrt{\pi}} e^{-\frac{\ln(x^2+1)}{2}}\\
+  A =
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}
+  \hspace{2cm}
+  &
+  B =
+  \begin{pmatrix}
+    1 & 0 & 3\\
+    0 & 2i & 0\\
+    i & 0 & -5i\\
+  \end{pmatrix}
 \end{align*}
 
-\textbf{C.)}
-(With help from Wolfram Alpha)
-
+\textbf{a.)}
+A is Hermitian:
 \begin{align*}
-  \int_{-1}^{1} \phi^*(x)\phi(x)dx &= \int_{-1}^{1} \frac{1}{\pi} e^{-\ln(x^2+1)}dx = \frac{\sqrt{2}}{2}\\
+  A^\dagger &=
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}^{*T}
+  =
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & i\\
+    0 & -i & -1\\
+  \end{pmatrix}^{T}
+  =
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}
+  = A
 \end{align*}
 
-\section{Problem Two}
-\textbf{A.)}\\
+B cannot be Hermetian because it has complex diagonals, so $A_{nn} \neq A_{nn}^*$:
 
 \begin{align*}
-  Tr(ABC) &= \sum_a \bra{\phi_a}ABC\ket{\phi_a}\\
-  &= \sum_a \bra{\phi_a} \left(\sum_{i,j} A_{ij}\ket{\phi_i}\bra{\phi_j}\right)
-  \left(\sum_{k,l} B_{kl}\ket{\phi_k}\bra{\phi_l}\right)
-  \left(\sum_{m,n} C_{mn}\ket{\phi_m}\bra{\phi_n}\right)\ket{\phi_a}\\
-  &= \sum_a \sum_{ij} \sum_{kl} \sum_{mn} A_{ij}B_{kl}C_{mn} \delta_{ai} \delta_{jk} \delta_{lm} \delta_{na}\\
-  &= \sum_{abc} A_{ab}B_{bc}C_{ca}\\
-  &= \sum_{xyz} C_{xy}A_{yz}B_{zx}\\
-  &= \sum_{xyz} \bra{\phi_x}C\ket{\phi_y}\bra{\phi_y}A\ket{\phi_z}\bra{\phi_z}B\ket{\phi_x}\\
-  &= \sum_{x} \bra{\phi_x}C\left(\sum_y\ket{\phi_y}\bra{\phi_y}\right)A\left(\sum_z\ket{\phi_z}\bra{\phi_z}\right)B\ket{\phi_x}\\
-  &= \sum_{x} \bra{\phi_x}CIAIB\ket{\phi_x} = \sum_x \bra{\phi_x}CAB\ket{\phi_x}\\
-  &= Tr(CAB)\\
+  B^\dagger = 
+  \begin{pmatrix}
+    1 & 0 & -i\\
+    0 & -2i & 0\\
+    3 & 0 & 5i\\
+  \end{pmatrix}
 \end{align*}
 
-\textbf{B.)}
+\textbf{b.)}
+First we find the eigenvalues of A:
 \begin{align*}
-  Tr(\ket{\phi}\bra{\psi}) &= \sum_n \braket{\phi_n}{\psi}\braket{\phi}{\phi_n}\\
-  &= \left(\sum_n \braket{\psi}{\phi_n}\braket{\phi_n}{\phi}\right)^*\\
-  &= \left(\bra{\psi}\sum_n\ket{\phi_n}\braket{\phi_n}{\phi}\right)^*\\
-  &= \braket{\psi}{\phi}^* = \braket{\phi}{\psi}
+  \det
+  \begin{bmatrix}
+    7 -\lambda& 0 & 0\\
+    0 & 1 -\lambda& -i\\
+    0 & i & -1 -\lambda\\
+  \end{bmatrix}
+  &= (7-\lambda)\left((1-\lambda)(-1-\lambda) - (-i*i)\right) = \left(7-\lambda\right)\left(-2-\lambda^2\right)\\
+  &\rightarrow (Wolfram) \rightarrow \lambda = 7, \pm\sqrt{2} 
+\end{align*}
+
+Then the eigenvalues of B:
+\begin{align*}
+  \det
+  \begin{bmatrix}
+    1 -\lambda& 0 & 3\\
+    0 & 2i-\lambda & 0\\
+    i & 0 & -5i-\lambda\\
+  \end{bmatrix}
+  &= \left(1-\lambda\right)\left(2i-\lambda\right)\left(-5i-\lambda\right) + 3\left(-\left(2i-\lambda\right)i\right)\\
+  &\rightarrow (Wolfram) \rightarrow \lambda = 2i, \frac12\left(\left(1-5i\right)\pm\sqrt{-24+22i}\right)
+\end{align*}
+
+Then the eigenvectors of A:
+
+\begin{align*}
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    x\\
+    y\\
+    z\\
+  \end{pmatrix}
+  = 3
+  \begin{pmatrix}
+    x\\
+    y\\
+    z\\
+  \end{pmatrix}
+  &
+  \rightarrow
+  \begin{pmatrix}
+    7x = 3x\\
+    y-iz = 3y\\
+    iy - z = 3z\\
+  \end{pmatrix}
+  \rightarrow
+  \ket{3} =
+  \begin{pmatrix}
+    x = 0\\
+    y-iz = 3y\\
+    iy - z = 3z\\
+  \end{pmatrix}
 \end{align*}
 
 \end{document}
