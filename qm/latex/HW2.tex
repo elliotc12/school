@@ -112,55 +112,197 @@ First we find the eigenvalues of A:
     0 & 1 -\lambda& -i\\
     0 & i & -1 -\lambda\\
   \end{bmatrix}
-  &= (7-\lambda)\left((1-\lambda)(-1-\lambda) - (-i*i)\right) = \left(7-\lambda\right)\left(-2-\lambda^2\right)\\
-  &\rightarrow (Wolfram) \rightarrow \lambda = 7, \pm\sqrt{2} 
-\end{align*}
-
-Then the eigenvalues of B:
-\begin{align*}
-  \det
-  \begin{bmatrix}
-    1 -\lambda& 0 & 3\\
-    0 & 2i-\lambda & 0\\
-    i & 0 & -5i-\lambda\\
-  \end{bmatrix}
-  &= \left(1-\lambda\right)\left(2i-\lambda\right)\left(-5i-\lambda\right) + 3\left(-\left(2i-\lambda\right)i\right)\\
-  &\rightarrow (Wolfram) \rightarrow \lambda = 2i, \frac12\left(\left(1-5i\right)\pm\sqrt{-24+22i}\right)
+  &= (7-\lambda)\left((1-\lambda)(-1-\lambda) - (-i*i)\right) = \left(7-\lambda\right)\left(\lambda^2-2\right)\\
+  &\rightarrow \lambda = 7, \pm\sqrt{2} 
 \end{align*}
 
 Then the eigenvectors of A:
 
 \begin{align*}
   \begin{pmatrix}
+    0 & 0 & 0\\
+    0 & -6 & -i\\
+    0 & i & -8\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    x\\
+    y\\
+    z\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0\\
+    0\\
+    0\\
+  \end{pmatrix}
+  &
+  \rightarrow
+  \begin{pmatrix}
+    x = x\\
+    -6y-iz = 0\\
+    iy - 8z = 0\\
+  \end{pmatrix}
+  \rightarrow
+  \ket{7} =
+  \begin{pmatrix}
+    x = 1\\
+    y = 0\\
+    z = 0\\
+  \end{pmatrix}\\
+  \begin{pmatrix}
+    7 - \sqrt{2} & 0 & 0\\
+    0 & 1-\sqrt{2} & -i\\
+    0 & i & -1-\sqrt{2}\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    x\\
+    y\\
+    z\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0\\
+    0\\
+    0\\
+  \end{pmatrix}
+  &
+  \rightarrow
+  \begin{pmatrix}
+    x = 0\\
+    \left(1-\sqrt{2}\right)y -iz = 0\\
+    iy - \left(1+\sqrt{2}\right)z = 0\\
+  \end{pmatrix}
+  \rightarrow
+  \ket{\sqrt{2}} = \frac{1}{\sqrt{4+2\sqrt{2}}}
+  \begin{pmatrix}
+    x = 0\\
+    y = -\left(1+\sqrt{2}\right)i\\
+    z = 1\\
+  \end{pmatrix}\\
+  \begin{pmatrix}
+    7+\sqrt{2} & 0 & 0\\
+    0 & 1+\sqrt{2} & -i\\
+    0 & i & -1+\sqrt{2}\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    x\\
+    y\\
+    z\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0\\
+    0\\
+    0\\
+  \end{pmatrix}
+  &
+  \rightarrow
+  \begin{pmatrix}
+    x = x\\
+    \left(1+\sqrt{2}\right)y = iz\\
+    iy = \left(\sqrt{2}-1\right)z\\
+  \end{pmatrix}
+  \rightarrow
+  \ket{-\sqrt{2}} = \frac{1}{\sqrt{4-2\sqrt{2}}}
+  \begin{pmatrix}
+    x = 0\\
+    y = \left(\sqrt{2}-1\right)i\\
+    z = 1\\
+  \end{pmatrix}
+\end{align*}
+
+Tr(A) always equals the sum of eigenvalues of a matrix regardless of basis. Thus the sum of A's eigenvalues ($7 + \sqrt{2} - \sqrt{2}$)
+is the same as the sum of diagonals $(7 + 1 - 1)$.\\
+
+\textbf{c}
+To show vectors form a complete and orthonormal basis, we show that the sum of their projection operators equals the identity matrix:
+
+\textbf{CHECK IF TIME}
+
+\begin{align*}
+  \begin{pmatrix}
+    1\\
+    0\\
+    0\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0 & 0\\
+  \end{pmatrix} +
+  \frac{1}{4+2\sqrt{2}}
+  \begin{pmatrix}
+    0\\
+    -\left(1+\sqrt{2}\right)i\\
+    1\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & \left(1+\sqrt{2}\right)i & 1\\
+  \end{pmatrix} +
+  \frac{1}{4-2\sqrt{2}}
+  \begin{pmatrix}
+    0\\ \left(\sqrt{2}-1\right)i \\ 1\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & -\left(\sqrt{2}-1\right)i & 1\\
+  \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+  =
+  \begin{pmatrix}
+    1 + 0 + 0 & 0 + 0 + 0 & 0 + 0 + 0\\
+    0 + 0 + 0 & 0 + \left(1+\sqrt{2}\right)^2 + \left(\sqrt{2}-1\right)^2& 0 -\left(1+\sqrt{2}\right)i + \left(\sqrt{2}-1\right)i \\
+    0 + 0 + 0 & 0 + \left(1+\sqrt{2}\right)i - \left(\sqrt{2}-1\right)i & 0 + 0 + 1\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1\\
+  \end{pmatrix}
+\end{align*}
+
+\textbf{d}
+
+\begin{align*}
+  AB =
+  \begin{pmatrix}
     7 & 0 & 0\\
     0 & 1 & -i\\
     0 & i & -1\\
   \end{pmatrix}
   \begin{pmatrix}
-    x\\
-    y\\
-    z\\
+    1 & 0 & 3\\
+    0 & 2i & 0\\
+    i & 0 & -5i\\
   \end{pmatrix}
-  = 3
+  &=
   \begin{pmatrix}
-    x\\
-    y\\
-    z\\
-  \end{pmatrix}
-  &
-  \rightarrow
+    7 & 0 & 21\\
+    1 & 2i & -5\\
+    -i & -2 & 5i\\
+  \end{pmatrix}\\
+  \det(AB) = 7\left(2i*5i - 10\right) + 21\left(-2-2\right) &= -224\\
+\end{align*}
+
+\begin{align*}
+  BA =
   \begin{pmatrix}
-    7x = 3x\\
-    y-iz = 3y\\
-    iy - z = 3z\\
+    1 & 0 & 3\\
+    0 & 2i & 0\\
+    i & 0 & -5i\\
   \end{pmatrix}
-  \rightarrow
-  \ket{3} =
   \begin{pmatrix}
-    x = 0\\
-    y-iz = 3y\\
-    iy - z = 3z\\
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
   \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    7 & 0 & 21\\
+    1 & 2i & -5\\
+    -i & -2 & 5i\\
+  \end{pmatrix}\\
+  \det(BA) = 7\left(2i*5i - 10\right) - 3i(-2*7i) + -3(2i*7i) = -224\\
 \end{align*}
 
 \end{document}
