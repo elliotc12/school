@@ -55,27 +55,91 @@
 \maketitle{}
 
 \section{Problem One}
+Worked with Jared Cayton.\\
+Here we use two image charges, one for when z > 0 and one for when z < 0. They are both located at (0, 0, $\pm$ d).
+
+Thus:
+
+\begin{align*}
+	V &= \frac{1}{4\pi\epsilon_1}\left(\frac{q_f}{r} + \frac{q_1}{r})
+\end{align*}
+
+We use the following boundary conditions:
+
+\begin{align*}
+	V_{z>0}(z=0) = V_{z<0}(z=0)\\
+	\epsilon_1\frac{dV_{top}}{dz}(z=0) = \epsilon_2\frac{dV_{bottom}}{dz}(z=0)\\
+\end{align*}
+
+We express our top voltage in Cartesian coordinates:
+
+\begin{align*}
+  V_{top} &= \frac{1}{4\pi\epsilon_1} \left(\frac{q_f}{\sqrt{x^2+y^2+(z-d)^2}} + \frac{q_1}{\sqrt{x^2+y^2+(z-d)^2}}\right)\\
+  \frac{dV_{top}}{dz} &= \frac{1}{4\pi\epsilon_1}\left(\frac{-q_f\sqrt{x^2+y^2+(z-d)^2}(z+d)}{x^2+y^2+(z-d)^2}
+  \frac{-q_1\sqrt{x^2+y^2+(z-d)^2}(z+d)}{x^2+y^2+(z+d)^2} - \right)\\
+  \epsilon_1 \frac{dV_{top}}{dz}(z=0) &= \frac{-1}{4\pi}\left(\frac{q_fd-q_1d}{\left(x^2+y^2+d^2\right)^{\frac32}}\right)\\
+\end{align*}
+
+We do the same for bottom voltage:
+\begin{align*}
+  V_{bot} &= \frac{1}{4\pi\epsilon_2} \left(\frac{q_2}{\sqrt{x^2+y^2+(z-d)^2}}\right)\\
+  \frac{dV_{bot}}{dz} &= \frac{1}{4\pi\epsilon_2}\left(\frac{-q_2\left(z-d\right)}{\left(x^2+y^2+(z-d)^2\right)^{\frac32}}\right)\\
+  \epsilon_2 \frac{dV_{bot}}{dz}(z=0) &= \frac{1}{4\pi}\left(\frac{-q_2d}{\left(x^2+y^2+d^2\right)^{\frac32}}\right)\\
+\end{align*}
+
+We then apply our boundary conditions due to charges:
+
+\begin{align*}
+  \frac{q_f+q_1}{\epsilon_1} &= \frac{q_2}{\epsilon_2}\\
+  q_f - q_1 &= q_2\\
+\end{align*}
+
+We now have enough information to find the value of the image charges:
+
+\begin{align*}
+  q_f - q_2 &= q_1\\
+  q_f - \frac{\epsilon_2}{\epsilon_1}q_f - \frac{\epsilon_2}{\epsilon_1}q_1 = q_1\\
+  q_f\left(1-\frac{\epsilon_2}{\epsilon_1}\right) &= q_1\left(1+\frac{\epsilon_2}{\epsilon_1}\right)\\
+  q_1 &= q_f\frac{\epsilon_1-\epsilon_2}{\epsilon_1+\epsilon_2}
+\end{align*}
+
+\begin{align*}
+  q_2 &= q_f-q_1 = q_f - q_f\frac{\epsilon_1-\epsilon_2}{\epsilon_1+\epsilon_2}\\
+  &= q_f\left(1-\frac{\epsilon_1-\epsilon_2}{\epsilon_1+\epsilon_2}\right) = q_f\frac{2\epsilon_2}{\epsilon_1+\epsilon_2}\\
+\end{align*}
+
+We then express our voltage in terms of these found charges:
+
+\begin{align*}
+  V_{top} &= \frac{q_f}{4\pi\epsilon_1}\left(\frac{1}{\sqrt{x^2+y^2+(z-d)^2}} + \frac{\left(\frac{\epsilon_1-\epsilon_2}{\epsilon_1+\epsilon_2}\right)}{\sqrt{x^2+y^2+(z+d)^2}}\right)
+\end{align*}
+
+Thus
+
+\begin{align*}
+  E_{top} &= -\nabla V_{top} = \frac{-1f}{4\pi\epsilon_1}\left(\frac{x\hat{x}+y\hat{y}+(z-d)\hat{z}}{\left(x^2+y^2+(z-d)^2\right)^{\frac32}} + \left(\frac{\epsilon_1-\epsilon_2}{\epsilon_1+\epsilon_2}\right)\left(\frac{x\hat{x}+y\hat{y}+(z+d)\hat{z}}{\left(x^2+y^2+(z+d)^2\right)^{\frac32}}\right)\right)\\
+\end{align*}
+
+And similarly for $E_{bot}$:
+
+\begin{align*}
+  E_{bot} = -\nabla V_{bot} &= \frac{q_f}{4\pi\left(\epsilon_1+\epsilon_2\right)}\left(\frac{x\hat{x}+y\hat{y}+\left(z-d\right)\hat{z}}{\left(x^2+y^2+(z-d)^2\right)^{\frac32}}\right)
+\end{align*}
+
 
 \section{Problem Two}
 \textbf{Part I}
+\textbf{Part I}\\
 
-We begin with equation (2):
+We begin with $\bv{m} = \frac{I}{2}\oint \bv{r} \times d\bv{l}$ and want to show it is equivalent to $\bv{m} = IS\hat{n}$ when integrating over a flat surface.\\
 
-\begin{align*}
-  m &= \frac{I}{2}\oint \boldsymbol{r} \times d\boldsymbol{l}
-\end{align*}
+We argue that Because $\bv{r}$ and $d\bv{l}$ are coplanar, the cross product always points in the upwards direction, $\hat{n}$. Each segment $d\bv{l}$ represents a small part of the loop which is a distance $\bv{r}$ from the origin. Thus each value $\bv{r} \times d\bv{l}$ will be a small rectangle with area $rdl$, or $2\hat{n}dA$, since dA is a triangle one half the size of $\bv{r}$-$d\bv{l}$.\\
 
-This is a loop integral around a closed circle of radius R. $d\boldsymbol{l}$ always points tangential to the circle, so the inner
-cross product becomes:
+Thus we see that:
 
 \begin{align*}
-  m &= \frac{I}{2}\oint R\hat{n} dl
-\end{align*}
-
-where $\hat{n}$ is perpendicular to both $\boldsymbol{r}$ and $d\boldsymbol{l}$. We are now integrating a constant around a circle of circumference $2\pi R$, which turns to:
-
-\begin{align*}
-  m &= \frac{I}{2}2\pi R^2 = I\pi R^2\hat{n} = IS\hat{n}
+	\bv{m} &= \frac{I}{2}\oint \bv{r} \times d\bv{l}\\
+	&= \frac{I}{2} \oint 2\hat{n}dA = IS\hat{n}
 \end{align*}
 
 \textbf{Part II}
@@ -84,7 +148,7 @@ We begin with the definition of torque, plug in the definition of force on a cur
 argue that one of the terms goes to zero, then apply the equation from Griffiths 4th ed 1.62e.
 
 \begin{align*}
-  \boldsymbol{N} &= \oint \bv{r} \times \bv{F}dl\\
+  \boldsymbol{N} &= \oint d\bv{r} \times \bv{F}\\
   &= \oint \bv{r} \times \left(\bv{I} \times \bv{B}\right)dl\\
   &= \oint \bv{I}\left(\bv{r} \cdot \bv{B}\right) - \bv{B}\left(\bv{r} \cdot \bv{I}\right)dl \hspace{1.2cm}\mbox{cross triple product}\\
   &= \oint \bv{I}\left(\bv{r} \cdot \bv{B}\right)dl - \oint\bv{B}\left(\bv{r} \cdot \bv{I}\right)dl\\
@@ -97,59 +161,38 @@ argue that one of the terms goes to zero, then apply the equation from Griffiths
 as desired.
 
 \section{Problem Three}
-The force F between two dipoles is given by:
 
-\begin{align*}
-  \vec{F} = \frac{3\mu_0}{4\pi |r|^4}((\hat{r} \times \vec{m}_1) \times \vec{m}_2 + (\hat{r} \times \vec{m_2}) \times \vec{m_1}
-  - 2\hat{r}(\vec{m}_1 \cdot \vec{m}_2) + 5\hat{r}((\hat{r} \times \vec{m}_1) \cdot (\hat{r} \times \vec{m}_2)))
-\end{align*}
+We solve this problem by guessing forces.\\
 
-We use the following coordinate system:
+For the magnetic force, we know several things:
 
 \begin{itemize}
-\item $\vec{m}_1$ points in the $\hat{z}$ direction
-\item $\vec{m}_2$ points $\phi$ away from $\hat{z}$ and is \textit{coplanar} to $\hat{z}$. This is a simplifying assumption.
-\item $\vec{d}$ points from the position of ball 1 to ball 2, and is angle $\theta$ from $\hat{z}$
+\item Force should have two magnetic dipole terms for each sphere
+\item Wikipedia says dipole-dipole interactions depend on distance with $r^{-4}$
+\item There should be a $\mu_0$ in our magnetic force
 \end{itemize}
 
-Thus the following are true:
+We know that magnetic dipoles look like current-areas and should depend on $\omega, Q, a$. We guess:
 
 \begin{align*}
-  \hat{r} \times \vec{m}_1 &= m_1\sin\theta\hat{x}\\
-  \hat{r} \times \vec{m}_2 &= m_2\sin\phi\hat{x}\\
-  \vec{m}_1 \cdot \hat{r} &= m_1\cos\theta\\
-  \vec{m}_1 \cdot \vec{m}_2 &= m_1m_2\cos\phi
+	I \approx Q\omega\pi a^2
 \end{align*}
 
-This allows us to simplify $\vec{F}$ to:
+We know $\mu_0$ has units of force per current squared. We guess a solution which involves a magnetic dipole squared, $d^4$ and $\mu_0$ in a way which leads to force units:
 
 \begin{align*}
-  \vec{F} &= \frac{3\mu_0}{4\pi d^4} \left(\left(m_1\sin\theta\hat{x} \times \vec{m}_2\right)
-  + \left(m_2\sin\phi\hat{x} \times \vec{m}_1\right)
-  - 2m_1m_2\left(\sin\theta + \cos\phi\right)\hat{r} + 5\left(m_1\sin\theta\hat{x} \cdot m_2\sin\phi\hat{x}\left)\hat{r}
-  \right)\\
-  &= \frac{3\mu_0}{4\pi d^4} \left(-2m_1m_2\sin\theta\hat{r} - 2m_1m_2\cos\phi\hat{r} + 5m_1m_2\sin\theta\sin\phi\hat{r}\right)\\
-  &= \frac{3\mu_1m_1m_2}{4\pi d^4}\left(-2\left(\sin\theta+\cos\phi\right) + 5\sin\theta\sin\phi\right)\hat{r}
+	F_B \approx \frac{Q^2\omega^2\pi^2a^4\mu_0}{d^4}
 \end{align*}
 
-This indicates that the dipole-dipole force will be of order $\frac{3\mu_0m_1m_2}{4\pi d^4}$ and will depend on $\theta$ and $\phi$.
-We see that the force is maximized when vectors $\vec{m}_1$ and $\vec{m}_2$ are perpendicular to one another.\\
-
-Now we need to find the values of $\vec{m}_1$ and $\vec{m}_2$. We say that at far distances, the dipole moment will be dominated
-by the outer-rim charge.
+We then use Coulomb's force equation to guess out electric force:
 
 \begin{align*}
-  \vec{m} &= I\vec{s} = (2\pi R)Q_{rim} * \pi R^2\\
-  Q_{rim} &= \frac{Q}{V} * 2\pi R = \frac{3Q}{4\pi R^3} * 2\pi R = \frac{3Q}{2R^2}\\
-  \vec{m} &= I\vec{s} = 3\pi^2 RQ\\
+	F_E \approx \frac{Q^2}{4\pi\epsilon_0 d^2}
 \end{align*}
 
-Thus the total magnetic force will be something like:
-
+Thus
 \begin{align*}
-  F \approx \frac{27\mu_0\pi^3R^2Q^2}{4 d^4}
+	\frac{F_B}{F_E} \approx \frac{4\pi^3\omega^2a^4\mu_0\epsilon_0}{d^2}
 \end{align*}
-
-
 
 \end{document}
