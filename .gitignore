@@ -7,3 +7,7 @@
 *DS_Store
 *.fa
 *.fasta
+*.fdb_latexmk
+*.fls
+*.o
+*.txt

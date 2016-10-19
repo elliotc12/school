@@ -39,9 +39,13 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Quantum Mechanics Assignment One}
+\title{PH651 Assignment Five}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\newcommand{\bra}[1]{\big<#1\big|}
+\newcommand{\ket}[1]{\big|#1\big>}
+\newcommand{\braket}[2]{\big<#1\big|#2\big>}
 
 \begin{document}
 
@@ -171,5 +175,69 @@ to the sphere. This term can be rewritten as the dipole term in the multipole ex
 \end{align*}
 
 where $\vec{p} = 4\pi\epsilon_0E_0 a^3 \hat{z}$. Thus the half sphere can be exactly expressed as a dipole.\\
+
+To find the bound charges on this cross section, we use the following equations:
+
+\begin{align*}
+  \rho_b &= -\nabla \vec{P} = 0\hspace{2cm} \mbox{P is constant}\\
+  \sigma_b &= \vec{P} \cdot \vec{n}\\
+\end{align*}
+
+The top two faces each make a $60^\circ$ angle with $\vec{P}$, and the bottom one is antiparallel. Thus we see:
+
+\begin{align*}
+  \sigma_{b,top} &= \vec{P} \cdot \hat{n} = P\cos\left(60^\circ\right) = \frac P2\\
+  \sigma_{b,bot} &= \vec{P} \cdot \hat{n} = P\cos\left(180^\circ\right) = -P\\
+\end{align*}
+
+To find total charge we just sum these densities over the surface area of the prism. We notice that there are two top faces and one
+bottom face, thus the two surface charges cancel out and the net charge on the object is zero. We expect this for a dielectric with
+no free charge.
+
+\section{Problem Two}
+We let the radius of the internal dielectric be \textbf{a} and the outer dielectric have radius \textbf{b}. We then list the
+boundary conditions for inner and outer potentials $\phi_1$ and $\phi_2$ and outer potential $\phi_o$.\\
+
+\textbf{Boundaries}
+\begin{align*}
+  \phi_1(a) &= \phi_2(a)\\
+  \phi_2(b) &= \phi_o(b)\\
+  \frac{\partial \phi_1(a)}{\partial r} &= \frac{\partial \phi_2(a)}{\partial r}\\
+  \frac{\partial \phi_2(b)}{\partial r} &= \frac{\partial \phi_o(b)}{\partial r}\\
+  \phi(r>>b) &= -E_or\cos\theta
+\end{align*}
+
+Our solutions will take the general form:
+
+\begin{align*}
+  \phi &= \sum_{\ell = 0}^\infty \left(A_\ell r^\ell + \frac{B_\ell}{r^{\ell+1}}\right)P_\ell(\cos\theta)
+\end{align*}
+
+For the inner potential $\phi_1$ we don't permit any B-terms, since the inverse r would blow up at zero. For the middle potential $\phi_2$ we can apply no constraints. For the outer potential $\phi_o$ we say that all A are zero, else the potential would blow up at infinity. Thus:
+
+\begin{align*}
+  \phi_1 &= \sum_{\ell = 0}^\infty A^1_\ell r^\ell P_\ell(\cos\theta)\\
+  \phi_2 &= \sum_{\ell = 0}^\infty \left(A^2_\ell r^\ell + \frac{B^2_\ell}{r^{\ell+1}}\right)P_\ell(\cos\theta)\\
+  \phi_o &= -E_0r\cos\theta + \sum_{\ell = 0}^\infty \frac{B^o_\ell}{r^{\ell+1}}P_\ell(\cos\theta)
+\end{align*}
+
+We then apply our first two boundary conditions, noting that only the individual $\ell$ terms need to equal, not the whole summation:
+
+\begin{align*}
+  A^1_\ell a^\ell &= A^2_\ell a^\ell + \frac{B^2_\ell}{a^{\ell+1}}\\
+  A^2_\ell b^\ell +& \frac{B^2_\ell}{b^{\ell+1}} = \frac{B^o_\ell}{b^{\ell+1}}\\
+  A^2_1 b^1 +& \frac{B^2_1}{b^2} = -E_ob^1
+\end{align*}
+
+We then apply our derivative boundary conditions:
+
+\begin{align*}
+  \epsilon_r^1\ell A^1_\ell a^{\ell-1} =& \epsilon_r^2\ell A^2_\ell a^{\ell-1} - \epsilon_r^2\frac{\left(\ell+1\right)B^2_\ell}{a^\ell}\\
+  \epsilon_r^2\ell A^2_\ell b^{\ell-1} -& \epsilon_r^2\frac{\left(\ell+1\right)B^2_\ell}{b^\ell}
+  = -\epsilon_0\frac{\left(\ell+1\right)B^o_\ell}{b^\ell}\\
+  \epsilon_r^2A^2_1 -2\frac{B_1^2}{b} &= -E_0
+\end{align*}
+
+If we solve for $A_1$ we get:
 
 \end{document}

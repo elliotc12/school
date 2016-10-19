@@ -1,0 +1,308 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{PH651 Assignment Five}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\newcommand{\bra}[1]{\big<#1\big|}
+\newcommand{\ket}[1]{\big|#1\big>}
+\newcommand{\braket}[2]{\big<#1\big|#2\big>}
+
+\begin{document}
+
+\maketitle{}
+
+\begin{align*}
+  A =
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}
+  \hspace{2cm}
+  &
+  B =
+  \begin{pmatrix}
+    1 & 0 & 3\\
+    0 & 2i & 0\\
+    i & 0 & -5i\\
+  \end{pmatrix}
+\end{align*}
+
+\textbf{a.)}
+A is Hermitian:
+\begin{align*}
+  A^\dagger &=
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}^{*T}
+  =
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & i\\
+    0 & -i & -1\\
+  \end{pmatrix}^{T}
+  =
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}
+  = A
+\end{align*}
+
+B cannot be Hermetian because it has complex diagonals, so $A_{nn} \neq A_{nn}^*$:
+
+\begin{align*}
+  B^\dagger = 
+  \begin{pmatrix}
+    1 & 0 & -i\\
+    0 & -2i & 0\\
+    3 & 0 & 5i\\
+  \end{pmatrix}
+\end{align*}
+
+\textbf{b.)}
+First we find the eigenvalues of A:
+\begin{align*}
+  \det
+  \begin{bmatrix}
+    7 -\lambda& 0 & 0\\
+    0 & 1 -\lambda& -i\\
+    0 & i & -1 -\lambda\\
+  \end{bmatrix}
+  &= (7-\lambda)\left((1-\lambda)(-1-\lambda) - (-i*i)\right) = \left(7-\lambda\right)\left(\lambda^2-2\right)\\
+  &\rightarrow \lambda = 7, \pm\sqrt{2} 
+\end{align*}
+
+Then the eigenvectors of A:
+
+\begin{align*}
+  \begin{pmatrix}
+    0 & 0 & 0\\
+    0 & -6 & -i\\
+    0 & i & -8\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    x\\
+    y\\
+    z\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0\\
+    0\\
+    0\\
+  \end{pmatrix}
+  &
+  \rightarrow
+  \begin{pmatrix}
+    x = x\\
+    -6y-iz = 0\\
+    iy - 8z = 0\\
+  \end{pmatrix}
+  \rightarrow
+  \ket{7} =
+  \begin{pmatrix}
+    x = 1\\
+    y = 0\\
+    z = 0\\
+  \end{pmatrix}\\
+  \begin{pmatrix}
+    7 - \sqrt{2} & 0 & 0\\
+    0 & 1-\sqrt{2} & -i\\
+    0 & i & -1-\sqrt{2}\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    x\\
+    y\\
+    z\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0\\
+    0\\
+    0\\
+  \end{pmatrix}
+  &
+  \rightarrow
+  \begin{pmatrix}
+    x = 0\\
+    \left(1-\sqrt{2}\right)y -iz = 0\\
+    iy - \left(1+\sqrt{2}\right)z = 0\\
+  \end{pmatrix}
+  \rightarrow
+  \ket{\sqrt{2}} = \frac{1}{\sqrt{4+2\sqrt{2}}}
+  \begin{pmatrix}
+    x = 0\\
+    y = -\left(1+\sqrt{2}\right)i\\
+    z = 1\\
+  \end{pmatrix}\\
+  \begin{pmatrix}
+    7+\sqrt{2} & 0 & 0\\
+    0 & 1+\sqrt{2} & -i\\
+    0 & i & -1+\sqrt{2}\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    x\\
+    y\\
+    z\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0\\
+    0\\
+    0\\
+  \end{pmatrix}
+  &
+  \rightarrow
+  \begin{pmatrix}
+    x = x\\
+    \left(1+\sqrt{2}\right)y = iz\\
+    iy = \left(\sqrt{2}-1\right)z\\
+  \end{pmatrix}
+  \rightarrow
+  \ket{-\sqrt{2}} = \frac{1}{\sqrt{4-2\sqrt{2}}}
+  \begin{pmatrix}
+    x = 0\\
+    y = \left(\sqrt{2}-1\right)i\\
+    z = 1\\
+  \end{pmatrix}
+\end{align*}
+
+Tr(A) always equals the sum of eigenvalues of a matrix regardless of basis. Thus the sum of A's eigenvalues ($7 + \sqrt{2} - \sqrt{2}$)
+is the same as the sum of diagonals $(7 + 1 - 1)$.\\
+
+\textbf{c}
+To show vectors form a complete and orthonormal basis, we show that the sum of their projection operators equals the identity matrix:
+
+\textbf{CHECK IF TIME}
+
+\begin{align*}
+  \begin{pmatrix}
+    1\\
+    0\\
+    0\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0 & 0\\
+  \end{pmatrix} +
+  \frac{1}{4+2\sqrt{2}}
+  \begin{pmatrix}
+    0\\
+    -\left(1+\sqrt{2}\right)i\\
+    1\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & \left(1+\sqrt{2}\right)i & 1\\
+  \end{pmatrix} +
+  \frac{1}{4-2\sqrt{2}}
+  \begin{pmatrix}
+    0\\ \left(\sqrt{2}-1\right)i \\ 1\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & -\left(\sqrt{2}-1\right)i & 1\\
+  \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+  =
+  \begin{pmatrix}
+    1 + 0 + 0 & 0 + 0 + 0 & 0 + 0 + 0\\
+    0 + 0 + 0 & 0 + \left(1+\sqrt{2}\right)^2 + \left(\sqrt{2}-1\right)^2& 0 -\left(1+\sqrt{2}\right)i + \left(\sqrt{2}-1\right)i \\
+    0 + 0 + 0 & 0 + \left(1+\sqrt{2}\right)i - \left(\sqrt{2}-1\right)i & 0 + 0 + 1\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 0 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1\\
+  \end{pmatrix}
+\end{align*}
+
+\textbf{d}
+
+\begin{align*}
+  AB =
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0 & 3\\
+    0 & 2i & 0\\
+    i & 0 & -5i\\
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    7 & 0 & 21\\
+    1 & 2i & -5\\
+    -i & -2 & 5i\\
+  \end{pmatrix}\\
+  \det(AB) = 7\left(2i*5i - 10\right) + 21\left(-2-2\right) &= -224\\
+\end{align*}
+
+\begin{align*}
+  BA =
+  \begin{pmatrix}
+    1 & 0 & 3\\
+    0 & 2i & 0\\
+    i & 0 & -5i\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    7 & 0 & 21\\
+    1 & 2i & -5\\
+    -i & -2 & 5i\\
+  \end{pmatrix}\\
+  \det(BA) = 7\left(2i*5i - 10\right) - 3i(-2*7i) + -3(2i*7i) = -224\\
+\end{align*}
+
+\end{document}

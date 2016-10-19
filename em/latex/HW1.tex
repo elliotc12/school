@@ -39,7 +39,7 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Quantum Mechanics Assignment One}
+\title{Electromagnetism Assignment One}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -128,13 +128,28 @@ To find the force on the first-quadrant charge, we use Coulomb's Equation:
 If expanded, at large r, $\phi$ should look like a quadrupole scaling with $\frac{1}{r^3}$.\\
 
 \section{Problem Two}
+\textbf{Part A}\\
 We want to show the following equality is always true:
 
 \begin{align*}
   \int\rho_1\phi_2d^3\vec{r} &= \int\rho_2\phi_1d^3\vec{r}
 \end{align*}
 
-We first apply the Laplace Equation:
+We first briefly solve the problem in one dimension to show how it is done:
+
+\begin{align*}
+  \int\rho_1\phi_2d^3\vec{r} &= \int\rho_2\phi_1d^3\vec{r}\\
+  -\epsilon\int \frac{\partial^2\phi_1}{\partial x^2}\phi_2dx &= -\epsilon\int \frac{\partial^2\phi_2}{\partial x^2}\phi_1dx\\
+  \int \frac{\partial^2\phi_1}{\partial x^2}\phi_2dx &= \int \frac{\partial^2\phi_2}{\partial x^2}\phi_1dx\\
+  \frac{\partial \phi_1}{\partial x} \phi_2 \Big|_{-\infty}^{\infty} -
+  \int \frac{\partial \phi_2}{\partial x}\frac{\partial \phi_1}{\partial x}dx&=
+  \frac{\partial \phi_2}{\partial x} \phi_1 \Big|_{-\infty}^{\infty} -
+  \int \frac{\partial \phi_1}{\partial x}\frac{\partial \phi_2}{\partial x}dx\\
+  \int \frac{\partial \phi_2}{\partial x}\frac{\partial \phi_1}{\partial x}dx&=
+  \int \frac{\partial \phi_2}{\partial x}\frac{\partial \phi_1}{\partial x}dx
+\end{align*}
+
+Now in 3D. We first apply the Laplace Equation:
 
 \begin{align*}
   -\epsilon_0\int\nabla^2\phi_1\phi_2d^3\vec{r} &= -\epsilon_0\int\nabla^2\phi_2\phi_1d^3\vec{r}
@@ -143,16 +158,41 @@ We first apply the Laplace Equation:
 We then expand this equation into its cartesian representation:
 
 \begin{align*}
-  \int\int\int\sum_{n=x,y,z}\frac{\partial^2}{\partial n^2} (\phi_1) \phi_2 dxdydz &=
-  \int\int\int\sum_{n=x,y,z}\frac{\partial^2}{\partial n^2} (\phi_2) \phi_1 dxdydz
+  \int\int\int\left(\sum_{n=x,y,z}\frac{\partial^2}{\partial n^2} (\phi_1) \phi_2\right) dxdydz &=
+  \int\int\int\left(\sum_{n=x,y,z}\frac{\partial^2}{\partial n^2} (\phi_2) \phi_1\right) dxdydz
 \end{align*}
 
 We then use Integration by Parts:
 
 \begin{align*}
-  \int\int\int\sum_{n=x,y,z}\left(\frac{d}{dn}\phi_1\phi_2\Big|_{-\infty}^{\infty} - \int\frac{\partial}{\partial n}\phi_1\frac{\partial}{\partial n}\phi_2dn \right) dxdydz &=
-  \int\int\int\sum_{n=x,y,z}\left(\frac{d}{dn}\phi_2\phi_1\Big|_{-\infty}^{\infty} - \int\frac{\partial}{\partial n}\phi_2\frac{\partial}{\partial n}\phi_1dn \right) dxdydz
+  \int\int\sum_{n=x,y,z}\left(\frac{d}{dn}\phi_1\phi_2\Big|_{-\infty}^{\infty} - \int\frac{\partial}{\partial n}\phi_1\frac{\partial}{\partial n}\phi_2dn \right) dxdydz &=
+  \int\int\sum_{n=x,y,z}\left(\frac{d}{dn}\phi_2\phi_1\Big|_{-\infty}^{\infty} - \int\frac{\partial}{\partial n}\phi_2\frac{\partial}{\partial n}\phi_1dn \right) dxdydz
 \end{align*}
+
+We define our voltages to be zero at infinity, so the UV term of the integration by parts goes to zero, leaving us with:
+
+\begin{align*}
+  \int\int\sum_{n=x,y,z}\left(\int\frac{\partial}{\partial n}\phi_1\frac{\partial}{\partial n}\phi_2dn \right) dxdydz &=
+  \int\int\sum_{n=x,y,z}\left(\int\frac{\partial}{\partial n}\phi_2\frac{\partial}{\partial n}\phi_1dn \right) dxdydz
+\end{align*}
+
+We see that these expressions are identical since multiplication is commutative, thus the initial statement must be true.
+\textbf{Part B}\\
+
+We define the voltage on conductor A as: $V_A = V_{AA} + V_{BA}$ where $V_{BA}$ is the potential due to conductor B. We define $V_{AB}$ as the potential on B due to A. We let $\rho_A$ and $\rho_B$ be the charge distributions on A and B respectively, where $\int\rho_AdV = \int\rho_BdV = Q$. We begin with Green's Reciprocity theorem:
+
+\begin{align*}
+  \int V_{AB}(\vec{r})\rho_A(\vec{r})dV &= \int V_{BA}(\vec{r})\rho_B(\vec{r})dV\\
+\end{align*}
+
+Because A and B are conductors, we know that their potentials $V_{AB}$ and $V_{BA}$ are constant. Thus we can remove them from the integral:
+
+\begin{align*}
+  V_{AB}\int\rho_A(\vec{r})dV &= V_{BA}\int\rho_B(\vec{r})dV\\
+  V_{AB}Q &= V_{BA}Q\\
+\end{align*}
+
+Thus $V_{AB} = V_{BA}$. From this we can see that $V_A = V_{AA} + V_{AB}$.\\
 
 \section{Problem Three}
 The solution to the full sphere in an external field $E_0$ was shown in class to be:
@@ -164,10 +204,9 @@ The solution to the full sphere in an external field $E_0$ was shown in class to
 given boundaries $\phi(r=a) = 0$ and $\phi(r\rightarrow\infty) = 0$. We notice that our boundaries for the half sphere problem are the same, plus one addition: $\phi(r<a, z=0) = 0$. The above solution satisfies this condition as well. Then by the Uniqueness Theorem this solution must also be valid for our half sphere.\\
 
 The first term $-E_0r\cos\theta$ is the potential from the external field. The second term $\frac{E_0a^3\cos\theta}{r^2}$ is the term due
-to the sphere. This term can be rewritten as the dipole term in the multipole expansion:\\
-
+to the sphere. This term can be rewritten as the dipole term in the multipole expansion:
 \begin{align*}
-  \frac{E_0a\cos\theta}{r^2} &= \frac{1}{4\pi\epsilon_0}\frac{1}{r^2} \hat{r} \cdot \vec{p}\\
+  \frac{E_0a\cos\theta}{r^2} &= \frac{1}{4\pi\epsilon_0}\frac{1}{r^2} \hat{r} \cdot \vec{p}
 \end{align*}
 
 where $\vec{p} = 4\pi\epsilon_0E_0 a^3 \hat{z}$. Thus the half sphere can be exactly expressed as a dipole.\\
