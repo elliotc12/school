@@ -1,0 +1,155 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Elegromagnetism Assignment Three}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\newcommand{\bra}[1]{\big<#1\big|}
+\newcommand{\ket}[1]{\big|#1\big>}
+\newcommand{\braket}[2]{\big<#1\big|#2\big>}
+
+\newcommand{\b}[1]{\boldsymbol{#1}}
+\newcommand{\bv}[1]{\boldsymbol{\vec{#1}}}
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One}
+
+\section{Problem Two}
+\textbf{Part I}
+
+We begin with equation (2):
+
+\begin{align*}
+  m &= \frac{I}{2}\oint \boldsymbol{r} \times d\boldsymbol{l}
+\end{align*}
+
+This is a loop integral around a closed circle of radius R. $d\boldsymbol{l}$ always points tangential to the circle, so the inner
+cross product becomes:
+
+\begin{align*}
+  m &= \frac{I}{2}\oint R\hat{n} dl
+\end{align*}
+
+where $\hat{n}$ is perpendicular to both $\boldsymbol{r}$ and $d\boldsymbol{l}$. We are now integrating a constant around a circle of circumference $2\pi R$, which turns to:
+
+\begin{align*}
+  m &= \frac{I}{2}2\pi R^2 = I\pi R^2\hat{n} = IS\hat{n}
+\end{align*}
+
+\textbf{Part II}
+
+We begin with the definition of torque, plug in the definition of force on a current, apply the cross product triple product rule,
+argue that one of the terms goes to zero, then apply the equation from Griffiths 4th ed 1.62e.
+
+\begin{align*}
+  \boldsymbol{N} &= \oint \bv{r} \times \bv{F}dl\\
+  &= \oint \bv{r} \times \left(\bv{I} \times \bv{B}\right)dl\\
+  &= \oint \bv{I}\left(\bv{r} \cdot \bv{B}\right) - \bv{B}\left(\bv{r} \cdot \bv{I}\right)dl \hspace{1.2cm}\mbox{cross triple product}\\
+  &= \oint \bv{I}\left(\bv{r} \cdot \bv{B}\right)dl - \oint\bv{B}\left(\bv{r} \cdot \bv{I}\right)dl\\
+  &= \oint \bv{I}\left(\bv{r} \cdot \bv{B}\right)dl \hspace{3cm}\mbox{since }\Big(\oint \bv{r} \cdot d\bv{l} = 0\Big)\\
+  &= \oint \bv{I}\left(\bv{B} \cdot \bv{r}\right)dl\\
+  &= I\oint \left(\bv{B} \cdot \bv{r}\right)d\boldsymbol{l}\\
+  &= I\bv{a} \times \bv{B} = \bv{m} \times \bv{B}\\
+\end{align*}
+
+as desired.
+
+\section{Problem Three}
+The force F between two dipoles is given by:
+
+\begin{align*}
+  \vec{F} = \frac{3\mu_0}{4\pi |r|^4}((\hat{r} \times \vec{m}_1) \times \vec{m}_2 + (\hat{r} \times \vec{m_2}) \times \vec{m_1}
+  - 2\hat{r}(\vec{m}_1 \cdot \vec{m}_2) + 5\hat{r}((\hat{r} \times \vec{m}_1) \cdot (\hat{r} \times \vec{m}_2)))
+\end{align*}
+
+We use the following coordinate system:
+
+\begin{itemize}
+\item $\vec{m}_1$ points in the $\hat{z}$ direction
+\item $\vec{m}_2$ points $\phi$ away from $\hat{z}$ and is \textit{coplanar} to $\hat{z}$. This is a simplifying assumption.
+\item $\vec{d}$ points from the position of ball 1 to ball 2, and is angle $\theta$ from $\hat{z}$
+\end{itemize}
+
+Thus the following are true:
+
+\begin{align*}
+  \hat{r} \times \vec{m}_1 &= m_1\sin\theta\hat{x}\\
+  \hat{r} \times \vec{m}_2 &= m_2\sin\phi\hat{x}\\
+  \vec{m}_1 \cdot \hat{r} &= m_1\cos\theta\\
+  \vec{m}_1 \cdot \vec{m}_2 &= m_1m_2\cos\phi
+\end{align*}
+
+This allows us to simplify $\vec{F}$ to:
+
+\begin{align*}
+  \vec{F} &= \frac{3\mu_0}{4\pi d^4} \left(\left(m_1\sin\theta\hat{x} \times \vec{m}_2\right)
+  + \left(m_2\sin\phi\hat{x} \times \vec{m}_1\right)
+  - 2m_1m_2\left(\sin\theta + \cos\phi\right)\hat{r} + 5\left(m_1\sin\theta\hat{x} \cdot m_2\sin\phi\hat{x}\left)\hat{r}
+  \right)\\
+  &= \frac{3\mu_0}{4\pi d^4} \left(-2m_1m_2\sin\theta\hat{r} - 2m_1m_2\cos\phi\hat{r} + 5m_1m_2\sin\theta\sin\phi\hat{r}\right)\\
+  &= \frac{3\mu_1m_1m_2}{4\pi d^4}\left(-2\left(\sin\theta+\cos\phi\right) + 5\sin\theta\sin\phi\right)\hat{r}
+\end{align*}
+
+This indicates that the dipole-dipole force will be of order $\frac{3\mu_0m_1m_2}{4\pi d^4}$ and will depend on $\theta$ and $\phi$.
+We see that the force is maximized when vectors $\vec{m}_1$ and $\vec{m}_2$ are perpendicular to one another.\\
+
+Now we need to find the values of $\vec{m}_1$ and $\vec{m}_2$. We say that at far distances, the dipole moment will be dominated
+by the outer-rim charge.
+
+\begin{align*}
+  \vec{m} &= I\vec{s} = (2\pi R)Q_{rim} * \pi R^2\\
+  Q_{rim} &= \frac{Q}{V} * 2\pi R = \frac{3Q}{4\pi R^3} * 2\pi R = \frac{3Q}{2R^2}\\
+  \vec{m} &= I\vec{s} = 3\pi^2 RQ\\
+\end{align*}
+
+Thus the total magnetic force will be something like:
+
+\begin{align*}
+  F \approx \frac{27\mu_0\pi^3R^2Q^2}{4 d^4}
+\end{align*}
+
+
+
+\end{document}

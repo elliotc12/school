@@ -263,6 +263,48 @@ To show vectors form a complete and orthonormal basis, we show that the sum of t
 
 \textbf{d}
 
+\textbf{Trace}
+\begin{align*}
+  AB =
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0 & 3\\
+    0 & 2i & 0\\
+    i & 0 & -5i\\
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    7 & 0 & 21\\
+    1 & 2i & -5\\
+    -i & -2 & 5i\\
+  \end{pmatrix}\\
+  Tr(AB) = 7 + 2i + 5i = 7 + 7i\\
+  BA =
+  \begin{pmatrix}
+    1 & 0 & 3\\
+    0 & 2i & 0\\
+    i & 0 & -5i\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    7 & 0 & 0\\
+    0 & 1 & -i\\
+    0 & i & -1\\
+  \end{pmatrix}
+  &=
+  \begin{pmatrix}
+    7 & 3i & -3\\
+    0 & 2i & 2\\
+    7i & 5 & 5i\\
+  \end{pmatrix}\\
+  Tr(BA) = 7 + 2i + 5i = 7 + 7i\\
+  Tr(AB) = Tr(BA)\\
+\end{align*}
+
+\textbf{Determinant:}
 \begin{align*}
   AB =
   \begin{pmatrix}
@@ -282,27 +324,89 @@ To show vectors form a complete and orthonormal basis, we show that the sum of t
     -i & -2 & 5i\\
   \end{pmatrix}\\
   \det(AB) = 7\left(2i*5i - 10\right) + 21\left(-2-2\right) &= -224\\
+  \det(A) = 7\left(-1-1) &= -14\\
+  \det(B) = (-2i*5i) + 3(2)&= 16\\
+  \det(A)*\det(B) &= \det(AB)\\
 \end{align*}
 
+\textbf{Determinant of Hermetian Adjoint}
+
 \begin{align*}
-  BA =
+  B^\dagger &=
+  \begin{pmatrix}
+    1 & 0 & 3\\
+    0 & 2i & 0\\
+    i & 0 & -5i\\
+  \end{pmatrix}^{*T}
+  =
+  \begin{pmatrix}
+    1 & 0 & -i\\
+    0 & -2i & 0\\
+    3 & 0 & 5i\\
+  \end{pmatrix}\\
+  &\det
+  \begin{pmatrix}
+    1 & 0 & -i\\
+    0 & -2i & 0\\
+    3 & 0 & 5i\\
+  \end{pmatrix}
+  = (-2i*5i) - i(-2i*3) = 16\\
+  \det(B) &=
+  \det
   \begin{pmatrix}
     1 & 0 & 3\\
     0 & 2i & 0\\
     i & 0 & -5i\\
   \end{pmatrix}
-  \begin{pmatrix}
-    7 & 0 & 0\\
-    0 & 1 & -i\\
-    0 & i & -1\\
-  \end{pmatrix}
-  &=
+  = (2i*-5i) + 3(-2i*i) = 16\\
+  det(B^\dagger) &= \det{B}^*
+\end{align*}
+
+\textbf{e: Commutator}
+
+\begin{align*}
+  AB - BA =
   \begin{pmatrix}
     7 & 0 & 21\\
     1 & 2i & -5\\
     -i & -2 & 5i\\
+  \end{pmatrix}
+  \begin{pmatrix}
+    7 & 3i & -3\\
+    0 & 2i & 2\\
+    7i & 5 & 5i\\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    49 + 147i & 105 + 21i & -21 + 105i\\
+    7 - 35i & -29 + 3i & -3 - 21i\\
+    -35 - 7i & 3 + 21i & -29 + 3i\\
   \end{pmatrix}\\
-  \det(BA) = 7\left(2i*5i - 10\right) - 3i(-2*7i) + -3(2i*7i) = -224\\
+  Tr(AB-BA) = 49 - 29 - 29 + 147i + 3i + 3i &= -9 + 153i\\
 \end{align*}
+
+\textbf{f: Inverse of A}
+
+\begin{align*}
+  \begin{pmatrix}
+    7 & 0 & 0 &  | & 0 & 0 & 0\\
+    0 & 1 & -i & | & 0 & 0 & 0\\
+    0 & i & -1 & | & 0 & 0 & 0\\
+  \end{pmatrix}
+  &\rightarrow
+  \begin{pmatrix}
+    1 & 0 & 0 & | & \frac17 & 0 & 0\\
+    0 & 1 & 0 & | & 0 & \frac12 & \frac{-i}{2}\\
+    0 & 0 & 1 & | & 0 & \frac{i}{2} & \frac{-1}{2}\\
+  \end{pmatrix}\\
+  A^{-1} &=
+  \begin{pmatrix}
+    \frac17 & 0 & 0\\               
+    0 & \frac12 & \frac{-i}{2}\\
+    0 & \frac{i}{2} & \frac{-1}{2}\\
+  \end{pmatrix}
+\end{align*}
+
+$A^{-1}$'s eigenvalues will be the inverse of A's, that is: $\pm\sqrt{2}^{-1}$ and $\frac17$.
 
 \end{document}
