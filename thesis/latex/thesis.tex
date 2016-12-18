@@ -35,6 +35,8 @@
 
 \renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
 
+\bibliographystyle{plain}
+
 \begin{document}
 
 \tableofcontents
@@ -65,6 +67,10 @@ can't recognize everything. Does it have different binding partners which bind t
 Other roles than transport: moving around microtubules to help with chromosome segregation, what else?
 
 \subsubsection{Why does the cell need motor transport?}
+
+\cite{dewitt2012cytoplasmic}
+
+
 This ties in a lot to the previous section. I originally thought of putting the <x> vs T diffusion/
 motor plot in the introduction, but maybe it would be better here. Not sure.\\
 
@@ -147,7 +153,7 @@ hinges):\\
 
 \begin{figure}
   \centering
-  \includegraphics[width=.45\textwidth]{/home/elliotc12/dynein_walk/figures/equilibrium-onebound}
+  \includegraphics[width=.45\textwidth]{../figures/equilibrium-onebound}
   \caption{Definition of equilibrium angles.}
   \label{fig:eq_angles}
 \end{figure}
@@ -193,11 +199,11 @@ Talk about this figure:
   \centering
 
   \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[width=\textwidth]{/home/elliotc12/dynein_walk/figures/OB_Average_PE.pdf}
+    \includegraphics[width=\textwidth]{../figures/OB_Average_PE.pdf}
     \caption{Onebound PE vs time.}
   \end{minipage}
   \begin{minipage}[b]{0.49\textwidth}
-    \includegraphics[width=\textwidth]{/home/elliotc12/dynein_walk/figures/BB_Average_PE.pdf}
+    \includegraphics[width=\textwidth]{../figures/BB_Average_PE.pdf}
     \caption{Bothbound PE vs time.}
   \end{minipage}
   \label{fig:equipartition_agreement}
@@ -249,7 +255,7 @@ the distance between domains in dynein.\\
 
 Other biophysics experiments which could verify our model?\\
 
-Calirimetry could get Gibb's energy of binding if you froze the motor in onebound using
+Calorimetry could get Gibb's energy of binding if you froze the motor in onebound using
 vanadium? Maybe...\\
 \subsection{Possible further projects}
 \subsection{Difference between dynein and kinesin}
@@ -257,5 +263,7 @@ Our project un/successfully predicted how dynein behaved. How would we modify it
 Is dynein's linker-motor connection less tense than kinesin's, leading to more random motion? This
 would likely be lots of speculation, but it could be cool to look up some papers on kinesin motility
 and get its crystal structure to do some comparisons.
+
+\bibliography{thesis}
 
 \end{document}
