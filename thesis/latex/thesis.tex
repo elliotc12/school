@@ -45,20 +45,42 @@
 \section{Chapter: Introduction}
 \subsection{What is dynein?}
 \subsubsection{Basics}
-This section will describe everything people need to know about dynein to understand the project:
-what proteins are, what dynein does, the things it uses to do it, and why it is necessary.\\
 
-Possibly begin with a figure showing <x> vs T for a diffusing particle and a motor protein (2-3 weeks
-for a protein to diffuse 1 cm vs. 2-3 hours for a motor protein to move 1cm).\\
+Dynein is a cellular structure which converts chemical energy to mechanical energy. It does so by reacting with adenosine triphosphate (ATP) to take steps along long cellular tracks known as microtubules. Dynein's mechanical energy is used to transport molecules around the cell, pull chromosomes during division, move cellular propellers known as cilia
+and various other functions \cite{cianfroccoreview}.\\
 
-Show a crystal structure as well as artist's rendition.\\
+A depictions of dynein is shown in Figure (\ref{dynein-artist-rendition}).\\
 
-\subsubsection{How does it behave?}
-Talk about its stepping behavior using Weihong's figures (as well as the new paper David found?)\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.65\textwidth,keepaspectratio]{../figures/dynein-artist-rendition-2.jpg}
+  \caption{Artist rendition of the dynein motor. Modified. Source: Lander Lab, The Scripps Research Institute.}
+  \label{dynein-artist-rendition}
+\end{figure}
 
-Also possibly talk about the other things Dynein has been found to do, such as hydrolyse ATP and
-move its subdomains around. This may be better in a different section than the introduction though,
-since its a lot of biochemistry for the second section in an intro? maybe not, it has to go somewhere.
+Dynein is believed to move by using the energy of ATP to cycle through a ring of states, each with different spatial relations to the microtubule. By cycling forward through this ring, the molecule can end up in the same state it began, but moved forward a small amount. This ring of states is known as the mechanochemical cycle \cite{cianfroccoreview}.\\
+
+The goal of this project is to create a mathematical model of the mechanochemical cycle and verify that it can reproduce experimental dynein stepping data.\\
+
+\subsection{Biology review}
+
+\textit{This section will describe everything people need to know about dynein to understand the project: what proteins are, what dynein does, the things it uses to do it, and why it is necessary. Show a crystal structure as well as artist's rendition.}
+
+\subsubsection{Why do cells need motor transport?}
+Cells are structures with high organization in time and space. 
+Cells are organized, heretogenous structures which respond quickly to their environments. This means that cells require a mechanism for rapidly moving cargo, and moving cargo to precise locations within the cell. This can be a challenge, since cells are fairly large compared to the proteins which compose them \textbf{is it also a challenge because its hard to get precise positions within a cell?}. A human fibroblast cell has a volume of roughly 2000 $\mu m^3$\cite{fibroblastvolume}, corresponding to roughly $8 \mu m$ in diameter. In comparison, human hemoglobin has a diameter of roughly $5 nm$ (PDB id 5ME2) \textbf{((is this the best way to cite this?))}, a $10^3$ factor difference in size.\\
+
+Diffusion, or random motion of molecules due to collisions with solvent (i.e. Brownian motion), is one possible means cells could use to transport cargo. Diffusion has two problems: it is slow and nondirected. The expected distance covered for one-dimensional Brownian motion after time t was found by Einstein to be \textbf{cite here}:
+
+\begin{equation}
+  \label{diffusion-equation}
+  <x> = \sqrt{2Dt}
+\end{equation}
+
+where D is the diffusion constant (flesh this out). The $\sqrt{t}$ scaling of diffusion contrasts with the linear scaling of motor transport. 
+
+This ties in a lot to the previous section. I originally thought of putting the <x> vs T diffusion/
+motor plot in the introduction, but maybe it would be better here. Not sure.\\
 
 \subsubsection{What role does it play in the cell?}
 This'll require more reading...dynein transports cargo, such as proteins, vesicles, and other cellular structures. How does binding to structures work, is it random Brownian? Do dyneins bind to the MT then cargo, or vice versa? What does dynein actually bind to, since it has a single binding domain that
@@ -66,13 +88,12 @@ can't recognize everything. Does it have different binding partners which bind t
 
 Other roles than transport: moving around microtubules to help with chromosome segregation, what else?
 
-\subsubsection{Why does the cell need motor transport?}
+\subsubsection{How does it behave?}
+Talk about its stepping behavior using Weihong's figures (as well as the new paper David found?)\\
 
-\cite{dewitt2012cytoplasmic}
-
-
-This ties in a lot to the previous section. I originally thought of putting the <x> vs T diffusion/
-motor plot in the introduction, but maybe it would be better here. Not sure.\\
+Also possibly talk about the other things Dynein has been found to do, such as hydrolyse ATP and
+move its subdomains around. This may be better in a different section than the introduction though,
+since its a lot of biochemistry for the second section in an intro? maybe not, it has to go somewhere.
 
 \subsubsection{Why is dynein special and interesting?}
 Compare the processive motion of dynein to kinesin in \textbf{a.)} directionality, \textbf{b.)}
@@ -197,7 +218,6 @@ Talk about this figure:
 
 \begin{figure}[h!]
   \centering
-
   \begin{minipage}[b]{0.49\textwidth}
     \includegraphics[width=\textwidth]{../figures/OB_Average_PE.pdf}
     \caption{Onebound PE vs time.}

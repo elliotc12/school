@@ -1,7 +1,10 @@
 default: thesis
 
 thesis: latex/thesis.tex
-	cd latex && xelatex thesis.tex && mv thesis.pdf ..
+	cd latex && xelatex thesis.tex && bibtex thesis && xelatex thesis.tex && xelatex thesis.tex && mv thesis.pdf ..
+
+continuous:
+	cd latex && latexmk -pvc --xelatex thesis.tex
 
 clean:
 	rm -f latex/*.fdb_latexmk
