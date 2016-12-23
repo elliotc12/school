@@ -57,9 +57,7 @@ Dynein is a protein with many smaller domains. A depiction of the protein and it
   \label{dynein-artist-rendition}
 \end{figure}
 
-Dynein is believed to move by using the energy of ATP to cycle through a ring of states, each with different spatial relations to the microtubule. By cycling forward through this ring, the molecule can end up in the same state it began, but moved forward a small amount. This ring of states is known as the mechanochemical cycle \cite{cianfroccoreview}.\\
-
-The goal of this project is to create a mathematical model of the mechanochemical cycle and verify that it can reproduce experimental dynein stepping data.\\
+Dynein is believed to move by using the energy of ATP to cycle through a ring of states, each with different spatial relations to the microtubule. By cycling forward through this ring, the molecule can end up in the same state it began, but moved forward a small amount. This ring of states is known as the mechanochemical cycle \cite{cianfroccoreview}. The goal of this project is to create a mathematical model of the mechanochemical cycle and verify that it can reproduce experimental dynein stepping data. There are several types of dynein which all behave differently. This project will focus on cytoplasmic dynein-1, hereby referred to as dynein.\\
 
 \subsection{Biology review}
 
@@ -69,7 +67,7 @@ The goal of this project is to create a mathematical model of the mechanochemica
 \subsubsection{Why do cells need motor transport?}
 Cells are organized, heretogenous structures which respond quickly to their environments. This means that cells require a mechanism for rapidly moving components to precise locations within the cell. This can be a challenge, since cells are fairly large compared to the proteins which compose them. A human fibroblast cell has a volume of roughly 2000 $\mu m^3$\cite{fibroblastvolume}, corresponding to roughly $8 \mu m$ in diameter. In comparison, human hemoglobin has a diameter of roughly $5 nm$ (PDB id 5ME2) \textbf{((is this the best way to cite this?))}, a $10^3$ factor difference in size.\\
 
-Diffusion, or random motion of molecules due to collisions with solvent (i.e. Brownian motion), is one possible means cells could use to transport biomolecules. Diffusion has two problems: it is slow and nondirected. The expected distance covered for one-dimensional Brownian motion after time t was found by Einstein to be \textbf{cite here}:
+Diffusion, or random motion of molecules due to collisions with solvent (i.e. Brownian motion), is one possible process cells could use to transport biomolecules. Diffusion has two problems: it is slow and nondirected. The expected distance covered for one-dimensional Brownian motion after time t was found by Einstein to be \textbf{cite here}:
 
 \begin{equation}
   \label{diffusion-equation}
@@ -85,13 +83,27 @@ where D is the diffusion constant describing the diffusability of the biomolecul
   \label{diffusion_vs_dynein}
 \end{figure}
 
-Another advantage of motor transport is that microtubules can be highly specific in their location in the cell, as in chromosomal segregation, where dynein walks on MTs bound directly to chromosomes. Diffusion is an inherently random process, and so could never provide such spatial specificity.\\
+\textit{Maybe use the more reasonable 2$\mu m / s$ number for dynein velocity, in-vitro speed may not be applicable since [ATP]-limited}
+
+Another advantage of motor transport is that microtubules can be highly specific in their location in the cell. During cell division chromosomes line up at the center of each cell in a plane. Such a geometrically precise shape requires some sort of directed motion which a random process could never provide.\\
+
+\textit{maybe decorate the above plot with pictures of cells of each size, or how long certain cellular events take? That could be cool and make it actually an interesting plot}
+\textit{this argument would be much better if you could find examples of things which need to be done quickly in the cell, like responding to foreign particles or signalling
+  molecules or cell division or neural events}
 
 \subsubsection{What role does it play in the cell?}
-This'll require more reading...dynein transports cargo, such as proteins, vesicles, and other cellular structures. How does binding to structures work, is it random Brownian? Do dyneins bind to the MT then cargo, or vice versa? What does dynein actually bind to, since it has a single binding domain that
-can't recognize everything. Does it have different binding partners which bind to specific things?\\
+Some of dynein's primary roles in the cell are to transport cellular cargos such as organelles, vesicles, mRNA, cytoskeletal filaments and certain proteins. Dynein also plays a role in positioning and breaking down the nucleus, cell death, spindle formation and the placement of other important cellular structures \cite{valetoolbox}.
 
-Other roles than transport: moving around microtubules to help with chromosome segregation, what else?
+Microtubules are long polymers of alternating $\alpha-$ and $\beta-$ tubulin subunits. MTs are polar, meaning they have a distinct directionality based on the orientation of thetubulin proteins which comprise them. One pole, the minus end, is where they initiate formation, typically at a MTOC (microtubule organizing center) around the center of the cell. The other pole, the plus end, is where they grow and shrink from. Kinesin and myosin, two other families of motor protein, typically walk towards the plus end of the MT. Dynein is unique in that it walks towards the minus end, making it a minus end-directed motor. This lends it to a particularly important function inside neurons known as retrograde transport.\\
+
+Neurons have cell bodies at their centers and axons which grow outwards. Axons are long, narrow structures extending up to a meter in length in humans. Cell bodies contain nuclei and important organelles for synthesizing proteins, but growth of axon tips is vital for neuron function. This means bidirectional motor transport between axon tips and cell bodies is very important in neurons, since diffusion would not be quick enough. Retrograde transport is transport from the axon tip to the cell body. Cargo includes vesicles full of proteins ready to be broken down in the cell body and microtubule fragments to be returned from the axon tip \cite{neuroanatomy}. Because microtubule minus ends are found in the cell body, dynein's minus end-directed nature makes it the only protein capable of retrograde transport. An interesting question is, if proteins like dynein are synthesized in the cell body but needed at the axon tip to perform retrograde transport, how do dynein get to the tip? The answer is shown in \ref{retrograde-transport}: kinesin, a plus end-directed motor, takes dynein to the tip from the cell body.\\
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.65\textwidth,keepaspectratio]{../figures/retrograde_transport.jpg}
+  \caption{Mechanism of dynein localization to axon tips, or growth cones, in retrograde transport mediated by kinesin anterograde transport. Modified from \cite{valetoolbox}.}
+  \label{retrograde-transport}
+\end{figure}
 
 \subsubsection{How does it behave?}
 Talk about its stepping behavior using Weihong's figures (as well as the new paper David found?)\\
@@ -275,7 +287,6 @@ The following table shows our guess parameters from various papers/crystal struc
 		\subsubsection{Step time histograms}
 	\subsection{Other ways to represent data?}
 
-
 \section{Chapter: Discussion}
 \subsection{Why our model worked, didn’t work}
 Fill this out over winter when you know more.\\
@@ -302,4 +313,10 @@ and get its crystal structure to do some comparisons.
 
 \bibliography{thesis-webpages}
 
+\section{Questions for Tate/Nicole}
+\begin{itemize}
+\item How responsible am I for the papers I cite? Should I have read them, know their methodologies?
+\item Is it appropriate to cite web pages in a thesis? In a separate citation section?
+\item When is a fact ``common knowledge'' enough that it doesn't need a citation?
+\end{itemize}
 \end{document}
