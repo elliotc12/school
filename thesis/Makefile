@@ -1,6 +1,6 @@
-default: thesis
+default: thesis.pdf
 
-thesis: latex/thesis.tex
+thesis.pdf: latex/thesis.tex
 	cd latex && xelatex thesis.tex && bibtex thesis && xelatex thesis.tex && xelatex thesis.tex && mv thesis.pdf ..
 
 continuous:
