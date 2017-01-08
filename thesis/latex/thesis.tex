@@ -73,7 +73,8 @@ Diffusion, or random motion of molecules due to collisions with solvent (i.e. Br
   <x> = \sqrt{2Dt}
 \end{equation}
 
-where D is the diffusion constant describing the diffusability of the biomolecule. For a medium-sized (140kD, 1D = weight of H atom) protein with a diffusion constant $D = .2 \mu m^2/s$ \cite{diffusionconstants}, it would take about a month to travel across a millimeter-sized cell. In contrast, it would take dynein, which travels at roughly 100nm/s \cite{weihongpaper}, a much more reasonable three hours to do the same.
+where D is the diffusion constant describing the diffusability of the biomolecule. For a medium-sized (140kD, 1D = weight of H atom) protein with a diffusion constant $D = .2 \mu m^2/s$ %% \cite{diffusionconstants}
+, it would take about a month to travel across a millimeter-sized cell. In contrast, it would take dynein, which travels at roughly 100nm/s \cite{weihongpaper}, a much more reasonable three hours to do the same.
 
 \begin{figure}[h]
   \centering
@@ -155,6 +156,8 @@ and ask lots of questions. Build interest in the motors here.\\
 
 Cianfrocco \textit{et. al} \cite{cianfroccoreview} propose dynein achieves motion via transitioning through the cycle of states shown in Fig. \ref{mech-cycle}. This model will hereon be referred to as the Cianfrocco model. The model claims the primary events in the dynein step are as follows. First, starting with both binding domains attached to the MT, ATP binds to the motor domain, which causes it to change conformation. ATP hydrolysis to ADP-Pi causes further conformation changes. These changes cause the binding domain to release the microtubule, meaning only one binding domain is MT-bound. The free binding domain then undergoes another conformation change known as the ``priming stroke,'' which changes the orientation of the binding domain with respect to the MT. Finally the binding domain rebinds to the MT, causing a final conformation change in the motor which returns it to the beginning of the cycle. The exact order of these events is not precisely known. More detail on each step of the cycle is given below.\\
 
+Maybe show the Cianfrocco model in a section \textit{after} talking about all the things which happen for sure in dynein, since it's more theoretical? Talk about the Cianfrocco model, but other interpretations?
+
 \textbf{Things which are known about dynein which support the Cianfrocco model}
 \begin{itemize}
 \item AAA1 only ATPase necessary for motility, which is why we don't include the other ATPases in our model \cite{cianfroccoreview}
@@ -167,30 +170,47 @@ Cianfrocco \textit{et. al} \cite{cianfroccoreview} propose dynein achieves motio
 
 Make a figure of pre/post-powerstroke dynein with the linker hilighted? Can you get what residues correspond to the linker somewhere?
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.65\textwidth,keepaspectratio]{../figures/mechanochemical-cycle.jpeg}
+  \caption{Cycle of states the dynein motor goes through during motion in the Cianfrocco model \cite{cianfroccoreview}.}
+  \label{mech-cycle}
+\end{figure}
+
+\subsubsection{ATP binding / unbinding effects}
+\subsubsection{Microtubule un/rebinding}
+\subsubsection{Conformation change of motor (``priming stroke'')}
+A FRET (fluorescent resonance energy transfer) study, which probes the closeness of different labeled domains on a protein, showed that dynein is found in two different major conformations, depending on the nucleotide bound to its AAA1 ATPase site \cite{FRETstatepaper}. When no nucleotide, ATP or ADP is bound, the authors label the protein ``state I.'' When ADP-Pi bound, the motor is said to be in ``state II,'' as shown in Fig \ref{nucleotide-state}. In addition, motors in the presence of the unhydrolyzable ATP analog were found in state II, indicating the transition from state I to II occurs during ATP binding. Similar reasoning shows that the state II to I transition occurs when the protein is ADP bound. This allows the authors to create the state diagram shown in Fig \ref{nucleotide-state-diagram}.\\
+
 %% \begin{figure}[h]
 %%   \centering
-%%   \includegraphics[width=.65\textwidth,keepaspectratio]{../figures/mechanochemical-cycle.png}
-%%   \caption{Cycle of states the dynein motor goes through during motion in the Cianfrocco model \cite{cianfroccoreview}.}
-%%   \label{mech-cycle}
+%%   \includegraphics[width=.65\textwidth,keepaspectratio]{../figures/two-state-em-diagram}
+%%   \caption{}
+%%   \label{nuecleotide-state}
 %% \end{figure}
 
-\subsubsection{Step One: ATP binding}
-\subsubsection{Step Two: }
+%% \begin{figure}[h]
+%%   \centering
+%%   \includegraphics[width=.65\textwidth,keepaspectratio]{../figures/nucleotide-state-cycle}
+%%   \caption{}
+%%   \label{nucleotide-state-diagram}
+%% \end{figure}
+
+This single FRET study illustrates how the conformational aspect of the mechanochemical cycle works. Dynein begins in state I and binds ATP into its AAA1 ATPase, changing into state II by changing its stalk-tail angle to move the tail outward. ATP is then hydrolized into ADP-Pi. Pi is then ejected from the AAA1 site, leaving ADP behind. This causes the reverse state transition, moving the tail inward. When combined with microtubule affinity changes, this primitive model of the dynein cycle could explain how dynein walks.\\
+
+\textit{It is interesting to note that the hydrolysis of ATP is not actually used to directly power the motor -- binding AMP-PMP, a nonhydrolyzable analog of ATP, can also cause the motor to change from state I to state II \cite{FRETstatepaper}. The specialness of ATP is that it can be broken down into ADP, which causes another conformation change back to state I. Thus, something something the transfer of energy from nucleotide to motor is in its shape, not in its chemistry.}\\
+
+\textbf{more on how ATP actually causes the conformation change, if that's available. The change from an open/closed ATPase is what changes the nucleotide affinity, go into depth on that, but actual info on how ATP binding causes conformation change would be good. Something about going from a planar to nonplanar conformation?}\\
+
+also how crystal structures are in different positions
 
 \subsubsection{Experimental results on dynein’s step}
 Weihong's figures go here.\\
-\subsubsection{Experimental features of dynein (ATPase, multi-state…)}
-Some history of studies which have determined what dynein has in it.\\
-
-\subsubsection{Powerstroke Theory}
-Talk about the history of this idea, why it is supported and why it is not supported.\\
-\paragraph{The theory}
-Describe the theory.
-\paragraph{b Evidence of theory}
-Evidence supporting the powerstroke.
 
 \subsubsection{c What is still needed to support theory}
 Where our simulation fits in. Why we need this kind of information.
+There are many different things which might be important for dynein's walk which we don't take into account: springiness of tail/stalk, changes in spring constants, repulsion between the heads, multiple pre/post powerstroke conformations. We are trying to see if these things are actually important.
+
 \subsubsection{Other theories?}
 Imamula model: how it is different from Cianfrocco model, and why we chose the Cianfrocco model.\\
 	\subsection{Past Simulations}
@@ -358,7 +378,7 @@ and get its crystal structure to do some comparisons.
 
 \bibliography{thesis-articles}
 
-\bibliography{thesis-webpages}
+%% \bibliography{thesis-webpages}
 
 \section{Questions for Tate/Nicole}
 \begin{itemize}
