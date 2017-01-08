@@ -153,25 +153,29 @@ and ask lots of questions. Build interest in the motors here.\\
 
 \subsection{How does dynein walk?}
 
-Cianfrocco \textit{et. al} \cite{cianfroccoreview} propose dynein achieves motion via transitioning through the cycle of states shown in Fig. \ref{mech-cycle}. This model will hereon be referred to as the Cianfrocco model. The model claims the primary events in the dynein step are as follows. First, starting with both binding domains attached to the MT, ATP binds to the motor domain, which causes it to change conformation. This change causes the binding domain to release the microtubule, meaning only one binding domain is MT-bound. The free binding domain then undergoes another conformation change known as the ``priming stroke,'' which changes the orientation of the binding domain with respect to the MT. Finally the binding domain rebinds to the MT, causing a final conformation change in the motor which returns it to the beginning of the cycle. The exact order of these events is not precisely known. More detail on each step of the cycle is given below.\\
+Cianfrocco \textit{et. al} \cite{cianfroccoreview} propose dynein achieves motion via transitioning through the cycle of states shown in Fig. \ref{mech-cycle}. This model will hereon be referred to as the Cianfrocco model. The model claims the primary events in the dynein step are as follows. First, starting with both binding domains attached to the MT, ATP binds to the motor domain, which causes it to change conformation. ATP hydrolysis to ADP-Pi causes further conformation changes. These changes cause the binding domain to release the microtubule, meaning only one binding domain is MT-bound. The free binding domain then undergoes another conformation change known as the ``priming stroke,'' which changes the orientation of the binding domain with respect to the MT. Finally the binding domain rebinds to the MT, causing a final conformation change in the motor which returns it to the beginning of the cycle. The exact order of these events is not precisely known. More detail on each step of the cycle is given below.\\
 
 \textbf{Things which are known about dynein which support the Cianfrocco model}
 \begin{itemize}
-\item AAA1 only ATPase necessary for motility \cite{cianfroccoreview}
+\item AAA1 only ATPase necessary for motility, which is why we don't include the other ATPases in our model \cite{cianfroccoreview}
 \item AAA5 mediates stalk register changes Schmidt H, Zalyte R, Urnavicius L, Carter AP. 2014. Structure of human cytoplasmic dynein-2 primed for
   its power stroke. Nature 518:435–38
 \item Linker moves as response to AAA1 nucleotide binding Burgess SA, Walker ML, Sakakibara H, Knight PJ, Oiwa K. 2003. Dynein structure and power stroke. Nature
-421:715–8
+  421:715–8
+\item Crystal structures with Vanadium-Adp show dynein in the pre-powerstroke state, hinting that ADP-Pi-bound dynein takes on a different conformation than ADP-Pi free dynein
 \end{itemize}
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=.65\textwidth,keepaspectratio]{../figures/mechanochemical-cycle.png}
-  \caption{Cycle of states the dynein motor goes through during motion in the Cianfrocco model \cite{cianfroccoreview}.}
-  \label{mech-cycle}
-\end{figure}
+Make a figure of pre/post-powerstroke dynein with the linker hilighted? Can you get what residues correspond to the linker somewhere?
 
-\subsubsection{ATP binding}
+%% \begin{figure}[h]
+%%   \centering
+%%   \includegraphics[width=.65\textwidth,keepaspectratio]{../figures/mechanochemical-cycle.png}
+%%   \caption{Cycle of states the dynein motor goes through during motion in the Cianfrocco model \cite{cianfroccoreview}.}
+%%   \label{mech-cycle}
+%% \end{figure}
+
+\subsubsection{Step One: ATP binding}
+\subsubsection{Step Two: }
 
 \subsubsection{Experimental results on dynein’s step}
 Weihong's figures go here.\\
@@ -188,9 +192,8 @@ Evidence supporting the powerstroke.
 \subsubsection{c What is still needed to support theory}
 Where our simulation fits in. Why we need this kind of information.
 \subsubsection{Other theories?}
-Imamula model, how it is different from Cianfrocco model, and why we chose teh Cianfrocco model.\\
+Imamula model: how it is different from Cianfrocco model, and why we chose the Cianfrocco model.\\
 	\subsection{Past Simulations}
-		\subsubsection{Why simulations are necessary}
 		\subsubsection{Sarlah Winch Model}
 		\subsubsection{-x Other models}
 	\subsection{Brownian motion}
@@ -229,6 +232,8 @@ Talk about the things we \textit{don't} take into account...motor-motor interact
 other ATPase nucleotide state, saying certain mechanochemical steps occur ``fast,'' not taking into
 account all mechanochemical cycle states, making the coiled coil domain rigid even though it may be
 springy...
+
+Mention the Burgess paper, which says spring constants might change between apo/ADP states.
 
 \subsection{Simulating our model}
 Talk generally about what simulating stuff means.\\
@@ -340,6 +345,8 @@ the distance between domains in dynein.\\
 
 Other biophysics experiments which could verify our model?\\
 
+Do our spring constants seem to indicate that the protein does about one ATP's worth of work through its cycle? I wonder if the motor cools down its surroundings when it walks...\\
+
 Calorimetry could get Gibb's energy of binding if you froze the motor in onebound using
 vanadium? Maybe...\\
 \subsection{Possible further projects}
@@ -358,6 +365,6 @@ and get its crystal structure to do some comparisons.
 \item How responsible am I for the papers I cite? Should I have read them, know their methodologies?
 \item Is it appropriate to cite web pages in a thesis? In a separate citation section?
 \item When is a fact ``common knowledge'' enough that it doesn't need a citation?
-\item Some papers have 'Request permission to reuse' links - do I need to do this for copying figures?
+\item Some papers have 'Request permission to reuse' links for figures - do I need to do this for copying figures?
 \end{itemize}
 \end{document}
