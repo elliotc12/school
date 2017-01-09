@@ -1,10 +1,15 @@
 default: thesis.pdf
 
-thesis.pdf: latex/thesis.tex
+FIGURES=$(patsubst figures/%.svg, figures/%.pdf, $(wildcard figures/*.svg))
+
+thesis.pdf: latex/thesis.tex $(FIGURES)
 	cd latex && xelatex thesis.tex && bibtex thesis && xelatex thesis.tex && xelatex thesis.tex && mv thesis.pdf ..
 
 continuous:
 	cd latex && latexmk -pvc --xelatex thesis.tex
+
+figures/%.pdf: figures/%.svg
+	inkscape -D --export-pdf $@ $<	
 
 clean:
 	rm -f latex/*.fdb_latexmk
