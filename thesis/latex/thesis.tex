@@ -658,6 +658,36 @@ Certain configurations of the model, such as in the bothbound model when $\Theta
 Alternative problem states are when $L = 0$ and ???. These states are corrected similarly.\\
 
 \subsubsection{Forces}
+Spring and Brownian forces are used to properly move the model through time. Appendices (\ref{onebound-motion-equatons}-\ref{bothbound-motion-equations}) show angular velocities are functions of the x- and y-components of both spring forces $F$ and Brownian forces $\gamma R$. We calculate these as shown:
+
+\paragraph{Brownian forces}
+Each Brownian force $R_{n,m}$ on domain $n$ in direction $m$ is sampled from a Gaussian with standard deviation $\sqrt{\frac{2k_BT\gamma_n}{dt}}$.\\
+
+\paragraph{Spring forces}
+Spring forces are calculated by first finding the torque $\tau$ on each angle, then converting this to a force. For example, the onebound near motor angle feels a force $\tau_{nm} = c_m(\Theta_{nm}-\Theta_{nm,eq})$, where $c_n$ is the spring constant of the motor domain and $\Theta_{nm,eq}$ the equilibrium angle. The magnitude of force on the adjacent binding and tail domains is thus $\tau/Ls$ and $\tau/Lt$, pointing in the direction adjacent the Ls and Lt rods, respectively. The force on the motor domain is found as the equal-and-opposite force to these two imposed forces. In code:
+
+\begin{figure}[h]
+  \centering
+  \begin{tabular}{c}
+    \begin{lstlisting}[language=C++]
+      T = cm*(nma - nma_eq);
+      f1 = T/Ls;
+      f2 = T/Lt;
+      f1x = f1 * sin(bba);
+      f1y = f1 * -cos(bba);
+      f2x = f2 * sin(bma);
+      f2y = f2 * -cos(bma);
+      f.bbx += f1x;
+      f.bby += f1y;
+      f.tx  += f2x;
+      f.ty  += f2y;
+      f.bmx += -(f1x + f2x); // equal and opposite forces
+      f.bmy += -(f1y + f2y);
+    \end{lstlisting}
+  \end{tabular}
+  \caption{Code snippet of internal force calculation.}
+  \label{transition-rate-snippet}
+\end{figure}
 
 \subsection{Verifying the model}
 \subsubsection{Equipartition theorem obeyed}
