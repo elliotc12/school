@@ -690,6 +690,30 @@ Spring forces are calculated by first finding the torque $\tau$ on each angle, t
 \end{figure}
 
 \subsection{Verifying the model}
+The models were verified to follow physical laws by checking their behavior in various tests: general conformational tests, energy conservation and obeying the equipartition theorem. The purpose of these tests was to verify that equations had been entered properly (primarily the conformational and energy conservation tests), and that the model obeyed the laws of physics (all tests).
+
+\subsubsection{Conformational tests}
+The models were tested in the following different conformations to verify they behaved as expected:\\
+
+\textbf{Onebound tests}
+\begin{itemize}
+\item \textbf{Onebound:} \textit{Upwards line conformation with no forces.} Check that all domain x-values are zero$^*$ and all y-values are the proper addition of $L_s$ and $L_t$ lengths. Also checks that all angular velocities are zero. This test verifies that the angle scheme is defined properly, that the model can handle straight lines without generating NaNs and that there are no velocities (angular or cartesian) without forces.
+\item \textbf{Onebound:} \textit{Horizontal line conformation with no forces.} Check that all domain y-values are zero and all x-values are the proper addition of $L_s$ and $L_t$ lengths. Also check that all velocities are zero. This test double-verifies that the coordinate system behaves as expected and that velocities are zero in the absence of forces.
+\item \textbf{Onebound:} \textit{Upwards line conformation with +x forces} Check that cartesian x-velocities are positive and y-velocities are zero. Verifies that the cartesian velocities have the expected sign.
+\item \textbf{Onebound:} \textit{Upwards line conformation with +y forces} Check that all cartesian velocities are zero. Verifies that upwards forces in an already-vertical stalk have no effect on velocity.
+  \item \textbf{Onebound:} \textit{Prepowerstroke opposing internal/brownian forces} Check that, for two onebound models, one with +x spring forces and no Brownian forces and the other with -x Brownian forces and no spring forces, that the velocities of each unbound domain are equal and opposite. Verifies that equal Brownian and internal forces have the same magnitude and direction of effect on velocities.
+\end{itemize}
+*: checks for equality are within a margin of error of $\epsilon = 1e^{-5}$.\\
+
+These tests together verify that the onebound model's internal coordinate system's directions match the XY coordinate system directions, that the angular directions in the model properly align with the $\pm x$ and $\pm y$ directions of the XY coordinate system, that velocities have the proper magnitude at zero force and proper sign at nonzero force, and that Brownian and internal forces are in the same unit system. There are still errors which could exist in the model pertaining to magnitude of velocity, which will be tested for in the energy conservation section.\\
+
+\textbf{Bothbound tests} go here.
+
+
+\subsubsection{Energy conservation}
+
+\subsubsection{Equipartition theorem}
+
 \subsubsection{Equipartition theorem obeyed}
 %% \begin{figure}[h!]
 %%   \centering
