@@ -647,6 +647,7 @@ Transitions from one state to another are accomplished by calculating the rate o
 \textit{todo: include lots more on the derivation of preexponential factors from experimental rates and loss of degrees of freedom}
 
 \subsubsection{Corrections}
+\label{corrections-section}
 Certain configurations of the model, such as in the bothbound model when $\Theta_{nm} = \pi$ or $\Theta_{fm} = \pi$, it becomes impossible to calculate intermediate variables due to values going to infinity (name for this??). For example when $\Theta_{nm} = \pi$, $Ln = Ls + Lt$ and so:
 
 \begin{align}
@@ -707,12 +708,29 @@ The models were tested in the following different conformations to verify they b
 
 These tests together verify that the onebound model's internal coordinate system's directions match the XY coordinate system directions, that the angular directions in the model properly align with the $\pm x$ and $\pm y$ directions of the XY coordinate system, that velocities have the proper magnitude at zero force and proper sign at nonzero force, and that Brownian and internal forces are in the same unit system. There are still errors which could exist in the model pertaining to magnitude of velocity, which will be tested for in the energy conservation section.\\
 
-\textbf{Bothbound tests} go here.
+\textbf{Bothbound tests}
+\begin{itemize}
+\item \textbf{Bothbound:} \textit{Upwards line conformation with no Brownian forces.} Both MTB domains are very close together ($L=10^(-25)$) and motor domains nearly vertical ($\Theta_{n/f} = \pi \pm 10^(-15)$). Equilibrium angles set to have a vertical line as the lowest energy point. Model is not exactly vertical for NaN concerns explained in section \ref{corrections-section}. Checks that domain x-values are zero$^*$, domain y-values are the correct combination of $L_s$ and $L_t$ lengths, all angles are at equilibrium and all forces are zero. Verifies that the domains are properly oriented by the angles, the angles are defined properly and forces are calculated from angles properly.
+\item \textbf{Bothbound:} \textit{Equilateral house conformation with outward x-forces.} The model forms the shape of a square with an equilateral triangle on top, with the tail domain as the triangle. Checks if all domains are at the desired locations and the derivatives are the proper sign and are equal and opposite to their counterparts on the opposing side of the house. This test verifies that the angular system behaves as expected and forces are symmetric about the two dimers.
+\item \textbf{Bothbound:} \textit{Two table conformations with near/far domains flipped.} Two models are put in the same table-like conformation, but the near/far domains are flipped. Checks if opposite domains have the same positions and forces. Re-verifies that the model is symmetric in position and force between the two dimers.
+\end{itemize}
 
+These tests verify the bothbound model's angle system behaves as expected, forces are zero when expected and have the proper signs, and that the whole system is symmetric with either dimer.
 
 \subsubsection{Energy conservation}
+To verify that the magnitudes of forces are calculated properly, a conservation of energy test was performed. A very slight angular nudge was applied to either model. This nudge caused a small change in energy. This change in energy was compared with the work the forces on each domain caused over the nudge. In order for energy to be conserved, these values were required to be very similar. Mathematically the test required the following:
+
+\begin{equation}
+  \sum_n \frac12 \left(\Theta_{nudge} - \Theta_{n} - \Theta_{n,eq}\right) = \sum_n \vec{F}_n \cdot \vec{r}_{n,nudge}
+\end{equation}
+
+where $\Theta_{nudge}$ was the angular nudge applied, $F_n$ the net force on domain $n$ and $\vec{r}_{n,nudge}$ the cartesian displacement of each domain $n$ due to the nudge. This test is powerful since it links the force-calculation system of either model to the energy calculation system. Energy is calculated by looking at displacements of angles from equilibrium, whereas forces are calculated using displacement of angles from equilibrium, but also orientation and position of each domain. Verifying these two systems produce the same result indicates... something. \textbf{make this more precise.}
+
+\textbf{is there a test to be run which could verify the velocity calculation is correct?}
 
 \subsubsection{Equipartition theorem}
+
+
 
 \subsubsection{Equipartition theorem obeyed}
 %% \begin{figure}[h!]
