@@ -9,7 +9,7 @@ continuous:
 	cd latex && latexmk -pvc --xelatex thesis.tex
 
 figures/%.pdf: figures/%.svg
-	inkscape -D --export-pdf $@ $<	
+	inkscape -D --export-pdf $@ $<
 
 clean:
 	rm -f latex/*.fdb_latexmk
@@ -21,3 +21,8 @@ clean:
 	rm -f latex/*.toc
 	rm -f latex/*.blg
 	rm -f latex/*.bbl
+
+##### 403 Stuff #####
+
+tate-figures-1-17.pdf: latex/tate-figures-1-17.tex $(FIGURES)
+	cd latex && xelatex tate-figures-1-17.tex && mv tate-figures-1-17.pdf ..
