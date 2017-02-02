@@ -47,12 +47,17 @@
 
 \maketitle{}
 
+\section{Problem 1.3.14}
+We want to show the relation $ab \leq \frac12\left(a^2+b^2\right)$. for any $a,b\in\mathbb{R}$\\
+
+Note that since the square of any real number is nonnegative, $\left(a-b\right) \geq 0$. Squaring both sides yields $a^2 + b^2 - 2ab \geq 0$, and so $ab \leq \frac12\left(a^2+b^2\right$, as desired.\\
+
 \section{Problem 2.1.2a}
 We want to show $\forall \epsilon,$ $\exists N$ such that $\forall n \geq N,$ $\frac{1}{\sqrt{n}} < \epsilon$ using the Archimedian principle.\\
 
 By the Archimedian principle, $\exists c$ such that $\frac{1}{c} < c$. Pick a $c$ with this property, and let $N = c^2$. Then $\frac{1}{\sqrt{N}} < \epsilon$. Note that $\forall n \geq N$, $\frac{1}{\sqrt{n}} \leq \frac{1}{\sqrt{N}}$. Thus $\frac{1}{\sqrt{n}} < \epsilon$, as desired.\\
 
-\section{Problem 2.1.7}
+\section{Problem 2.1.6}
 We want to show that $\exists N$ such that $\forall n \geq N$, $a_n > 0$.\\
 
 We are given that $\{a_n\}$ converges to $a$. Consider the $N$ such that $\forall n \geq N$, $\left|a_n - a\right| < a$. By Proposition 1.2, $\left|x - a\right| < r$ and $a-r < x < a+r$ are equivalent, thus $0 < a_n < 2a$. Thus $a_n > 0$, as desired.\\
