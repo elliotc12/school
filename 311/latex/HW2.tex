@@ -39,7 +39,7 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Advanced Calc Homework 2 \large 1.3.4, 1.3.7, 1.3.14, 2.1.2a, 2.1.6, 2.1.7, 2.1.15a}
+\title{Advanced Calc Homework 2\\ \large 1.3.4, 1.3.7, 1.3.14, 2.1.2a, 2.1.6, 2.1.7, 2.1.15a}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -47,10 +47,20 @@
 
 \maketitle{}
 
+\section{Problem 1.3.2}
+For $a > 0$, we want to show that $|x - a| < \frac a2$ then $x > \frac a2$.\\
+
+Let $|x - a| < \frac a2$. Then by Proposition 1.2 this is equivalent to statement $a - \frac a2 < x < a + \frac{3a}{2}$, thus $x > \frac a2$, as desired.\\
+
+\section{Problem 1.3.7}
+Starting with statement $(a+b) + (-b)$, apply the triangle inequality to get $|a+b| + |-b| \geq |a + b -b| = |a|$. By rearranging terms, we get $|a| - |b| \leq |a+b|$.\\
+
+Now interchanging $a$ and $b$ yields $|b| - |a| \leq |b+a|$. By algebra, $-\left(|a| - |b|\right) \leq |a+b|$. Then $\left||a| - |b|\right| \leq |a+b|$.\\
+
 \section{Problem 1.3.14}
 We want to show the relation $ab \leq \frac12\left(a^2+b^2\right)$. for any $a,b\in\mathbb{R}$\\
 
-Note that since the square of any real number is nonnegative, $\left(a-b\right) \geq 0$. Squaring both sides yields $a^2 + b^2 - 2ab \geq 0$, and so $ab \leq \frac12\left(a^2+b^2\right$, as desired.\\
+Note that since the square of any real number is nonnegative, $\left(a-b\right) \geq 0$. Squaring both sides yields $a^2 + b^2 - 2ab \geq 0$, and so $ab \leq \frac12\left(a^2+b^2\right)$, as desired.\\
 
 \section{Problem 2.1.2a}
 We want to show $\forall \epsilon,$ $\exists N$ such that $\forall n \geq N,$ $\frac{1}{\sqrt{n}} < \epsilon$ using the Archimedian principle.\\
@@ -61,6 +71,8 @@ By the Archimedian principle, $\exists c$ such that $\frac{1}{c} < c$. Pick a $c
 We want to show that $\exists N$ such that $\forall n \geq N$, $a_n > 0$.\\
 
 We are given that $\{a_n\}$ converges to $a$. Consider the $N$ such that $\forall n \geq N$, $\left|a_n - a\right| < a$. By Proposition 1.2, $\left|x - a\right| < r$ and $a-r < x < a+r$ are equivalent, thus $0 < a_n < 2a$. Thus $a_n > 0$, as desired.\\
+
+\newpage
 
 \section{Problem 2.1.7}
 We want to show that $\{b_n\}$ converges to $\ell$.\\
@@ -76,5 +88,22 @@ We are given that $\exists N$ such that $\forall n \geq N$, $a_n = b_n$. Conside
 \end{align*}
 
 Thus, by the Comparison Lemma, $\{b_n\}$ converges to $\ell$ as desired.\\
+
+\section{Problem 2.1.15a}
+We want to show the polynomial $a_n = n^3 - 4n^2 - 100n$ converge to infinity, or that $\forall c \in \mathbb{R}, c> 0$, $\exists N$ such that $\forall n \geq N$, $a_n > c$.\\
+
+Consider $a_n$ and its derivatives:\\
+
+\begin{align*}
+  a_n &= n^3 - 4n^2 - 100n\\
+  a_n' &= 3n^2 - 8n - 100\\
+  a_n'' &= 6n - 8\\
+  a_n''' &= 6\\
+  a_n'''' &= 0
+\end{align*}
+
+Notice that, at $n=100$, it is the case that $a_n >0$, $a_n' > 0$, $a_n'' > 0$, $a_n''' > 0$ and $a_n'''' = 0$. Because the third derivative is a constant positive number, $a_n$ where $n > 100$ will always increase at an increasing rate. Thus for any $c < 100$, $N = 100$ satisfies the claim.\\
+
+Now consider for any $c > 100$, because $a_n$ is increasing at a steadily increasing rate, there must exist some $n'$ such that $a_{n'} = c$. Now for all $n > n'$, $a_n > c$, so the claim is also satisfied for $c > 100$. Thus $a_n$ converges at infinity.\\
 
 \end{document}
