@@ -1,0 +1,82 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Advanced Calc Homework 4}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem 3.1.1}
+\textbf{a.)}\\
+False. Consider non-continuous functions $f: \mathbb{R} \rightarrow \mathbb{R}$ and $g = -f$. Then $f(x) + g(x) = 0$, and so $f+g$ is continuous, but $f$ is not.\\
+
+\textbf{b.)}\\
+Skip
+
+\textbf{c.)}\\
+Skip
+
+\textbf{d.)}\\
+Skip
+
+\section{Problem 3.1.7}
+Consider the continuous function $f[0,1] \rightarrow \mathbb{R}$, where $f(x) \geq 2$ if $[0,1)$. In search of a contradiction, let $f(1) < 2$. By $f$'s continuity, $\forall \epsilon > 0$ and $x_0 \in \mathbb{R}$, $\exists \delta$ such that $|x - x_0| < \delta$ implies $|f(x) - f(x_0)| < \epsilon$. Consider $x_0 = 1$ and $\epsilon = 2 - f(x_0)$. By our assumption, $\epsilon > 0$. Consider $x' < 1$ such that $|x' - 1| < \delta$. Thus, $|f(x) - f(x_0)| < 2 - f(x_0)$. Thus $f(x_0) - 2 + f(x_0) < f(x) < f(x_0) + 2 - f(x_0) = 2$, so $f(x) < 2$. This is a contradiction, thus $f(1) \geq 2$.\\
+
+\section{Problem 3.1.13}
+Let $\{x_n\}$ be a sequence such that $x_n \in D$ and $\lim_{n\rightarrow\infty} x_n = x_0$ for $x_0 \in D$. Let $f: D \rightarrow \mathbb{R}$ be a Lipschitz function. Then by $f$'s Lipschitz-ness, $|f(x_n) - f(x_0)| \leq C|x_n - x_0|$ for some $C \geq 0$. Thus by the Comparison Lemma $\lim_{n\rightarrow\infty} f(x_n) = f(x_0)$. Thus we have $\lim_{n\rightarrow\infty} x_n = x_0$ implying $\lim_{n\rightarrow\infty} f(x_n) = f(x_0)$ for a generic $\{x_n\}$ and $x_0$, and so $f$ is continuous.\\
+
+  
+\section{Problem 3.5.3}
+For each point $x_0$, consider $\delta = \min\left(1,\frac{\epsilon}{3|x_0|^2+3|x_0|+1}\right)$. Assume $|x - x_0| \leq \delta$. Then consider $|x^3-x_0^3| = |x-x_0||x^2+xx_0+x_0^2|$. By our $\delta$ assumption $|x-x_0| < 1$, which unwraps to $|x| < |x_0|+1$. Thus $|x^3-x_0^3| < \left(|x_0|^2 + 2|x_0| + 1 + |x_0|^2 + |x_0| + |x_0|^2\right)|x-x_0| = \left(3|x_0|^2 + 3|x_0| + 1\right)|x-x_0|$. Also by our assumption $|x-x_0| < \frac{\epsilon}{3|x_0|^2+3|x_0|+1}$, thus $|x^3-x_0^3| < \epsilon$. Thus $f$ is continuous for all $x_0$.\\
+
+\section{Problem 3.5.4}
+In search of a contradiction, let $f$ be continuous at $x_0 = \frac{3}{4}$. Then for $\epsilon = \frac{1}{8}$ there must exist some $\delta$ such that $|x - \frac{3}{4}| < \delta$ implies $|f(x)-f(\frac{3}{4})| < \frac{1}{8}$. Consider $\frac{3}{4} + \delta > x > \frac{3}{4}$. Then $|x-\frac{3}{4}|<\delta$, which implies $|2-\frac{7}{4}| = \frac{1}{4} < \frac{1}{8}$, which is a contradiction. Thus $f$ is not continuous at $x_0 = \frac{3}{4}$.\\
+
+\section{Problem 3.5.7}
+\textbf{a.)} Consider $\delta = \epsilon\sqrt{x_0}$. Then $|x-x_0| < \epsilon\sqrt{x_0}$, so $\frac{|x-x_0|}{\sqrt{x_0}} < \epsilon$. Because $x$ is constrained to be positive $|\sqrt{x_0}| < |\sqrt{x} + \sqrt{x_0}|$, and so $\frac{|x-x_0|}{|\sqrt{x}+\sqrt{x_0}|} = |\sqrt{x}-\sqrt{x_0}| < \epsilon$, as desired. Thus $f$ is continuous for positive $x$.\\
+\textbf{b.)} Skip
+
+\textbf{c.)} Skip
+
+\end{document}
