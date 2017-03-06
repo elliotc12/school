@@ -1,0 +1,103 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Advanced Calc Homework 4}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem 3.1.1}
+\textbf{a.)} No. Consider discontinuous $f$, and $g=-f$. Then $f+g$ is continuous, but $f$ isn't.\\
+
+\textbf{b.)} No. Consider $f=\sqrt{x}$. Then $f^2$ is continuous, but on $\mathbb{R}$ f is not continuous.\\
+
+\textbf{c.)} \\
+
+\textbf{d.)} \\
+
+\section{Problem 3.5.3}
+We want to show that $x^3$ is a continuous function. We will do algebra on the $|x^3-x_0^3|$ statement and try to show that $|x-x_0|<\delta$ implies $|x^3-x_0^3|<\epsilon$ for some $\epsilon, x_0$. Consider the following.\\
+
+$|x^3-x_0^3| = |x-x_0||x^2+xx_0+x_0^2|$. Then impose that $|x-x_0|<1$, thus $x<x_0+1$. Substituting this in:
+
+\begin{align*}
+  |x^3-x_0^3| &= |x-x_0||x^2+xx_0+x_0^2|\\
+  &\leq |x-x_0||(x_0+1)^2+x_0(x_0+1)+x_0^2|\\
+  &= |x-x_0||3x_0^2+3x_0+1|\\
+\end{align*}
+
+Thus if we let $\delta = \min(1,\frac{\epsilon}{|3x_0^2+3x_0+1|})$ then $|x-x_0|\leq\delta$ implies $|x^3-x_0^3|<\epsilon$. Thus $x^3$ is continuous.\\
+
+\section{Problem 3.5.7}
+\textbf{a.)} Want to show $\sqrt{x}$ is continuous. Consider arbitrary $x_0 \in \mathbb{R}$ and $\epsilon>0 \in \mathbb{R}$. Then
+
+\begin{align*}
+  |\sqrt{x} - \sqrt{x_0}| = \frac{|\sqrt{x} - \sqrt{x_0}||\sqrt{x} + \sqrt{x_0}|}{|\sqrt{x} + \sqrt{x_0}|}\\
+  &= \frac{|x-x_0|}{|\sqrt{x} + \sqrt{x_0}|} < \frac{|x-x_0|}{|\sqrt{x_0}|}
+\end{align*}
+
+Thus if $|x-c|<\delta=\sqrt{x_0}\epsilon$, then $|\sqrt{x}-\sqrt{c}|$. Thus $\sqrt{x}$ is continuous.\\
+
+\textbf{b.)} Want to show for some $\epsilon$ there exists a $\delta$ such that $\forall x,y >0 \in \mathbb{R}$, $|x-y|<\delta$ implies $\sqrt{x}-\sqrt{y}|<\epsilon$.\\
+
+Consider $\delta = \epsilon^2$. Note that because $x,y>0$, $|\sqrt{x}-\sqrt{y}|\leq|\sqrt{x}+\sqrt{y}|$. Then
+
+\begin{align*}
+  |\sqrt{x}-\sqrt{y}|^2 \leq |\sqrt{x}-\sqrt{y}||\sqrt{x}+\sqrt{y}| &= |x-y| < \epsilon^2
+\end{align*}
+
+Because absolute values and $\epsilon$s are nonnegative, $|\sqrt{x}-\sqrt{y}|^2 < \epsilon^2$ implies $|\sqrt{x}-\sqrt{y}|<\epsilon$. Thus we have found a $\delta$ for each $\epsilon$, and so $\sqrt{x}$ is uniformly continuous in $[0,1]$.
+
+\textbf{c.)} We want to show $\sqrt{x}:[0,1]\rightarrow\mathbb{R}$ is not a Lipschitz function. In search of a contradiction, let $\sqrt{x}$ be a Lipschitz function. Then there must exist some $C$ such that $\forall x,y \in D$, $|\sqrt{x}-\sqrt{y}|<C|x-y|$. Consider the following manipulation:
+
+\begin{align*}
+  |\sqrt{x}-\sqrt{y}|&<C|x-y|\\
+  \frac{|\sqrt{x}-\sqrt{y}|}{|x-y|}&<C\\
+  \frac{|\sqrt{x}-\sqrt{y}|}{|\sqrt{x}-\sqrt{y}||\sqrt{x}+\sqrt{y}|}&<C\\
+  \frac{1}{|\sqrt{x}+\sqrt{y}|}&<C\\
+\end{align*}
+
+This is a contradiction, since for any $C$, there will always be some $x,y$ such that  $\frac{1}{\sqrt{x}+\sqrt{y}} > C$. Thus $\sqrt{x}:[0,1]\rightarrow\mathbb{R}$ is not a Lipschitz function.\\
+
+\end{document}
