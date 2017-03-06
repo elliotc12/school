@@ -1,0 +1,200 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Advanced Calc Homework 5}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem 3.2.1}
+\textbf{a.) Every function $f:[0,1] \rightarrow \mathbb{R}$ has a maximum.}\\
+False. Consider non-continuous function $f:[0,1]\rightarrow\mathbb{R}, f(x) = \frac{1}{x-0.5}$. This function has no maximum.\\
+
+\textbf{b.) Every continuous function $f:[a,b] \rightarrow \mathbb{R}$ has a minimum}\\
+True. Because $[a,b]$ is bounded, it is subsequentially compact. Thus by the extreme value theorem, f has a max and min.\\
+
+\textbf{c.) Every continuous function $f:(0,1) \rightarrow \mathbb{R}$ has a maximum}\\
+False. Consider function $f:(0,1) \rightarrow \mathbb{R}, f(x) = \frac{1}{x-1}$. This function has no max.\\
+
+\textbf{d.) Every continuous function $f:(0,1) \rightarrow \mathbb{R}$ has a bounded range}\\
+False. Consider function $f:(0,1) \rightarrow \mathbb{R}, f(x) = \frac{1}{x-1}$. This function has no upper bound, and is therefore not bounded.\\
+
+\textbf{d.) If the image of the continuous function $f:(0,1) \rightarrow \mathbb{R}$ is bounded below, then the function has a minimum.}\\
+False. Consider function $f:(0,1) \rightarrow \mathbb{R}, f(x) = e^x$. This function's image is bounded from below by $1$, but has no minimum.\\
+
+\section{Problem 3.2.3}
+\textbf{a.) Find a function $f:(a,b)\rightarrow\mathbb{R}$ which is continuous and whose image is unbounded above.}\\
+Consider $f(x) = \frac{1}{x-a}$. This function is unbounded above and continuous on its domain.\\
+
+\textbf{b.) Find a function $f:(a,b)\rightarrow\mathbb{R}$ which is continuous and bounded from above but which does not have a max.}
+Consider $f(x) = a-x$. This function is bounded from above by zero and has no maximum.\\
+
+\section{Problem 3.3.1}
+\textbf{a.) If $f:\mathbb{R}\rightarrow\mathbb{R}$ is continuous, then $f(\mathbb{R}) = \mathbb{R}$.}\\
+False. Consider $f(x) = x^2$. This function never reaches negative reals.\\
+
+\textbf{b.) For any $f:[0,1]\rightarrow\mathbb{R}$, $f([0,1])$ is an interval.}\\
+False. Consider\\
+
+\[
+f(x) =
+\begin{cases} 
+      -1 & x\leq 0 \\
+      1  & x > 0 \\
+   \end{cases}
+\]
+
+$\{0,1\}$ is not an interval, since $\frac12$ is not a member.\\
+
+\textbf{c.) For any continuous $f:D\rightarrow\mathbb{R}$, $f(D)$ is an interval.}\\
+True. By the intermediate value theorem, for any continuous function on a domain, any value between to elements in the image has a preimage within the domain. Thus any value is allowed within the bounds of the image. Thus the image is an interval.\\
+
+\textbf{d.) For a continuous, strictly increasing function $f[0,1]\rightarrow\mathbb{R}$, its image is the interval $[f(0), f(1)]$.}\\
+By the intermediate value theorem, any element $c \in (f(0), f(1))$ must have some element $c = f(x)$ where $x \in (0,1)$ Thus every value between f(0) and f(1) is hit by the function. Because of f's monotonicity, all $x$'s in the domain must be $f(x) > f(0)$, and all elements must be $f(x) < 1$. Thus the image equals the interval $[f(0), f(1)]$.\\
+
+\section{Problem 3.3.2}
+Note that $f(-2)=-504$ and $f(2)=520$. For the moment restrict $f$'s domain to $[-2,2]$. Thus by the Intermediate Value Theorem, there must exist some $x \in (-2, 2)$ such that $f(x) = 0$. Thus there must exist soem solution to the equation.\\
+
+\section{Problem 3.3.4}
+Consider point $c = f(x) \in \left(f(-1),f(1)\right)$. By the intermediate value theorem, because the function has closed bounds of $[-1,1]$ and a bounded image, there must exist some x such that $f(x) = y$. Thus there must exist a fixed point in the function.\\
+
+\section{Problem 3.4.1}
+\textbf{a.) All continuous functions are uniformly continuous.}
+False. Consider $f(x) = x^1$. It is continuous, but not uniformly continuous.\\
+
+\textbf{b.) All continuous functions on $[0,1)$ are uniformly continuous.}\\
+False. Consider $f(x) = 1/x$. This is continuous on $[0,1)$, but not uniformly continuous. The function gets steeper and steeper towards 1, so there is no maximum slope.\\
+
+\textbf{c.) All continuous functions on $[0,1]$ are uniformly continuous.}
+False. Consider $f(x) = \sin(\frac{1}{x-\frac12})$. This function attains every possible slope, but is still continuous.\\
+
+\textbf{d.) Are all uniformly continuous functions continuous?}
+True, uniform continuity implies continuity. If there exists a $\delta$ such that for all $\epsilon>0$ and $x_0$, $|x-x_0|<\delta$ implies $|f(x)-f(x_0)|<\epsilon$, then this $\delta$ works for the normal continuity case for a specific $x_0$ as well.\\
+
+\section{Problem 3.4.8}
+Consider the function $f:(a,b)\rightarrow\mathbb{R}, f(x) = \frac{1}{x-b}$. This function is continuous, but not uniformly continuous.\\
+
+\section{Problem 3.4.11}
+Let $f$ be a Lipschitz function with constant $C$. Then consider the case where $|u-v|<\frac{\epsilon}{C}$ for some $\epsilon>0$ and arbitrary $u,v$. Then $C|u-v|<\epsilon$, and by the Lipschitz condition $|f(u)-f(v)|<\epsilon$. Thus $f$ is uniformly continuous.\\
+
+\section{Problem 3.6.1}
+\textbf{a.) Monotone functions are one-to-one.}\\
+False. Consider function
+
+\[
+f(x) =
+\begin{cases} 
+      -1 & x\leq 0 \\
+      1  & x > 0 \\
+   \end{cases}
+\]
+
+notice that all $x\leq0$ map to $-1$, thus $f$ is not one-to-one.\\
+
+\textbf{b.) A strictly increasing function is one-to-one.}\\
+True. For any $x_1, x_2 \in \mathbb{R}$, if $x_1 \neq x_2$ then either $f(x_1) > f(x_2)$ or $f(x_1) < f(x_2)$. Thus the function is one-to-one.\\
+
+\textbf{c.) A strictly increasing function is continuous.}\\
+False. Consider the function 
+
+\[
+f(x) =
+\begin{cases} 
+      x-1 & x\leq 0 \\
+      x+1  & x > 0 \\
+   \end{cases}
+\]
+
+note that the image $f(\mathbb{R})$ does not contain 0. Thus, $f$ is not one-to-one.\\
+
+\textbf{d.) A one-to-one function is monotone}
+False. Consider
+
+\[
+f(x) =
+\begin{cases} 
+      -x & |x|\leq 10 \\
+      x  & |x| > 10 \\
+   \end{cases}
+\]
+
+The preimage equals the real numbers, but the function is not monotone.\\
+
+\section{Problem 3.6.2}
+\textbf{a.) Find a continuous function $f:(0,1)\rightarrow\mathbb{R}$ with an image equal to $\mathbb{R}$.}\\
+Consider function $f(x) = \tan((x-\frac{1}{2})*\pi)$. This hits all points in $\mathbb{R}$ when restricted to a domain $D = (0,1)$.\\
+
+\textbf{b.) Find a continuous function $f:(0,1)\rightarrow\mathbb{R}$ with an image equal to $[0,1]$}\\
+Consider function $f(x) = \sin(2*x*\pi)$. This hits all points in $[0,1]$ when restricted to a domain $D = (0,1)$.\\
+
+\textbf{c.) Find a continuous function $f:\mathbb{R}\rightarrow\mathbb{R}$, strictly increasing, with an image equal to $(-1,1)$}\\
+Consider function $f(x) = \frac{2}{\pi}\arctan(x)$. It is continuous and maps the real numbers to a value between $(-1,1)$.\\
+
+\section{Problem 3.7.2}
+\textbf{a.)} Consider the following manipulation:
+
+\begin{align*}
+  \frac{x^4}{x-1} &= \frac{(x-1)(x+1)(x^2+1)}{x-1}\\
+  &= (x+1)(x^2+1)\\
+  \lim_{x \rightarrow 1} (x+1)(x^2+1) = 4\\
+\end{align*}
+
+\textbf{a.)} Consider the following manipulation:
+
+\begin{align*}
+  \frac{\sqrt{x}-1}{x-1} &= \frac{(\sqrt{x}-1)(\sqrt{x}+1)}{(x-1)(\sqrt{x}+1)}
+  &= \frac{x-1}{(x-1)(\sqrt{x}+1)}\\
+  &= \frac{1}{\sqrt{x}+1} = \frac{1}{2}
+  \lim_{x \rightarrow 1} \frac{\sqrt{x}-1}{x-1} = \frac{1}{2}\\
+\end{align*}
+
+\section{Problem 3.7.5}
+In search of a contradiction, let $D$ have a limit point $s$. If $s = x_0$, then there can exist no sequence with elements in $x_n \in D, x_n \neq x_0$, since $x_0$ is the only element of $D$. This is a contradiction. If $s \neq x_0$, then $\{x_n\}, x_n = x_0$ is the only possible subsequence which meets the limit point criteria. Consider $\epsilon = \left|\frac{x_0 - s}{2}\right|$. Because $|x_0 - s| > \left|\frac{x_n - s}{2}\right|$, this sequence does not converge to $x_0$ either, a contradiction. Thus $D$ has no limit points.\\
+
+Now consider the set of natural numbers $\mathbb{N}$. In search of a contradiction, consider arbitrary limit point $s \in \mathbb{R}$. First, consider the case where $s$ is not a natural number. Consider arbitrary natural number sequence $\{x_n\}$. Consider $\epsilon = \min\left(|\lceil{s}\rceil-s|, |\lfloor{s}\rfloor-s|\right)$. No integer sequence can get closer than this $\epsilon$ to $s$; a contradiction. Now consider $s$ a natural number. Now consider an integer sequence $\{x_n\}$ where $x_n \neq s \forall n\in\mathbb{N}$. Thus for $\epsilon=\frac12$, there are no $|x_n-s|<\epsilon$, a contradiction. Thus $\mathbb{N}$ has no limit points.\\
+
+\section{Problem 3.7.6}
+Because D is a nonempty bounded subset of $\mathbb{R}$, it has a supremum $s=Sup(D)$. Consider sequence $\{x_n\}, x_n = s-\frac{1}{n}$. Note that each element is in D, since it is less than the supremum. Note that each element does not equal $s$. Thus we have found a sequence which is a subset of D which converges to $s$, but never equals it. Thus $s$ is a limit point of $D$.\\
+
+\end{document}
