@@ -1,0 +1,81 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Advanced Calc Homework 5}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem 6.4.2}
+In search of a contradiction, say $f(x)$ is integrable. Then $\forall \epsilon > 0$ $\exists \delta>0$ such that for an arbitrary $\{x_i^1\}$ and $\{x_i^2\}$, $width(\{x_i^1\})<\delta$ and $width(\{x_i^2\})<\delta$ implies $|S_1-S_2|<\epsilon$.\\
+
+Consider a regular partition $\{x_i\}$ such that $x_i = \frac{i}{N}$ for some $N$. Define sequences $\{x_i'\}$ and $\{x_i''\}$ such that $x_i \leq x_i' \leq x_{i+1}$ and $x_i \leq x_i'' \leq x_{i+1}$, and $S_1 = \sum_{i=1}^{i=N}f(x_i')\left(x_i-x_{i-1}\right)$ and $S_2 = \sum_{i=1}^{i=N}f(x_i'')\left(x_i-x_{i-1}\right)$. Note that:
+
+\begin{align*}
+  S_1 &= \sum_{i=1}^{i=N}f(x_i')(x_i-x_{i-1}) = \frac{1}{N}\sum_{i=1}^{i=N}x_i' \geq \frac{1}{N}\sum_{i=1}^{i=N}x_i\\
+  &= \frac{1}{N^2}\sum_{i=1}^{i=N}i = \frac{N(N+1)}{2N^2} = \frac{1}{2} + \frac{1}{2N}\\
+  S_2 &= \sum_{i=1}^{i=N}f(x_i'')(x_i-x_{i-1}) = \frac{-1}{N}\sum_{i=1}^{i=N}x_i'' \leq \frac{-1}{N}\sum_{i=1}^{i=N}x_i\\
+  &= \frac{-1}{N^2}\sum_{i=1}^{i=N}i = \frac{-N(N+1)}{2N^2} = \frac{-1}{2} + \frac{-1}{2N}\\
+\end{align*}
+
+Thus $S_1 \geq \frac{1}{2} + \frac{1}{2N}$ and $S_2 \leq \frac{-1}{2} + \frac{-1}{2N}$, so $|S_1-S_2| = |1 + \frac{1}{N}|$. Note that the width of $\{x_i\}$ is given by $\frac{1}{N}$. Thus $\forall \epsilon>0$, $\exists \delta > 0$ such that $\frac{1}{N}<\delta$ implies $|S_1-S_2|<\epsilon$ for our chosen $S_1$ and $S_2$. Consider $\epsilon = \frac{1}{2}$, and the associated $\delta$. Consider $N$ such that $\frac{1}{N}<\delta$. Note that $|S_1-S_2|>1>\frac{1}{2}$, a contradiction. Thus $f(x)$ is not integrable.\\
+
+\section{Problem 3}
+Because $f(x) = x$ is integrable, then for all $\epsilon > 0$, it is the case that for some $\delta > 0$, for all $\{x_i\}$, $max(x_i-x_{i-1})<\delta$, $|S - A| < \epsilon$. Consider $\{x_i\}$ such that $x_i = a + \frac{b-a}{N}i$ for an arbitrary $N$. Then $max(x_i-x_{i-1}) = \frac{b-a}{N}$. Consider the following algebraic manipulation, where $x_i' = x_i$ and $x_i$ is a regular partition and $a=0, b=1$:
+
+\begin{align*}
+  S &= \sum_{i=1}{i=N}f(x_i')(x_{i+1}-x_i)\\
+  &= \sum_{i=1}{i=N}\left(a+\frac{b-a}{N}i\right)\left(a+\frac{b-a}{N}i - a -\frac{b-a}{N}(i-1)\right)\\
+  &= \sum_{i=1}{i=N}\left(\frac{i}{N}\right)\left(\frac{1}{N}\right)\\
+  &= \frac{1}{N^2}\sum_{i=1}{i=N}i\\
+  &= \frac{1}{N^2}\frac{N(N+1)}{2} = \frac{1}{2} + \frac{1}{2N}\\
+\end{align*}
+
+Then $\lim_{N\rightarrow0} max(x_i-x_{i-1}) = 0$, so $\lim_{width(\{x_i\})} S = \frac{1}{2}$. Then $\int_0^1xdx = \frac{1}{2}$.\\
+
+%% Now consider $A = \frac{1}{2}$. Then $|S - A| = |\frac{1}{2N}|$. Now for some arbitrary $\epsilon$ by the Archimedean Principle there exists some $N'$ such that $\frac{1}{2N'} < \epsilon$. Because $N$ is arbitrary, consider $N = N'$. Then for any $\delta > \frac{b - a}{N}$, $||$
+
+\section{Problem 4}
+
+\end{document}
