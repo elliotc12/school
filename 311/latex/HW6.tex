@@ -39,7 +39,7 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
-\title{Advanced Calc Homework 5}
+\title{Advanced Calc Homework 6}
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -50,7 +50,7 @@
 \section{Problem 6.4.2}
 In search of a contradiction, say $f(x)$ is integrable. Then $\forall \epsilon > 0$ $\exists \delta>0$ such that for an arbitrary $\{x_i^1\}$ and $\{x_i^2\}$, $width(\{x_i^1\})<\delta$ and $width(\{x_i^2\})<\delta$ implies $|S_1-S_2|<\epsilon$.\\
 
-Consider a regular partition $\{x_i\}$ such that $x_i = \frac{i}{N}$ for some $N$. Define sequences $\{x_i'\}$ and $\{x_i''\}$ such that $x_i \leq x_i' \leq x_{i+1}$ and $x_i \leq x_i'' \leq x_{i+1}$, and $S_1 = \sum_{i=1}^{i=N}f(x_i')\left(x_i-x_{i-1}\right)$ and $S_2 = \sum_{i=1}^{i=N}f(x_i'')\left(x_i-x_{i-1}\right)$. Note that:
+Consider a regular partition $\{x_i\}$ such that $x_i = \frac{i}{N}$ for some $N$. Define sequences $\{x_i'\}$ and $\{x_i''\}$ such that $x_i \leq x_i' \leq x_{i+1}$ and $x_i \leq x_i'' \leq x_{i+1}$, so $S_1 = \sum_{i=1}^{i=N}f(x_i')\left(x_i-x_{i-1}\right)$ and $S_2 = \sum_{i=1}^{i=N}f(x_i'')\left(x_i-x_{i-1}\right)$. Note that:
 
 \begin{align*}
   S_1 &= \sum_{i=1}^{i=N}f(x_i')(x_i-x_{i-1}) = \frac{1}{N}\sum_{i=1}^{i=N}x_i' \geq \frac{1}{N}\sum_{i=1}^{i=N}x_i\\
@@ -59,12 +59,12 @@ Consider a regular partition $\{x_i\}$ such that $x_i = \frac{i}{N}$ for some $N
   &= \frac{-1}{N^2}\sum_{i=1}^{i=N}i = \frac{-N(N+1)}{2N^2} = \frac{-1}{2} + \frac{-1}{2N}\\
 \end{align*}
 
-Thus $S_1 \geq \frac{1}{2} + \frac{1}{2N}$ and $S_2 \leq \frac{-1}{2} + \frac{-1}{2N}$, so $|S_1-S_2| = |1 + \frac{1}{N}|$. Note that the width of $\{x_i\}$ is given by $\frac{1}{N}$. Thus $\forall \epsilon>0$, $\exists \delta > 0$ such that $\frac{1}{N}<\delta$ implies $|S_1-S_2|<\epsilon$ for our chosen $S_1$ and $S_2$. Consider $\epsilon = \frac{1}{2}$, and the associated $\delta$. Consider $N$ such that $\frac{1}{N}<\delta$. Note that $|S_1-S_2|>1>\frac{1}{2}$, a contradiction. Thus $f(x)$ is not integrable.\\
+Thus $S_1 \geq \frac{1}{2} + \frac{1}{2N}$ and $S_2 \leq \frac{-1}{2} + \frac{-1}{2N}$, so $|S_1-S_2| \geq |1 + \frac{1}{N}|$. Note that the width of $\{x_i\}$ is given by $\frac{1}{N}$. Thus $\forall \epsilon>0$, $\exists \delta > 0$ such that $\frac{1}{N}<\delta$ implies $|S_1-S_2|<\epsilon$ for our chosen $S_1$ and $S_2$. Consider $\epsilon = \frac{1}{2}$, and the associated $\delta$. Consider $N$ such that $\frac{1}{N}<\delta$. For these parameters, $|S_1 - S_2| < \frac{1}{2}$. However, $|S_1-S_2|>1>\frac{1}{2}$, a contradiction. Thus $f(x)$ is not integrable.\\
 
 \section{Problem 6.4.9}
 %% Let $\delta=\frac{\epsilon}{2}$ and f, g be integrable functions. Then for all $\epsilon > 0$ there exist $\delta_f, \delta_g$ such that for partitions $\{x_i^f\}$ and $\{x_i^g\}$ where $S_f$ and $S_g$ are the Riemann sums using these partitions, then $|S_1 - \int_a^bf(x)dx|<\epsilon$ and $|S_2 - \int_a^bg(x)dx|<\epsilon$.
 
-By Theorem 3.5 because $f:[a,b]\rightarrow\mathbb{R}$ and $g:[a,b]\rightarrow\mathbb{R}$ are continuous, they are both integrable. By the triangle inequality, $\forall x, |f(x) + g(x)| \leq |f(x) + |g(x)|$. By Corollary 2.3, $\int_a^b |f(x)+g(x)| \leq \int_a^b |f(x)|+|g(x)| = \int_a^b |f(x)| + \int_a^b |g(x)|$, as desired.\\
+By Theorem 3.5 because $f:[a,b]\rightarrow\mathbb{R}$ and $g:[a,b]\rightarrow\mathbb{R}$ are continuous, they are both integrable. By the triangle inequality, $\forall x, |f(x) + g(x)| \leq |f(x)| + |g(x)|$. By Corollary 2.3, $\int_a^b |f(x)+g(x)| \leq \int_a^b |f(x)|+|g(x)| = \int_a^b |f(x)| + \int_a^b |g(x)|$, as desired.\\
 
 \section{Problem 3}
 Because $f(x) = x$ is integrable, then for all $\epsilon > 0$, it is the case that for some $\delta > 0$, for all $\{x_i\}$, $max(x_i-x_{i-1})<\delta$, $|S - A| < \epsilon$. Consider $\{x_i\}$ such that $x_i = a + \frac{b-a}{N}i$ for an arbitrary $N$. Then $max(x_i-x_{i-1}) = \frac{b-a}{N}$. Consider the following algebraic manipulation, where $x_i' = x_i$ and $x_i$ is a regular partition and $a=0, b=1$:
@@ -77,14 +77,12 @@ Because $f(x) = x$ is integrable, then for all $\epsilon > 0$, it is the case th
   &= \frac{1}{N^2}\frac{N(N+1)}{2} = \frac{1}{2} + \frac{1}{2N}\\
 \end{align*}
 
-Then $\lim_{N\rightarrow0} max(x_i-x_{i-1}) = 0$, so $\lim_{width(\{x_i\})} S = \frac{1}{2}$. Then $\int_0^1xdx = \frac{1}{2}$.\\
-
-%% Now consider $A = \frac{1}{2}$. Then $|S - A| = |\frac{1}{2N}|$. Now for some arbitrary $\epsilon$ by the Archimedean Principle there exists some $N'$ such that $\frac{1}{2N'} < \epsilon$. Because $N$ is arbitrary, consider $N = N'$. Then for any $\delta > \frac{b - a}{N}$, $||$
+Thus $S = \frac{1}{2} + \frac{1}{2N}$. Consider $A=\frac{1}{2}$. Then $|S - A| = \frac{1}{2N}$. Now for any $\epsilon > 0$, $\exists N$ such that $\frac{1}{2N} < \epsilon$ by the Archimedean property. Let $\delta \geq \frac{1}{N}$. Thus $max(x_i-x_{i-1}) = \frac{1}{N} < \delta$ implies $|S-A| < \epsilon$. We have found an A such that the integrability definition holds. Thus $\int_0^1xdx = \frac{1}{2}$.\\
 
 \section{Problem 4}
-We want to show that $f$ is integrable. That is, for all $\epsilon>0$ there exist some step functions $f_1:[a,b]\rightarrow\mathbb{R}$ and $f_2:[a,b]\rightarrow\mathbb{R}$ where $f_1(x) \leq f(x) \leq f_2(x)$ and $\int_a^b f_1(x) - f_2(x)dx \leq \epsilon$ for all $\epsilon$. We will do this by defining a partition and step functions such that the difference between $f_2$ and $f_1$ is always less than $\frac{\epsilon}{N}$, then showing that the integral of $f_1-f_2$ is zero. This proof works for a monotone increasing function, but would work equally well for a monotone decreasing function with minimal switching.\\
+We want to show that $f$ is integrable. That is, we want to show for all $\epsilon>0$ there exist some step functions $f_1:[a,b]\rightarrow\mathbb{R}$ and $f_2:[a,b]\rightarrow\mathbb{R}$ where $f_1(x) \leq f(x) \leq f_2(x)$ and $\int_a^b f_1(x) - f_2(x)dx \leq \epsilon$. We will do this by defining a partition and step functions such that the difference between $f_2$ and $f_1$ is always less than $\frac{\epsilon}{N}$, then showing that the integral of $f_1-f_2$ for these functions is zero.\\
 
-Define a partition $\{x_i\}$ on $[a,b]$. Define step functions $f_1$ and $f_2$ such that for each $x' \in [a,b]$ where $x_i \leq x' \leq x_{i+1}$, $f_1(x') = f(x_i)$ and $f_2(x') = f(x_{i+1})$. Define the partition $\{x_i\}$ such that $x_0 = a$ and $x_i$ is the value in the domain such that $f(x_i) = f(x_{i-1})+\frac{\epsilon}{N}$ for some $N$ and $\epsilon$, OR $b$, whichever is smaller. Note that this value must necessarily exist by the IVT, because $f$ is continuous on $[a,b]$ and $f(x_{i-1}) \leq f(x_i) \leq f(b)$ by f's positive monotonicity. Notice that $f(x_{i+1}) - f(x_i) \leq \frac{\epsilon}{N}$. Consider the following Riemann sum for $x_i \leq x'_i \leq x_{i+1}$:
+Let $f$ be monotone increasing. Define a partition $\{x_i\}$ on $[a,b]$. Define step functions $f_1$ and $f_2$ such that for each $x' \in [a,b]$ where $x_i \leq x' \leq x_{i+1}$, $f_1(x') = f(x_i)$ and $f_2(x') = f(x_{i+1})$. Define the partition $\{x_i\}$ such that $x_0 = a$ and $x_i$ is the value in the domain such that $f(x_i) = f(x_{i-1})+\frac{\epsilon}{N}$ for some $N$ and $\epsilon$, OR $b$, whichever is smaller. Note that this value must necessarily exist by the IVT, because $f$ is continuous on $[a,b]$ and $f(x_{i-1}) \leq f(x_i) \leq f(b)$ by f's positive monotonicity. Notice that $f(x_{i+1}) - f(x_i) \leq \frac{\epsilon}{N}$. Consider the following Riemann sum for $x_i \leq x'_i \leq x_{i+1}$:
 
 \begin{align*}
   S &= \sum_{i=1}^{i=N} \left(f_1(x'_i) - f_2(x'_i)\right)\left(x_i-x_{i-1}\right)\\
@@ -92,6 +90,8 @@ Define a partition $\{x_i\}$ on $[a,b]$. Define step functions $f_1$ and $f_2$ s
   &= \frac{\epsilon(b-a)}{N}\\
 \end{align*}
 
-Thus for arbitrary $\epsilon>0$ and $N > (b-a)$, $|S| < \epsilon$ and so $|S-0|<\epsilon$. Thus we can say $\int_a^bf_1(x)-f_2(x)dx = 0$. By extension $\int_a^bf_1(x)-f_2(x)dx < \epsilon$ for all $\epsilon>0$.
+Thus for arbitrary $\epsilon>0$ and $N > (b-a)$, $S = \int_a^bf_2(x)-f_1(x)dx < \epsilon$. Thus $f$ is integrable.\\
+
+A similar argument works if $f$ is monotone decreasing.\\
 
 \end{document}
