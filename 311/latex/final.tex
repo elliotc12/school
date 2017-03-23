@@ -1,0 +1,61 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Advanced Calc Homework 6}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem 2}
+\textbf{Prove that $\lim_{n\rightarrow\infty}a_n = a$ if and only if the sequence $a_1, a, a_2, a, a_3, a,...$ is convergent.}
+
+To prove this, we will need to show \textbf{A.)} that $\lim_{n\rightarrow\infty}a_n = a$ implies $a_1, a, a_2, a, a_3, a,...$ is convergent and \textbf{B.)} that $a_1, a, a_2, a, a_3, a,...$ is convergent implies $\lim_{n\rightarrow\infty}a_n = a$.\\
+
+\textbf{A.)}
+Let $\lim_{n\rightarrow\infty}a_n = a$. Then $\forall \epsilon>0$ $\exists N$ such that $\forall n \geq N$, $|a_n-a|<\epsilon$. Consider sequence $A = \{a_1, a, a_2, a, a_3, ...\}$. Note that $|a-a|<\epsilon$. Consider $J$ such that $a_N = A_J$, which necessarily must exist since $A \subseteq$. Note that $\forall j>J$, either $A_j = a$, in which case $|A_j-a|<\epsilon$, or $A_j \in \{a_n\}$ such that $A_j = a_n$ where $n > N$, thus $|A_j-a|<\epsilon$. Thus $A$ is convergent.\\
+
+\textbf{B.)}
+
+
+\end{document}
