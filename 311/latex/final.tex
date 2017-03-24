@@ -52,10 +52,40 @@
 
 To prove this, we will need to show \textbf{A.)} that $\lim_{n\rightarrow\infty}a_n = a$ implies $a_1, a, a_2, a, a_3, a,...$ is convergent and \textbf{B.)} that $a_1, a, a_2, a, a_3, a,...$ is convergent implies $\lim_{n\rightarrow\infty}a_n = a$.\\
 
-\textbf{A.)}
+\textbf{A.)}\\
 Let $\lim_{n\rightarrow\infty}a_n = a$. Then $\forall \epsilon>0$ $\exists N$ such that $\forall n \geq N$, $|a_n-a|<\epsilon$. Consider sequence $A = \{a_1, a, a_2, a, a_3, ...\}$. Note that $|a-a|<\epsilon$. Consider $J$ such that $a_N = A_J$, which necessarily must exist since $A \subseteq$. Note that $\forall j>J$, either $A_j = a$, in which case $|A_j-a|<\epsilon$, or $A_j \in \{a_n\}$ such that $A_j = a_n$ where $n > N$, thus $|A_j-a|<\epsilon$. Thus $A$ is convergent.\\
 
-\textbf{B.)}
+\textbf{B.) $a_1, a, a_2, a, a_3, a,...$ is convergent implies $\lim_{n\rightarrow\infty}a_n = a$}\\
+Assume $A = \{a_1, a, a_2, a, a_3, ...\}$ converges. We want to show $\lim_{n\rightarrow\infty}A_n = a$. In search of a contradiction, let $A$ converge to $a + b$ for some $b \neq 0$. Then for $\epsilon > b$, $\exists N$ such that $\forall n > N$, $|A_N-a-b|<\epsilon$. However, note that $\exists n > N$ such that $a = A_n$, ths $|a - a - b| = |b| < \epsilon$. This is a contradiction. Thus, $\lim_{n\rightarrow\infty} A = a$.\\
+
+Now $\forall \epsilon>0$, $\exists J$ such that $\forall j > J$, $|A_J - a|<\epsilon$. Note that by construction, $\exists M$ such that $a_M = A_J$ or $a_M = A_{J+1}$. Then $\forall m > M$, $|a_M - a|<\epsilon$. Thus $\lim_{n\rightarrow\infty}\{a_n\} = a$.\\
+
+\section{Problem 3}
+We want to show
+
+\[
+f(x) =
+\begin{cases}
+  0 & x <    0 \\
+  x & x \geq 0 \\
+\end{cases}
+\]
+
+is continuous at $x_0 = 0$. This entails showing that $\forall \epsilon>0$, $\exists \delta>0$ such that $|x-x_0|<\delta$ implies $|f(x)-f(x_0)|<\epsilon$. Consider the following manipulation, where $x_0 = 0$:
+
+\begin{align*}
+  |f(x) - f(x_0)| &= |f(x)| \leq |x| = |x-x_0|
+\end{align*}
+
+Thus $|x-x_0|<\epsilon$ implies $|f(x)-f(x_0)|<\epsilon$. Thus $f(x)$ is continuous.\\
+
+\section{Problem 5} \textbf{Prove that if p(x) is a polynomial of degree $n$, then there are most $n$ solutions to the equation $p(x) = 0$.}\\
+We will do this by induction. First, we will show the $k=1$ case where $p^{n-1}(x) = 0$ has at most one solution. Then we will show the inductive step $k(i)$ implies $k(i+1)$, that $p^{i}(x) = 0$ has $n$ solutions implies $p^{i-1}(x) = 0$ has at most $n+1$ solutions.\\
+
+\textbf{Base case}\\
+Consider degree-n polynomial $p(x)$. Consider the $n-1$th derivative, $p^{n-1}(x)=n\!x+c$. $$p^{n-1}(x)=0$ has at least one solution; consider $x=\frac{-c}{n}$. We want to show this is a unique solution. In search of a contradiction, consider another solution $x_0 \neq \frac{-c}{n}$ such that $p^{n-1}(x_0) = 0$. $p^{n-1}(x)$ is a polynomial, and thus is everywhere differentiable and continuous. Then by Rolle's Theorem $\exists x'$ such that, if $x_0>\frac{-c}{n}$ $x'\in\(\frac{-c}{n},x_0\)$ or if $x_0<\frac{-c}{n}$ $x'\in\(x_0,\frac{-c}{n}\)$ and $p^{n}(x)=0$. However, $p^{n}(x)=n\!$. This is a contradiction. Thus, $p^{n-1}(x)$ has exactly one solution.\\
+
+\textbf{Inductive step}\\
 
 
 \end{document}
