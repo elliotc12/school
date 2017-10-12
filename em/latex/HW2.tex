@@ -52,130 +52,6 @@
 \maketitle{}
 
 \section{Problem One}
-\textbf{Boundaries:}
-
-\begin{align*}
-  \phi(\infty) &= 0\\
-  \phi(x,0) &= 0\\
-  \phi(0,y) &= 0\\
-\end{align*}
-
-Guess the solution is four charges in a rectangle. If this solution works, by the Uniqueness Theorem it is the only solution.
-
-\begin{align*}
-  \phi &= \phi_1 + \phi_2 + \phi_3 + \phi_4\\
-\end{align*}
-
-The potential due to the real point charge is:
-
-\begin{align*}
-  \phi_1(x,y) &= \frac{q}{4\pi\epsilon\sqrt{(x-d_1)^2+(y-d_2)^2}}\\
-\end{align*}
-
-We let the second and fourth-quadrant points have charge -q, so potential:
-
-\begin{align*}
-  \phi_2(x,y) &= \frac{-q}{4\pi\epsilon\sqrt{(x+d_1)^2+(y-d_2)^2}}\\
-  \phi_4(x,y) &= \frac{-q}{4\pi\epsilon\sqrt{(x-d_1)^2+(y+d_2)^2}}\\
-\end{align*}
-
-and the third-quadrant point have charge +q, so potential:
-
-\begin{align*}
-  \phi_3(x,y) &= \frac{q}{4\pi\epsilon\sqrt{(x+d_1)^2+(y+d_2)^2}}\\
-\end{align*}
-
-Thus the total potential is given by:
-
-\begin{align*}
-  \phi(x,y) &= \frac{q}{4\pi\epsilon}\Big(
-  \left((x-d_1)^2+(y-d_2)^2\right)^{-1/2} + \left((x+d_1)^2+(y+d_2)^2\right)^{-1/2}\\
-  &-\left((x+d_1)^2+(y-d_2)^2\right)^{-1/2} - \left((x-d_1)^2+(y+d_2)^2\right)^{-1/2}\Big)
-\end{align*}
-
-This satisfies our two boundary conditions:
-
-\begin{align*}
-  \phi(0,y) &= \frac{q}{4\pi\epsilon}\Big(
-  \left(d_1^2+(y-d_2)^2\right)^{-1/2} + \left(d_1^2+(y+d_2)^2\right)^{-1/2}
-  -\left(d_1^2+(y-d_2)^2\right)^{-1/2} - \left(d_1^2+(y+d_2)^2\right)^{-1/2}\Big)
-  = 0\\
-\end{align*}
-
-\begin{align*}
-  \phi(x,0) &= \frac{q}{4\pi\epsilon}\Big(
-  \left((x-d_1)^2+d_2^2\right)^{-1/2} + \left((x+d_1)^2+d_2^2\right)^{-1/2}
-  -\left((x+d_1)^2+d_2^2\right)^{-1/2} - \left((x-d_1)^2+d_2^2\right)^{-1/2}\Big)
-  = 0\\
-\end{align*}
-
-To find the force on the first-quadrant charge, we use Coulomb's Equation:
-
-%% \begin{align*}
-%%   F &= -q\left(\frac{d}{dx} + \frac{d}{dy}\right) \frac{q}{4\pi\epsilon}\Big(
-%%   \left((x-d_1)^2+(y-d_2)^2\right)^{-1/2} + \left((x+d_1)^2+(y+d_2)^2\right)^{-1/2}\\
-%%   &-\left((x+d_1)^2+(y-d_2)^2\right)^{-1/2} - \left((x-d_1)^2+(y+d_2)^2\right)^{-1/2}\Big)\\
-%%   &= \frac{-q^2}{4\pi\epsilon} \Big(
-%%   (x-d_1 + y-d_2)\left((x-d_1)^2+(y-d_2)^2\right)^{-3/2} - (x+d_1 + y+d_2)\left((x+d_1)^2+(y+d_2)^2\right)^{-3/2}\\
-%%   &+ (x+d_1 + y-d_2)\left((x+d_1)^2+(y-d_2)^2\right)^{-3/2} - (x-d_1 + y+d_2)\left((x-d_1)^2+(y+d_2)^2\right)^{-3/2}\Big)\\
-%%   F(d_1,d_2) &= \frac{-q^2}{4\pi\epsilon} \Big(
-%%   - (2d_1 + 2d_2)\left(4d_1^2 + 4d_2^2\right)^{-3/2} + 2d_1\left(4d_1^2\right)^{-3/2} - 2d_2\left(4d_2^2\right)^{-3/2}\Big)\\
-%%   &= \frac{q^2}{4\pi\epsilon} \left(\frac{(2d_1 + 2d_2)}{\sqrt{\left(4d_1^2 + 4d_2^2\right)}^3} - \frac{1}{4d_1^2} - \frac{1}{4d_2^2}\right)\\
-%% \end{align*}
-
-\begin{align*}
-  \phi(\vec{r}) &= \frac{q}{\sqrt{2}4\pi\epsilon_0\sqrt{4d_1^2 + 4d_2^2}}\left(\hat{i} + \hat{j}\right) + \frac{-q}{4\pi\epsilon_0\sqrt{4d_1^2}}\hat{i} + \frac{-q}{4\pi\epsilon_0\sqrt{4d_2^2}}\hat{j}\\
-  &= \frac{q}{4\pi\epsilon_0}\left(\frac{1}{\sqrt{8d_1^2 + 8d_2^2}} - \frac{1}{\sqrt{4d_1^2}}\right)\hat{i}
-  + \frac{q}{4\pi\epsilon_0}\left(\frac{1}{\sqrt{8d_1^2 + 8d_2^2}} - \frac{1}{\sqrt{4d_2^2}}\right)\hat{j}
-\end{align*}
-
-If expanded, at large r, $\phi$ should look like a quadrupole scaling with $\frac{1}{r^3}$.\\
-
-\section{Problem Two}
-We want to show the following equality is always true:
-
-\begin{align*}
-  \int\rho_1\phi_2d^3\vec{r} &= \int\rho_2\phi_1d^3\vec{r}
-\end{align*}
-
-We first apply the Laplace Equation:
-
-\begin{align*}
-  -\epsilon_0\int\nabla^2\phi_1\phi_2d^3\vec{r} &= -\epsilon_0\int\nabla^2\phi_2\phi_1d^3\vec{r}
-\end{align*}
-
-We then expand this equation into its cartesian representation:
-
-\begin{align*}
-  \int\int\int\sum_{n=x,y,z}\frac{\partial^2}{\partial n^2} (\phi_1) \phi_2 dxdydz &=
-  \int\int\int\sum_{n=x,y,z}\frac{\partial^2}{\partial n^2} (\phi_2) \phi_1 dxdydz
-\end{align*}
-
-We then use Integration by Parts:
-
-\begin{align*}
-  \int\int\int\sum_{n=x,y,z}\left(\frac{d}{dn}\phi_1\phi_2\Big|_{-\infty}^{\infty} - \int\frac{\partial}{\partial n}\phi_1\frac{\partial}{\partial n}\phi_2dn \right) dxdydz &=
-  \int\int\int\sum_{n=x,y,z}\left(\frac{d}{dn}\phi_2\phi_1\Big|_{-\infty}^{\infty} - \int\frac{\partial}{\partial n}\phi_2\frac{\partial}{\partial n}\phi_1dn \right) dxdydz
-\end{align*}
-
-\section{Problem Three}
-The solution to the full sphere in an external field $E_0$ was shown in class to be:
-
-\begin{align*}
-  \phi(r,\theta) &= \left(-E_0r + \frac{E_0a^3}{r^2}\right)\cos\theta
-\end{align*}
-
-given boundaries $\phi(r=a) = 0$ and $\phi(r\rightarrow\infty) = 0$. We notice that our boundaries for the half sphere problem are the same, plus one addition: $\phi(r<a, z=0) = 0$. The above solution satisfies this condition as well. Then by the Uniqueness Theorem this solution must also be valid for our half sphere.\\
-
-The first term $-E_0r\cos\theta$ is the potential from the external field. The second term $\frac{E_0a^3\cos\theta}{r^2}$ is the term due
-to the sphere. This term can be rewritten as the dipole term in the multipole expansion:\\
-
-\begin{align*}
-  \frac{E_0a\cos\theta}{r^2} &= \frac{1}{4\pi\epsilon_0}\frac{1}{r^2} \hat{r} \cdot \vec{p}\\
-\end{align*}
-
-where $\vec{p} = 4\pi\epsilon_0E_0 a^3 \hat{z}$. Thus the half sphere can be exactly expressed as a dipole.\\
-
 To find the bound charges on this cross section, we use the following equations:
 
 \begin{align*}
@@ -206,45 +82,43 @@ This result almost makes sense. Normally a dipole falls off by $\frac{1}{r^3}$, 
 falls off lots slower.\\
 
 \section{Problem Two}
-The example solved in Griffiths Ex 4.7 can be generalized to a two-dielectrics-in-all-space system by simply swapping the $\epsilon_0$ for vacuum with the dielectric constant of the outer dielectric, $\epsilon_r^2$. Thus the solution is identical to the book's plus this swap:
+The example solved in Griffiths Ex 4.7 can be generalized to a two-dielectrics-in-all-space system by letting $\epsilon_r = \epsilon_1 / \epsilon_2$:
 
 \textbf{a.)}\\
 \begin{align*}
-	\epsilon &= \epsilon_r^1/\epsilon_r^2\\
-	V_{in}(r,\theta) &= -\frac{3E_0r\cos\theta}{\epsilon+2}\\
-	E_{in} &= \frac{3}{\epsilon+2}E_0\hat{z}\\
-        V_{out}(r,\theta) &= -E_0r\cos\theta + \frac{\epsilon-1}{\left(\epsilon+2\right)r^2}\cos(\theta)\\
-        E_{out}(r,\theta) &= \left(E_0 + 2\frac{\epsilon-1}{\left(\epsilon+2\right)r^3\right)\cos\left(\theta\right)\hat{r}
-        + \left(-E_0 + \frac{\epsilon-1}{\left(\epsilon+2\right)r^3}\right)\cos\left(\theta\right)\hat{\theta}\\
-\end{align*}\\
+	V_{in} &= -\frac{3E_0r\cos\theta}{\epsilon_r+2}\\
+	E_{in} &= \frac{3E_0\cos\theta}{\epsilon_r+2}\hat{r} + \frac{-3E_0\sin\theta}{\epsilon_r+2}\hat{\theta}\\
+        V_{out} &= -E_0r\cos\theta + \frac{(\epsilon_r-1)R^3E_0\cos\theta}{(\epsilon_r+2)r^2}\\
+        E_{out} &= \left(E_0\cos\theta+\frac{2(\epsilon_r-1)R^3E_0\cos\theta}{(\epsilon_r+2)r^3}\right)\hat{r} + \left(-E_0\sin\theta+\frac{-(\epsilon_r-1)R^3E_0\sin\theta}{(\epsilon_r+2)r^3}\right)\hat{\theta}\\
+        &= \left(\frac{E_0\cos\theta(3\epsilon_r-1)}{\epsilon_r+2}\right)\hat{r} + \left(\frac{-3E_0\sin\theta}{\epsilon_r+2}\right)\hat{\theta}\\
+\end{align*}
 
 \textbf{b.)}\\
-For linear dielectrics we can find $\sigma_b$ from the P vector, which comes from from $\vec{E}$:
+Solving for free and bound surface charge:
 
 \begin{align*}
-  \vec{P}_{in} &= \left(\epsilon-\epsilon_0\right)\vec{E}_{in}\\
-  &= 3E_0\frac{\epsilon-\epsilon_0}{\epsilon+2}\hat{z}\\
-  \sigma_b &= \vec{P} \cdot \hat{r} = 3E_0\frac{\epsilon-\epsilon_0}{\epsilon+2}\cos(\theta)
+  P &= \epsilon_1E\\
+  \sigma_b &= P \cdot \hat{r} = \frac{3E_0\cos\theta}{\epsilon_r+2}\\
+  \sigma_f &= \epsilon_1E_{in,r} - \epsilon_2E_{out,r} = \frac{-E_0\cos\theta\epsilon_2}{\epsilon_r+2}\\
+  \sigma &= \frac{-E_0\cos\theta(3-\epsilon_2)}{\epsilon_r+2}\\
 \end{align*}
 
 This charge is positive at the top of the sphere and negative at the bottom, as expected for a bound charge.\\
 
 \textbf{c.)}\\
-We now show that the tangential E-fields are continuous at the surface. We note that there are no discontinuities in either dot product for any value of $\theta$:
+Tangential E-fields are equal at $r=R$:
 
 \begin{align*}
-  E_{in}(R)\cdot\hat{\theta} &= \frac{3}{\epsilon+2}E_0\cos(\theta)\\
-  E_{out}(R)\cdot\hat{\theta} &= \frac{\epsilon-1}{\epsilon+2}E_0\sin\theta
+  E_{in,\theta} - E_{out,\theta} =& \frac{-3E_0\sin\theta}{\epsilon_r+2} - \frac{-3E_0\sin\theta}{\epsilon_r+2} = 0\\
 \end{align*}
 
 \textbf{d.)}
-$D_\theta$ can be arrived at from $E_{\theta}$ by multiplying by a factor of $\epsilon_r^1$ or $\epsilon_r^2$. 
+E-fields are curl-free. Because the dielectrics are linear, D is proportional to E, and so it seems like the difference should be zero. However, we see that:\\
 
 \begin{align*}
-  D_{in}(R) &= \frac{3\epsilon_r^1}{\epsilon+2}E_0\cos(\theta)\\
-  D_{out}(R) &= \frac{\epsilon_r^1-\epsilon_r^2}{\epsilon+2}E_0\sin\theta\\
-  D_{in}(R) - D_{out}(R) &= \frac{3\epsilon_r^1}{\epsilon+2}E_0\cos(\theta) - \frac{\epsilon_r^1-\epsilon_r^2}{\epsilon+2}E_0\sin\theta\\
-  &= \frac{E_0}{\epsilon+2}\left(3\epsilon_r^1\cos(\theta) - \left(\epsilon_r^1 - \epsilon_r^2\right)\sin(\theta)\right)
+  D_{out} - D_{in} &= \left(\epsilon_0-\epsilon_1\right)\frac{-3E_0\sin\theta}{\epsilon_r+2}
 \end{align*}
+
+The change in permittivity constants causes a change in curl.\\
 
 \end{document}
