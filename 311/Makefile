@@ -2,8 +2,8 @@ PDFs=$(patsubst %.tex, %.pdf, $(subst latex/, , $(wildcard latex/*.tex)))
 
 default: $(PDFs)
 
-HW%.pdf: latex/HW%.tex
-	cd latex && xelatex HW$*.tex && xelatex HW$*.tex && mv HW$*.pdf ..
+%.pdf: latex/%.tex
+	cd latex && xelatex $*.tex && xelatex $*.tex && mv $*.pdf ..
 
 clean:
 	rm -f *.pdf
