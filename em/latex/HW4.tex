@@ -1,0 +1,89 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Elegromagnetism Assignment Three}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\newcommand{\bra}[1]{\big<#1\big|}
+\newcommand{\ket}[1]{\big|#1\big>}
+\newcommand{\braket}[2]{\big<#1\big|#2\big>}
+
+\newcommand{\bb}[1]{\boldsymbol{#1}}
+\newcommand{\bv}[1]{\boldsymbol{\vec{#1}}}
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem Two}
+Use an Ampere loop to calculate the H-field in the two magnetic materials:\\
+
+\begin{align*}
+  2\pi r H &= I\hat{z}\\
+  H &= \frac{I\hat{z}}{2\pi r}
+\end{align*}
+
+We can use this field, along with $M=\chi H$, to find M:\\
+
+\begin{align*}
+  M_1 &= \frac{\chi_1I\hat{z}}{2\pi r}\\
+  M_2 &= \frac{\chi_2I\hat{z}}{2\pi r}
+\end{align*}
+
+We then find the bound currents:
+
+\begin{align*}
+  J_{b} &= 0\\
+  K_{b,1,in} &= \frac{\chi_1I\hat{z}}{2\pi a_1}
+  K_{b,2,in} &= \frac{-\chi_2I\hat{z}}{2\pi a_1}
+  K_{b,2,out} &= \frac{\chi_2I\hat{z}}{2\pi a_2}
+\end{align*}
+
+Use an Amperian loop to find the B-field:\\
+
+\begin{align*}
+  B_{1} &= 0\\
+  B_{2} &= \frac{I(1+\chi_1-\chi_2)}{2\pi r}\hat{\theta}\\
+  B_{2} &= \frac{I(1+\chi_1-\chi_2)}{2\pi r}\hat{\theta} + \frac{\chi_2I\hat{z}}{2\pi r}\\
+\end{align*}
+
+\end{document}
