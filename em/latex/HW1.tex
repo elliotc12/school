@@ -56,7 +56,7 @@
   \phi(0,y) &= 0\\
 \end{align*}
 
-Guess the solution is four charges in a rectangle. If this solution works, by the Uniqueness Theorem it is the only solution.
+Guess the solution is four charges in a rectangle. If this solution works, by the uniqueness theorem it is the only solution.
 
 \begin{align*}
   \phi &= \phi_1 + \phi_2 + \phi_3 + \phi_4\\
@@ -201,14 +201,9 @@ The solution to the full sphere in an external field $E_0$ was shown in class to
   \phi(r,\theta) &= \left(-E_0r + \frac{E_0a^3}{r^2}\right)\cos\theta
 \end{align*}
 
-given boundaries $\phi(r=a) = 0$ and $\phi(r\rightarrow\infty) = 0$. We notice that our boundaries for the half sphere problem are the same, plus one addition: $\phi(r<a, z=0) = 0$. The above solution satisfies this condition as well. Then by the Uniqueness Theorem this solution must also be valid for our half sphere.\\
+given boundaries $\phi(r=a) = 0$ and $\phi(r\rightarrow\infty) = E_0r\cos\theta$. We notice that our boundaries for the half sphere problem are the same, plus one addition: $\phi(r<a, z=0) = 0$. The above solution satisfies this condition as well. Then by the uniqueness theorem this solution must also be valid for our half sphere.\\
 
 The first term $-E_0r\cos\theta$ is the potential from the external field. The second term $\frac{E_0a^3\cos\theta}{r^2}$ is the term due
-to the sphere. This term can be rewritten as the dipole term in the multipole expansion:
-\begin{align*}
-  \frac{E_0a\cos\theta}{r^2} &= \frac{1}{4\pi\epsilon_0}\frac{1}{r^2} \hat{r} \cdot \vec{p}
-\end{align*}
-
-where $\vec{p} = 4\pi\epsilon_0E_0 a^3 \hat{z}$. Thus the half sphere can be exactly expressed as a dipole.\\
+to the sphere. This term is the second term in a multipole expansion, the dipole term.\\
 
 \end{document}
