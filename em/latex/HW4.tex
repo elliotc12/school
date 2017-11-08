@@ -39,7 +39,11 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
+<<<<<<< HEAD
 \title{Elegromagnetism Assignment Four}
+=======
+\title{Elegromagnetism Assignment Three}
+>>>>>>> 5eaa6e59275b067a33afbb12a64f6453f48e27fd
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -47,10 +51,17 @@
 \newcommand{\ket}[1]{\big|#1\big>}
 \newcommand{\braket}[2]{\big<#1\big|#2\big>}
 
+<<<<<<< HEAD
+=======
+\newcommand{\bb}[1]{\boldsymbol{#1}}
+\newcommand{\bv}[1]{\boldsymbol{\vec{#1}}}
+
+>>>>>>> 5eaa6e59275b067a33afbb12a64f6453f48e27fd
 \begin{document}
 
 \maketitle{}
 
+<<<<<<< HEAD
 \section{Problem One}
 We solve this problem through the method of images. Define a current $I_g\hat{y}$ which flows at $(0,0,-d)$. First find the bound surface current, assuminig linear magnetic material:\\
 
@@ -121,6 +132,38 @@ We can use an Amperian loop to find the B-fields:
   &= \frac{1}{2\pi s}\left(\frac{\chi_1 a_1 I\hat{z}}{2} * 2\pi a_1 + \frac{-\chi_2 a_1 I \hat{z}}{2}*2\pi a_1\right)\\
   &= \frac{a_1^2I}{2s}\left(\chi_1-\chi_2\right)\hat{\theta}\\
   B_{out} &= \frac{I}{2s}\left(a_1^2\chi_1 - a_1^2\chi_2 + a_2^2\chi_2\right)\\
+=======
+\section{Problem Two}
+Use an Ampere loop to calculate the H-field in the two magnetic materials:\\
+
+\begin{align*}
+  2\pi r H &= I\hat{z}\\
+  H &= \frac{I\hat{z}}{2\pi r}
+\end{align*}
+
+We can use this field, along with $M=\chi H$, to find M:\\
+
+\begin{align*}
+  M_1 &= \frac{\chi_1I\hat{z}}{2\pi r}\\
+  M_2 &= \frac{\chi_2I\hat{z}}{2\pi r}
+\end{align*}
+
+We then find the bound currents:
+
+\begin{align*}
+  J_{b} &= 0\\
+  K_{b,1,in} &= \frac{\chi_1I\hat{z}}{2\pi a_1}
+  K_{b,2,in} &= \frac{-\chi_2I\hat{z}}{2\pi a_1}
+  K_{b,2,out} &= \frac{\chi_2I\hat{z}}{2\pi a_2}
+\end{align*}
+
+Use an Amperian loop to find the B-field:\\
+
+\begin{align*}
+  B_{1} &= 0\\
+  B_{2} &= \frac{I(1+\chi_1-\chi_2)}{2\pi r}\hat{\theta}\\
+  B_{2} &= \frac{I(1+\chi_1-\chi_2)}{2\pi r}\hat{\theta} + \frac{\chi_2I\hat{z}}{2\pi r}\\
+>>>>>>> 5eaa6e59275b067a33afbb12a64f6453f48e27fd
 \end{align*}
 
 \end{document}
