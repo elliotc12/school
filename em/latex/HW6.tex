@@ -1,0 +1,98 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Elegromagnetism Assignment Six}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\newcommand{\bra}[1]{\big<#1\big|}
+\newcommand{\ket}[1]{\big|#1\big>}
+\newcommand{\braket}[2]{\big<#1\big|#2\big>}
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One: Plane wave solution using Lorentz gauge}
+The Lorenz gauge condition can be rephrased as:\\
+
+\begin{align*}
+  \frac{1}{c^2}\frac{\partial^2\phi}{\partial t^2} - \nabla^2 \phi &= \frac{\rho}{\epsilon_0}\\
+  \frac{1}{c^2}\frac{\partial^2\vec{A}}{\partial t^2} - \nabla^2 \vec{A} &= \vec{J}\mu_0\\
+\end{align*}
+
+In a vacuum, these equations turn into wave equations for $\phi$ and $\vec{A}$:\\
+
+\begin{align*}
+  \frac{1}{c^2}\frac{\partial^2\phi}{\partial t^2} &= \nabla^2 \phi\\
+  \frac{1}{c^2}\frac{\partial^2\vec{A}}{\partial t^2} &= \nabla^2 \vec{A}\\
+\end{align*}
+
+Thus equations for $\phi$ and $\vec{A}$ can be written:\\
+
+\begin{align*}
+  \phi(\vec{r},t) &= \phi_0e^{i\left(\vec{k}\cdot\vec{r} -\omega t\right)}\\
+  \vec{A}(\vec{r},t) &= \vec{A_0}e^{i\left(\vec{k}\cdot\vec{r} -\omega t\right)}
+\end{align*}
+
+where $c=\omega/|k|$. We can then find an expression for $\vec{E}$:\\
+
+\begin{align*}
+  \vec{E} &= -\nabla\phi - \frac{d\vec{A}}{dt}\\
+  &= -\vec{k}\phi + i\omega\vec{A}\\
+  &= -k\phi_0\cos(\vec{k}\cdot\vec{r} - \omega t)\hat{k} - \omega A_0\sin(\vec{k}\cdot\vec{r}-\omega t)\hat{A}\\
+\end{align*}
+
+Thus, unlike for the non-Lorentz gauge solution, $\vec{E}$ and $k$ are not perpendicular. Next we find B:\\
+
+\begin{align*}
+  B &= \nabla \times \vec{A}\\
+  &= kA_0\cos(\vec{k}\cdot\vec{r}-\omega t)(\hat{k}\times\hat{A_0})\\
+\end{align*}
+
+Thus $\vec{E}$ and $\vec{B}$ are perpendicular, as expected. To find energy flux, we calculate the Poynting vector:\\
+
+\begin{align*}
+  \vec{S} &= \vec{E}\times\vec{B}\\
+  &= -k^2A_0\phi_0\cos^2(\vec{k}\cdot\vec{r}-\omega t)\hat{A_0} + -\omega A_0k\cos(\vec{k}\cdot\vec{r}-\omega t)\sin(\vec{k}\cdot\vec{r}-\omega t)\hat{k}\\
+\end{align*}
+
+\end{document}
