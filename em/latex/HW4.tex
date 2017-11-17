@@ -39,7 +39,11 @@
 \titleformat{\section}{\color{headings}
 \scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
 
+<<<<<<< HEAD
+\title{Elegromagnetism Assignment Four}
+=======
 \title{Elegromagnetism Assignment Three}
+>>>>>>> 5eaa6e59275b067a33afbb12a64f6453f48e27fd
 \author{Elliott Capek}
 \titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
 
@@ -47,13 +51,88 @@
 \newcommand{\ket}[1]{\big|#1\big>}
 \newcommand{\braket}[2]{\big<#1\big|#2\big>}
 
+<<<<<<< HEAD
+=======
 \newcommand{\bb}[1]{\boldsymbol{#1}}
 \newcommand{\bv}[1]{\boldsymbol{\vec{#1}}}
 
+>>>>>>> 5eaa6e59275b067a33afbb12a64f6453f48e27fd
 \begin{document}
 
 \maketitle{}
 
+<<<<<<< HEAD
+\section{Problem One}
+We solve this problem through the method of images. Define a current $I_g\hat{y}$ which flows at $(0,0,-d)$. First find the bound surface current, assuminig linear magnetic material:\\
+
+\begin{align*}
+  K_{1,b}(0,0,0) &= \vec{M} \mbox{x} \vec{n} = \frac{\chi_1}{\mu_1}\vec{B} \mbox{x} \vec{n} = \frac{\chi_1}{\mu_1}\frac{\mu_1I}{2\pi d} = \frac{\chi_1I}{2\pi d}\\
+  K_{2,b}(0,0,0) &= \frac{-\chi_2I}{2\pi d}\\
+  K_{b} &= \frac{(\chi_1-\chi_2)I}{2\pi d}\\
+\end{align*}
+
+The A-field will be that due to infinite wires of constant current. The non-mirror magnetic material will see currents of $I$ in the material and $I_g$ in the other material. There cannot be any image charge in the mirror material, so we note that $I+I_g$ in the non-mirror material is the only current which satisfies the continuity boundary conditions for the mirror material's A-field:\\
+
+\begin{align*}
+  A_1 &= \frac{\mu_1I\ln{\sqrt{x^2+y^2+(z-d)^2}}}{4\pi} + \frac{\mu_1I_g\ln{\sqrt{x^2+y^2+(z+d)^2}}}{4\pi}\\
+  A_2 &= \frac{\mu_1(I+I_g)\ln{\sqrt{x^2+y^2+(z-d)^2}}}{4\pi}\\
+  &A_1(x,y,0) = A_2(x,y,0)\\
+\end{align*}
+
+We can calculate the value of $I_g$ through the derivative continuity boundary condition of A:
+
+\begin{align*}
+  &\frac{\partial A_1}{\partial n}_{z=0} - \frac{\partial A_2}{\partial n}_{z=0} = -\mu_1 K\\
+  &\frac{\partial A_1}{\partial n}(0,0,z) = \frac{\mu_1I}{4\pi(z-d)} + \frac{\mu_1I_g}{4\pi(z+d)}\\
+  &\frac{\partial A_2}{\partial n}(0,0,z) = \frac{\mu_1(I+I_g)}{4\pi(z-d)}\\
+  &\frac{-\mu_1I}{4\pi(d)} + \frac{\mu_1I_g}{4\pi(d)} + \frac{\mu_1(I+I_g)}{4\pi(d)} = -\mu_0K_b\\
+  &\frac{\mu_1I_g}{2\pi d} = \frac{(\chi_1-\chi_2)I}{2\pi d}\\
+  &I_g = \frac{-\mu_0(\chi_1-\chi_2)I}{\mu_1} = \frac{-\mu_0}{\mu_1}\left(\frac{\mu_1}{\mu_0}-1-\frac{\mu_2}{\mu_0}+1\right)I\\
+  &I_g = \frac{\mu_2-\mu_1}{\mu_1}I\\
+\end{align*}
+
+Thus the B-fields can be computed as:\\
+
+\begin{align*}
+  B_1(x,y,z) &= \frac{\mu_1I}{2\pi\sqrt{x^2+y^2+(z-d)^2}} + \frac{(\mu_2-\mu_1)I}{2\pi\sqrt{x^2+y^2+(z+d)^2}}\\
+  B_2(x,y,z) &= \frac{\mu_2I}{2\pi\sqrt{x^2+y^2+(z-d)^2}}\\
+\end{align*}
+
+
+\section{Problem 2}
+Use an Amperian loop of radius $s$ to calculate the H-field in and out of the cable:\\
+
+\begin{align*}
+  2\pi sH &= \pi s^2 I\\
+  H &= \frac{sI}{2} \hspace{1cm} s<a_2\\
+  H &= \frac{a_2^2I}{2r} \hspace{1cm} r>a_2\\
+\end{align*}
+
+By the definition $M=\chi H$, we can find the M-field:\\
+
+\begin{align*}
+  M_1 &= \frac{\chi_1 sI}{2}\\
+  M_2 &= \frac{\chi_2 sI}{2}\\
+  M_{out} &= 0\\
+\end{align*}
+
+This field is curl-free, thus there is no bound volume current. The surface bound current is given by:\\
+
+\begin{align*}
+  K_{b1} &= \frac{\chi_1 a_1 I\hat{z}}{2}\\
+  K_{b2,in} &= \frac{-\chi_2 a_1 I\hat{z}}{2}\\
+  K_{b2,out} &= \frac{\chi_2 a_2 I\hat{z}}{2}\\
+\end{align*}
+
+We can use an Amperian loop to find the B-fields:
+
+\begin{align*}
+  B_{in} &= 0\\
+  B_{mid} &= \left(\frac{I}{2\pi s}\right)\left(K_{b1}*2\pi a_1 + K_{b2,in}*2\pi a_1\right)\\
+  &= \frac{1}{2\pi s}\left(\frac{\chi_1 a_1 I\hat{z}}{2} * 2\pi a_1 + \frac{-\chi_2 a_1 I \hat{z}}{2}*2\pi a_1\right)\\
+  &= \frac{a_1^2I}{2s}\left(\chi_1-\chi_2\right)\hat{\theta}\\
+  B_{out} &= \frac{I}{2s}\left(a_1^2\chi_1 - a_1^2\chi_2 + a_2^2\chi_2\right)\\
+=======
 \section{Problem Two}
 Use an Ampere loop to calculate the H-field in the two magnetic materials:\\
 
@@ -84,6 +163,7 @@ Use an Amperian loop to find the B-field:\\
   B_{1} &= 0\\
   B_{2} &= \frac{I(1+\chi_1-\chi_2)}{2\pi r}\hat{\theta}\\
   B_{2} &= \frac{I(1+\chi_1-\chi_2)}{2\pi r}\hat{\theta} + \frac{\chi_2I\hat{z}}{2\pi r}\\
+>>>>>>> 5eaa6e59275b067a33afbb12a64f6453f48e27fd
 \end{align*}
 
 \end{document}

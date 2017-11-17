@@ -1,0 +1,129 @@
+\documentclass[10pt]{article} % Font size - 10pt, 11pt or 12pt
+
+\nonstopmode
+
+\usepackage[hmargin=1.25cm, vmargin=1.5cm]{geometry} % Document margins
+
+\usepackage{amsmath}
+
+\usepackage[usenames,dvipsnames]{xcolor} % Allows the definition of hex colors
+
+% Fonts and tweaks for XeLaTeX
+\usepackage{fontspec,xltxtra,xunicode}
+\defaultfontfeatures{Mapping=tex-text}
+%\setmonofont[Scale=MatchLowercase]{Andale Mono}
+
+% Colors for links, text and headings
+\usepackage{hyperref}
+\definecolor{linkcolor}{HTML}{506266} % Blue-gray color for links
+\definecolor{shade}{HTML}{F5DD9D} % Peach color for the contact information box
+\definecolor{text1}{HTML}{2b2b2b} % Main document font color, off-black
+\definecolor{headings}{HTML}{701112} % Dark red color for headings
+% Other color palettes: shade=B9D7D9 and linkcolor=A40000; shade=D4D7FE and linkcolor=FF0080
+
+\hypersetup{colorlinks,breaklinks, urlcolor=linkcolor, linkcolor=linkcolor} % Set up links and colors
+
+\usepackage{fancyhdr}
+\usepackage{amssymb}
+\pagestyle{fancy}
+\fancyhf{}
+% Headers and footers can be added with the \lhead{} \rhead{} \lfoot{} \rfoot{} commands
+% Example footer:
+%\rfoot{\color{headings} {\sffamily Last update: \today}. Typeset with Xe\LaTeX}
+
+\renewcommand{\headrulewidth}{0pt} % Get rid of the default rule in the header
+
+\usepackage{titlesec} % Allows creating custom \section's
+
+% Format of the section titles
+\titleformat{\section}{\color{headings}
+\scshape\Large\raggedright}{}{0em}{}[\color{black}\titlerule]
+
+\title{Elegromagnetism Assignment Five}
+\author{Elliott Capek}
+\titlespacing{\section}{0pt}{0pt}{5pt} % Spacing around titles
+
+\newcommand{\bra}[1]{\big<#1\big|}
+\newcommand{\ket}[1]{\big|#1\big>}
+\newcommand{\braket}[2]{\big<#1\big|#2\big>}
+
+\begin{document}
+
+\maketitle{}
+
+\section{Problem One}
+To solve for the current in a capacitor/nested inductor circuit, derive a differential equation for current using rules about inductors and capacitors, then solve it. First the inductance. Flux for two antiparallel superimposed inductors with loop densities $n_a$ and $n_b$, length $\ell$ and radius $a$ is given by:\\
+
+\begin{align*}
+  \Phi &= BA = \frac{\mu \left(N_a^2-N_b^2\right) I}{\ell}\pi a^2 = \mu \left(n_a^2-n_b^2\right)I\ell\pi a^2\\
+\end{align*}
+
+From one of Maxwell's equations:\\
+
+\begin{align*}
+  V_L &= \frac{d\Phi}{dt} = \mu \left(n_a^2-n_b^2\right)\ell\pi a^2\frac{d^2Q}{dt^2}\\
+\end{align*}
+
+We also know the ovltage drop across a parallel plate capacitor:\\
+
+\begin{align*}
+  V_c &= \frac{Q}{C} = \frac{Qd}{\epsilon_0 A} = \frac{Qd}{\epsilon_0 \pi a^2}\\
+\end{align*}
+
+Using Kirchoff's Loop Law:\\
+
+\begin{align*}
+  V_c &= -V_L\\
+  \frac{Qd}{\epsilon_0 \pi a^2} &= \mu \left(n_a^2-n_b^2\right)\ell\pi a^2\frac{d^2Q}{dt^2}\\
+  -\frac{d}{\pi^2 a^4\mu\left(n_a^2-n_b^2\right)\ell}Q &= \frac{d^2Q}{dt^2}\\
+\end{align*}
+
+The solution to which is, noting that Q must be real:\\
+
+\begin{align*}
+  Q(t) &= Q_0\cos(\sqrt{\frac{d}{\epsilon_0\pi^2 a^4\mu\left(n_a^2-n_b^2\right)\ell}}t) = \cos(\omega t)\\
+  \omega &= \sqrt{\frac{d}{\epsilon_0\pi^2 a^4\mu\left(n_a^2-n_b^2\right)\ell}} = \sqrt{\frac{1}{LC}}\\
+\end{align*}
+
+\textbf{b.) Energy in circuit}
+The individual component energies are:\\
+
+\begin{align*}
+  U_L &= \frac{1}{2}LI^2 = \left(\mu(n_a^2-n_b^2)\ell\pi a^2\right)\left(\frac{d}{\pi^2 a^4\mu\left(n_a^2-n_b^2\right)\ell}\right)Q_0^2\sin^2(\omega t)\\
+  &= \left(\frac{d}{2\epsilon_0\pi a^2}\right)Q_0^2\sin^2(\omega t)\\
+  U_C &= \frac{1}{2}\frac{Q^2}{C} = \frac{d}{2\epsilon_0 \pi a^2}Q_0^2\cos^2(\omega t)\\
+\end{align*}
+
+Thus:\\
+
+\begin{align*}
+  U &= \frac{Q_0^2d}{\epsilon_0 \pi a^2}(\cos^2(\omega t)+\sin^2(\omega t))\\
+  &= \frac{Q_0^2d}{\epsilon_0 \pi a^2}\\
+\end{align*}
+
+\textbf{c.) Poynting vector}
+
+Find the capacitor Poynting vector using oscillating E-field:
+
+\begin{align*}
+  V &= \frac{Q}{C}Ed = \frac{Q_0\cos(\omega t)d}{\epsilon_0 A}\\
+  \vec{E} &= \frac{Q_0\cos(\omega t)}{\epsilon_0 A}
+\end{align*}
+
+The B-field in the capacitor can be found using Maxwell's Equations:\\
+
+\begin{align*}
+  \nabla \times B &= \mu_0\epsilon_0 \frac{dE}{dt} = -\frac{\mu_0\omega Q\sin(\omega t)\hat{z}}{A}\\
+  \frac{1}{r}(\frac{d}{dr}(rB_\phi)-\frac{dB_r}{d\phi} &= \frac{d}{dr}(rB_\phi)\\
+  \vec{B} &= \frac{r\mu_0\omega Q_0 \sin(\omega t)\hat{\vec}}{2A}\\
+\end{align*}
+
+Thus the Poynting vector is:\\
+
+\begin{align*}
+  \vec{S} &= \frac{1}{\mu_0}EB = \frac{Q^2}{2\epsilon_0A^2}r\omega \cos(\omega t)\sin(\omega t)\vec{r}
+\end{align*}
+
+The vector points radially; thus light will radiate from the capacitor during its operation, leaking energy.\\
+
+\end{document}
