@@ -76,23 +76,54 @@ Thus equations for $\phi$ and $\vec{A}$ can be written:\\
 where $c=\omega/|k|$. We can then find an expression for $\vec{E}$:\\
 
 \begin{align*}
-  \vec{E} &= -\nabla\phi - \frac{d\vec{A}}{dt}\\
-  &= -\vec{k}\phi + i\omega\vec{A}\\
-  &= -k\phi_0\cos(\vec{k}\cdot\vec{r} - \omega t)\hat{k} - \omega A_0\sin(\vec{k}\cdot\vec{r}-\omega t)\hat{A}\\
+  \vec{E} &= -\frac{d\vec{A}}{dt}\\
+  &= i\omega\vec{A}\\
+  &= -\omega A_0\sin(\vec{k}\cdot\vec{r}-\omega t)\hat{A}\\
 \end{align*}
 
-Thus, unlike for the non-Lorentz gauge solution, $\vec{E}$ and $k$ are not perpendicular. Next we find B:\\
+Thus E is parallel to $A$ and perpendicular to $k$. Next we find B:\\
 
 \begin{align*}
-  B &= \nabla \times \vec{A}\\
+  B &= \nabla \times \vec{A} = i\vec{k}\times\vec{A}\\
   &= kA_0\cos(\vec{k}\cdot\vec{r}-\omega t)(\hat{k}\times\hat{A_0})\\
 \end{align*}
 
 Thus $\vec{E}$ and $\vec{B}$ are perpendicular, as expected. To find energy flux, we calculate the Poynting vector:\\
 
 \begin{align*}
-  \vec{S} &= \vec{E}\times\vec{B}\\
-  &= -k^2A_0\phi_0\cos^2(\vec{k}\cdot\vec{r}-\omega t)\hat{A_0} + -\omega A_0k\cos(\vec{k}\cdot\vec{r}-\omega t)\sin(\vec{k}\cdot\vec{r}-\omega t)\hat{k}\\
+  \vec{S} &= \frac{1}{\mu_0}\vec{E}\times\vec{B}\\
+  &= -\frac{\omega}{\mu_0} A_0k\cos(\vec{k}\cdot\vec{r}-\omega t)\sin(\vec{k}\cdot\vec{r}-\omega t)\hat{k}\\
+\end{align*}
+
+\section{Problem Two: Coulomb gauge solution for complex A}
+First, note that in the Coulomb gauge $\nabla \times \vec{A} = 0$; thus, for $\vec{A} = \vec{A_0}e^{\vec{k}\times\vec{r}-\omega t}$, we see that $k\cdot A_0=0$. Because $\vec{A_0}=A_x\hat{x}+iA_y\hat{y}$, we see that $\vec{k}=k\hat{z}$.\\
+
+Next, use the equation $E=-\frac{d\vec{A}}{dt}$ to calculate $\vec{E}$:\\
+
+\begin{align*}
+  \vec{E} &= -\frac{d\vec{A}}{dt} = Re\left(-i\omega(A_x\hat{x}+iA_y\hat{y})e^{i(\vec{k}\cdot\vec{r}-\omega t)}\right)\\
+  &= -\omega A_yRe(e^{i(\vec{k}\cdot\vec{r}-\omega t)}\hat{y})\\
+  &= -\omega A_y\cos(\vec{k}\cdot\vec{r}-\omega t)\hat{y}\\
+\end{align*}
+
+Then we calculate $\vec{B}$, using $\vec{B}=\nabla \times \vec{A}$:\\
+
+\begin{align*}
+  \vec{B} &= \nabla \times \vec{A} = Re\left(i\vec{k} \times \vec{A}\right) = Re\left(i(\vec{k} \times A_xe^{i(\vec{k}\cdot\vec{r}-\omega t)})\hat{x} - (\vec{k} \times A_ye^{i(\vec{k}\cdot\vec{r}-\omega t)}\hat{y})\right)\\
+  &= -kA_yRe(e^{i(\vec{k}\cdot\vec{r}-\omega t)})\hat{x}\\
+  &= -kA_y\cos(\vec{k}\cdot\vec{r}-\omega t)\hat{x}\\
+\end{align*}
+
+We then calculate the Poynting vector:\\
+
+\begin{align*}
+  \vec{S} &= \frac{1}{\mu_0}\vec{E}\times\vec{B} = \frac{k}{\mu_0}\omega A_y^2\cos^2(\vec{k}\cdot\vec{r}-\omega t)\hat{z}\\
+\end{align*}
+
+And the energy density:\\
+
+\begin{align*}
+  U &= \epsilon_0 E^2 = \epsilon_0\omega^2A_y^2\cos^2(\vec{k}\cdot\vec{r}-\omega t)\\
 \end{align*}
 
 \end{document}
