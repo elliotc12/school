@@ -57,6 +57,13 @@ Friedman-Hill,~E. \emph{{J}ess in {A}ction: {J}ava {R}ule-based {S}ystems}, 1st
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
+\bibitem[Not()]{Note-1}
+This is a note. The text will be moved the the references section. The title of
+  the section will change to ``Notes and References''.\relax
+\mciteBstWouldAddEndPunctfalse
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
 \bibitem[Cotton \latin{et~al.}(1999)Cotton, Wilkinson, Murillio, and
   Bochmann]{Cotton1999}
 Cotton,~F.~A.; Wilkinson,~G.; Murillio,~C.~A.; Bochmann,~M. \emph{{A}dvanced
@@ -117,13 +124,6 @@ Arduengo,~A.~J.,~III; Gamper,~S.~F.; Calabrese,~J.~C.; Davidson,~F.
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Not()]{Note-1}
-This is a note. The text will be moved the the references section. The title of
-  the section will change to ``Notes and References''.\relax
-\mciteBstWouldAddEndPunctfalse
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \bibitem[Not()]{Note-2}
 Ref.~\citenum {Cotton1999}, p.~1\relax
