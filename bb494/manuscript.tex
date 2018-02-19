@@ -13,6 +13,7 @@
 %% servers.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\usepackage{amsmath}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% If issues arise when submitting your manuscript, you may want to
@@ -48,46 +49,30 @@
 %% On the other hand, \alsoaffiliation is used on a per author basis
 %% when authors are associated with multiple institutions.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\author{Andrew N. Other}
-\altaffiliation{A shared footnote}
-\author{Fred T. Secondauthor}
-\altaffiliation{Current address: Some other place, Othert\"own,
-Germany}
-\author{I. Ken Groupleader}
-\altaffiliation{A shared footnote}
-\email{i.k.groupleader@unknown.uu}
-\phone{+123 (0)123 4445556}
-\fax{+123 (0)123 4445557}
-\affiliation[Unknown University]
-{Department of Chemistry, Unknown University, Unknown Town}
-\alsoaffiliation[Second University]
-{Department of Chemistry, Second University, Nearby Town}
-\author{Susanne K. Laborator}
-\email{s.k.laborator@bigpharma.co}
-\affiliation[BigPharma]
-{Lead Discovery, BigPharma, Big Town, USA}
-\author{Kay T. Finally}
-\affiliation[Unknown University]
-{Department of Chemistry, Unknown University, Unknown Town}
-\alsoaffiliation[Second University]
-{Department of Chemistry, Second University, Nearby Town}
+\author{Elliott Capek}
+\affiliation{Department of Biochemistry, Oregon State University}
+\email{capeke@oregonstate.edu}
+\phone{(971) 207 8193}
+\author{Hassan Alnatah}
+\author{Laikana Ly}
+\author{Joey Orton}
+%% \alsoaffiliation[]{}
+\author{Aidan Estelle}
+%% \affiliation{Department of Biochemistry, Oregon State University}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The document title should be given as usual. Some journals require
 %% a running title from the author: this should be supplied as an
 %% optional argument to \title.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[An \textsf{achemso} demo]
-  {A demonstration of the \textsf{achemso} \LaTeX\
-   class\footnote{A footnote for the title}}
+\title[]{Click chemistry reveals an alternate mechanism for HPII catalase}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Some journals require a list of abbreviations or keywords to be
 %% supplied. These should be set up here, and will be printed after
 %% the title and author information, if needed.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\abbreviations{IR,NMR,UV}
-\keywords{American Chemical Society, \LaTeX}
+\keywords{Catalase, noncanonical amino acid, active site, channel flow}
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,237 +82,90 @@ Germany}
 %% contents will be gobbled.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-  This is an example document for the \textsf{achemso} document
-  class, intended for submissions to the American Chemical Society
-  for publication. The class is based on the standard \LaTeXe\
-  \textsf{report} file, and does not seek to reproduce the appearance
-  of a published paper.
+  %% This is an example document for the \textsf{achemso} document
+  %% class, intended for submissions to the American Chemical Society
+  %% for publication. The class is based on the standard \LaTeXe\
+  %% \textsf{report} file, and does not seek to reproduce the appearance
+  %% of a published paper.
 
-  This is an abstract for the \textsf{achemso} document class
-  demonstration document.  An abstract is only allowed for certain
-  manuscript types.  The selection of \texttt{journal} and
-  \texttt{manuscript} will determine if an abstract is valid.  If
-  not, the class will issue an appropriate error.
+  %% This is an abstract for the \textsf{achemso} document class
+  %% demonstration document.  An abstract is only allowed for certain
+  %% manuscript types.  The selection of \texttt{journal} and
+  %% \texttt{manuscript} will determine if an abstract is valid.  If
+  %% not, the class will issue an appropriate error.
+  Abstract abstract abstracts abstract. Abstract abstract abstracts abstract. Abstract abstract abstracts abstract. Abstract abstract abstracts abstract. Abstract abstract abstracts abstract. Abstract abstract abstracts abstract. Abstract abstract abstracts abstract. Abstract abstract abstracts abstract.\\
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Start the main part of the manuscript here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-This is a paragraph of text to fill the introduction of the
-demonstration file.  The demonstration file attempts to show the
-modifications of the standard \LaTeX\ macros that are implemented by
-the \textsf{achemso} class.  These are mainly concerned with content,
-as opposed to appearance.
+Catalase is an enzyme which catalyzes the reaction $2H_2O_2 \rightarrow O_2 + 2H_2O$. This is an important detoxification reaction, since hydrogen peroxide is a reactive toxin generated by several biological processes. Catalase is a tetrameric protein which uses a heme group in its active site to facilitate the breakdown of hydrogen peroxide. It is a unique protein in that its reaction evolves gas, and thus its activity can be seen with the bare eye. The protein has been studied as a target for tumor suppression drugs \cite{bauer}. The enzyme is also useful industrially, in particular in the bleaching of textiles \cite{amorim}.
 
-\section{Results and discussion}
+The molecular mechaninism of catalase proceeds in two steps. First, the heme reduces a hydrogen peroxide, producing water and the so-called Cpd I. Then Cpd I oxidizes a second hydrogen peroxide, producing water and oxygen gas. This second step is mediated by a histidine near the active site \cite{alfonso-prieto}.
 
-\subsection{Outline}
+This bimolecular substrate mechanism relies on the efficient transport of hydrogen peroxide into the deeply buried active site. This is believed to be aided by an electrical gradient over 12 \AA between an active site aspartic acid and the positive heme iron \cite{chelikani}. Mutagenisis of this Asp to positive residues decreases activity up to 90\% \cite{chelikani}. However, this study was accomplished using only a few canonical amino acid substitutions, and provides relatively weak evidence for the electric field hypothesis.
 
-The document layout should follow the style of the journal concerned.
-Where appropriate, sections and subsections should be added in the
-normal way. If the class options are set correctly, warnings will be
-given if these should not be present.
+In this study we seek to use the technique of bioorthogonal ligation to study the electric field hypothesis of catalase substrate transport. We will incorporate the noncanonical amino acid 3-nitrotyrosine into the active site, then use click chemistry to insert a gradient of charged particles into the active site. By using a large number of particles with charges varying from positive to negative, we can average out the effects of steric bulk and isolate the effect of field strength. The results of such a study would conclusively determine the importance of an electric field in the catalase active site.\\
 
-\subsection{References}
+\section{Methods}
+\textbf{Protein expression}\\
+Wildtype protein was expressed by transforming the plasmid pBad-HPII (Addgene ID 105839), containing WT HPII gene, into competent \textit{E. coli} DH10B cells via heat-shock. pBad-HPII plasmid includes ampicillin resistance, an imidazole promoter, and a 6xHis tag on the N-term of the HPII gene. Cells were then grown in autoinduction media with an arabinose inducer (0.1\% aspartate pH 7.5, 0.2\% glycerol, 100$\mu g / mL$ ampicillin, mineral salts, 0.05\% glucose, 20mM MgSO4, 0.05\% arabinose, trace metals and AA mix) for 48 hours, shaking, at 37C. Cells were then pelletized and stored at -80C.\\
 
-The class makes various changes to the way that references are
-handled.  The class loads \textsf{natbib}, and also the
-appropriate bibliography style.  References can be made using
-the normal method; the citation should be placed before any
-punctuation, as the class will move it if using a superscript
-citation style
-\cite{Mena2000,Abernethy2003,Friedman-Hill2003,EuropeanCommission2008}.
-The use of \textsf{natbib} allows the use of the various citation
-commands of that package: \citeauthor{Abernethy2003} have shown
-something, in \citeyear{Cotton1999}, or as given by
-Ref.~\citenum{Mena2000}.  Long lists of authors will be
-automatically truncated in most article formats, but not in
-supplementary information or reviews \cite{Pople2003}. If you
-encounter problems with the citation macros, please check that
-your copy of \textsf{natbib} is up to date. The demonstration
-database file \texttt{achemso-demo.bib} shows how to complete
-entries correctly. Notice that ``\latin{et al.}'' is auto-formatted
-using the \texttt{\textbackslash latin} command.
+The same protocol was followed for the ncAA mutant catalases F206NY and F206pAzF, except protein plasmid pBad-HPII TAG206 (Addgene ID 105846) was used as a base. ncAA translation machinery plasmids pDule-3-nitrotyrosine (Addgene ID 85498) and pDule-pCNF (85494), which contain a tetracycline resistance gene, a TAG tRNA, and a compatible tRNA synthase, were co-transformed into DH10B along with pBAD-HPII TAG206 for respective F206NY and F206pAzF cell lines. ncAA autoinduction media was supplemented with $25\mu g / mL$ tetracycline to select for both plasmids.\\
 
-Multiple citations to be combined into a list can be given as
-a single citation.  This uses the \textsf{mciteplus} package
-\cite{Johnson1972,*Arduengo1992,*Eisenstein2005,*Arduengo1994}.
-Citations other than the first of the list should be indicated
-with a star. If the \textsf{mciteplus} package is not installed,
-the standard bibliography tools will still work but starred
-references will be ignored. Individual references can be referred
-to using \texttt{\textbackslash mciteSubRef}:
-``ref.~\mciteSubRef{Eisenstein2005}''.
+OD600 measurements of cultures at 48h growth time were 0.65, 0.58 and 0.45 arb. units for WT, F206NY and F206pAzF cells.\\
 
-The class also handles notes to be added to the bibliography.  These
-should be given in place in the document \bibnote{This is a note.
-The text will be moved the the references section.  The title of the
-section will change to ``Notes and References''.}.  As with
-citations, the text should be placed before punctuation.  A note is
-also generated if a citation has an optional note.  This assumes that
-the whole work has already been cited: odd numbering will result if
-this is not the case \cite[p.~1]{Cotton1999}.
+\textbf{Protein purification}\\
+Pelletized cells were reconstituted in TALON equilibration buffer (50mM sodium phosphate, 300mM NaCl) and microfluidized, also in equilibration buffer. Lysed cells were spun down at 15K RPM for 20 minutes at 4C. Supernatant was collected and combined with 300$\mu L$ bed volume TALON beads per 100mL cultured cells. TALON-supernatant mix was nutated for 30 minutes at 4C. Bound beads were then spun down at 500g for 5 minutes and the supernatant discarded. The beads were applied to a pre-washed gravity-flow column at RT and washed twice with 10mL equilibration buffer. Elution was done using 2mL elution buffer (50mM sodium phosphate, 300mM NaCl, 250mM imidazole) into four 500$\mu L$ aliquots. Protein was then stored at 4C.\\
 
-\subsection{Floats}
+\textbf{Bradford assay}\\
+A Bio-Rad Bradford assay kit was used using the standard protocol. Bovine serum albumin was used as the reference protein to construct the standard curve. Concentrations from 125 $\mu g / mL$ to 2 mg/mL were explored. Samples were incubated with dye in cuvettes for 5 minutes at RT. Samples were then analyzed via spectrophotometer at 595 \textit{nm} and used to create the standard curve shown in Figure \ref{fig:bradford-assay}. Protein samples were then compared to this standard curve to estimate their concentration.\\
 
-New float types are automatically set up by the class file.  The
-means graphics are included as follows (Scheme~\ref{sch:example}).  As
-illustrated, the float is ``here'' if possible.
-\begin{scheme}
-  Your scheme graphic would go here: \texttt{.eps} format\\
-  for \LaTeX\, or \texttt{.pdf} (or \texttt{.png}) for pdf\LaTeX\\
-  \textsc{ChemDraw} files are best saved as \texttt{.eps} files:\\
-  these can be scaled without loss of quality, and can be\\
-  converted to \texttt{.pdf} files easily using \texttt{eps2pdf}.\\
-  %\includegraphics{graphic}
-  \caption{An example scheme}
-  \label{sch:example}
-\end{scheme}
+\textbf{Qualitative activity assay}\\
+10 $\mu g$ purified WT catalase was added to a 5\% solution of hydrogen peroxide in water. The mixture was then examined for bubble formation.\\
+
+\section{Results}
+DH10B cell lines with appropriate plasmids were grown for 48h and pelletized. Wildtype HPII-containing cells were purified using TALON resin. Purified wildtype protein and ncAA cell lysates are shown in Figure \ref{fig:pure-gel}. The expected band corresponding to an 84-kD protein is seen across all lanes, indicating the presence of a catalase single subunit in each cell line. Contaminant bands in the gel are very faint, indicating pure protein.\\
+
+A Bradford assay of wildtype purified protein was then conducted. The results, shown in Figure \ref{fig:bradford-assay}, further verify the presence of protein in the purified sample.\\
+
+A qualitative, rudimentary assay testing the activity of wildtype purified HPII catalase was conducted. This assay verified HPII-WT was active by producing bubbles.\\
 
 \begin{figure}
-  As well as the standard float types \texttt{table}\\
-  and \texttt{figure}, the class also recognises\\
-  \texttt{scheme}, \texttt{chart} and \texttt{graph}.
-  \caption{An example figure}
-  \label{fgr:example}
+\centering
+\includegraphics[width=0.7\linewidth]{figures/pure-gel}
+\caption{Electrophoresis gel of crude lysate and purified protein expression. Major band in purification lanes correspond to protein of approximately 80kD, as expected for a catalase single subunit. Crude negative control lanes lack 80kD band, consistent with noncanonical amino acid being necessary for noncanonical protein expression.}
+\label{fig:pure-gel}
 \end{figure}
 
-Charts, figures and schemes do not necessarily have to be labelled or
-captioned.  However, tables should always have a title. It is
-possible to include a number and label for a graphic without any
-title, using an empty argument to the \texttt{\textbackslash caption}
-macro.
-
-The use of the different floating environments is not required, but
-it is intended to make document preparation easier for authors. In
-general, you should place your graphics where they make logical
-sense; the production process will move them if needed.
-
-\subsection{Math(s)}
-
-The \textsf{achemso} class does not load any particular additional
-support for mathematics.  If packages such as \textsf{amsmath} are
-required, they should be loaded in the preamble.  However,
-the basic \LaTeX\ math(s) input should work correctly without
-this.  Some inline material \( y = mx + c \) or $ 1 + 1 = 2 $
-followed by some display. \[ A = \pi r^2 \]
-
-It is possible to label equations in the usual way (Eq.~\ref{eqn:example}).
-\begin{equation}
-  \frac{\mathrm{d}}{\mathrm{d}x} \, r^2 = 2r \label{eqn:example}
-\end{equation}
-This can also be used to have equations containing graphical
-content. To align the equation number with the middle of the graphic,
-rather than the bottom, a minipage may be used.
-\begin{equation}
-  \begin{minipage}[c]{0.80\linewidth}
-    \centering
-    As illustrated here, the width of \\
-    the minipage needs to allow some  \\
-    space for the number to fit in to.
-    %\includegraphics{graphic}
+\begin{figure}
+  \centering
+  \begin{minipage}{.4\textwidth}
+    \begin{tabular}{lll}
+      \hline
+      Sample  & OD590 & mg/mL  \\
+      \hline
+      WT        & 2.18 & 2.74\\
+      %% F206NY    & 0.71 & 0.83\\
+      %% F206pAzF  & 1.51 & 1.88\\
+      \hline
+    \end{tabular}
   \end{minipage}
-  \label{eqn:graphic}
-\end{equation}
+  \begin{minipage}{.59\textwidth}
+    \includegraphics[width=\linewidth]{figures/bradford-standard-curve}
+  \end{minipage}
+  \caption{Bradford assay results. \textbf{Left:} Sample absorbance at 590 nm and extrapolated concentration. \textbf{Right:} Bradford standard curve.}
+  \label{fig:bradford-assay}
+\end{figure}
 
-\section{Experimental}
-
-The usual experimental details should appear here.  This could
-include a table, which can be referenced as Table~\ref{tbl:example}.
-Notice that the caption is positioned at the top of the table.
-\begin{table}
-  \caption{An example table}
-  \label{tbl:example}
-  \begin{tabular}{ll}
-    \hline
-    Header one  & Header two  \\
-    \hline
-    Entry one   & Entry two   \\
-    Entry three & Entry four  \\
-    Entry five  & Entry five  \\
-    Entry seven & Entry eight \\
-    \hline
-  \end{tabular}
-\end{table}
-
-Adding notes to tables can be complicated.  Perhaps the easiest
-method is to generate these using the basic
-\texttt{\textbackslash textsuperscript} and
-\texttt{\textbackslash emph} macros, as illustrated (Table~\ref{tbl:notes}).
-\begin{table}
-  \caption{A table with notes}
-  \label{tbl:notes}
-  \begin{tabular}{ll}
-    \hline
-    Header one                            & Header two \\
-    \hline
-    Entry one\textsuperscript{\emph{a}}   & Entry two  \\
-    Entry three\textsuperscript{\emph{b}} & Entry four \\
-    \hline
-  \end{tabular}
-
-  \textsuperscript{\emph{a}} Some text;
-  \textsuperscript{\emph{b}} Some more text.
-\end{table}
-
-The example file also loads the optional \textsf{mhchem} package, so
-that formulas are easy to input: \texttt{\textbackslash ce\{H2SO4\}}
-gives \ce{H2SO4}.  See the use in the bibliography file (when using
-titles in the references section).
-
-The use of new commands should be limited to simple things which will
-not interfere with the production process.  For example,
-\texttt{\textbackslash mycommand} has been defined in this example,
-to give italic, mono-spaced text: \mycommand{some text}.
-
-\section{Extra information when writing JACS Communications}
-
-When producing communications for \emph{J.~Am.\ Chem.\ Soc.}, the
-class will automatically lay the text out in the style of the
-journal. This gives a guide to the length of text that can be
-accommodated in such a publication. There are some points to bear in
-mind when preparing a JACS Communication in this way.  The layout
-produced here is a \emph{model} for the published result, and the
-outcome should be taken as a \emph{guide} to the final length. The
-spacing and sizing of graphical content is an area where there is
-some flexibility in the process.  You should not worry about the
-space before and after graphics, which is set to give a guide to the
-published size. This is very dependant on the final published layout.
-
-You should be able to use the same source to produce a JACS
-Communication and a normal article.  For example, this demonstration
-file will work with both \texttt{type=article} and
-\texttt{type=communication}. Sections and any abstract are
-automatically ignored, although you will get warnings to this effect.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% The "Acknowledgement" section can be given in all manuscript
-%% classes.  This should be given within the "acknowledgement"
-%% environment, which will make the correct section or running title.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{acknowledgement}
-
-Please use ``The authors thank \ldots'' rather than ``The
-authors would like to thank \ldots''.
-
-The author thanks Mats Dahlgren for version one of \textsf{achemso},
-and Donald Arseneau for the code taken from \textsf{cite} to move
-citations after punctuation. Many users have provided feedback on the
-class, which is reflected in all of the different demonstrations
-shown in this document.
-
-\end{acknowledgement}
+\subsection{References}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The same is true for Supporting Information, which should use the
 %% suppinfo environment.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{suppinfo}
-
-This will usually read something like: ``Experimental procedures and
-characterization data for all new compounds. The class will
-automatically add a sentence pointing to the information on-line:
 
 \end{suppinfo}
 
@@ -343,25 +181,9 @@ automatically add a sentence pointing to the information on-line:
 %% graphical table of contents.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{tocentry}
+%% \begin{tocentry}
 
-Some journals require a graphical entry for the Table of Contents.
-This should be laid out ``print ready'' so that the sizing of the
-text is correct.
-
-Inside the \texttt{tocentry} environment, the font used is Helvetica
-8\,pt, as required by \emph{Journal of the American Chemical
-Society}.
-
-The surrounding frame is 9\,cm by 3.5\,cm, which is the maximum
-permitted for  \emph{Journal of the American Chemical Society}
-graphical table of content entries. The box will not resize if the
-content is too big: instead it will overflow the edge of the box.
-
-This box and the associated title will always be printed on a
-separate page at the end of the document.
-
-\end{tocentry}
+%% \end{tocentry}
 
 \end{document}
 
@@ -377,3 +199,17 @@ They suggest that the perpendicular channel is the entrance channel and the late
 -enlarging the perpendicular channel increases peroxidatic activity
 -perpendicular seems optimized for bringin in H2O2
 -lateral channel is blocked in some catalases
+
+Substrate Flow, Loewen
+There are H2O2 binding sites in the heme distal pocket and main channel
+There are several input channels; what are their purposes?
+There is a ``molecular ruler'' in the main channel which selects for H2O2 against water
+Active site mutations which allow more water in slow down the rxn rate
+This paper discusses unidirectional flow of H2O2 through the main channel
+
+Active and inhibited catalase structures, tainer
+This is the paper about the hydrophobic ``molecular ruler''
+A hydrophobic region distal to the heme cleft contains phenylalanines, tryptophan and two valines
+Authors propose that two waters (one h-bonded to human Asn148 and His75; other h-bonded to gln168 and asp128) form a ``ruler''
+This ``ruler'' is far enough apart that only H2O2 can stably occupy the distance betweeen, thus allowing only H2O2 to enter, not H2O
+This would explain why opening the perpendicular channel decreases the rate

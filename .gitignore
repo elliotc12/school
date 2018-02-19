@@ -4,6 +4,7 @@
 *.log
 *.out
 *.pdf
+*.png
 *DS_Store
 *.fa
 *.fasta
@@ -11,3 +12,4 @@
 *.fls
 *.o
 *.txt
+*#*

@@ -1,0 +1,59 @@
+\providecommand{\latin}[1]{#1}
+\makeatletter
+\providecommand{\doi}
+  {\begingroup\let\do\@makeother\dospecials
+  \catcode`\{=1 \catcode`\}=2 \doi@aux}
+\providecommand{\doi@aux}[1]{\endgroup\texttt{#1}}
+\makeatother
+\providecommand*\mcitethebibliography{\thebibliography}
+\csname @ifundefined\endcsname{endmcitethebibliography}
+  {\let\endmcitethebibliography\endthebibliography}{}
+\begin{mcitethebibliography}{5}
+\providecommand*\natexlab[1]{#1}
+\providecommand*\mciteSetBstSublistMode[1]{}
+\providecommand*\mciteSetBstMaxWidthForm[2]{}
+\providecommand*\mciteBstWouldAddEndPuncttrue
+  {\def\EndOfBibitem{\unskip.}}
+\providecommand*\mciteBstWouldAddEndPunctfalse
+  {\let\EndOfBibitem\relax}
+\providecommand*\mciteSetBstMidEndSepPunct[3]{}
+\providecommand*\mciteSetBstSublistLabelBeginEnd[3]{}
+\providecommand*\EndOfBibitem{}
+\mciteSetBstSublistMode{f}
+\mciteSetBstMaxWidthForm{subitem}{(\alph{mcitesubitemcount})}
+\mciteSetBstSublistLabelBeginEnd
+  {\mcitemaxwidthsubitemform\space}
+  {\relax}
+  {\relax}
+
+\bibitem[Bauer(2012)]{bauer}
+Bauer,~G. \emph{Anticancer Research} \textbf{2012}, \emph{32}, 2599--2624\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Amorim \latin{et~al.}(2002)Amorim, Gasques, Andreaus, and
+  Scharf]{amorim}
+Amorim,~A.~M.; Gasques,~M. D.~G.; Andreaus,~J.; Scharf,~M. \emph{An Acad Bras
+  Cienc} \textbf{2002}, \emph{74}, 3\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Alfonso-Prieto \latin{et~al.}(2009)Alfonso-Prieto, Biarnés,
+  Vidossich, and Rovira]{alfonso-prieto}
+Alfonso-Prieto,~M.; Biarnés,~X.; Vidossich,~P.; Rovira,~C. \emph{Journal of
+  the American Chemical Society} \textbf{2009}, \emph{131}, 11751--11761\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Chelikani \latin{et~al.}(2003)Chelikani, Carpena, Fita, and
+  Loewen]{chelikani}
+Chelikani,~P.; Carpena,~X.; Fita,~I.; Loewen,~P. \emph{The Journal of
+  Biological Chemistry} \textbf{2003}, \emph{278}, 31290--31296\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\end{mcitethebibliography}
