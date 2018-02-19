@@ -1,0 +1,81 @@
+substrate channels are interesting! How does catalase create a directionality?
+
+Importat AAs:
+H128 - catalytic, donates hydrogen
+N201 - catalytic, flexible, right next to H128
+Y415 - binds to heme
+
+Phe206
+Glu283
+Lys348
+His392 - Mate et al, conformational changes. H392Q and H392E vari-ants exhibit 75 and 25% of native catalytic activity. The  Gln392variant  contains  only  heme  b,whereas the Glu392variant contains a mixture of heme b and cis and trans isomers of heme d.
+Tyr415 - Mate, next to S414, which interacts with the heme
+Asp568
+
+hystidine and cysteine can complex with a heme iron
+heme is 5-coordinated, hexa when oxygen binds
+
+heme b - "normal"
+heme d - heme b with lactone and hydroxyl groups trans to eachother
+
+Gln419 and Ser414 interact with the heme, and change the b/d ratio
+
+heme alone possesses catalytic activity
+
+How efficient is catalase, relative to the diffusion limit?
+
+Mechanism: first, one H2O2 oxidizes the heme, taking one electron from the iron and one from the porphyrin
+
+HPII = KatE
+
+Catalases don't follow Michaelis-Menten except at low [S]...what does it mean to not follow MM? Is that because high H2O2 mess with the enzyme structure?
+
+HPII uses a His to complex with the heme above ring IV
+cis is the heme d conformation used for HPII?
+
+W: Transforming native plasmid, plus control GFP plasmid, into cells
+Th/F: Harvesting cells
+
+Mechanism:
+First, an H2O2 comes in and oxidizes the heme, forming a =O bond and H2O. (this makes Cpd I)
+Next, a second H2O2 rapidly reduces Cpd I, forming a second H2O and O2 (2 electrons transferred, not known if this occurs in 1 or 2 steps)
+
+The mechanism of the 2nd reaction is very quick (compared to other heme enzymes), and is not currently understood
+
+Both oxygens in O2 are from the same H2O2
+
+Second step: one hydrogen ion and one hydride ion are transferred from the second H2O2. Two candidate mechanisms: one a direct transfer from H2O2 to the heme, one where the Histidine acts as an acid catalyst. H128 is the important histidine for HPII.
+
+His-lacking mutants can still do reaction 2, but not reaction 1
+
+The active pocket space and polarity is important for activity
+
+The His128 is important for forming Cpd1 in the first place
+Apparently the Asn is also relevant?
+
+How reliable are ab initio/DFT calculations? How trustable are they?
+
+Paper says that Cpd His and H2O* have similar pKa values, so either can be the proton donor
+
+The asparigine has some role in being flexible. NO hydrogen bonding occurs with its carboxyl group, since that might interfere with its flexibility charge.
+
+The order of the hydrogen ion/hydride ion transfer isn't known, as of the Carme Rovira mechanism paper
+
+His128 necessary for formation of Cpd I
+
+
+PH178 - pushes water out?
+
+Writing suggestions
+-space between number and unit
+-dont start sentences with numbers
+-don't use the word WT
+-crop gel images
+-no bradford assay
+
+"the band is lane 7 is consistent with the size of beta-glucosidase"
+
+make a figure with all relevant amino acids colored and all irrelevant ones invisible
+
+Introduction
+-Find other groups that did what you did
