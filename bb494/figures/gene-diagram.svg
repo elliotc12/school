@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
+   sodipodi:docname="gene-diagram.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.7459461"
+     inkscape:cx="268.70357"
+     inkscape:cy="826.66661"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1916"
+     inkscape:window-height="1076"
+     inkscape:window-x="1280"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#00ffa5;fill-opacity:1;stroke:#00ffa5;stroke-width:0.71845835;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10"
+       width="91.513954"
+       height="5.8619962"
+       x="38.769905"
+       y="72.571762" />
+    <rect
+       style="fill:#00b7ff;fill-opacity:1;stroke:#00b7ff;stroke-width:0.29052883;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10-3"
+       width="13.897996"
+       height="6.3118396"
+       x="22.779846"
+       y="72.361015" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="25.074512"
+       y="76.580025"
+       id="text4523"><tspan
+         sodipodi:role="line"
+         id="tspan4521"
+         x="25.074512"
+         y="76.580025"
+         style="font-size:3.17499995px;stroke-width:0.26458332px">6x His</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="76.938034"
+       y="76.567024"
+       id="text4531"><tspan
+         sodipodi:role="line"
+         id="tspan4529"
+         x="76.938034"
+         y="76.567024"
+         style="stroke-width:0.26458332px">HPII 1-2259</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.28168443px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 36.822221,75.564679 H 38.41104"
+       id="path4533"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="21.909151"
+       y="71.161095"
+       id="text4523-6"><tspan
+         sodipodi:role="line"
+         id="tspan4521-7"
+         x="21.909151"
+         y="71.161095"
+         style="font-size:2.11666656px;stroke-width:0.26458332px">3'</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="129.95377"
+       y="71.191711"
+       id="text4523-6-5"><tspan
+         sodipodi:role="line"
+         id="tspan4521-7-3"
+         x="129.95377"
+         y="71.191711"
+         style="font-size:2.11666656px;stroke-width:0.26458332px">5'</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="5.786427"
+       y="76.68718"
+       id="text4573"><tspan
+         sodipodi:role="line"
+         id="tspan4571"
+         x="5.786427"
+         y="76.68718"
+         style="stroke-width:0.26458332px">HPII-WT</tspan></text>
+    <rect
+       style="fill:#00ffa5;fill-opacity:1;stroke:#00ffa5;stroke-width:0.37371853;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10-5"
+       width="23.385984"
+       height="6.2067361"
+       x="38.577042"
+       y="82.583733" />
+    <rect
+       style="fill:#00b7ff;fill-opacity:1;stroke:#00b7ff;stroke-width:0.29052886;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10-3-6"
+       width="13.897996"
+       height="6.3118396"
+       x="22.759359"
+       y="82.545357" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="25.054022"
+       y="86.764366"
+       id="text4523-2"><tspan
+         sodipodi:role="line"
+         id="tspan4521-9"
+         x="25.054022"
+         y="86.764366"
+         style="font-size:3.17499995px;stroke-width:0.26458332px">6x His</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="42.306149"
+       y="86.858521"
+       id="text4531-1"><tspan
+         sodipodi:role="line"
+         id="tspan4529-2"
+         x="42.306149"
+         y="86.858521"
+         style="stroke-width:0.26458332px">HPII 1-615</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.28168443px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 36.801737,85.749016 h 1.58881"
+       id="path4533-7"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="5.7659364"
+       y="86.871521"
+       id="text4573-0"><tspan
+         sodipodi:role="line"
+         id="tspan4571-6"
+         x="5.7659364"
+         y="86.871521"
+         style="stroke-width:0.26458332px">HPII-3NY</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.28639454px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 62.147045,85.713226 h 1.642388"
+       id="path4533-7-2"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ff003c;fill-opacity:1;stroke:#ff003c;stroke-width:0.18578193;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10-5-6"
+       width="5.6094236"
+       height="6.3946729"
+       x="63.869942"
+       y="82.443794" />
+    <rect
+       style="fill:#00ffa5;fill-opacity:1;stroke:#00ffa5;stroke-width:0.58283949;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10-5-1"
+       width="58.921329"
+       height="5.9917693"
+       x="71.43972"
+       y="82.671898" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.28168443px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 69.559813,85.706275 h 1.58881"
+       id="path4533-7-2-8"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="91.829399"
+       y="86.841354"
+       id="text4531-1-7"><tspan
+         sodipodi:role="line"
+         id="tspan4529-2-9"
+         x="91.829399"
+         y="86.841354"
+         style="stroke-width:0.26458332px">HPII 619-2259</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458302px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="64.532913"
+       y="86.490105"
+       id="text4706"><tspan
+         sodipodi:role="line"
+         id="tspan4704"
+         x="64.532913"
+         y="86.490105"
+         style="font-size:2.11666656px;stroke-width:0.26458332px">TAG</tspan></text>
+    <rect
+       style="fill:#00ffa5;fill-opacity:1;stroke:#00ffa5;stroke-width:0.37371853;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10-5-2"
+       width="23.385984"
+       height="6.2067361"
+       x="38.552246"
+       y="92.702415" />
+    <rect
+       style="fill:#00b7ff;fill-opacity:1;stroke:#00b7ff;stroke-width:0.29052886;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10-3-6-0"
+       width="13.897996"
+       height="6.3118396"
+       x="22.734541"
+       y="92.66404" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.3499999px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="25.029205"
+       y="96.883049"
+       id="text4523-2-2"><tspan
+         sodipodi:role="line"
+         id="tspan4521-9-3"
+         x="25.029205"
+         y="96.883049"
+         style="font-size:3.17499995px;stroke-width:0.26458332px">6x His</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="42.281357"
+       y="96.977203"
+       id="text4531-1-75"><tspan
+         sodipodi:role="line"
+         id="tspan4529-2-92"
+         x="42.281357"
+         y="96.977203"
+         style="stroke-width:0.26458332px">HPII 1-615</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.28168443px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 36.776938,95.8677 h 1.58881"
+       id="path4533-7-28"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="5.7411394"
+       y="96.990204"
+       id="text4573-0-9"><tspan
+         sodipodi:role="line"
+         id="tspan4571-6-7"
+         x="5.7411394"
+         y="96.990204"
+         style="stroke-width:0.26458332px">HPII-pAzF</tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.28639454px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 62.122258,95.83191 h 1.642388"
+       id="path4533-7-2-3"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ff003c;fill-opacity:1;stroke:#ff003c;stroke-width:0.18578193;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10-5-6-6"
+       width="5.6094236"
+       height="6.3946729"
+       x="63.845181"
+       y="92.562477" />
+    <rect
+       style="fill:#00ffa5;fill-opacity:1;stroke:#00ffa5;stroke-width:0.58283949;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect10-5-1-1"
+       width="58.921329"
+       height="5.9917693"
+       x="71.414932"
+       y="92.790581" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:0.28168443px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 69.535026,95.824959 h 1.588809"
+       id="path4533-7-2-8-2"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="91.804611"
+       y="96.960037"
+       id="text4531-1-7-9"><tspan
+         sodipodi:role="line"
+         id="tspan4529-2-9-3"
+         x="91.804611"
+         y="96.960037"
+         style="stroke-width:0.26458332px">HPII 619-2259</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:6.61458349px;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="64.508118"
+       y="96.608788"
+       id="text4706-1"><tspan
+         sodipodi:role="line"
+         id="tspan4704-9"
+         x="64.508118"
+         y="96.608788"
+         style="font-size:2.11666656px;stroke-width:0.26458332px">TAG</tspan></text>
+  </g>
+</svg>
