@@ -2,7 +2,7 @@
 \makeatletter
 \providecommand{\doi}
   {\begingroup\let\do\@makeother\dospecials
-  \catcode`\{=1 \catcode`\}=2 \doi@aux}
+  \catcode`\{=1 \catcode`\}=2\doi@aux}
 \providecommand{\doi@aux}[1]{\endgroup\texttt{#1}}
 \makeatother
 \providecommand*\mcitethebibliography{\thebibliography}
