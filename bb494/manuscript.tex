@@ -97,6 +97,20 @@ Catalase's activity is nearly diffusion-limited \cite{kcatkm, difflimit}. This r
 In this study we hope to study the proposed orienting field optimization and its influence on catalase activity. In particular, we hope to carefully disrupt the wildtype active site potential environment by introducing a new charged residue, then examine the effect this disruption has on activity. For meaningful results, we must be careful to not introduce structural modifications to the enzyme. To ensure this, we will use genetic code expansion to incorporate 3-nitrotyrosine in place of tyrosine 206. The T206NY mutation will add only 30 $\AA^3$ of steric bulk \cite{3ntsize}, so should have minimal influence on active site structure. The theorized results of this addition are diagrammed in Figure \ref{fig:hypothesis}. To study the influence of field disruption on activity, we will study the activity of T206NY above and below its pKa of 6.8 \cite{3ntsize}. Wildtype catalase activity is constant under pH values from 5 to 10 \cite{phdependence,kcatkm}, so pH-dependence should only be seen if electric environment in the active site is important for activity.\\
 
 \begin{figure}
+  \begin{subfigure}{0.69\textwidth}
+    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
+    \begin{minipage}{.9\textwidth}
+      \includegraphics[width=0.5\linewidth]{figures/cartoon-visualization.png}%
+      \includegraphics[width=0.5\linewidth]{figures/channel-visualization.png}
+    \end{minipage}
+  \end{subfigure}
+  \begin{subfigure}{0.3\textwidth}
+    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
+    \begin{minipage}{.9\textwidth}
+      \includegraphics[width=\linewidth]{figures/active-site-visualization.png}%
+    \end{minipage}
+  \end{subfigure}
+  
   \caption{Depiction of catalase active pocket. \textbf{Left:} wildtype pocket with proposed ligand-orienting E-field \cite{electricpotential}. The field should orient H2O2 for optimal reaction with the heme. \textbf{Right:} modified HPII-3NY with a deprotonated 3-nitrotyrosine residue at site 206, with hypothetical augmented E-field. The disrupted E-field should result in un- or mis-aligned substrate.}
   \label{fig:hypothesis}
 \end{figure}
@@ -189,7 +203,7 @@ A qualitative, rudimentary assay testing the activity of wildtype purified HPII 
   \begin{subfigure}{0.69\textwidth}
     \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
   \begin{minipage}{.9\textwidth}
-    \includegraphics[width=\linewidth]{figures/fake-results.png}
+    %% \includegraphics[width=\linewidth]{figures/fake-results.png}
   \end{minipage}
   \end{subfigure}
   \caption{Initial kinetic assay results. \textbf{a.} Final kinetic data extrapolated from Michaelis-Menten plot via linear regression. \textbf{b.} Michaelis-Menten plot of enzyme catalytic ($\pm \sigma^2$).}
