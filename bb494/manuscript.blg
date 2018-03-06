@@ -1,14 +1,14 @@
-This is BibTeX, Version 0.99d (TeX Live 2016/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2017/Arch Linux)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: manuscript.aux
 The style file: achemso.bst
-Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
 Database file #1: acs-manuscript.bib
 Database file #2: references.bib
-achemso 2017/01/21 v3.10h
+achemso 2017/05/18 v3.10i
 You've used 11 entries,
             2536 wiz_defined-function locations,
-            822 strings with 8275 characters,
+            822 strings with 8276 characters,
 and the built_in function-call counts, 3671 in all, are:
 = -- 285
 > -- 205
