@@ -135,6 +135,9 @@ A Bio-Rad Bradford assay kit was used using the standard protocol. Bovine serum 
 \textbf{Kinetic assays}
 Enzyme velocity was measured using a Vernier Gas Pressure Sensor. Reaction buffer (50mM sodium phosphate, 300mM NaCl, 5\% $H_2O_2$ pH modulated to values from 5 to 10 via addition of HCL or NaOH) was combined with enzyme (25 $\mu g/mL$, 50 $\mu g/mL$, 50$\mu g/mL$ for HPII, HPII-3NY, HPII-pAzF) to a total volume of $3mL$ in pressure sensor tube. Pressure was monitored at 1s intervals for 120 seconds. Data was collected using Vernier LoggerPro.\\
 
+\textbf{pH-dependent assay}
+pH assays were conducted using the same kinetic method described above. Reactions occured in 3mL equilibration buffer (50mM sodium phosphate, 300mM NaCl, 5\% $H_2O_2$ pH modulated to values from 5 to 10 via addition of HCL or NaOH). On addition of 43$\mu g$ protein, the tubes were mixed and incubated at RT for five minutes, then brought to 5\% $H_2O_2$ and added to pressure assay mechanism. Trials were conducted in triplicate.\\
+
 \section{Results}
 %% to add: Chemical nature and location of your ncAAs in the structure. (This might fit best in results).
 DH10B cell lines with appropriate plasmids were grown for 48h and pelletized. Wildtype HPII-containing cells were purified using TALON resin. Purified wildtype protein and ncAA cell lysates are shown in Figure \ref{fig:pure-gel}.c. The expected band corresponding to an 84-kD protein is seen across all lanes, indicating the presence of a catalase single subunit in each cell line. Contaminant bands in the gel are very faint, indicating pure protein.\\
@@ -208,6 +211,30 @@ A qualitative, rudimentary assay testing the activity of wildtype purified HPII 
   \end{subfigure}
   \caption{Initial kinetic assay results. \textbf{a.} Final kinetic data extrapolated from Michaelis-Menten plot via linear regression. \textbf{b.} Michaelis-Menten plot of enzyme catalytic ($\pm \sigma^2$).}
   \label{fig:bradford-assay}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{\textwidth}
+    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
+    \begin{minipage}{0.9\textwidth}\includegraphics[width=0.9\linewidth]{figures/kinetics.png}\end{minipage}
+  \end{subfigure}
+  \caption{\textbf{Michaelis-Menten plot of kinetic efficiencies of HPII variants.} Kinetic measurements conducted at 25C using the pressure-based assay defined above.}
+\label{fig:kinetics}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
+    \begin{minipage}{0.9\textwidth}\includegraphics[width=0.9\linewidth]{figures/wildtype-velocity.png}\end{minipage}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
+    \begin{minipage}{0.9\textwidth}\includegraphics[width=0.9\linewidth]{figures/3ny-velocity.png}\end{minipage}
+  \end{subfigure}
+  \caption{\textbf{pH dependent initial velocities of HPII variants.} Left: HPII catalase Right: HPII-3NY.}
+\label{fig:ph-dependent-velocities}
 \end{figure}
 
 \subsection{Discussion}
