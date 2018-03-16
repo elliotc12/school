@@ -5,45 +5,47 @@ The style file: achemso.bst
 Reallocated singl_function (elt_size=8) to 100 items from 50.
 Database file #1: acs-manuscript.bib
 Database file #2: references.bib
+Warning--I didn't find a database entry for "hammill"
 achemso 2018/02/05 v3.11a
-You've used 11 entries,
+You've used 14 entries,
             2536 wiz_defined-function locations,
-            822 strings with 8276 characters,
-and the built_in function-call counts, 3841 in all, are:
-= -- 315
-> -- 205
-< -- 8
-+ -- 82
-- -- 71
-* -- 412
-:= -- 509
-add.period$ -- 20
-call.type$ -- 11
+            844 strings with 8999 characters,
+and the built_in function-call counts, 4949 in all, are:
+= -- 403
+> -- 274
+< -- 9
++ -- 109
+- -- 95
+* -- 531
+:= -- 660
+add.period$ -- 26
+call.type$ -- 14
 change.case$ -- 4
 chr.to.int$ -- 2
-cite$ -- 11
-duplicate$ -- 212
-empty$ -- 265
-format.name$ -- 84
-if$ -- 741
+cite$ -- 14
+duplicate$ -- 274
+empty$ -- 338
+format.name$ -- 111
+if$ -- 954
 int.to.chr$ -- 0
 int.to.str$ -- 1
 missing$ -- 0
-newline$ -- 88
-num.names$ -- 30
-pop$ -- 18
+newline$ -- 106
+num.names$ -- 39
+pop$ -- 26
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 11
+skip$ -- 14
 stack$ -- 0
-substring$ -- 231
-swap$ -- 214
-text.length$ -- 20
+substring$ -- 291
+swap$ -- 281
+text.length$ -- 26
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 74
+type$ -- 95
 warning$ -- 0
-while$ -- 42
+while$ -- 54
 width$ -- 0
-write$ -- 158
+write$ -- 196
+(There was 1 warning)

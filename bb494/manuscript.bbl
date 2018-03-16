@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{11}
+\begin{mcitethebibliography}{14}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -51,20 +51,20 @@ Zhu,~G.; Zhong,~W. Diffusion-Controlled Reactions of Enzymes: A Comparison
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Dominguez and Hansberg(2010)Dominguez, and Hansberg]{concentrateh2o2}
-Dominguez,~A.,~L. Sosa-Peinado; Hansberg,~W. Catalase evolved to concentrate
-  H2O2 at its active site. \emph{Archives of Biochemistry and Biophysics}
-  \textbf{2010}, \emph{500}, 82--91\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
 \bibitem[William \latin{et~al.}(2001)William, Bravo, Carpena, Switala, Mate,
   Fita, and Loewen]{substrateflow}
 William,~M.; Bravo,~J.; Carpena,~X.; Switala,~J.; Mate,~M.~J.; Fita,~I.;
   Loewen,~C. Substrate Flow in Catalases Deduced from the Crystal Structures of
   Active Site Variants of HPII from Escherichia coli. \emph{PROTEINS:
   Structure, Function, and Genetics} \textbf{2001}, \emph{44}, 270--281\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Dominguez and Hansberg(2010)Dominguez, and Hansberg]{concentrateh2o2}
+Dominguez,~A.,~L. Sosa-Peinado; Hansberg,~W. Catalase evolved to concentrate
+  H2O2 at its active site. \emph{Archives of Biochemistry and Biophysics}
+  \textbf{2010}, \emph{500}, 82--91\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -83,6 +83,34 @@ Putnam,~C.; Arvai,~A.; Bourne,~Y.; Tainer,~J. Active and inhibited human
 Sevinc,~M.; Maté,~M.; Switala,~J.; Fita,~I.; Loewen,~P. Role of the lateral
   channel in catalase HPII of Escherichia coli. \emph{Protein Sci}
   \textbf{1999}, \emph{8}, 490--498\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Desideri \latin{et~al.}(1992)Desideri, Falconi, Polticelli, Bolognesi,
+  Djinovic, and Rotilio]{conserved-as-efield-sod}
+Desideri,~A.; Falconi,~M.; Polticelli,~F.; Bolognesi,~M.; Djinovic,~K.;
+  Rotilio,~G. Evolutionary conservativeness of electric field in the Cu,Zn
+  superoxide dismutase active site: Evidence for co-ordinated mutation of
+  charged amino acid residues. \emph{Journal of Molecular Biology}
+  \textbf{1992}, \emph{223}, 337--342\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Klapper \latin{et~al.}(1986)Klapper, Hagstrom, Fine, Sharp, and
+  Honig]{concentrated-as-efield-sod}
+Klapper,~I.; Hagstrom,~R.; Fine,~R.; Sharp,~K.; Honig,~B. Focusing of Electric
+  Fields in the Active Site of Cu-Zn Superoxide Dismutase: Effects of Ionic
+  Strength and Amino-Acid Modification. \emph{Proteins: Structure, Function and
+  Genetics} \textbf{1986}, 47--59\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Matthew(1985)]{efield-review}
+Matthew,~J. Electrostatic Effects in Proteins. \emph{Ann. Rev. Biophys.
+  Biophys. Chem} \textbf{1985}, \emph{14}, 387--417\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
