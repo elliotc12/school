@@ -28,28 +28,33 @@
 
 \bibitem[Alfonso-Prieto \latin{et~al.}(2009)Alfonso-Prieto, Biarnés,
   Vidossich, and Rovira]{alfonso-prieto}
-Alfonso-Prieto,~M.; Biarnés,~X.; Vidossich,~P.; Rovira,~C. \emph{Journal of
-  the American Chemical Society} \textbf{2009}, \emph{131}, 11751--11761\relax
+Alfonso-Prieto,~M.; Biarnés,~X.; Vidossich,~P.; Rovira,~C. The Molecular
+  Mechanism of the Catalase Reaction. \emph{Journal of the American Chemical
+  Society} \textbf{2009}, \emph{131}, 11751--11761\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \bibitem[Jones and Suggett(1968)Jones, and Suggett]{kcatkm}
-Jones,~P.; Suggett,~A. \emph{Biochem. J.} \textbf{1968}, \emph{110}, 617\relax
+Jones,~P.; Suggett,~A. The Catalase-Hydrogen Peroxide System: Kinetics of
+  Catalytic Action at High Substrate Concentrations. \emph{Biochem. J.}
+  \textbf{1968}, \emph{110}, 617\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \bibitem[Zhu and Zhong(1982)Zhu, and Zhong]{difflimit}
-Zhu,~G.; Zhong,~W. \emph{Eur. J. Biochem} \textbf{1982}, \emph{128},
-  383--387\relax
+Zhu,~G.; Zhong,~W. Diffusion-Controlled Reactions of Enzymes: A Comparison
+  between Chou’s Model and Alberty-Hammes-Eigen’s Model. \emph{Eur. J.
+  Biochem} \textbf{1982}, \emph{128}, 383--387\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \bibitem[Dominguez and Hansberg(2010)Dominguez, and Hansberg]{concentrateh2o2}
-Dominguez,~A.,~L. Sosa-Peinado; Hansberg,~W. \emph{Archives of Biochemistry and
-  Biophysics} \textbf{2010}, \emph{500}, 82--91\relax
+Dominguez,~A.,~L. Sosa-Peinado; Hansberg,~W. Catalase evolved to concentrate
+  H2O2 at its active site. \emph{Archives of Biochemistry and Biophysics}
+  \textbf{2010}, \emph{500}, 82--91\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
@@ -57,23 +62,26 @@ Dominguez,~A.,~L. Sosa-Peinado; Hansberg,~W. \emph{Archives of Biochemistry and
 \bibitem[William \latin{et~al.}(2001)William, Bravo, Carpena, Switala, Mate,
   Fita, and Loewen]{substrateflow}
 William,~M.; Bravo,~J.; Carpena,~X.; Switala,~J.; Mate,~M.~J.; Fita,~I.;
-  Loewen,~C. \emph{PROTEINS: Structure, Function, and Genetics} \textbf{2001},
-  \emph{44}, 270--281\relax
+  Loewen,~C. Substrate Flow in Catalases Deduced from the Crystal Structures of
+  Active Site Variants of HPII from Escherichia coli. \emph{PROTEINS:
+  Structure, Function, and Genetics} \textbf{2001}, \emph{44}, 270--281\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \bibitem[Putnam \latin{et~al.}(2000)Putnam, Arvai, Bourne, and
   Tainer]{molecularruler}
-Putnam,~C.; Arvai,~A.; Bourne,~Y.; Tainer,~J. \emph{J Mol Biol} \textbf{2000},
-  \emph{296}, 295--309\relax
+Putnam,~C.; Arvai,~A.; Bourne,~Y.; Tainer,~J. Active and inhibited human
+  catalase structures: ligand and NADPH binding and catalytic mechanism.
+  \emph{J Mol Biol} \textbf{2000}, \emph{296}, 295--309\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \bibitem[Sevinc \latin{et~al.}(1999)Sevinc, Maté, Switala, Fita, and
   Loewen]{lateralchannel}
-Sevinc,~M.; Maté,~M.; Switala,~J.; Fita,~I.; Loewen,~P. \emph{Protein Sci}
+Sevinc,~M.; Maté,~M.; Switala,~J.; Fita,~I.; Loewen,~P. Role of the lateral
+  channel in catalase HPII of Escherichia coli. \emph{Protein Sci}
   \textbf{1999}, \emph{8}, 490--498\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
@@ -81,7 +89,8 @@ Sevinc,~M.; Maté,~M.; Switala,~J.; Fita,~I.; Loewen,~P. \emph{Protein Sci}
 \EndOfBibitem
 \bibitem[Chelikani \latin{et~al.}(2003)Chelikani, Carpena, Fita, and
   Loewen]{electricpotential}
-Chelikani,~P.; Carpena,~X.; Fita,~I.; Loewen,~P. \emph{J Biol Chem}
+Chelikani,~P.; Carpena,~X.; Fita,~I.; Loewen,~P. An Electrical Potential in the
+  Access Channel of Catalases Enhances Catalysis. \emph{J Biol Chem}
   \textbf{2003}, \emph{278}, 31290--31296\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
@@ -89,14 +98,17 @@ Chelikani,~P.; Carpena,~X.; Fita,~I.; Loewen,~P. \emph{J Biol Chem}
 \EndOfBibitem
 \bibitem[De~Filippis \latin{et~al.}(2006)De~Filippis, Frasson, and
   Fontana]{3ntsize}
-De~Filippis,~V.; Frasson,~R.; Fontana,~A. \emph{Protein Sci.} \textbf{2006},
-  \emph{15}, 976--786\relax
+De~Filippis,~V.; Frasson,~R.; Fontana,~A. 3-Nitrotyrosine as a spectroscopic
+  probe for investigating protein protein interactions. \emph{Protein Sci.}
+  \textbf{2006}, \emph{15}, 976--786\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
 \bibitem[Chance(1951)]{phdependence}
-Chance,~B. \emph{J Biol Chem} \textbf{1951}, \emph{194}, 471--481\relax
+Chance,~B. Effect of pH upon the reaction kinetics of the enzyme-substrate
+  compounds of catalase. \emph{J Biol Chem} \textbf{1951}, \emph{194},
+  471--481\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
