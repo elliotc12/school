@@ -108,19 +108,27 @@ One tool proteins are known to use to speed up active site kinetics is the use o
 An issue with mutagenesis studies like Chelikani \textit{et. al.} is that catalase's active site is very sensitive to changes. Mutagenesis of many residues results in large changes in enzyme kinetics \cite{substrateflow}. Here we conduct a less invasive experiment to probe the role of electric field in the catalase active site. We use genetic code expansion \cite{hammill} to incorporate two functional groups onto F206 in the catalase active site, turning it into 3-nitrotyrosine (Figure \ref{fig:hypothesis}.e). This change is important because it a.) is tiny, adding only 30 $\AA^3$ of steric bulk \cite{3ntsize}, and b.) incorporates a hydroxy group of pKa 7.0 into the catalase active site \cite{3ntsize}. Catalase activity is pH-invariant in the range of 5 to 9 \cite{phdependence,kcatkm}; thus, by incorporating a group which gains charge at pH 7, we can precisely study the effect of charge in the catalase active site on enzyme kinetics without worrying about the undesired effects of mutagenesis.\\
 
 \begin{figure}
-  \begin{subfigure}{0.49\textwidth}
+  \begin{subfigure}{0.4\textwidth}
     \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
     \begin{minipage}{.9\textwidth}
       %% \includegraphics[width=0.5\linewidth]{figures/cartoon-visualization.png}%
       \includegraphics[width=\linewidth]{figures/channel-visualization.png}
     \end{minipage}
+  \end{subfigure}%
+  \begin{subfigure}{0.6\textwidth}
+    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
+    \begin{minipage}{.9\textwidth}
+      \includegraphics[width=0.4\linewidth]{figures/efield-wt.pdf}%
+      \hspace{1cm}
+      \includegraphics[width=0.4\linewidth]{figures/efield-3ny.pdf}%
+    \end{minipage}
   \end{subfigure}
+  \vspace{3cm}
   \begin{subfigure}{0.5\textwidth}
     \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
     \begin{minipage}{.9\textwidth}
-      \includegraphics[width=0.5\linewidth]{figures/active-site-visualization.png}%
-      \includegraphics[width=0.5\linewidth]{figures/active-site-visualization.png}%
-    \end{minipage}
+      \includegraphics[width=\linewidth]{figures/3ny.png}%
+      \end{minipage}
   \end{subfigure}
   \caption{Depiction of catalase active pocket. \textbf{Left:} wildtype pocket with proposed ligand-orienting E-field \cite{electricpotential}. The field should orient H2O2 for optimal reaction with the heme. \textbf{Right:} modified HPII-3NY with a deprotonated 3-nitrotyrosine residue at site 206, with hypothetical augmented E-field. The disrupted E-field should result in un- or mis-aligned substrate.}
   \label{fig:hypothesis}
