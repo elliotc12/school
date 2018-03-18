@@ -4,12 +4,11 @@ The top-level auxiliary file: manuscript.aux
 The style file: unsrtnat.bst
 Database file #1: references.bib
 Warning--I didn't find a database entry for "hammill"
-Warning--I didn't find a database entry for "phindependent"
 Warning--I didn't find a database entry for "apbs"
 Warning--there's a number but no volume in concentrated-as-efield-sod
 You've used 14 entries,
             2481 wiz_defined-function locations,
-            659 strings with 7252 characters,
+            658 strings with 7239 characters,
 and the built_in function-call counts, 5858 in all, are:
 = -- 463
 > -- 338
@@ -48,4 +47,4 @@ warning$ -- 1
 while$ -- 42
 width$ -- 0
 write$ -- 191
-(There were 4 warnings)
+(There were 3 warnings)
