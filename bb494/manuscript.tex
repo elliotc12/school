@@ -40,7 +40,7 @@
 \end{abstract}
 
 %% \dates{This manuscript was compiled on \today}
-\doi{\url{www.pnas.org/cgi/doi/10.1073/pnas.XXXXXXXXXX}}
+\doi{BB494 Final Manuscript}
 
 \begin{document}
 
@@ -61,7 +61,7 @@ Previous work on substrate trafficking has illuminated various stages in the pro
 
 One tool proteins are known to use to speed up active site kinetics is the use of electric fields. Superoxide dismutase is known to have a strong E-field in its active site to stabilize dipolar intermediates \cite{conserved-as-efield-sod, concentrated-as-efield-sod}. Several other proteins are known to use a similar effect \cite{efield-review} (be more precise here). It has been suggested that catalase uses an electric field in its active site to orient and traffick hydrogen peroxide to its active heme \cite{electricpotential}. This model, proposed by Chelikani \textit{et. al}, theorizes that a strong electric field from the negative asparigine 181 at the top of the active site antechamber extends to the strongly positive heme iron, as shown in Figure \ref{fig:hypothesis}.d. This electric field would orient incoming hydrogen peroxides in the optimal rotation for reaction with heme.\\
 
-An issue with mutagenesis studies like Chelikani \textit{et. al.} is that catalase's active site is very sensitive to changes. Replacing residues in the active site can dramatically impact enzyme efficiency \cite{substrateflow}. A better technique would purturb the electric field without full amino acid mutagenesis. Here we propose a new method for studying the catalase active site: genetic code expansion. We demonstrate how noncanonical amino acids can be incorporated into the catalase active site, as described in \textit{Hamill et. al.}, and how these modifications allow a less drastic change in active site environment. We use genetic code expansion \cite{hammill} to incorporate two functional groups onto F206 in the catalase active site, turning it into 3-nitrotyrosine (Figure \ref{fig:hypothesis}.e). This change is important because it a.) is tiny, adding only 30 $\AA^3$ of steric bulk \cite{3ntsize}, and b.) incorporates a hydroxy group of pKa 7.0 into the catalase active site \cite{3ntsize}. Catalase activity is pH-invariant in the range of 5 to 9 \cite{phdependence,kcatkm}; thus, by incorporating a group which gains charge at pH 7, we can precisely study the effect of charge in the catalase active site on enzyme kinetics without worrying about the undesired effects of mutagenesis.\\
+An issue with mutagenesis studies like Chelikani \textit{et. al.} is that catalase's active site is very sensitive to changes. Replacing residues in the active site can dramatically impact enzyme efficiency \cite{substrateflow}. A better technique would purturb the electric field without full amino acid mutagenesis. Here we propose a new method for studying the catalase active site: genetic code expansion. We demonstrate how noncanonical amino acids can be incorporated into the catalase active site, as described in \textit{Hamill et. al.}, and how these modifications allow a less drastic change in active site environment. We use genetic code expansion \cite{hammill} to incorporate two functional groups onto F206 in the catalase active site, turning it into 3-nitrotyrosine (3NY) (Figure \ref{fig:noncanonicals}). This change is important because it a.) is tiny, adding only 30 $\AA^3$ of steric bulk \cite{3ntsize}, and b.) incorporates a hydroxy group of pKa 7.0 into the catalase active site \cite{3ntsize}. Catalase activity is pH-invariant in the range of 5 to 9 \cite{phdependence,kcatkm}; thus, by incorporating a group which gains charge at pH 7, we can precisely study the effect of charge in the catalase active site on enzyme kinetics without worrying about the undesired effects of mutagenesis.\\
 
 \begin{figure*}
   \includegraphics[width=0.24\linewidth]{figures/cartoon-visualization.png}
@@ -77,6 +77,7 @@ An issue with mutagenesis studies like Chelikani \textit{et. al.} is that catala
   \hspace{0.1\linewidth}
   \includegraphics[width=0.5\linewidth]{figures/pazf.png}
   \caption{\textbf{Structures of two noncanonical amino acids used in study.} \textit{Left:} 3-nitrotyrosine, \textit{Right:} para-azidophenylalanine.}
+  \label{fig:noncanonicals}
 \end{figure}
 
 \section{Results}
@@ -135,23 +136,36 @@ We propose that the following residues be incorporated into the channel at sites
 \matmethods{
 
 \subsection*{Protein production}
-Wildtype protein was expressed by transforming the plasmid pBad-HPII (Fig \ref{fig:protein-design}.b, modified from Addgene ID 105839), containing WT HPII gene, into competent \textit{E. coli} DH10B cells via heat-shock. pBad-HPII plasmid includes ampicillin resistance, an arabinose-induced promoter, and a 6xHis codon sequence on the N-term of the HPII gene. Cells were then grown in autoinduction media with an arabinose inducer (0.1\% aspartate, 0.2\% glycerol, 100$\mu g / mL$ ampicillin, mineral salts, 0.05\% glucose, 20mM MgSO4, 0.05\% arabinose, trace metals and amino acid mix, pH 7.5) for 48 hours, shaking, at 37\degree C. Cells were then pelletized and stored at -80\degree C.\\
+Wildtype protein was expressed in competent DH10B \textit{E. coli} transformed with th eplasmid pBad-HPII (Figure \ref{fig:design}.b, modified from Addgene ID 105839), containing WT HPII gene, These cells were acquired from Dr. Van Zee in the OSU teaching lab. pBad-HPII plasmid includes ampicillin resistance, an arabinose-induced promoter, and a 6xHis codon sequence on the N-term of the HPII gene. Cells were dilluted 1:150 into 250mL autoinduction media with an arabinose inducer (0.1\% aspartate, 0.2\% glycerol, 100$\mu g / mL$ ampicillin, mineral salts, 0.05\% glucose, 20mM MgSO4, 0.05\% arabinose, trace metals and amino acid mix, pH 7.5). A positive control was conducted using pBad-sfGFP (superfolder GFP) in a 1:100 dillution into 10mL of autoinduction media. HPII cells were grown for 48 hours, shaking, at 37\degree C, to an optical density of 0.65. Cells were then pelletized at 5000 rcf and stored at -80\degree C.\\
 
-The same protocol was followed for the ncAA mutant catalases HPII-3NY and HPII-pAzF, except using protein plasmids pBad-HPII-3NY and pBad-HPII-pAzF (Addgene ID 105846) instead. ncAA tRNA synthase plasmids pDule-Nitro-RS and pDule-pCNF-RS (Fig \ref{fig:protein-design}.b, modified from Addgene ID 85498), which contain a tetracycline resistance gene, a TAG tRNA, and a compatible tRNA synthase, were also transformed into DH10B. ncAA autoinduction media was supplemented with $25\mu g / mL$ tetracycline to select for both plasmids.\\
-
-$OD_{600}$ measurements of cultures at 48 hours growth time were 0.65, 0.58 and 0.45 optical density for HPII, HPII-3NY and HPII-pAzF expressions.\\
+The same expression protocol was followed for the ncAA mutant catalase proteins HPII-3NY and HPII-pAzF, except using protein plasmids pBad-HPII-3NY and pBad-HPII-pAzF (Figure \ref{fig:design}.b, Addgene ID 105846) instead. ncAA tRNA synthase plasmids pDule-Nitro-RS and pDule-pCNF-RS (Fig \ref{fig:protein-design}.b, modified from Addgene ID 85498), which contain a tetracycline resistance gene, a TAG tRNA, and a compatible tRNA synthase, were also transformed into DH10B. ncAA autoinduction media was supplemented with $25\mu g / mL$ tetracycline to select for both plasmids. DH10B cells transformed with both respective pBad and pDule plasmids, also obtained from Dr. Van Zee, were dilluted in a 1:150 dillution into 250mL autoinduction media. Cells were shaken for 30 minutes at 37\degree C, then were treated with respectively 3NY and pAzF to final concentrations of 1.5 mM each. Noncanonical amino acids were dissolved in weak NaOH. Mutant cell lines were then grown for 48 hours, shaking, at 37\degree C, to optical densities of 0.58 (HPII-3NY) and 0.45 (HPII-pAzF). Cells were then pelletized at 5000 rcf and stored at -80\degree C.\\
 
 \subsection*{Protein purification}
-Pelletized cells were reconstituted in TALON equilibration buffer (50mM sodium phosphate, 300mM NaCl, pH 7.0) and microfluidized, also in equilibration buffer. Lysed cells were spun down at 15K RPM for 20 minutes at 4\degree C. Supernatant was collected and combined with 300$\mu L$ bed volume TALON beads per 100mL cultured cells. TALON-supernatant mix was nutated for 30 minutes at 4\degree C. Bound beads were then spun down at 500g for 5 minutes and the supernatant discarded. The beads were applied to a pre-washed gravity-flow column at room temperature and washed twice with 10mL equilibration buffer. Elution was done using 2mL elution buffer (50mM sodium phosphate, 300mM NaCl, 250mM imidazole, pH 7.0) into four 500$\mu L$ aliquots. Protein was not desalted. Protein was then stored at 4\degree C.\\
+Each protein construct was purified the same way. Pelletized cells were reconstituted in 10mL TALON equilibration buffer (50mM sodium phosphate, 300mM NaCl, pH 7.0) and microfluidized, also in equilibration buffer. Lysed cells were spun down at 15K RPM for 20 minutes at 4\degree C. Supernatant was collected and combined with 300 $\mu L$ bed volume TALON cobalt affinity resin beads, also stored in TALON equilibration buffer. TALON beads were pre-washed according to the manufacturer manual. TALON-supernatant mix was nutated for 30 minutes at 4\degree C. Bound beads were then spun down at 500g for 5 minutes and most of the supernatant discarded, leaving 10mL to keep the beads wet. The bead mix was applied to a pre-washed gravity-flow column at room temperature and washed twice with 10mL equilibration buffer. Elution was done using 2mL elution buffer (50mM sodium phosphate, 300mM NaCl, 250mM imidazole, pH 7.0) into four 500$\mu L$ aliquots. Protein was not desalted. Protein was then stored at 4\degree C.\\
+
+\subsection*{SDS-PAGE gel}
+SDS-PAGE gels (30\% polyacrylamide, 10\% ammonium persulfate, 10\% SDS solution, 1 mmol TEMED, 1.5M Tris ph8.8 for resolving, 0.5M Tris pH 6.8 for stacking) were cast at 4\% for stacking and 8\% for resolving. Protein was dyed using a solution of 125mM Tris-HCL, 4\% SDS, 20\% glycerol, 0.02\% bromophenol blue, 5\% beta mercaptoethanol, pH 6.8 and loaded in 20 $\mu L$ volume into lanes. Bio-Rad Precision Plus Dual Color at 7.5 $\mu L$ was used as ladder. Gels were run in a running buffer of 25mM Tris base, 0.19 M glycine, 0.1\% SDS at pH 8.3. Gels were run at 200V for 50 minutes.\\
 
 \subsection*{Concentration determination}
 A Bio-Rad Bradford assay kit was employed using the standard protocol. Bovine serum albumin was used as the reference protein to construct the standard curve. Concentrations from 125 $\mu g / mL$ to 2 mg/mL were explored. Samples were incubated with dye in cuvettes for 5 minutes at room temperature. Samples were then analyzed via spectrophotometer at 595 \textit{nm} and used to create the standard curve. HPII protein samples were then compared to this standard curve to estimate their concentration.\\
 
-\subsection*{Activity assessment}
-Enzyme velocity was measured using a Vernier Gas Pressure Sensor. Reaction buffer (50mM sodium phosphate, 300mM NaCl, 5\% $H_2O_2$ pH modulated to 5.5, 6.25, 7.0, 7.75, 8.5 via addition of HCL or NaOH) was combined with enzyme (25 $\mu g/mL$, 50 $\mu g/mL$, 50$\mu g/mL$ for HPII, HPII-3NY, HPII-pAzF) to a total volume of $3mL$ in pressure sensor tube. Tubes were sealed and pressure was monitored at 1s intervals for 120 seconds. Data was collected using Vernier LoggerPro.\\
+\subsection*{Qualitative kinetic assay}
+One hundred mg protein was combined with 5\% $H_2O_2$ in pH 7.0 water at 25 \degree C. Activity was assessed by noting gas evolution by eye.\\
 
-\subsection*{pH dependent assay}
-pH assays were conducted using the same kinetic method described above. Reactions occured in 3mL equilibration buffer (50mM sodium phosphate, 300mM NaCl, 5\% $H_2O_2$ pH modulated to values from 5 to 10 via addition of HCL or NaOH). On addition of 43$\mu g$ protein, the tubes were mixed and incubated at RT for five minutes, then brought to 5\% $H_2O_2$ and added to pressure assay mechanism. Trials were conducted in triplicate.\\
+\subsection*{pH dependent velocity assessment}
+Enzyme initial velocity was measured using a Vernier Gas Pressure Sensor. Reaction buffer (50mM sodium phosphate, 300mM NaCl, pH modulated to 5.5, 6.25, 7.0, 7.75, 8.5 via addition of HCl or NaOH) was combined with 43.3 $\mu g$ protein to a total volume of $3mL$ in pressure sensor tube. Tubes were incubated for 5 minutes at 25 \degree C. Tubes were then treated with 5\% $H_2O_2$ and immediately sealed. Pressure was monitored at 1s intervals for 120 seconds. Data was collected using Vernier LoggerPro. The initial five seconds of constant-slope data was used to calculate initial pressure per second data. Each pH trial was measured in triplicate. For each pH value, initial velocities were averaged and the standard deviation was used as the error bar.\\
+
+\subsection*{Kinetic constant determination}
+Reactions occured in 3mL equilibration buffer (50mM sodium phosphate, 300mM NaCl, pH 7.0). Protein was added (10 $\mu g$ HPII, 25 $\mu g$ HPII-pAzF, 100 $\mu g$ HPII-3NY) and incubated for 20 minutes. $H_2O_2$ was added in ceoncentrations of 0\%, 0.5\%, 1.0\%, 1.5\% 2.0\%, 2.5\%, 3.0\%, then the reaction flask was immediately capped. Pressure was monitored at 1s intervals for 120 seconds. Data was collected using Vernier LoggerPro. The initial five seconds of constant-slope data was used to calculate initial pressure per second data. Presures were converted to moles of gas via the ideal gas law. Each trial was measured in triplicate.\\
+
+Michaelis-Menten kinetics were assumed to calculate enzyme efficiency parameters. Each velocity vs time data point was divided by the respective enzyme concentration to normalize the data with respect to enzyme amount. Then enzymes were fit to the Michaelis Menten equation:
+
+\begin{equation*}
+  V_0 = k_{cat} \frac{[S]}{K_M+[S]}.
+\end{equation*}
+
+Using least squares linear regression through the Google Sheets Solver package, values for $k_{cat}$ and $K_M$ were acquired. The correlation coefficient was used as the fractional error of each value.\\
+
 }
 
 \showmatmethods % Display the Materials and Methods section
