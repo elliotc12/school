@@ -4,46 +4,48 @@ The top-level auxiliary file: manuscript.aux
 The style file: unsrtnat.bst
 Database file #1: references.bib
 Warning--I didn't find a database entry for "hammill"
+Warning--I didn't find a database entry for "phindependent"
+Warning--I didn't find a database entry for "apbs"
 Warning--there's a number but no volume in concentrated-as-efield-sod
-You've used 13 entries,
+You've used 14 entries,
             2481 wiz_defined-function locations,
-            650 strings with 7027 characters,
-and the built_in function-call counts, 5430 in all, are:
-= -- 430
-> -- 311
+            659 strings with 7252 characters,
+and the built_in function-call counts, 5858 in all, are:
+= -- 463
+> -- 338
 < -- 5
-+ -- 118
-- -- 92
-* -- 472
-:= -- 888
-add.period$ -- 40
-call.type$ -- 13
-change.case$ -- 26
-chr.to.int$ -- 13
-cite$ -- 14
-duplicate$ -- 247
-empty$ -- 490
-format.name$ -- 111
-if$ -- 1143
++ -- 128
+- -- 100
+* -- 512
+:= -- 958
+add.period$ -- 43
+call.type$ -- 14
+change.case$ -- 28
+chr.to.int$ -- 14
+cite$ -- 15
+duplicate$ -- 266
+empty$ -- 528
+format.name$ -- 120
+if$ -- 1233
 int.to.chr$ -- 1
-int.to.str$ -- 14
-missing$ -- 13
-newline$ -- 74
-num.names$ -- 39
-pop$ -- 91
+int.to.str$ -- 15
+missing$ -- 14
+newline$ -- 79
+num.names$ -- 42
+pop$ -- 98
 preamble$ -- 1
-purify$ -- 13
+purify$ -- 14
 quote$ -- 0
-skip$ -- 137
+skip$ -- 147
 stack$ -- 0
-substring$ -- 299
-swap$ -- 26
+substring$ -- 322
+swap$ -- 28
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 91
+type$ -- 98
 warning$ -- 1
-while$ -- 39
+while$ -- 42
 width$ -- 0
-write$ -- 178
-(There were 2 warnings)
+write$ -- 191
+(There were 4 warnings)

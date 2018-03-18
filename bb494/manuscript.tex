@@ -115,7 +115,6 @@ Noncanonical amino acids (ncAAs) were incorporated into protein constructs by mu
   \label{fig:kinetics}
 \end{figure}
 
-
 \begin{figure}
   \centering
   \includegraphics[width=0.49\linewidth]{figures/apbs-ph5.png}%
@@ -136,6 +135,21 @@ Noncanonical amino acids (ncAAs) were incorporated into protein constructs by mu
 \end{figure}
 
 \subsection*{Discussion}
+Here we demonstrate that genetic code expansion can be used to successfully perturb the active site of catalase. We introduced either an azido group or a hydroxy and nitro group by mutating Phe 206 to para-azidophenylalanine or 3-nitrotyrosine. We show that these mutants retain activity, indicating their addition does not cause misfolding of the protein. We then modulate pH to show that the protonation state of added groups has an impact on enzyme catalysis; this supports the idea that electric field plays a large role in catalase active site dynamics.\\
+
+The electric field hypothesis described in Chelikani \textit{et. al.} \cite{electricpotential} theorizes that an electric potential gradient running from the negative Asn 181 in the active site to the positive heme iron acts to orient the dipole moments of water and hydrogen peroxide in the active site. This orientation is said to speed up reaction with heme by optimizing $H_2O_2$ - heme iron angle. Catalase wildtype is pH-invariant in ranges from 5 to 9 \cite{phdependence}. Thus, by introducing a functional group with pKa of 7 through HPII-3NY, we can get a privileged look into the effects of charge in the catalase active site separate from other pH-dependent effects. We find that when HPII-3NY's 3NY hydroxy group is deprotonated and thus anionic, the enzyme experiences a statistically significant 50\% drop in activity compared to the fully protonated neutral state. Due to 3NY's proximity to the active site, this charge effect is likely to be disrupting the Asn181 - heme electric field and preventing orienting. To verify this intuition, we conducted electrostatic modelling of the mutant active site using the APBS tool \cite{apbs}. These models verified that the large gradient pointing from Asn 181 to heme iron is disrupted at high pH, but not low pH. This is an important step supporting the electric field hypothesis.\\
+
+Using the tools of electrostatic simulation and genetic code expansion, we propose a new study to conclusively test the role of electric field in the catalase active site. This study would entail doing a large number of polar noncanonical amino acid substitutions to residues in the catalase active site, both close to and far from the heme. APBS would allow the calculation of the expected impact on electric field of these substitutions. Using APBS data, a rough ``dipole orientation factor $D$'' could be calculated via\\
+
+\begin{equation*}
+  D = \int_S -\vec{\nabla} V(s) \cdot d\vec{s}.
+\end{equation*}
+
+Here V is the electrostatic potential field from APBS and the integration path is along the hydrogen-bonded substrate chain found from crystal structures in Chelikani \cite{electricpotential}. This $D$ factor would quantify the strength of the dipole orientation in the active site. The strength of correlation of this $D$ factor with enzymatic activity is indicative of the importance of electric field in catalase. This experiment would be especially powerful if coupled with crystallography to verify proper active site structure.\\
+
+Such a study would not only determine the role of electric field, but could answer more precise questions. Chelikani propose that the electric field mediates rate by influencing substrate dipole moments. However, other authors propose that the role of active site electric fields is not dynamical, but rather to stabilize dipolar transition states \cite{asdipolestabilization}. This latter theory would suggest that electric field is only relevant near the dipolar transition state, not in the whole active channel. Electrostatic simulation guiding genetic code expansion would allow the control of electric field necessary to test such hypotheses.\\
+
+Such techniques could also be used for the study of other active site electric fields, such as in superoxide dismuatase. Previous studies \cite{concentrated-as-efield-sod} also used mutagenesis, and so could benefit from the less invasive technique of genetic code expansion.\\
 
 \subsection*{Conclusion}
 
