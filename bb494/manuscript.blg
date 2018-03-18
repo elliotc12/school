@@ -1,51 +1,49 @@
 This is BibTeX, Version 0.99d (TeX Live 2017/Arch Linux)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: manuscript.aux
-The style file: achemso.bst
-Reallocated singl_function (elt_size=8) to 100 items from 50.
-Database file #1: acs-manuscript.bib
-Database file #2: references.bib
+The style file: unsrtnat.bst
+Database file #1: references.bib
 Warning--I didn't find a database entry for "hammill"
-achemso 2018/02/05 v3.11a
-You've used 14 entries,
-            2536 wiz_defined-function locations,
-            844 strings with 8999 characters,
-and the built_in function-call counts, 4949 in all, are:
-= -- 403
-> -- 274
-< -- 9
-+ -- 109
-- -- 95
-* -- 531
-:= -- 660
-add.period$ -- 26
-call.type$ -- 14
-change.case$ -- 4
-chr.to.int$ -- 2
+Warning--there's a number but no volume in concentrated-as-efield-sod
+You've used 13 entries,
+            2481 wiz_defined-function locations,
+            650 strings with 7027 characters,
+and the built_in function-call counts, 5430 in all, are:
+= -- 430
+> -- 311
+< -- 5
++ -- 118
+- -- 92
+* -- 472
+:= -- 888
+add.period$ -- 40
+call.type$ -- 13
+change.case$ -- 26
+chr.to.int$ -- 13
 cite$ -- 14
-duplicate$ -- 274
-empty$ -- 338
+duplicate$ -- 247
+empty$ -- 490
 format.name$ -- 111
-if$ -- 954
-int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 106
+if$ -- 1143
+int.to.chr$ -- 1
+int.to.str$ -- 14
+missing$ -- 13
+newline$ -- 74
 num.names$ -- 39
-pop$ -- 26
+pop$ -- 91
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 13
 quote$ -- 0
-skip$ -- 14
+skip$ -- 137
 stack$ -- 0
-substring$ -- 291
-swap$ -- 281
-text.length$ -- 26
+substring$ -- 299
+swap$ -- 26
+text.length$ -- 0
 text.prefix$ -- 0
-top$ -- 1
-type$ -- 95
-warning$ -- 0
-while$ -- 54
+top$ -- 0
+type$ -- 91
+warning$ -- 1
+while$ -- 39
 width$ -- 0
-write$ -- 196
-(There was 1 warning)
+write$ -- 178
+(There were 2 warnings)
