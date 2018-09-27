@@ -1,0 +1,44 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{fullpage} % changes the margin
+
+\begin{document}
+\noindent
+\huge\textbf{Project report}
+\normalsize
+
+\section*{Introduction}
+
+\section*{Objectives}
+
+\begin{itemize}
+\item Create a biologically realistic leaky integrate-and-fire (LIF) model of a cortical section which can reproduce single-neuron details from 2PI \cite{bellaypaper}, such as firing rate distribution and quiescent time, correlations (average cross-correlation, distance-dependent correlation and autocorrelation), branching parameter, and time-binned avalanche dynamics
+  
+\item Use biophysical hierarchy of neural connections \cite{rubinov} and represent the main pyramidal and interneuron types within cortex using realistic parameters \cite{objectworkingmemory}
+  
+\item Reproduce the theoretical synchronous-to-asynchronous phase transition \cite{munozlg} using a synaptic resources parameter tuned to avoid the bistable up-down regime and non-critical (neutral) avalanches. Other models have found a continuous (presumably not up/down) phase transition \cite{rubinov}, so it is likely we will be able to find one as well. Other models have remained within the bistable regime and thus see only an up/down transition with neutral avalanches \cite{neutraltheory}.
+  
+\item Use the 'exact' solution method \cite{exactsolution} to quickly simulate large networks, possibly making the model fast enough to explore the parameter space to find different network modes (eg oscillation, up/down bistability \cite{munozlg}), or to optimize via gradient descent
+  
+\item schizophrenia - something something either simulate PCP problems biophysically and try to reproduce the PCP phenotype OR manually just increase the repeat-firing of cortical neurons
+  
+\item Possibly introduce a spatial component to neurons to estimate LFP electrode measurements from the LIF network, allowing us to see if the model can be made to reproduce coherence potentials
+\end{itemize}
+
+\section*{Methods}
+
+\subsection*{Modular hierarchy}
+\subsection*{Connectivity}
+\subsection*{Plasticity & synaptic resources}
+\subsection*{Voltage equations}
+
+\section*{TODO}
+\begin{itemize}
+\item Find papers on LIF cortical organization - how should we connect the modules? Should we do modules? What should they look like?
+\end{itemize}
+
+\cite{lippert}
+
+\bibliographystyle{plain}
+\bibliography{report}
+
+\end{document}
