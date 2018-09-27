@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \providecommand{\latin}[1]{#1}
 \makeatletter
 \providecommand{\doi}
@@ -25,80 +26,110 @@
   {\mcitemaxwidthsubitemform\space}
   {\relax}
   {\relax}
+=======
+\begin{thebibliography}{14}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+>>>>>>> 10aa5801f80bdfcba9317810e5ce01f07a40e2c5
 
-\bibitem[Alfonso-Prieto \latin{et~al.}(2009)Alfonso-Prieto, Biarnés,
-  Vidossich, and Rovira]{alfonso-prieto}
-Alfonso-Prieto,~M.; Biarnés,~X.; Vidossich,~P.; Rovira,~C. \emph{Journal of
-  the American Chemical Society} \textbf{2009}, \emph{131}, 11751--11761\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Jones and Suggett(1968)Jones, and Suggett]{kcatkm}
-Jones,~P.; Suggett,~A. \emph{Biochem. J.} \textbf{1968}, \emph{110}, 617\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Zhu and Zhong(1982)Zhu, and Zhong]{difflimit}
-Zhu,~G.; Zhong,~W. \emph{Eur. J. Biochem} \textbf{1982}, \emph{128},
-  383--387\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Dominguez and Hansberg(2010)Dominguez, and Hansberg]{concentrateh2o2}
-Dominguez,~A.,~L. Sosa-Peinado; Hansberg,~W. \emph{Archives of Biochemistry and
-  Biophysics} \textbf{2010}, \emph{500}, 82--91\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[William \latin{et~al.}(2001)William, Bravo, Carpena, Switala, Mate,
-  Fita, and Loewen]{substrateflow}
-William,~M.; Bravo,~J.; Carpena,~X.; Switala,~J.; Mate,~M.~J.; Fita,~I.;
-  Loewen,~C. \emph{PROTEINS: Structure, Function, and Genetics} \textbf{2001},
-  \emph{44}, 270--281\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Putnam \latin{et~al.}(2000)Putnam, Arvai, Bourne, and
-  Tainer]{molecularruler}
-Putnam,~C.; Arvai,~A.; Bourne,~Y.; Tainer,~J. \emph{J Mol Biol} \textbf{2000},
-  \emph{296}, 295--309\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Sevinc \latin{et~al.}(1999)Sevinc, Maté, Switala, Fita, and
+\bibitem[Alfonso-Prieto et~al.(2009)Alfonso-Prieto, Biarnés, Vidossich, and
+  Rovira]{alfonso-prieto}
+M.~Alfonso-Prieto, X.~Biarnés, P.~Vidossich, and C.~Rovira.
+\newblock The molecular mechanism of the catalase reaction.
+\newblock \emph{Journal of the American Chemical Society}, 131:\penalty0
+  11751--11761, 2009.
+\newblock \doi{10.1021/ja9018572}.
+
+\bibitem[Jones and Suggett(1968)]{kcatkm}
+P.~Jones and A.~Suggett.
+\newblock The catalase-hydrogen peroxide system: Kinetics of catalytic action
+  at high substrate concentrations.
+\newblock \emph{Biochem. J.}, 110:\penalty0 617, 1968.
+
+\bibitem[Zhu and Zhong(1982)]{difflimit}
+G.~Zhu and W.~Zhong.
+\newblock Diffusion-controlled reactions of enzymes: A comparison between
+  chou’s model and alberty-hammes-eigen’s model.
+\newblock \emph{Eur. J. Biochem}, 128:\penalty0 383--387, 1982.
+
+\bibitem[William et~al.(2001)William, Bravo, Carpena, Switala, Mate, Fita, and
+  Loewen]{substrateflow}
+M.A. William, J.~Bravo, X.~Carpena, J.~Switala, M.~J. Mate, I.~Fita, and
+  C.~Loewen.
+\newblock Substrate flow in catalases deduced from the crystal structures of
+  active site variants of hpii from escherichia coli.
+\newblock \emph{PROTEINS: Structure, Function, and Genetics}, 44:\penalty0
+  270--281, 2001.
+
+\bibitem[Dominguez and Hansberg(2010)]{concentrateh2o2}
+A.~Dominguez, L. Sosa-Peinado and W.~Hansberg.
+\newblock Catalase evolved to concentrate h2o2 at its active site.
+\newblock \emph{Archives of Biochemistry and Biophysics}, 500:\penalty0 82--91,
+  2010.
+
+\bibitem[Putnam et~al.(2000)Putnam, Arvai, Bourne, and Tainer]{molecularruler}
+C.D. Putnam, A.S. Arvai, Y.~Bourne, and J.A Tainer.
+\newblock Active and inhibited human catalase structures: ligand and nadph
+  binding and catalytic mechanism.
+\newblock \emph{J Mol Biol}, 296\penalty0 (1):\penalty0 295--309, 2000.
+
+\bibitem[Sevinc et~al.(1999)Sevinc, Maté, Switala, Fita, and
   Loewen]{lateralchannel}
-Sevinc,~M.; Maté,~M.; Switala,~J.; Fita,~I.; Loewen,~P. \emph{Protein Sci}
-  \textbf{1999}, \emph{8}, 490--498\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[Chelikani \latin{et~al.}(2003)Chelikani, Carpena, Fita, and
+M.S. Sevinc, M.J. Maté, J.~Switala, I.~Fita, and P.C. Loewen.
+\newblock Role of the lateral channel in catalase hpii of escherichia coli.
+\newblock \emph{Protein Sci}, 8\penalty0 (3):\penalty0 490--498, 1999.
+
+\bibitem[Desideri et~al.(1992)Desideri, Falconi, Polticelli, Bolognesi,
+  Djinovic, and Rotilio]{conserved-as-efield-sod}
+A.~Desideri, M.~Falconi, F.~Polticelli, M.~Bolognesi, K.~Djinovic, and
+  G.~Rotilio.
+\newblock Evolutionary conservativeness of electric field in the cu,zn
+  superoxide dismutase active site: Evidence for co-ordinated mutation of
+  charged amino acid residues.
+\newblock \emph{Journal of Molecular Biology}, 223\penalty0 (1):\penalty0
+  337--342, 1992.
+
+\bibitem[Klapper et~al.(1986)Klapper, Hagstrom, Fine, Sharp, and
+  Honig]{concentrated-as-efield-sod}
+I.~Klapper, R.~Hagstrom, R.~Fine, K.~Sharp, and B.~Honig.
+\newblock Focusing of electric fields in the active site of cu-zn superoxide
+  dismutase: Effects of ionic strength and amino-acid modification.
+\newblock \emph{Proteins: Structure, Function and Genetics}, \penalty0
+  (1):\penalty0 47--59, 1986.
+
+\bibitem[Matthew(1985)]{efield-review}
+J.~Matthew.
+\newblock Electrostatic effects in proteins.
+\newblock \emph{Ann. Rev. Biophys. Biophys. Chem}, 14\penalty0 (1):\penalty0
+  387--417, 1985.
+
+\bibitem[Chelikani et~al.(2003)Chelikani, Carpena, Fita, and
   Loewen]{electricpotential}
-Chelikani,~P.; Carpena,~X.; Fita,~I.; Loewen,~P. \emph{J Biol Chem}
-  \textbf{2003}, \emph{278}, 31290--31296\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\bibitem[De~Filippis \latin{et~al.}(2006)De~Filippis, Frasson, and
-  Fontana]{3ntsize}
-De~Filippis,~V.; Frasson,~R.; Fontana,~A. \emph{Protein Sci.} \textbf{2006},
-  \emph{15}, 976--786\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
+P.~Chelikani, X.~Carpena, I.~Fita, and P.C. Loewen.
+\newblock An electrical potential in the access channel of catalases enhances
+  catalysis.
+\newblock \emph{J Biol Chem}, 278\penalty0 (33):\penalty0 31290--31296, 2003.
+
+\bibitem[De~Filippis et~al.(2006)De~Filippis, Frasson, and Fontana]{3ntsize}
+V.~De~Filippis, R.~Frasson, and A.~Fontana.
+\newblock 3-nitrotyrosine as a spectroscopic probe for investigating protein
+  protein interactions.
+\newblock \emph{Protein Sci.}, 15\penalty0 (5):\penalty0 976--786, 2006.
+
 \bibitem[Chance(1951)]{phdependence}
-Chance,~B. \emph{J Biol Chem} \textbf{1951}, \emph{194}, 471--481\relax
-\mciteBstWouldAddEndPuncttrue
-\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
-\EndOfBibitem
-\end{mcitethebibliography}
+B.~Chance.
+\newblock Effect of ph upon the reaction kinetics of the enzyme-substrate
+  compounds of catalase.
+\newblock \emph{J Biol Chem}, 194\penalty0 (2):\penalty0 471--481, 1951.
+
+\bibitem[Suydam et~al.(2006)Suydam, Snow, Pande, and
+  Boxer]{asdipolestabilization}
+I.~T. Suydam, C.~D. Snow, V.~S. Pande, and S.~G Boxer.
+\newblock Electric fields at the active site of an enzyme: Direct comparison of
+  experiment with theory.
+\newblock \emph{Science}, 313\penalty0 (July):\penalty0 200--204, 2006.
+
+\end{thebibliography}

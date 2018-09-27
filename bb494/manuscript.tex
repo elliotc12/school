@@ -1,101 +1,54 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% This is a (brief) model paper using the achemso class
-%% The document class accepts keyval options, which should include
-%% the target journal and optionally the manuscript type.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[journal=jacsat,manuscript=article]{achemso}
+\documentclass[9pt,twocolumn,twoside]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+% Note that the use of elements such as single-column equations
+% may affect the guide line number alignment. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Place any additional packages needed here.  Only include packages
-%% which are essential, to avoid problems later. Do NOT use any
-%% packages which require e-TeX (for example etoolbox): the e-TeX
-%% extensions are not currently available on the ACS conversion
-%% servers.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[version=3]{mhchem} % Formula subscripts using \ce{}
+\templatetype{pnasresearcharticle} % Choose template 
+% {pnasresearcharticle} = Template for a two-column research article
+% {pnasmathematics} = Template for a one-column mathematics article
+% {pnasinvited} = Template for a PNAS invited submission
+
 \usepackage{amsmath}
 \usepackage{subcaption}
+\usepackage{gensymb}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% If issues arise when submitting your manuscript, you may want to
-%% un-comment the next line.  This provides information on the
-%% version of every file you have used.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%\listfiles
+\setboolean{displaywatermark}{false}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Place any additional macros here.  Please use \newcommand* where
-%% possible, and avoid layout-changing macros (which are not used
-%% when typesetting).
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand*\mycommand[1]{\texttt{\emph{#1}}}
+\title{Perturbing the catalase active site electric field via genetic code expansion}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Meta-data block
-%% ---------------
-%% Each author should be given as a separate \author command.
-%%
-%% Corresponding authors should have an e-mail given after the author
-%% name as an \email command. Phone and fax numbers can be given
-%% using \phone and \fax, respectively; this information is optional.
-%%
-%% The affiliation of authors is given after the authors; each
-%% \affiliation command applies to all preceding authors not already
-%% assigned an affiliation.
-%%
-%% The affiliation takes an option argument for the short name.  This
-%% will typically be something like "University of Somewhere".
-%%
-%% The \altaffiliation macro should be used for new address, etc.
-%% On the other hand, \alsoaffiliation is used on a per author basis
-%% when authors are associated with multiple institutions.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\author{Elliott Capek}
-\affiliation{Department of Biochemistry, Oregon State University}
-\email{capeke@oregonstate.edu}
-\phone{(971) 207 8193}
-\author{Hassan Alnatah}
-\author{Laikana Ly}
-\author{Joey Orton}
-%% \alsoaffiliation[]{}
-\author{Aidan Estelle}
-%% \affiliation{Department of Biochemistry, Oregon State University}
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[a,1,2]{Elliott Capek}
+\author[a]{Laikana Ly}
+\author[a]{Hassan Alnatah}
+\author[a]{Joey Orton}
+\author[a]{Aiden Estelle}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% The document title should be given as usual. Some journals require
-%% a running title from the author: this should be supplied as an
-%% optional argument to \title.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[]{Exploring the role of electric field in the catalase active site}
+\affil[a]{Oregon State University Department of Biohchemistry and Biophysics}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Some journals require a list of abbreviations or keywords to be
-%% supplied. These should be set up here, and will be printed after
-%% the title and author information, if needed.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\keywords{Catalase, noncanonical amino acid, active site, channel flow}
+% Please give the surname of the lead author for the running footer
+\leadauthor{Capek}
 
-\begin{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% The manuscript does not need to include \maketitle, which is
-%% executed automatically.  The document should begin with an
-%% abstract, if appropriate.  If one is given and should not be, the
-%% contents will be gobbled.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Please include corresponding author, author contribution and author declaration information
+\equalauthors{\textsuperscript{1} Author wrote the manuscript.}
+\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: capeke\@ oregonstate.edu}
+
+% Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
+\keywords{Noncanonical amino acid $|$ catalase $|$ electric field $|$ active site} 
+
 \begin{abstract}
-  Catalase is a diffusion-limited enzyme, and thus has optimized the rates of each step in its interaction with substrate. Recent evidence suggests that one such optimization is the use of an electric field in the active site to orient substrates for ideal reaction with catalytic residues. Here we study the role of electric field in the catalytic active site by introducing minor electric purturbations through genetic code expansion. Initial results indicate that the incorporation of noncanonical polar residues into the active site does not destroy function. More work is needed to fully determine the influence of electric field in the active site.\\
+  Catalase is a ubiquitous enzyme which breaks down hydrogen peroxide into oxygen gas and water. Numerous theories exist about how catalase achieves its high catalytic efficiency. One theory is that an electric field within catalase's active site orients the dipole moments of substrate optimally to react with heme. Here we demonstrate how genetic code expansion can be used to purturb the electric field within catalase. We do so by replacing Phe 206 with 3-nitrotyrosine (3NY). We find that this mutation doubles Michaelis constant $K_M$ to $571$ mmol, compared to wildtype $245$ mmol. Mutant Michaelis constant $kcat$ goes down by a factor of 100 to $300 s^{-1}$, compared to wildtype $36,100 s^{-1}$. By switching 3NY's protonation state by conducting kinetic assays at high and low pH, we find charge on 3NY significantly effects enzyme velocity. At high pH the initial velocity is roughly half the low-pH velocity.
 \end{abstract}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Start the main part of the manuscript here.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Introduction}
-Catalase is an enzyme which catalyzes the breakdown of hydrogen peroxide into water and oxygen gas. This is an important detoxification reaction, since hydrogen peroxide is a reactive toxin generated by several biological processes. Catalase is a tetrameric protein which uses a heme group in its active site to facilitate the breakdown of hydrogen peroxide. The molecular mechaninism of catalase proceeds in two steps. First, the heme reduces a hydrogen peroxide, producing water and the so-called Cpd I. Then Cpd I oxidizes a second hydrogen peroxide, producing water and oxygen gas. This second step is mediated by a histidine near the active site \cite{alfonso-prieto}.
+%% \dates{This manuscript was compiled on \today}
+\doi{BB494 Final Manuscript}
 
-Catalase's activity is nearly diffusion-limited \cite{kcatkm, difflimit}. This rate suggests that nearly every step in the substrate-enzyme interaction is optimized for speed. Understanding the optimizations of diffusion-limited proteins can provide many insights into how proteins achieve their functions. Catalase has a variety of interesting quirks for funneling substrate into its active pocket. The enzyme has a number of high-H2O2-residency surface residues near its active channel, which are believed to concentrate the substrate near the entrance to the active channel \cite{concentrateh2o2}. The active channel itself seems optimized to maximize substrate flow, to the point that mutagenesis to open the channel decreases enzyme activity \cite{substrateflow}. The channel seems to be capable of selecting the molecules which enter it using a patch of hydrophobic residues which are situated to preferentially pass the bulkier H2O2 \cite{molecularruler}. Even the directionality of substrate within the channel seems to be controlled: one channel is used for substrate entrance, and the other for product exit \cite{lateralchannel}. An new finding suggests that catalase might control not just the presence of hydrogen peroxide, but even its orientation as it enters the active site. It is believed that an electric field from a negative Asn residue to the positive heme acts to orient the H2O2 dipole, positioning the molecule such that it enters the active site at an angle ideal for reacting \cite{electricpotential}. This use of an electric field over a long range to create an ``orienting field'' is a new and exciting usage of residues to achieve a function; understanding its role in catalase may help to understand the mechanisms of other proteins.
+\begin{document}
 
-In this study we hope to study the proposed orienting field optimization and its influence on catalase activity. In particular, we hope to carefully disrupt the wildtype active site potential environment by introducing a new charged residue, then examine the effect this disruption has on activity. For meaningful results, we must be careful to not introduce structural modifications to the enzyme. To ensure this, we will use genetic code expansion to incorporate 3-nitrotyrosine in place of tyrosine 206. The T206NY mutation will add only 30 $\AA^3$ of steric bulk \cite{3ntsize}, so should have minimal influence on active site structure. The theorized results of this addition are diagrammed in Figure \ref{fig:hypothesis}. To study the influence of field disruption on activity, we will study the activity of T206NY above and below its pKa of 6.8 \cite{3ntsize}. Wildtype catalase activity is constant under pH values from 5 to 10 \cite{phdependence,kcatkm}, so pH-dependence should only be seen if electric environment in the active site is important for activity.\\
+% Optional adjustment to line up main text (after abstract) of first page with line numbers, when using both lineno and twocolumn options.
+% You should only change this length when you've finalised the article contents.
+\verticaladjustment{-2pt}
 
+<<<<<<< HEAD
 \begin{figure}
   \begin{subfigure}{0.69\textwidth}
     \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
@@ -114,85 +67,66 @@ In this study we hope to study the proposed orienting field optimization and its
   \caption{Depiction of catalase active pocket. \textbf{Left:} wildtype pocket with proposed ligand-orienting E-field \cite{electricpotential}. The field should orient H2O2 for optimal reaction with the heme. \textbf{Right:} modified HPII-3NY with a deprotonated 3-nitrotyrosine residue at site 206, with hypothetical augmented E-field. The disrupted E-field should result in un- or mis-aligned substrate.}
   \label{fig:hypothesis}
 \end{figure}
+=======
+\maketitle
+\thispagestyle{firststyle}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+>>>>>>> 10aa5801f80bdfcba9317810e5ce01f07a40e2c5
 
-\section{Methods}
-\textbf{Protein expression}\\
-Wildtype protein was expressed by transforming the plasmid pBad-HPII (Addgene ID 105839), containing WT HPII gene, into competent \textit{E. coli} DH10B cells via heat-shock. pBad-HPII plasmid includes ampicillin resistance, an imidazole promoter, and a 6xHis tag on the N-term of the HPII gene. Cells were then grown in autoinduction media with an arabinose inducer (0.1\% aspartate pH 7.5, 0.2\% glycerol, 100$\mu g / mL$ ampicillin, mineral salts, 0.05\% glucose, 20mM MgSO4, 0.05\% arabinose, trace metals and AA mix) for 48 hours, shaking, at 37C. Cells were then pelletized and stored at -80C.\\
+% If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
+\dropcap{C}atalase is an enzyme which catalyzes the breakdown of hydrogen peroxide into water and oxygen gas. This is an important detoxification reaction, since hydrogen peroxide is a reactive toxin generated by several biological processes. Catalase is a tetrameric protein which uses a heme group in its active site to facilitate the breakdown of hydrogen peroxide. The molecular mechaninism of catalase proceeds in two steps. First, the heme reduces a hydrogen peroxide, producing water and the so-called Cpd I. Then Cpd I oxidizes a second hydrogen peroxide, producing water and oxygen gas. This second step is mediated by a histidine near the active site \cite{alfonso-prieto}.\\
 
-The same protocol was followed for the ncAA mutant catalases F206NY and F206pAzF, except protein plasmid pBad-HPII TAG206 (Addgene ID 105846) was used as a base. ncAA translation machinery plasmids pDule-3-nitrotyrosine (Addgene ID 85498) and pDule-pCNF (85494), which contain a tetracycline resistance gene, a TAG tRNA, and a compatible tRNA synthase, were co-transformed into DH10B along with pBAD-HPII TAG206 for respective F206NY and F206pAzF cell lines. ncAA autoinduction media was supplemented with $25\mu g / mL$ tetracycline to select for both plasmids.\\
+One remaining question about catalase is how it achieves its remarkable speed given its buried active site. The enzyme is nearly diffusion-limited\cite{kcatkm, difflimit}, indicating it turns substrate to product at close to the optimal rate. However, in order to reach the active site, hydrogen peroxide must diffuse through a 30 $\AA$ tunnel\cite{substrateflow}. Thus, substrate must be transported very efficiently through the protein. Understanding how this transport process works could provide lots of insight into how enzymes traffic substrate into buried active sites. Catalase is one of the most studied proteins in existence, and so represents a good model protein for understanding substrate trafficking.\\
 
-OD600 measurements of cultures at 48h growth time were 0.65, 0.58 and 0.45 arb. units for WT, F206NY and F206pAzF cells.\\
+Previous work on substrate trafficking has illuminated various stages in the process. The enzyme has a number of high-H2O2-residency surface residues, which are believed to concentrate the substrate near the entrance to the active channel \cite{concentrateh2o2}. The active channel itself seems optimized to maximize substrate flow, to the point that mutagenesis to open the channel decreases enzyme activity \cite{substrateflow}. The channel seems to be capable of selecting the molecules which enter it using a patch of hydrophobic residues which are situated to preferentially pass the bulkier H2O2 \cite{molecularruler}. Even the directionality of substrate within the channel seems to be controlled: one channel is used for substrate entrance, and the other for product exit \cite{lateralchannel}. However, how substrate is traficked once in the active site antechamber is still an open question.\\
 
-\textbf{Protein purification}\\
-Pelletized cells were reconstituted in TALON equilibration buffer (50mM sodium phosphate, 300mM NaCl) and microfluidized, also in equilibration buffer. Lysed cells were spun down at 15K RPM for 20 minutes at 4C. Supernatant was collected and combined with 300$\mu L$ bed volume TALON beads per 100mL cultured cells. TALON-supernatant mix was nutated for 30 minutes at 4C. Bound beads were then spun down at 500g for 5 minutes and the supernatant discarded. The beads were applied to a pre-washed gravity-flow column at RT and washed twice with 10mL equilibration buffer. Elution was done using 2mL elution buffer (50mM sodium phosphate, 300mM NaCl, 250mM imidazole) into four 500$\mu L$ aliquots. Protein was then stored at 4C.\\
+One tool proteins are known to use to speed up active site kinetics is the use of electric fields. Superoxide dismutase is known to have a strong E-field in its active site to stabilize dipolar intermediates \cite{conserved-as-efield-sod, concentrated-as-efield-sod}. Several other proteins are known to use a similar effect \cite{efield-review} (be more precise here). It has been suggested that catalase uses an electric field in its active site to orient and traffick hydrogen peroxide to its active heme \cite{electricpotential}. This model, proposed by Chelikani \textit{et. al}, theorizes that a strong electric field from the negative asparigine 181 at the top of the active site antechamber extends to the strongly positive heme iron, as shown in Figure \ref{fig:hypothesis}.d. This electric field would orient incoming hydrogen peroxides in the optimal rotation for reaction with heme.\\
 
-\textbf{Bradford assay}\\
-A Bio-Rad Bradford assay kit was used using the standard protocol. Bovine serum albumin was used as the reference protein to construct the standard curve. Concentrations from 125 $\mu g / mL$ to 2 mg/mL were explored. Samples were incubated with dye in cuvettes for 5 minutes at RT. Samples were then analyzed via spectrophotometer at 595 \textit{nm} and used to create the standard curve shown in Figure \ref{fig:bradford-assay}. Protein samples were then compared to this standard curve to estimate their concentration.\\
+An issue with mutagenesis studies like Chelikani \textit{et. al.} is that catalase's active site is very sensitive to changes. Replacing residues in the active site can dramatically impact enzyme efficiency \cite{substrateflow}. A better technique would purturb the electric field without full amino acid mutagenesis. Here we propose a new method for studying the catalase active site: genetic code expansion. We demonstrate how noncanonical amino acids can be incorporated into the catalase active site, as described in \textit{Hamill et. al.}, and how these modifications allow a less drastic change in active site environment. We use genetic code expansion \cite{hammill} to incorporate two functional groups onto F206 in the catalase active site, turning it into 3-nitrotyrosine (3NY) (Figure \ref{fig:noncanonicals}). This change is important because it a.) is tiny, adding only 30 $\AA^3$ of steric bulk \cite{3ntsize}, and b.) incorporates a hydroxy group of pKa 7.0 into the catalase active site \cite{3ntsize}. Catalase activity is pH-invariant in the range of 5 to 9 \cite{phdependence,kcatkm}; thus, by incorporating a group which gains charge at pH 7, we can precisely study the effect of charge in the catalase active site on enzyme kinetics without worrying about the undesired effects of mutagenesis.\\
 
-\textbf{Qualitative activity assay}\\
-10 $\mu g$ purified WT catalase was added to a 5\% solution of hydrogen peroxide in water. The mixture was then examined for bubble formation.\\
+\begin{figure*}
+  \includegraphics[width=0.24\linewidth]{figures/cartoon-visualization.png}
+  \includegraphics[width=0.24\linewidth]{figures/channel-visualization.png}
+  \includegraphics[width=0.24\linewidth]{figures/efield-wt.pdf}
+  \includegraphics[width=0.24\linewidth]{figures/efield-3ny.pdf}%
+  \caption{Depiction of catalase active pocket. \textbf{Left:} wildtype pocket with proposed ligand-orienting E-field \cite{electricpotential}. The field should orient H2O2 for optimal reaction with the heme. \textbf{Right:} modified HPII-3NY with a deprotonated 3-nitrotyrosine residue at site 206, with hypothetical augmented E-field. The disrupted E-field should result in un- or mis-aligned substrate.}
+  \label{fig:hypothesis}
+\end{figure*}
 
-\textbf{Kinetic assays}
-Enzyme velocity was measured using a Vernier Gas Pressure Sensor. Reaction buffer (50mM sodium phosphate, 300mM NaCl, 5\% $H_2O_2$ pH modulated to values from 5 to 10 via addition of HCL or NaOH) was combined with enzyme (25 $\mu g/mL$, 50 $\mu g/mL$, 50$\mu g/mL$ for HPII, HPII-3NY, HPII-pAzF) to a total volume of $3mL$ in pressure sensor tube. Pressure was monitored at 1s intervals for 120 seconds. Data was collected using Vernier LoggerPro.\\
+\begin{figure}
+  \includegraphics[width=0.4\linewidth]{figures/3ny.png}
+  \hspace{0.1\linewidth}
+  \includegraphics[width=0.5\linewidth]{figures/pazf.png}
+  \caption{\textbf{Structures of two noncanonical amino acids used in study.} \textit{Left:} 3-nitrotyrosine, \textit{Right:} para-azidophenylalanine.}
+  \label{fig:noncanonicals}
+\end{figure}
 
 \textbf{pH-dependent assay}
 pH assays were conducted using the same kinetic method described above. Reactions occured in 3mL equilibration buffer (50mM sodium phosphate, 300mM NaCl, 5\% $H_2O_2$ pH modulated to values from 5 to 10 via addition of HCL or NaOH). On addition of 43$\mu g$ protein, the tubes were mixed and incubated at RT for five minutes, then brought to 5\% $H_2O_2$ and added to pressure assay mechanism. Trials were conducted in triplicate.\\
 
 \section{Results}
 %% to add: Chemical nature and location of your ncAAs in the structure. (This might fit best in results).
-DH10B cell lines with appropriate plasmids were grown for 48h and pelletized. Wildtype HPII-containing cells were purified using TALON resin. Purified wildtype protein and ncAA cell lysates are shown in Figure \ref{fig:pure-gel}.c. The expected band corresponding to an 84-kD protein is seen across all lanes, indicating the presence of a catalase single subunit in each cell line. Contaminant bands in the gel are very faint, indicating pure protein.\\
+Noncanonical amino acids (ncAAs) were incorporated into protein constructs by mutating the desired codon to TAG, then adding TAG-recognizing ncAA-tRNA synthetases and compatible tRNAs to cells. His-tagged protein constructs were grown in DH10 \textit{E. coli} and purified using TALON metal affinity resin. An SDS-PAGE gel of purified protein is shown in Figure \ref{fig:pure-gel}. HPII is expected to be in its 84-kD monomeric state in the denaturing and reducing conditions of SDS-PAGE; an 80kD band is seen for all three purified HPII constructs. This verifies that HPII-ncAA cells properly produce noncanonical aminoacyl-tRNA, which is the only tRNA which recognizes the TAG codon and allows for full-length protein translation. Contaminant bands in the gel are faint but visible, suggesting protein of $\approx$ 90\% purity. ncAA-incorporated proteins were grown with and without ncAA to verify proper incorporation. Without ncAA, cells should lack any aminoacyl-tRNA for the TAG codon, and thus HPII-ncAA peptides should stall on the ribosome, resulting in truncated peptides of approximately 22kD. This is seen in Figure \ref{fig:pure-gel}, where HPII-ncAA lanes lacking ncAA lack a 80kD band but do have bands of approximately 25kD.\\
 
-\begin{figure}[h!]
+\begin{figure}
   \centering
-  \begin{subfigure}{0.49\textwidth}
-    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
-    \begin{minipage}{0.9\textwidth}\includegraphics[width=0.9\linewidth]{figures/gene-diagram}\end{minipage}
-  \end{subfigure}
-  \begin{subfigure}{0.49\textwidth}
-    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
-    \begin{minipage}{0.9\textwidth}\includegraphics[width=0.9\linewidth]{figures/plasmid-diagram}\end{minipage}
-  \end{subfigure}
-  \\
-  \vspace{2mm}
-  \begin{subfigure}{\textwidth}
-    \centering
-    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
-    \begin{minipage}{0.9\textwidth}\centering\includegraphics[width=0.7\linewidth]{figures/pure-gel}\end{minipage}
-  \end{subfigure}
-  \caption{Schematic of protein production. \textbf{a.} Gene constructs used. \textbf{b.} Plasmid schematics for relevant plasmids. Amp$^R$ and Tet$^R$ are antibiotic resistance genes, Nitro-Y-RS and pCNF-RS are tRNA synthases compatible with 3-nitrotyrosine and p-azido-l-phenylalanine, and tRNA$_{CUA}$ is a tRNA compatible with the respective synthase. \textbf{c.} Electrophoresis gel of crude lysate and purified protein expression. Major band in purification lanes correspond to protein of approximately 80kD, as expected for a catalase single subunit. Crude negative control lanes lack 80kD band, consistent with noncanonical amino acid being necessary for noncanonical protein expression.}
-\label{fig:pure-gel}
+  \includegraphics[width=\linewidth]{figures/gene-diagram}
+  \includegraphics[width=\linewidth]{figures/plasmid-diagram}
+  \caption{\textbf{Design of protein constructs and expression plasmids} \textit{top:} genes of three constructs used in study. \textit{bottom:} pBad and pDule plasmids.}
+  \label{fig:design}
 \end{figure}
 
-A Bradford assay of wildtype purified protein was then conducted. The results, shown in Figure \ref{fig:bradford-assay}, further verify the presence of protein in the purified sample.\\
-
-A qualitative, rudimentary assay testing the activity of wildtype purified HPII catalase was conducted. This assay verified HPII-WT was active by producing bubbles.\\
-
-\begin{figure}[h!]
+\begin{figure}
   \centering
-  \begin{minipage}{.4\textwidth}
-    \begin{tabular}{lll}
-      \hline
-      Sample  & OD590 & mg/mL  \\
-      \hline
-      WT        & 2.18 & 2.74\\
-      %% F206NY    & 0.71 & 0.83\\
-      %% F206pAzF  & 1.51 & 1.88\\
-      \hline
-    \end{tabular}
-  \end{minipage}
-  \begin{minipage}{.59\textwidth}
-    \includegraphics[width=\linewidth]{figures/bradford-standard-curve}
-  \end{minipage}
-  \caption{Bradford assay results. \textbf{Left:} Sample absorbance at 590 nm and extrapolated concentration. \textbf{Right:} Bradford standard curve.}
-  \label{fig:bradford-assay}
+  \includegraphics[width=\linewidth]{figures/pure-gel}
+  \caption{\textbf{Electrophoresis gel of crude lysate and purified protein expression.} \textbf{a.} Gene constructs used. \textbf{b.} Plasmid schematics for relevant plasmids. Amp$^R$ and Tet$^R$ are antibiotic resistance genes, Nitro-Y-RS and pCNF-RS are tRNA synthases compatible with 3-nitrotyrosine and p-azido-l-phenylalanine, and tRNA$_{CUA}$ is a tRNA compatible with the respective synthase. \textbf{c.}Major band in purification lanes correspond to protein of approximately 80kD, as expected for a catalase single subunit. Crude negative control lanes lack 80kD band, consistent with noncanonical amino acid being necessary for noncanonical protein expression. Crude negative control lanes have smaller protein bands, consistent with truncated protein formation.}
+  \label{fig:pure-gel}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
   \centering
-  \begin{subfigure}{0.29\textwidth}
-    \begin{minipage}{0.1\textwidth}\caption{}\end{minipage}%
-  \begin{minipage}{.9\textwidth}
-    \begin{tabular}{lll}
+  \includegraphics[width=0.9\linewidth]{figures/kinetics.png}
+  \begin{tabular}{lll}
       \hline
       Sample  & $K_M$ (M) & kcat ($s^{-1}$) \\
       \hline
@@ -200,6 +134,7 @@ A qualitative, rudimentary assay testing the activity of wildtype purified HPII 
       HPII-3NY    & $1.4$ & $6.9x10^6$\\
       HPII-pAzF   & $1.7$ & $2.2x10^5$\\
       \hline
+<<<<<<< HEAD
     \end{tabular}
   \end{minipage}
   \end{subfigure}
@@ -238,86 +173,104 @@ A qualitative, rudimentary assay testing the activity of wildtype purified HPII 
 \end{figure}
 
 \subsection{Discussion}
+=======
+  \end{tabular}
+  \caption{\textbf{Michaelis-Menten plot of kinetic efficiencies of HPII variants.} Kinetic measurements conducted at 25\degree C using the pressure-based assay defined above.}
+  \label{fig:kinetics}
+\end{figure}
 
-\subsection{Conclusion}
-
-\subsection{References}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% The same is true for Supporting Information, which should use the
-%% suppinfo environment.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{suppinfo}
-
-%% \end{suppinfo}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% The appropriate \bibliography command should be placed here.
-%% Notice that the class file automatically sets \bibliographystyle
-%% and also names the section correctly.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliography{references}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% The "tocentry" environment can be used to create an entry for the
-%% graphical table of contents.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%% \begin{tocentry}
-
-%% \end{tocentry}
-
-\end{document}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.49\linewidth]{figures/apbs-ph5.png}%
+  \includegraphics[width=0.49\linewidth]{figures/apbs-ph8.png}
+  \includegraphics[width=0.49\linewidth]{figures/apbs-3ny-ph5.png}%
+  \includegraphics[width=0.49\linewidth]{figures/apbs-3ny-ph8.png}
+  \caption{\textbf{pH dependent potential fields in active site of HPII and HPII-3NY.} \textit{Top left:} HPII pH 5.5. \textit{Top right:} HPII pH 8.5. \textit{Bottom left:} HPII-3NY pH 5.5. \textit{Bottom right:} HPII-3NY pH 8.5. }
+  \label{fig:apbs}
+\end{figure}
+>>>>>>> 10aa5801f80bdfcba9317810e5ce01f07a40e2c5
 
 
-results section mantra:
-1 - Explain what you did and then describe what you expected as an outcome
-2 - Describe the data and show the dta
-3 - Interpret the data
+\begin{figure}
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/wildtype-velocity.png}
+  \includegraphics[width=0.9\linewidth]{figures/3ny-velocity.png}
+  \caption{\textbf{pH dependent initial velocities of HPII variants.} Left: HPII catalase Right: HPII-3NY.}
+  \label{fig:ph-dependent-velocities}
+\end{figure}
 
-Role of the lateral channel in catalase HPII of Escherichia coli, Loewen
-They suggest that the perpendicular channel is the entrance channel and the lateral channel is the exhaust channel, because:
--enlarging the perpendicular channel increases peroxidatic activity
--perpendicular seems optimized for bringin in H2O2
--lateral channel is blocked in some catalases
+\subsection*{Discussion}
+Here we demonstrate that genetic code expansion can be used to successfully perturb the active site of catalase. We introduced either an azido group or a hydroxy and nitro group by mutating Phe 206 to para-azidophenylalanine or 3-nitrotyrosine. We show that these mutants retain activity, indicating their addition does not cause misfolding of the protein. We then modulate pH to show that the protonation state of added groups has an impact on enzyme catalysis; this supports the idea that electric field plays a large role in catalase active site dynamics.\\
 
-Substrate Flow, Loewen
-There are H2O2 binding sites in the heme distal pocket and main channel
-There are several input channels; what are their purposes?
-There is a ``molecular ruler'' in the main channel which selects for H2O2 against water
-Active site mutations which allow more water in slow down the rxn rate
-This paper discusses unidirectional flow of H2O2 through the main channel
+The electric field hypothesis described in Chelikani \textit{et. al.} \cite{electricpotential} theorizes that an electric potential gradient running from the negative Asn 181 in the active site to the positive heme iron acts to orient the dipole moments of water and hydrogen peroxide in the active site. This orientation is said to speed up reaction with heme by optimizing $H_2O_2$ - heme iron angle. Catalase wildtype is pH-invariant in ranges from 5 to 9 \cite{phdependence}. Thus, by introducing a functional group with pKa of 7 through HPII-3NY, we can get a privileged look into the effects of charge in the catalase active site separate from other pH-dependent effects. We find that when HPII-3NY's 3NY hydroxy group is deprotonated and thus anionic, the enzyme experiences a statistically significant 50\% drop in activity compared to the fully protonated neutral state. Due to 3NY's proximity to the active site, this charge effect is likely to be disrupting the Asn181 - heme electric field and preventing orienting. To verify this intuition, we conducted electrostatic modelling of the mutant active site using the APBS tool \cite{apbs}. These models verified that the large gradient pointing from Asn 181 to heme iron is disrupted at high pH, but not low pH. This is an important step supporting the electric field hypothesis.\\
 
-Active and inhibited catalase structures, tainer
-This is the paper about the hydrophobic ``molecular ruler''
-A hydrophobic region distal to the heme cleft contains phenylalanines, tryptophan and two valines
-Authors propose that two waters (one h-bonded to human Asn148 and His75; other h-bonded to gln168 and asp128) form a ``ruler''
-This ``ruler'' is far enough apart that only H2O2 can stably occupy the distance betweeen, thus allowing only H2O2 to enter, not H2O
-This would explain why opening the perpendicular channel decreases the rate
+Using the tools of electrostatic simulation and genetic code expansion, we propose a new study to conclusively test the role of electric field in the catalase active site. This study would entail doing a large number of polar noncanonical amino acid substitutions to residues in the catalase active site, both close to and far from the heme. APBS would allow the calculation of the expected impact on electric field of these substitutions. Using APBS data, a rough ``dipole orientation factor $D$'' could be calculated via\\
 
-Site-Specific Incorporation of 3-Nitrotyrosine as a Probe of pKa Perturbation of Redox-Active Tyrosines in Ribonucleotide Reductase, Stubbe
-pKa of 3NY can vary lots, between 7.5-10
+\begin{equation*}
+  D = \int_S -\vec{\nabla} V(s) \cdot d\vec{s}.
+\end{equation*}
 
-\cite{kcatkm}
-Km: 1.1M,
-kcat/Km: 6.6*10^7/M/s
+Here V is the electrostatic potential field from APBS and the integration path is along the hydrogen-bonded substrate chain found from crystal structures in Chelikani \cite{electricpotential}. This $D$ factor would quantify the strength of the dipole orientation in the active site. The strength of correlation of this $D$ factor with enzymatic activity is indicative of the importance of electric field in catalase. This experiment would be especially powerful if coupled with crystallography to verify proper active site structure.\\
 
-possibly make a figure with the h2o2 and water from the electric potential paper?
-make inkscape gene block diagram
+Such a study would not only determine the role of electric field, but could answer more precise questions. Chelikani propose that the electric field mediates rate by influencing substrate dipole moments. However, other authors propose that the role of active site electric fields is not dynamical, but rather to stabilize dipolar transition states \cite{asdipolestabilization}. This latter theory would suggest that electric field is only relevant near the dipolar transition state, not in the whole active channel. Electrostatic simulation guiding genetic code expansion would allow the control of electric field necessary to test such hypotheses.\\
 
----------------
-Arguments about protein production, validation, and ncAA validation:
-We know we have wildtype protein because our gels have bands, indicating protein of the proper size was made with His tags
-We know our WT protein was active by quantitative assays
+Such techniques could also be used for the study of other active site electric fields, such as in superoxide dismuatase. Previous studies \cite{concentrated-as-efield-sod} also used mutagenesis, and so could benefit from the less invasive technique of genetic code expansion.\\
 
+\subsection*{Conclusions}
+Noncanonical amino acid substitution allows much more precise atom-level perturbation of protein structure than residue-level mutagenesis. This is an emerging tool which can be used to study phenomena not reachable in the past. Here we demonstrate how the tool can be used to study the electric field in catalase, and propose a larger scale study which could definitely show the importance of electric field. The use of electrostatic simulations provides a theoretical explanation for the results seen after mutagenesis. By combining theory with atom-level perturbations, much can be learned about protein electrostatics.
+
+\matmethods{
+
+\subsection*{Protein production}
+Wildtype protein was expressed in competent DH10B \textit{E. coli} transformed with th eplasmid pBad-HPII (Figure \ref{fig:design}.b, modified from Addgene ID 105839), containing WT HPII gene, These cells were acquired from Dr. Van Zee in the OSU teaching lab. pBad-HPII plasmid includes ampicillin resistance, an arabinose-induced promoter, and a 6xHis codon sequence on the N-term of the HPII gene. Cells were dilluted 1:150 into 250mL autoinduction media with an arabinose inducer (0.1\% aspartate, 0.2\% glycerol, 100$\mu g / mL$ ampicillin, mineral salts, 0.05\% glucose, 20mM MgSO4, 0.05\% arabinose, trace metals and amino acid mix, pH 7.5). A positive control was conducted using pBad-sfGFP (superfolder GFP) in a 1:100 dillution into 10mL of autoinduction media. HPII cells were grown for 48 hours, shaking, at 37\degree C, to an optical density of 0.65. Cells were then pelletized at 5000 rcf and stored at -80\degree C.\\
+
+The same expression protocol was followed for the ncAA mutant catalase proteins HPII-3NY and HPII-pAzF, except using protein plasmids pBad-HPII-3NY and pBad-HPII-pAzF (Figure \ref{fig:design}.b, Addgene ID 105846) instead. ncAA tRNA synthase plasmids pDule-Nitro-RS and pDule-pCNF-RS (Fig \ref{fig:protein-design}.b, modified from Addgene ID 85498), which contain a tetracycline resistance gene, a TAG tRNA, and a compatible tRNA synthase, were also transformed into DH10B. ncAA autoinduction media was supplemented with $25\mu g / mL$ tetracycline to select for both plasmids. DH10B cells transformed with both respective pBad and pDule plasmids, also obtained from Dr. Van Zee, were dilluted in a 1:150 dillution into 250mL autoinduction media. Cells were shaken for 30 minutes at 37\degree C, then were treated with respectively 3NY and pAzF to final concentrations of 1.5 mM each. Noncanonical amino acids were dissolved in weak NaOH. Mutant cell lines were then grown for 48 hours, shaking, at 37\degree C, to optical densities of 0.58 (HPII-3NY) and 0.45 (HPII-pAzF). Cells were then pelletized at 5000 rcf and stored at -80\degree C.\\
+
+\subsection*{Protein purification}
+Each protein construct was purified the same way. Pelletized cells were reconstituted in 10mL TALON equilibration buffer (50mM sodium phosphate, 300mM NaCl, pH 7.0) and microfluidized, also in equilibration buffer. Lysed cells were spun down at 15K RPM for 20 minutes at 4\degree C. Supernatant was collected and combined with 300 $\mu L$ bed volume TALON cobalt affinity resin beads, also stored in TALON equilibration buffer. TALON beads were pre-washed according to the manufacturer manual. TALON-supernatant mix was nutated for 30 minutes at 4\degree C. Bound beads were then spun down at 500g for 5 minutes and most of the supernatant discarded, leaving 10mL to keep the beads wet. The bead mix was applied to a pre-washed gravity-flow column at room temperature and washed twice with 10mL equilibration buffer. Elution was done using 2mL elution buffer (50mM sodium phosphate, 300mM NaCl, 250mM imidazole, pH 7.0) into four 500$\mu L$ aliquots. Protein was not desalted. Protein was then stored at 4\degree C.\\
+
+\subsection*{SDS-PAGE gel}
+SDS-PAGE gels (30\% polyacrylamide, 10\% ammonium persulfate, 10\% SDS solution, 1 mmol TEMED, 1.5M Tris ph8.8 for resolving, 0.5M Tris pH 6.8 for stacking) were cast at 4\% for stacking and 8\% for resolving. Protein was dyed using a solution of 125mM Tris-HCL, 4\% SDS, 20\% glycerol, 0.02\% bromophenol blue, 5\% beta mercaptoethanol, pH 6.8 and loaded in 20 $\mu L$ volume into lanes. Bio-Rad Precision Plus Dual Color at 7.5 $\mu L$ was used as ladder. Gels were run in a running buffer of 25mM Tris base, 0.19 M glycine, 0.1\% SDS at pH 8.3. Gels were run at 200V for 50 minutes.\\
+
+\subsection*{Concentration determination}
+A Bio-Rad Bradford assay kit was employed using the standard protocol. Bovine serum albumin was used as the reference protein to construct the standard curve. Concentrations from 125 $\mu g / mL$ to 2 mg/mL were explored. Samples were incubated with dye in cuvettes for 5 minutes at room temperature. Samples were then analyzed via spectrophotometer at 595 \textit{nm} and used to create the standard curve. HPII protein samples were then compared to this standard curve to estimate their concentration.\\
+
+\subsection*{Qualitative kinetic assay}
+One hundred mg protein was combined with 5\% $H_2O_2$ in pH 7.0 water at 25 \degree C. Activity was assessed by noting gas evolution by eye.\\
+
+\subsection*{pH dependent velocity assessment}
+Enzyme initial velocity was measured using a Vernier Gas Pressure Sensor. Reaction buffer (50mM sodium phosphate, 300mM NaCl, pH modulated to 5.5, 6.25, 7.0, 7.75, 8.5 via addition of HCl or NaOH) was combined with 43.3 $\mu g$ protein to a total volume of $3mL$ in pressure sensor tube. Tubes were incubated for 5 minutes at 25 \degree C. Tubes were then treated with 5\% $H_2O_2$ and immediately sealed. Pressure was monitored at 1s intervals for 120 seconds. Data was collected using Vernier LoggerPro. The initial five seconds of constant-slope data was used to calculate initial pressure per second data. Each pH trial was measured in triplicate. For each pH value, initial velocities were averaged and the standard deviation was used as the error bar.\\
+
+\subsection*{Kinetic constant determination}
+Reactions occured in 3mL equilibration buffer (50mM sodium phosphate, 300mM NaCl, pH 7.0). Protein was added (10 $\mu g$ HPII, 25 $\mu g$ HPII-pAzF, 100 $\mu g$ HPII-3NY) and incubated for 20 minutes. $H_2O_2$ was added in ceoncentrations of 0\%, 0.5\%, 1.0\%, 1.5\% 2.0\%, 2.5\%, 3.0\%, then the reaction flask was immediately capped. Pressure was monitored at 1s intervals for 120 seconds. Data was collected using Vernier LoggerPro. The initial five seconds of constant-slope data was used to calculate initial pressure per second data. Presures were converted to moles of gas via the ideal gas law. Each trial was measured in triplicate.\\
+
+<<<<<<< HEAD
 We know our noncanonical protein was expressed because we have lanes in the gel of the proper size. repurposed TAG codon competes with the TAG release factor, meaning we should get some truncated protein, because ours is N-terminally labelled. We don't, which is interesting.
 
+=======
+Michaelis-Menten kinetics were assumed to calculate enzyme efficiency parameters. Each velocity vs time data point was divided by the respective enzyme concentration to normalize the data with respect to enzyme amount. Then enzymes were fit to the Michaelis Menten equation:
+>>>>>>> 10aa5801f80bdfcba9317810e5ce01f07a40e2c5
 
+\begin{equation*}
+  V_0 = k_{cat} \frac{[S]}{K_M+[S]}.
+\end{equation*}
 
-new stuff
----------------------------
-Structure of Catalase HPII From Escherichia coli, at 1.9 A˚ Resolution, Bravo + Fita
-Describes the channels in HPII
-``Channels might be long and narrow to promote the selectivity for H2O2 of HPII''
+Using least squares linear regression through the Google Sheets Solver package, values for $k_{cat}$ and $K_M$ were acquired. The correlation coefficient was used as the fractional error of each value.\\
 
+<<<<<<< HEAD
 --Find a way to get the 2 channels: main one (intake? distal?), 590-595 one (lateral?)
+=======
+}
+
+\showmatmethods % Display the Materials and Methods section
+
+% \pnasbreak splits and balances the columns before the references.
+% If you see unexpected formatting errors, try commenting out this line
+% as it can run into problems with floats and footnotes on the final page.
+\pnasbreak
+
+% Bibliography
+\bibliography{references}
+
+\end{document}
+>>>>>>> 10aa5801f80bdfcba9317810e5ce01f07a40e2c5
