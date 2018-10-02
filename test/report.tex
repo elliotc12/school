@@ -13,7 +13,7 @@
 \begin{itemize}
 \item Create a biologically realistic leaky integrate-and-fire (LIF) model of a cortical section which can reproduce single-neuron details from 2PI \cite{bellaypaper}, such as firing rate distribution and quiescent time, correlations (average cross-correlation, distance-dependent correlation and autocorrelation), branching parameter, and time-binned avalanche dynamics
   
-\item Use biophysical hierarchy of neural connections \cite{rubinov} and represent the main pyramidal and interneuron types within cortex using realistic parameters \cite{objectworkingmemory}
+\item Use biophysical hierarchy of neural connections \cite{rubinov} and represent the main excitatory pyramidal and inhibitory interneuron types within cortex using realistic parameters \cite{objectworkingmemory}.
   
 \item Reproduce the theoretical synchronous-to-asynchronous phase transition \cite{munozlg} using a synaptic resources parameter tuned to avoid the bistable up-down regime and non-critical (neutral) avalanches. Other models have found a continuous (presumably not up/down) phase transition \cite{rubinov}, so it is likely we will be able to find one as well. Other models have remained within the bistable regime and thus see only an up/down transition with neutral avalanches \cite{neutraltheory}.
   
@@ -27,11 +27,17 @@
 \section*{Methods}
 
 \subsection*{Modular hierarchy}
-Recent models for self-organized criticality have used neural models with hundreds to thousands of tightly-connected neurons \cite{munozlg, rubinov}. We will use a similar scheme to compare with these results.\\
+Recent models for self-organized criticality have used networks of many neural modules with hundreds to thousands of tightly-connected neurons each \cite{munozlg, rubinov}. We will use a similar scheme to compare with these results.\\
+
+Each module will follow the 80/20 principle of excitatory and inhibitory neurons \cite{larremorerestrepo}. Brunel and Wang used a model which used biologically realistic values for membrane capacitance and channel time constant to describe neurons with excitatory, GABA or NMDA/AMPA channels \cite{objectworkingmemory}. Using realistic proportions of these neurons to organize a module would be a nice way to make the model biologically realistic.
 
 \subsection*{Connectivity}
 \subsection*{Plasticity \& synaptic resources}
+It seems that many different papers which achieve self-organised criticality use ``dynamical variables'' of some sort (eg synapse weight, synaptic resource or gain) \cite{munozlg, rubinov, kinouchi}. These variables have lead to interesting dynamics by their ability to store and integrate information at a slower timescale than voltage. A recent report showed SOC in a model with a supposedly biologically realistic dynamic ``gain'' instead of dynamic synapses, and claimed it was much faster to simulate. Perhaps this would be a thing to look into \cite{kinouchi}.
+
 \subsection*{Voltage equations}
+
+
 
 \section*{TODO}
 \begin{itemize}
@@ -42,11 +48,17 @@ Recent models for self-organized criticality have used neural models with hundre
 
 \textbf{coherence potentials subproject}
 \begin{itemize}
-\item Could CPs be found in 2P data?
+\item Question: Could CPs be found in 2P data?
+\item Question: What do the neural populations which trigger LFP spikes look like?
 \item Are there any patterns in MEA CP traces suggestive of how they arise?
 \item Could large-scale synchronous dynamics in the brain, eg oscillations or avalanches, \textit{create} hopfield networks in different places? Seems unlikely since CPs are \textit{really} similar
 \item Are CPs clustered in space, or are they a small set of repeating patterns which the brain likes to make in different places? Does injecting a CP into a network make it more likely for it to be seen at a later time?
 \item Are there any processes which could move a conceivably-CP-creating strong hopfield network \textit{spatially} through a network?
+\item Maybe a modular network with tightly-knit modules would be better at supporting CPs? Modules would then need to transport their gross dynamics to other modules, which could be an easier task than neurons transferring info to other neurons. Assuming homogenous spatially-distinct modules, if a module could enter a state where it A.) takes on some LFP-measurable trace and B.) is a stable attractor state and C.) connects in a way with other modules such that it can get them to enter into the state too, then the system could support CPs.
+\item If modules took on a basic oscillatory behavior which only lasts for a couple cycles, they could conceivably entrain other modules which happen to connect to oscillate at similar frequencies. Maybe the actual spatial location of modules is irrelevent for CPs, maybe the modules just need to be kinda close and randomly happen to ``move'' their activity?
+\item One thing seems clear: tightly-knit modules which can take on gross stable oscillatory states and send these behaviors to other modules could support CP dynamics
+\item Maybe small-world networks would be ideal for this transmission? Maybe only a single 'entrainment' between modules would be sufficient to 'send' the attractive signal between distant modules, and once sent, the new module could interact with its neighbors to cause them to go into (phase-lagged) oscillations. Maybe neighbors oscillating out-of-phase is enough to cause a CP, where a combo of their distance, phase pattern and amplitude could produce the right behavior? Something something fourier theorem about decomposing any signal into a bunch of sins and cosines?
+\item Requirements: (modules can enter transient oscillations) (modules can entrain their neighbors to oscillate at a different phase and amplitude through tight connections) (different modules transiently oscillating together can produce a unique LFP signal) (small-world connections allow these states to be sent over long distances) (somehow these several-module attractor modes are numerous to support numerous patterns, possibly by varying the oscillation phase or something)
 \end{itemize}
 
 \bibliographystyle{plain}
