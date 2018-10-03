@@ -28,7 +28,8 @@
   number={},
   pages={63-85},
   year={2001},
-  publisher={Kluwer Academic Publishers}
+  publisher={Kluwer Academic Publishers},
+  notes={This paper has something to do with cellular assemblies}
 }
 
 @article{munozlg,
@@ -50,7 +51,8 @@
   number={6},
   pages={e1002038},
   year={2011},
-  publisher={PLoS}
+  publisher={PLoS},
+  notes={}
 }
 
 @article{kinouchi,
@@ -61,7 +63,8 @@
   number={},
   pages={35831},
   year={2016},
-  publisher={Nature}
+  publisher={Nature},
+  notes={This paper used a LIF-esque model to demonstrate special cases of things like oscillations and steady-state behavior. They show self-organized criticality as well.}
 }
 
 @article{larremorerestrepo,
@@ -72,5 +75,32 @@
   number={138103},
   pages={},
   year={2014},
-  publisher={}
+  publisher={},
+  notes={This paper uses a simple automata model with uniform random weights to show how inhibitory neurons influence the system. It does the same method described in -entropyinhibition- of modeling the system as a random walk and calculating the "branching ratio" as a function of current activity, where br > 1 indicates growing activity. It uses the steady-state version of the model to show that, for inhibitory systems, for low activity br > 1 and high activity br < 1, leading to a stable system with 'ceaseless activity.'}
+}
+
+@article{neutraltheory,
+  title={Neutral Theory and Scale-Free Neural Dynamics},
+  author={Martinello, M and Hidalgo, J and Maritan, A and di Santo, S and Plenz, D and Munoz, M},
+  journal={Physical Review X},
+  volume={7},
+  number={041071},
+  pages={},
+  year={2017},
+  publisher={},
+  notes={This paper responds to the non-critical avalanches found in the 2009 Martinelli/Nieber nature physics LIF paper. They claim that the Nieber avalanches are created by a "neutral" process where activity is equally likely to continue or disperse. This defends the idea that brains are still "critical" avalanches.},
+  questions={1. How are critical avalanches with bp=1 not neutral? How is 50/50 for the avalanche to continue different than 50/50 that a neuron will cause its neigbor to fire? 2. Why are time-binned avalanches special, why is showing that a neutral process generates causal avalanches a way of discarding it?}
+}
+
+@article{entropyinhibition,
+  title={Robust entropy requires strong and balanced excitatory and inhibitory synapses},
+  author={Agrawal, V and Cowley, AB and Alfaori, Q and Restrepo, J and Larremore, D and Shew, W},
+  journal={arXiv:1804.05266},
+  volume={},
+  number={},
+  pages={},
+  year={2018},
+  publisher={},
+  notes={A paper which uses an automata network model with inhibitory and excitatory weights. The paper uses a mean-field-esque technique to simplify the network into a random walk, then calculates the master random walk equation to find the steady-state behavior of excitation (fraction of nodes excited). They use this steady-state distribution to find the effect of connection strength and exc/inh fraction on entropy and entropy parameter-stability. They find that entropy is maximized between the down and up states, and whats more, find that robust entropy is found for very low inhibition-to-excitation ratios. They claim that high entropy is good for maximizing the repertoire of available states, but could hurt signal-to-noise.},
+  questions={}
 }
