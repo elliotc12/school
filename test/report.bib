@@ -64,7 +64,7 @@
   pages={35831},
   year={2016},
   publisher={Nature},
-  notes={This paper used a LIF-esque model to demonstrate special cases of things like oscillations and steady-state behavior. They show self-organized criticality as well.}
+  notes={This paper used a LIF-esque model to demonstrate special cases of things like oscillations and steady-state behavior. They show self-organized criticality as well. They use a weird AIS probability dynamic variable.}
 }
 
 @article{larremorerestrepo,
@@ -102,5 +102,70 @@
   year={2018},
   publisher={},
   notes={A paper which uses an automata network model with inhibitory and excitatory weights. The paper uses a mean-field-esque technique to simplify the network into a random walk, then calculates the master random walk equation to find the steady-state behavior of excitation (fraction of nodes excited). They use this steady-state distribution to find the effect of connection strength and exc/inh fraction on entropy and entropy parameter-stability. They find that entropy is maximized between the down and up states, and whats more, find that robust entropy is found for very low inhibition-to-excitation ratios. They claim that high entropy is good for maximizing the repertoire of available states, but could hurt signal-to-noise.},
+  questions={}
+}
+
+@article{dynamicsynapses,
+  title={Dynamical synapses causing self-organized criticality in neural networks},
+  author={Levina, A and Hermann, JM and Geisel, T},
+  journal={Nature Physics Letters},
+  volume={3},
+  number={},
+  pages={857-860},
+  year={2007},
+  publisher={Nature},
+  notes={This paper discusses how average synapse weight is important for criticality, and how changing average synapse weight can control whether criticality is seen or not. They use a dynamical model and show that being dynamic isn't actually important, as long as the average synaptic weight is correct for criticality. However, dynamic synapses provide a much larger "margin of error" for being semi-critical, indicating they may be self-organizing.},
+  questions={}
+}
+
+@article{biologicalsoc,
+  title={Synaptic Plasticity Enables Adaptive Self-Tuning Critical Networks},
+  author={Stepp, N and Plenz, D and Srinivasa, N},
+  journal={PLOS Computational Biology},
+  volume={},
+  number={},
+  pages={},
+  year={2015},
+  publisher={PLOS},
+  notes={This paper uses a complex biological LIF model with leak, synaptic conductances for GABA and Glutamatergic channels, and both STP and EI-STDP. It achieves both criticality and balance, where E and I currents generally balance each other. It achieves pretty intense stability: injecting a single spike only adds ~20 resultant spikes; more dramatic stimulation "perturbes" the system lightly, but it returns to its stable state. The network changes its excitatory values on purturbation to values different than they were initially at, indicating that the system may have an infinite number of fixed points it can relax at. The network also achieves what they call "persistent asynchronous background activity," which basically means high-Fanno-Factor firing without input. This is a really cool paper which would be a good one to emulate, since their network seems like it has potential for some really cool dynamics.},
+  questions={}
+}
+
+@article{heterogeneousnetwork,
+  title={Nonperiodic Synchronization in Heterogeneous Networks of Spiking Neurons},
+  author={Thivierge, JP and Cisek, P},
+  journal={Journal of Neuroscience},
+  volume={28},
+  number={},
+  pages={7968–7978},
+  year={2006},
+  publisher={},
+  notes={Describes the idea of "omitted stimulus potential" where when a network is driven with a rhythmic stimulus, on termination of the stimulus the network still mimics the would-be response. This is believed to be a result of STDP within the network "encoding" the driving stimulus. Uses a Gaussian distribution to assign each neuron's biophysical parameters, and shows that heterogeneous networks are capable of generating important "nonperiodic synchrony" but homogenous-parameter networks fall into periodic states of network spiking. This seems very relevant for biophysical simulations. They also show that communities of neurons spontaneously form for different purposes during stimulation, for the purpose of replaying that stimulation. This is an emergent property of the network. They also use weights as a "synaptic resource" and show how network spikes deplete this network resource.},
+  questions={}
+}
+
+@article{mountcastle,
+  title={The columnar organization of the neocortex},
+  author={Mountcastle, V},
+  journal={Brain},
+  volume={120},
+  number={},
+  pages={701-722},
+  year={1997},
+  publisher={},
+  notes={Didn't read this paper, only glanced. A big review on how the cortical columns get formed and their general retinotopic fields. Claims that cortical neurons group together into 100-neuron modules.},
+  questions={}
+}
+
+@article{cps2010,
+  title={},
+  author={},
+  journal={},
+  volume={},
+  number={},
+  pages={},
+  year={},
+  publisher={},
+  notes={This is the original coherence potentials paper. They find that CPs occur within 10ms of each other, and the full pre- and post-cp waveform extended for 100-200 ms. CPs propagate through cascades, with a decaying exponential probability for successive occurrences. Their FFTs indicate no dominant peaks. Though oscillations are present in the CP sequence, since the autocorrelation looks periodic. CPs only decay a little bit, 10 per cent, after ten steps. Propagation is distance independent. CPs are always strong activity of several SDs.},
   questions={}
 }
