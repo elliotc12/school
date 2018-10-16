@@ -19,7 +19,7 @@ Coherence potentials are activity patterns which propagate with high fidelity th
 
 If a network meets these three requirements, then it should demonstrate coherence potentials.
 
-\section*{Objectives}
+\section*{Model Objectives}
 \begin{itemize}
 \item Create a biologically realistic \cite{objectworkingmemory, biologicalsoc} leaky integrate-and-fire (LIF) model of a cortical area which can reproduce basic single-neuron details from 2PI \cite{bellaypaper}, such as firing rate distribution, branching parameter, and time-binned avalanche dynamics.
   \begin{itemize}
@@ -32,6 +32,18 @@ If a network meets these three requirements, then it should demonstrate coherenc
   \end{itemize}
 \item Implement a heuristic-LFP method for estimating the electrode measurements in the model network; perhaps starting with simply averaging local module activity. Yahya would probably know more about this.
 \item Devise a method for ``entraining'' desired modules to enter into stable states, for example by feeding the same custom waveform into all the neurons in a single module as an external current. It has been shown that ``tetanizing'' a network can modify it through plasticity to reproduce the tetanized signal in a phenomena known as ``ommitted stimulus potential'' \cite{heterogeneousnetwork}; perhaps this phenomena would work for other inputs
+\end{itemize}
+
+\section*{Data analysis objectives}
+\begin{itemize}
+\item 2-photon data analysis: Although the 2PI field-of-view (500x500 $\mu m^2$) is much smaller than the brain surface area monitored by an MEA grid in the original study \cite{cps2010} (1.6 x 1.6 $mm^2$), it may be possible to approximate a 2x2 MEA grid from 2PI data by partitioning the field into four 250x250 $\mu m^2$ quadrants, then using a heuristic method to estimate the local potential at the center of each quadrant.
+\item Given estimated potential, the same techniques from \cite{cps2010} could be used to find coherence potentials. Given knowledge of the windows each coherence potential shows up in, we could then go back to the 2PI data and answer some interesting questions:
+  \begin{itemize}
+  \item Is individual neuron firing deterministic when a CP revisits the same quadrant?
+  \item Is the combined spike raster of the whole quadrant similar for the same CP at different sites?
+  \item Are there trends in the correlation between neurons in quadrants exhibiting the same CP during or before the CP starts, suggesting info transfer?
+  \end{itemize}
+\item If this setup is impossible, are there other ways to do CP analysis on 2PI data? Would a z-stack volume imaging approach give more neurons? Can the field-of-view be broadened somehow? Are there other labs that do broader 2PI imaging?
 \end{itemize}
 
 %% \section*{Alternate Objectives}
