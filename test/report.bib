@@ -195,3 +195,55 @@
   notes={This paper finds coherence potentials in ECoG data from humans. Their grid is 64 cm^2, so pretty big. It spans multiple brain regions. Their most interesting finding is that some CPs occur for the whole multi-minute behavior period and can return after several-second quiet periods, indicating they don't need to overlap in time. They found that some CPs were strongly associated with certain behaviors and were biased towards electrodes which encoded those behaviors: the right hand digit electrode which moved the right hand digits when stimulated was a strong host for the RH CP, and was often the first to generate the CP within a behavior window. They found that CPs that were associated with analogous tasks, like right vs left hand movements, had similar CPs, though this was with small sample size. Some CPs were very predictive of a future behavior, with R>0.95.},
   questions={}
 }
+
+@article{polychronousnetworks,
+  title={Polychronization: Computation with Spikes},
+  author={Izhikevich, E},
+  journal={Neural Computation},
+  volume={18},
+  number={},
+  pages={245-282},
+  year={2006},
+  publisher={},
+  notes={This paper describes the creation of a network with 'polychronous synchronization.' This network can display a semi-deterministic dynamics in the small scale over short time-spans. Perhaps this network can be pushed into these deterministic firing states through entrainment. They describe how external stimulus can create polychronous groups which fire when the stimulus is played. If a simple stimulus was connected and played to many modules, some would take up the pattern. Then the modules would all "playback" the same pattern when they were stimulated, all within a short temporal window. If this stimulus was replayed multiple times, then the polychronous signal would be replayed each time. This would explain the very time-lagged CPs seen in the thiagarajan paper.},
+  questions={}
+}
+
+@article{sequencelearning,
+  title={A model for complex sequence learning and reproduction in neural populations},
+  author={Verduzco-Flores, S. and Bodner, M and Ermentrout, B},
+  journal={J Comput Neurosci},
+  volume={32},
+  number={},
+  pages={403-423},
+  year={2012},
+  publisher={},
+  notes={This paper describes new ways to make LIF networks manifest repeated temporal sequences. It cites many other papers that do the same thing, using the keyword 'temporal sequences of neural activity.' They have a fairly complicated scheme which uses modified STDP, adaptation, spike delays, heterogeneous units, E/I, noise, and non-biophysical terms for preventing instability. They also use an apparently-questionable concept of 'temporally asymmetric population Hebbian plasticity,' which seems to me like population-level STDP. So the biophysical reality of this model is questionable, although according-to-them not entirely infeasible. This model is impressive in that it can reproduce a broad class of precisely-coreographed spatiotemporal sequences. The basic idea is to use precise "training signals" to facilitate the strong, stable STDP-linking of different modules. After training, the stable excitatory links between modules causes a precise activation pattern of elements in the sequence, and the global adaptation rules limit the number of modules active at once, preventing the sequence from being played back too quickly. They also use a 2-level model to show that more permissive "input sequences" can be learned quickly if a pre-programmed "index sequence" in layer 1 primes layer 2 to learn the sequence. Overall this is a very promising proof-of-concept that could be used to produce coherence potentials. Importantly, this model uses a Winner-Take-All (WTA) parameter set.},
+  questions={}
+}
+
+@article{neuralsequences,
+  title={Temporal sequence learning in winner-take-all networks of spiking neurons demonstrated in a brain-based device},
+  author={McKinstry, J and Edelman, G},
+  journal={Frontiers in Neurorobotics},
+  volume={7},
+  number={10},
+  pages={},
+  year={2013},
+  publisher={Frontiers in},
+  notes={This is a paper very similar to sequencelearning, except it uses biophysical single neurons as its simulation unit. It's almost the ideal paper to reproduce for our purposes. It uses Center-Surround connectivity pattern. It uses a WTA set of rules to cause neurons to form pattern-recognizing groups, where all the neurons in a group fire when a pattern is input to the entire network. Interestingly it seems like groups are not unique to individual patterns, but the network activity as a whole is unique. Reproducing such a network except replacing or modifying the connectivity rules such that they are modular, allowing for spatially-clustered groups of activity, would be a good start. },
+  questions={}
+}
+
+@article{assemblymemory,
+  title={Neural Network Model of Memory Retrieval},
+  author={Recanates, S and Katkov, M and Romani, S and Tsodyks, M},
+  journal={Frontiers in Computational Neuroscience},
+  volume={9},
+  number={149},
+  pages={},
+  year={2015},
+  publisher={Frontiers in},
+  notes={Didn't read most of this paper. They have a normal stochastic LIF network and show how, given an artificial connection matrix which weights connections based on similarity of assemblies two neurons are in, the network can transition between activating different assemblies.},
+  questions={}
+}
